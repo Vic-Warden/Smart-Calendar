@@ -1,6 +1,6 @@
 # Planning
 
-07/02 :
+### 07/02 :
 
 🔄 Find a speaker
 
