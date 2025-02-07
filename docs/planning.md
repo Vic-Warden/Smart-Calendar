@@ -1,3 +1,11 @@
 # Planning
 
-Test du planning
+07/02 :
+
+🔄 Find a speaker
+
+🔄 Install MySQL
+
+🔄 Portfolio
+
+✅ Gitlab
