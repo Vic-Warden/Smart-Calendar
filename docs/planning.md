@@ -1,6 +1,6 @@
 # Planning
 
-### 07/02 :
+- 07/02 :
 
 🔄 Find a speaker
 
@@ -9,3 +9,10 @@
 🔄 Portfolio
 
 ✅ Gitlab
+
+|07/02           |
+|:-:|
+|   🔄 Find a speaker        |
+| 🔄 Install MySQL            |
+| 🔄 Portfolio         |
+| ✅ Gitlab         |
