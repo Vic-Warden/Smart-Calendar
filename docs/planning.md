@@ -5,7 +5,7 @@ Finish all the Embedded part
 
 ✅ Find all my composants than I need for my smart calendar
 
-🔄 Create a model on Fritzing when someone passes in front of the smart calendar
+✅ Create a circuit on Thinkercad with speaker led and PIR sensor 
 🔄 Create a model on Fritzing a sound is played each hours
 🔄 Create a model on Fritzing a sound is played when the user added a appointment
 
