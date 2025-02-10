@@ -1,1 +1,1 @@
-![Menu](circuits_speaker_and_PIR_sensor.png)
+![Menu](circuit_Arduino_DFPlayer_ESP8266_PIR_sensor.png)
