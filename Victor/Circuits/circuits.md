@@ -1,0 +1,1 @@
+![Menu](circuits_speaker_and_PIR_sensor.png)
