@@ -51,24 +51,24 @@
         .overlay-links a:hover {
             text-decoration: underline;
         }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
     </style>
 </head>
 
 <body>
-    <div class="flex items-stretch bg-grey-lighter min-h-screen flex-col">
-        <div class="background-section">
-            <h1 class="title-text">Machine Spirit</h1>
-            <div class="overlay-links">
-                <a href="/phpmyadmin">PhpMyAdmin</a>
-                <a href="#">HTTP Tunnel</a>
-                <a href="#">HTTPS Tunnel</a>
-            </div>
+    <div class="background-section">
+        <h1 class="title-text">Machine Spirit</h1>
+        <div class="overlay-links">
+            <a href="/phpmyadmin">PhpMyAdmin</a>
+            <a href="#">HTTP Tunnel</a>
+            <a href="#">HTTPS Tunnel</a>
         </div>
-
-        <footer class="flex flex-row-reverse p-5">
-            <ul id="footer-nav" class="flex flex-wrap items-center mt-3 text-sm text-gray-500">
-            </ul>
-        </footer>
     </div>
 </body>
 
