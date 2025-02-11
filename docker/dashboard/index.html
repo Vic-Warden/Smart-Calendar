@@ -14,7 +14,7 @@
             height: 100vh; 
             background-image: url('Home_page.png');
             background-size: cover;
-            background-position: center calc(50% - 170px);
+            background-position: center calc(50% - 50px); /* Permet d'ajuster la hauteur */
             background-repeat: no-repeat;
             display: flex;
             justify-content: center;
@@ -58,6 +58,34 @@
             height: 100%;
             overflow: hidden;
         }
+
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            margin: auto;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .content-image {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .content-text {
+            font-size: 1.2rem;
+            color: #333;
+        }
     </style>
 </head>
 
@@ -68,6 +96,14 @@
             <a href="/phpmyadmin">PhpMyAdmin</a>
             <a href="#">HTTP Tunnel</a>
             <a href="#">HTTPS Tunnel</a>
+        </div>
+        
+        <div class="content-section">
+            <img src="tech_priest.png" alt="Tech Priest" class="content-image">
+            <div class="content-text">
+                <h2>Tech Priest</h2>
+                <p>Les Tech-Priests sont les prêtres de l'Adeptus Mechanicus, gardiens du savoir technologique dans l'univers de Warhammer 40K.</p>
+            </div>
         </div>
     </div>
 </body>
