@@ -7,6 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/dashboard/static/js/tunnel-script.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+        
         .background-section {
             width: 100%;
             height: 70vh; /* Prend 70% de la hauteur de l'écran */
@@ -14,13 +16,28 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+        
+        .title-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: #333730;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            margin-top: 50px;
         }
     </style>
 </head>
 
 <body>
     <div class="flex items-stretch bg-grey-lighter min-h-screen flex-col">
-        <div class="background-section"></div>
+        <div class="background-section">
+            <h1 class="title-text">Machine Spirit</h1>
+        </div>
 
         <footer class="flex flex-row-reverse p-5">
             <ul id="footer-nav" class="flex flex-wrap items-center mt-3 text-sm text-gray-500">
