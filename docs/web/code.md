@@ -1,3 +1,5 @@
 # Web Code
 
 Write here your own content!
+
+I'm going to take the liberty of talking about the very first code I've just made, even though I admit I'd have preferred it to be on the Arduino, but I realized that the components I wanted to use I don't have. I'll be receiving them on Saturday, so to save time I decided to take care of the front-end of my website. I'd already done some because I'd been lucky enough to work for a medical practice and had taken care of their website. So my very first code is an html file in the Warhammer 40,000 universe. I'm so happy with what I've accomplished! I'm really proud of myself for having succeeded in making something that suits me. It was important for me to be able to add my favorite universe to this project. In this HTML file I put an image in the background to give the image a theme, I decided to add a text area with an image of a tech priest that gives the impression of talking to us with a button at the bottom when we're ready to commune with the machine spirit.
