@@ -31,6 +31,7 @@
             width: 90%;
             min-width: 700px;
             max-width: 1200px;
+            margin-bottom: 20px;
         }
 
         .quote-text {
@@ -39,11 +40,6 @@
             color: #ffffff;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
             font-style: italic;
-        }
-
-        .button-container {
-            margin-top: 20px;
-            text-align: center;
         }
 
         .button {
@@ -56,10 +52,44 @@
             cursor: pointer;
             text-transform: uppercase;
             transition: background-color 0.3s;
+            margin-top: 10px;
         }
 
         .button:hover {
             background-color: #a52a2a;
+        }
+
+        .appointments-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .appointment {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-button {
+            background-color: red;
+            border: none;
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: darkred;
         }
 
         .form-container {
@@ -70,20 +100,35 @@
             padding: 15px;
             border-radius: 10px;
             width: 90%;
-            max-width: 400px;
+            max-width: 500px;
             color: white;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 10px;
+        }
+
+        input, button {
+            padding: 8px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
         }
 
         input {
-            width: 80%;
+            width: 100%;
+            margin-bottom: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 8px;
-            margin: 10px 0;
             border-radius: 5px;
-            color: rgb(0, 0, 0);
-            border: none;
         }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            opacity: 1;
+        }
+
+        
 
         @media screen and (max-width: 768px) {
             .quote-box {
@@ -93,6 +138,9 @@
             .quote-text {
                 font-size: 1rem;
             }
+            .appointments-container {
+                width: 95%;
+            }
         }
     </style>
 </head>
@@ -101,32 +149,79 @@
     <div class="background-section">
         <div class="quote-box">
             <p class="quote-text">
-                The Machine Spirit hungers for your data. Inscribe your sacred tasks and offer them unto its blessed cogitators. No duty shall be lost—only divine order, as willed by the Omnissiah. Submit with reverence, and let the Machine preserve all for eternity!
+                The Machine Spirit hungers. Inscribe your sacred tasks, offer them with reverence, and let the Omnissiah’s will be done. The Machine forgets nothing !
             </p>
         </div>
 
-        <!-- Bouton pour afficher le formulaire -->
-        <div class="button-container">
-            <button class="button" onclick="toggleForm()">Log Your Sacred Duty</button>
-        </div>
+        <button class="button" onclick="toggleForm()">Log Your Sacred Duty</button>
 
-        <!-- Formulaire caché initialement -->
         <div class="form-container" id="appointmentForm">
-            <p>Inscribe your task into the cogitators:</p>
-            <input type="text" id="appointmentTitle" placeholder="Enter the task name (e.g., Ritual of Maintenance)">
-            <input type="date" id="appointmentDate">
-            <input type="time" id="appointmentTime">
-            <button class="button" onclick="toggleForm()">Close</button>
+            <input type="text" id="appointmentTitle" placeholder="Enter task..." required>
+            <input type="date" id="appointmentDate" required>
+            <input type="time" id="appointmentTime" required>
+            <button class="button" onclick="addAppointment()">Sanctify this duty in the Omnissiah’s holy archive !</button>
+        </div>
+        <div class="appointments-container">
+            <h3>Rites of Maintenance, Recorded for Eternity</h3>
+            <div id="appointmentsList"></div>
         </div>
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", loadAppointments);
+
         function toggleForm() {
             let form = document.getElementById("appointmentForm");
-            form.style.display = form.style.display === "none" ? "flex" : "none";
+            form.style.display = form.style.display === "flex" ? "none" : "flex";
+        }
+
+        function addAppointment() {
+            let title = document.getElementById("appointmentTitle").value;
+            let date = document.getElementById("appointmentDate").value;
+            let time = document.getElementById("appointmentTime").value;
+
+            if (title === "" || date === "" || time === "") {
+                alert("Please complete all fields.");
+                return;
+            }
+
+            let appointment = { title, date, time };
+            let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+            appointments.push(appointment);
+            localStorage.setItem("appointments", JSON.stringify(appointments));
+
+            document.getElementById("appointmentTitle").value = "";
+            document.getElementById("appointmentDate").value = "";
+            document.getElementById("appointmentTime").value = "";
+
+            toggleForm();
+            loadAppointments();
+        }
+
+        function loadAppointments() {
+            let appointmentsList = document.getElementById("appointmentsList");
+            appointmentsList.innerHTML = "";
+
+            let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+            appointments.forEach((appointment, index) => {
+                let appointmentDiv = document.createElement("div");
+                appointmentDiv.classList.add("appointment");
+                appointmentDiv.innerHTML = `
+                    <span>${appointment.date} - ${appointment.time} : ${appointment.title}</span>
+                    <button class="delete-button" onclick="deleteAppointment(${index})">X</button>
+                `;
+                appointmentsList.appendChild(appointmentDiv);
+            });
+        }
+
+        function deleteAppointment(index) {
+            let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+            appointments.splice(index, 1);
+            localStorage.setItem("appointments", JSON.stringify(appointments));
+            loadAppointments();
         }
     </script>
-
 </body>
 
 </html>
