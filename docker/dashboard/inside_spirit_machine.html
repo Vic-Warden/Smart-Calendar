@@ -62,6 +62,29 @@
             background-color: #a52a2a;
         }
 
+        .form-container {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            color: rgb(0, 0, 0);
+            border: none;
+        }
+
         @media screen and (max-width: 768px) {
             .quote-box {
                 width: 95%;
@@ -82,10 +105,28 @@
             </p>
         </div>
 
+        <!-- Bouton pour afficher le formulaire -->
         <div class="button-container">
-            <button class="button">Log Your Sacred Duty</button>
+            <button class="button" onclick="toggleForm()">Log Your Sacred Duty</button>
+        </div>
+
+        <!-- Formulaire caché initialement -->
+        <div class="form-container" id="appointmentForm">
+            <p>Inscribe your task into the cogitators:</p>
+            <input type="text" id="appointmentTitle" placeholder="Enter the task name (e.g., Ritual of Maintenance)">
+            <input type="date" id="appointmentDate">
+            <input type="time" id="appointmentTime">
+            <button class="button" onclick="toggleForm()">Close</button>
         </div>
     </div>
+
+    <script>
+        function toggleForm() {
+            let form = document.getElementById("appointmentForm");
+            form.style.display = form.style.display === "none" ? "flex" : "none";
+        }
+    </script>
+
 </body>
 
 </html>
