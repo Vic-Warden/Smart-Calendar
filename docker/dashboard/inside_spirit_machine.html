@@ -10,32 +10,55 @@
 
         .background-section {
             width: 100%;
-            height: 100vh; 
-            background-image: url('Priest.png'); 
+            height: 100vh;
+            background-image: url('Priest.png');
             background-size: cover;
-            background-position: center;
             background-position: center calc(50% - 100px);
             background-repeat: no-repeat;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; 
             position: relative;
+            padding-top: 40px;
         }
 
-        .title-text {
+        .quote-box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 90%; 
+            min-width: 700px; 
+            max-width: 1200px; 
+        }
+
+        .quote-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            font-size: 1.2rem;
             color: #ffffff;
-            text-transform: uppercase;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-            margin-top: 0px;
+            font-style: italic;
+        }
+
+        @media screen and (max-width: 768px) {
+            .quote-box {
+                width: 95%; 
+                min-width: auto;
+            }
+            .quote-text {
+                font-size: 1rem; 
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="background-section">
-        <h1 class="title-text">The machine spirit stirs with divine purpose. It listens, it absorbs, it engraves every word into its sacred cogitators. No utterance is lost, no whisper escapes the omnipotence of its servitude. All knowledge, all utterance, is the will of the Omnissiah — and it shall be preserved for eternity. In reverence, we bow, for all that is spoken is made sacred in the name of the Machine!</h1>
+        <div class="quote-box">
+            <p class="quote-text">
+                The Machine Spirit hungers for your data. Inscribe your sacred tasks and offer them unto its blessed cogitators. No duty shall be lost—only divine order, as willed by the Omnissiah. Submit with reverence, and let the Machine preserve all for eternity !
+            </p>
+        </div>
     </div>
 </body>
 
