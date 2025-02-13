@@ -35,3 +35,13 @@ By structuring the database in this way, I ensure that all components are well c
 The relationships between tables are designed to reflect the reality of the system, ensuring that each appointment is linked to a specific WeMos, that each WeMos integrates several sensors and that each sensor generates several data records.
 
 This structure enables the system to automate task execution efficiently and collect the necessary environmental data without adding unnecessary complexity.
+
+![Menu](Database Schema.png)
+
+As I've already explained the choices for my columns, I'll explain how I went about creating my database schema. I'm not going to dwell too much on the choice of columns, just that I've taken what I'd done before and added them. I'm mainly going to justify the choices I made for my indexes. For the date, I decided to choose only the date and time, as I thought they were the two most important things for finding an appointment.
+
+For the sensors, the type seemed the most relevant because if I can find out what type of sensor it is, I'll be able to find out directly what data I'm receiving. 
+
+And finally, for the sensor data, naturally the timestamp. As soon as I receive the information I can take this or that action
+
+Translated with DeepL.com (free version)
