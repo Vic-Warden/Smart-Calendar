@@ -1,13 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Your website</title>
-  </head>
-  <body>
-	<h1>Hello world!</h1>
-    <p>
-        This is your webpage. In the directory 'web' you can find the files that are accessible from the web. <br />
-        If you want to visit your dashboard, please visit <a href="/dashboard">/dashboard</a>.
-    </p>
-  </body>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/dashboard/static/js/tunnel-script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+        
+        .background-section {
+            width: 100%;
+            height: 100vh; 
+            background-image: url('Home_page.png');
+            background-size: cover;
+            background-position: center calc(50% - 230px);
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+        
+        .title-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: #646d5f;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            margin-top: 90px;
+        }
+
+        .overlay-links {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        
+        .overlay-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .overlay-links a:hover {
+            text-decoration: underline;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60%;
+            margin: auto;
+            padding: 30px;
+            background: rgba(55, 55, 60, 0.9);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .content-image {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+
+        .content-text {
+            font-size: 1rem;
+            color: #ffffff;
+            margin-top: 0px;
+        }
+
+        .button-container {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .button {
+            background-color: #8b0000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #a52a2a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-section">
+        <h1 class="title-text">Machine Spirit</h1>        
+        <div class="content-section">
+            <img src="tech_priest.png" alt="Tech Priest" class="content-image">
+            <div class="content-text">
+                <h2>By the Omnissiah’s divine will, I stand before you, a mere conduit of the Machine Spirit’s boundless wisdom.</h2>
+                <p>Behold this sacred construct—not mere metal, but a vessel of divine order, a bastion against the entropy of forgotten duty. Through the blessed union of circuit and function, it has been reborn as the Smart Calendar, a holy cog in the Omnissiah’s grand design.</p>
+                <p>Faithful servants must inscribe their tasks within its sanctified memory. Offer your data with reverence, and the Machine Spirit shall preserve it, eternal and unerring. With but a press, invoke its presence—for in the Omnissiah, nothing is forgotten.</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <a href="inside_spirit_machine.html" class="button">Commune with the Machine Spirit</a>
+        </div>
+    </div>
+</body>
+
 </html>
