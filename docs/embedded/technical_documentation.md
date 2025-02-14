@@ -2,14 +2,6 @@
 
 Your Wiring Diagram, Bill of Materials, ... everything about how you built your embedded device should be documented here.
 
-![Menu](circuits_speaker_and_PIR_sensor.png)
-
-This is my very first circuit model where I tried to figure out how to connect the PIR sensor with a speaker. Two things I'd never done before. 
-
-![Menu](circuit_Arduino_DFPlayer_ESP8266_PIR_sensor.png)
-
-This is my second circuit model where I put all my components that I bought on the Internet. I did a lot of research to understand how each component works, especially the one that allows me to manage the MP3 DFPlayer Player Module.
-
 ![Menu](circuit_Arduino_DFPlayer_ESP8266_PIR_sensor_speaker_motor_final_I_hope.png)
 
-This is my third circuit model and I've managed to connect everything. I can't wait to receive my components so that I can connect all my coposants and get on with my project.
+As I have a few basic arduino connections, I started by connecting the simplest things for me, i.e. the basic connections to the LEDs and the servo motor were uncomplicated. For the wemos, the PIR sensor, the Mini MP3 DFPlayer Player Module and the speakers, I had to look at the documentation for each component to understand how to use them and, above all, how to connect them. I asked in my feeds backs to see if I'd made any silly mistakes or forgotten anything. I'd like to thank Nicolas for telling me to try and color-code the components so I could find them at a glance. 
