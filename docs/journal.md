@@ -13,3 +13,9 @@ So for example when you receive feedback on your project, you can write down the
 
 ## First Week: Tuesday 13/02
   - Today I reread all my database courses because I'd completely forgotten how to represent entities with links. I learnt a new way of representing them with our teacher, who used to put ( 1, N ), well numbers and letters and not just bars. I've added some documentation because last night I didn't have time to do it, I've replaced an audio file that wasn't cut up properly, and I've finished my ERD diagram and the diagram for my database but I'm stuck and I don't understand why, I wanted to work a bit more but I'm limited...
+  Today I reread all my database courses because I had completely forgotten how to represent entities with links. I learned a new way of representing them with our teacher who put ( 1, N ), finally numbers and letters and not only bars. I've added documentation because last night I didn't have time to do it, I've replaced a badly cut audio file, I've finished my ERD diagram and my database diagram but I'm stuck and I don't understand why, I wanted to work a bit harder but I'm limited... because I hadn't understood how to connect my SQL workbrench to my server that we had available. 
+
+## First Week: Tuesday 14/02
+![Menu](teacher's_help.jpg)
+
+The teacher helped me understand the basics of trying to connect my workbrench to my server, I thank him enormously for his time. 
