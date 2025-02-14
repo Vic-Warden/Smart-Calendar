@@ -7,7 +7,8 @@ So for example when you receive feedback on your project, you can write down the
 ## First Week: Tuesday 13/02
 ![Menu](teacher's_help.jpg)
 
-The teacher helped me understand the basics of trying to connect my workbrench to my server, I thank him enormously for his time. 
+I'd like to thank Professor Mats most of all, who more than helped me connect my mysql Workbrench to my database. I learned so many things at once and I'm happy because now I know how to do it and I know I could help my friends to solve this problem. First we need to connect with our account and that will give us the right ports and ip address. I didn't manage to do this last night, which is why I didn't stay up too late because I was blocked. Then the advantage I had was that all I had to do was retrieve my schema and with a few clicks (although I realised that I'd misconfigured my tables because you always have to reselect whether it's for the index, for foreign keys, etc.), I was able to create my own schema. And by doing all that, it works. Thanks again to Mats and Gerald (I hope I didn't misspell his first name) for helping me.
+
 
 ## First Week: Tuesday 12/02
   - Today I reread all my database courses because I'd completely forgotten how to represent entities with links. I learnt a new way of representing them with our teacher, who used to put ( 1, N ), well numbers and letters and not just bars. I've added some documentation because last night I didn't have time to do it, I've replaced an audio file that wasn't cut up properly, and I've finished my ERD diagram and the diagram for my database but I'm stuck and I don't understand why, I wanted to work a bit more but I'm limited...
