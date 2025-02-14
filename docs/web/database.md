@@ -43,5 +43,3 @@ As I've already explained the choices for my columns, I'll explain how I went ab
 For the sensors, the type seemed the most relevant because if I can find out what type of sensor it is, I'll be able to find out directly what data I'm receiving. 
 
 And finally, for the sensor data, naturally the timestamp. As soon as I receive the information I can take this or that action
-
-Translated with DeepL.com (free version)
