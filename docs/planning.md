@@ -1,9 +1,11 @@
 # Ideal Planning
 
-## First Week: Embedded Part
+## First Week:
 
-- **✅ Find all the components needed for my smart calendar**
-  - List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs
+- **Monday 10/02**
+  - ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs
+  - ✅ Learning Fritzing
+  - ✅ Connecting basic components and testing circuits
 
 - **🔄 Create a circuit on Tinkercad with Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs**
   - Design the circuit layout
