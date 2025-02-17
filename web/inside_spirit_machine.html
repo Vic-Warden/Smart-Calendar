@@ -157,10 +157,10 @@
 
         <div class="form-container" id="appointmentForm">
             <input type="text" id="appointmentTitle" placeholder="Enter task..." required>
-            <input type="date" id="appointmentDate" required>
-            <input type="time" id="appointmentTime" required>
-            <button class="button" onclick="addAppointment()">Sanctify this duty in the Omnissiah’s holy archive !</button>
+            <input type="datetime-local" id="appointmentDateTime" required>
+            <button class="button" onclick="addAppointment()">Sanctify this duty in the Omnissiah’s holy archive!</button>
         </div>
+        
         <div class="appointments-container">
             <h3>Rites of Maintenance, Recorded for Eternity</h3>
             <div id="appointmentsList"></div>
@@ -221,6 +221,16 @@
             localStorage.setItem("appointments", JSON.stringify(appointments));
             loadAppointments();
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+    let dateTimeInput = document.getElementById("appointmentDateTime");
+
+    dateTimeInput.addEventListener("click", function() {
+        this.showPicker && this.showPicker(); 
+    });
+});
     </script>
+
+    
 </body>
 </html>
