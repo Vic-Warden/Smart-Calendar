@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/dashboard/static/js/tunnel-script.js"></script>
+    <script type="module">
+        import 'ldrs/cardio';
+    </script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
         
@@ -114,6 +118,11 @@
 </head>
 
 <body>
+    <div id="loading-screen">
+        <l-cardio size="50" stroke="4" speed="2" color="white"></l-cardio>
+        <p>Chargement en cours...ls</p>
+    </div>
+    
     <div class="background-section">
         <h1 class="title-text">Machine Spirit</h1>        
         <div class="content-section">
