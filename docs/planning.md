@@ -20,21 +20,21 @@
   - ✅ Connecting basic components and testing circuits
 
 **Tuesday 11/02**
-  - ✅ SG90 Servo Motor added to the circuit
-  - ✅ Finalizing the circuit model
-  - ✅ Cutting and preparing audio files
-  - ✅ Start of website development (Front-end)
+  -✅ SG90 Servo Motor added to the circuit
+  -✅ Finalizing the circuit model
+  -✅ Cutting and preparing audio files
+  -✅ Start of website development (Front-end)
 
   **Wednesday 12/02**
-  - ✅ Revision of database courses (ERD, relations)
-  - ✅ Finalize database diagram
-  - ✅ Addition of documentation and correction of audio files
+  -✅ Revision of database courses (ERD, relations)
+  -✅ Finalize database diagram
+  -✅ Addition of documentation and correction of audio files
 
   **Thursday 13/02**
-  - ✅ MySQL Workbench connection with teacher's help
-  - ✅ Create database schema
-  - ✅ Table configuration and index corrections
+-✅ MySQL Workbench connection with teacher's help
+-✅ Create database schema
+-✅ Table configuration and index corrections
 
   **Friday 14/02**
-  - ✅ Resolution of table configuration errors
-  - ✅ Troubleshooting Wemos connection problems
+-✅ Resolution of table configuration errors
+-✅ Troubleshooting Wemos connection problems
