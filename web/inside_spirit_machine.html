@@ -106,42 +106,11 @@
             margin-top: 10px;
         }
 
-        input, button {
-            padding: 8px;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: none;
-        }
-
         input {
-            width: 100%;
-            margin-bottom: 10px;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px;
-            border-radius: 5px;
-        }
-
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-            opacity: 1;
+        color: black !important;
         }
 
         
-
-        @media screen and (max-width: 768px) {
-            .quote-box {
-                width: 95%;
-                min-width: auto;
-            }
-            .quote-text {
-                font-size: 1rem;
-            }
-            .appointments-container {
-                width: 95%;
-            }
-        }
     </style>
 </head>
 
@@ -149,7 +118,7 @@
     <div class="background-section">
         <div class="quote-box">
             <p class="quote-text">
-                The Machine Spirit hungers. Inscribe your sacred tasks, offer them with reverence, and let the Omnissiah’s will be done. The Machine forgets nothing !
+                The Machine Spirit hungers. Inscribe your sacred tasks, offer them with reverence, and let the Omnissiah’s will be done. The Machine forgets nothing!
             </p>
         </div>
 
@@ -158,6 +127,8 @@
         <div class="form-container" id="appointmentForm">
             <input type="text" id="appointmentTitle" placeholder="Enter task..." required>
             <input type="datetime-local" id="appointmentDateTime" required>
+            <button id="confirmDateTime" class="button" style="margin-top: 10px; display: none;">Confirm</button>
+
             <button class="button" onclick="addAppointment()">Sanctify this duty in the Omnissiah’s holy archive!</button>
         </div>
         
@@ -168,35 +139,37 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", loadAppointments);
-
         function toggleForm() {
             let form = document.getElementById("appointmentForm");
-            form.style.display = form.style.display === "flex" ? "none" : "flex";
+            form.style.display = (form.style.display === "none" || form.style.display === "") ? "flex" : "none";
         }
 
         function addAppointment() {
             let title = document.getElementById("appointmentTitle").value;
-            let date = document.getElementById("appointmentDate").value;
-            let time = document.getElementById("appointmentTime").value;
+            let dateTime = document.getElementById("appointmentDateTime").value;
 
-            if (title === "" || date === "" || time === "") {
+            if (title.trim() === "" || dateTime.trim() === "") {
                 alert("Please complete all fields.");
                 return;
             }
 
-            let appointment = { title, date, time };
             let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+            let appointment = { title, dateTime };
             appointments.push(appointment);
             localStorage.setItem("appointments", JSON.stringify(appointments));
 
             document.getElementById("appointmentTitle").value = "";
-            document.getElementById("appointmentDate").value = "";
-            document.getElementById("appointmentTime").value = "";
-
+            document.getElementById("appointmentDateTime").value = "";
             toggleForm();
             loadAppointments();
         }
+
+        function formatDateTime(dateTime) {
+    let date = new Date(dateTime);
+    let options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    return date.toLocaleDateString('en-US', options);
+}
+
 
         function loadAppointments() {
             let appointmentsList = document.getElementById("appointmentsList");
@@ -208,9 +181,11 @@
                 let appointmentDiv = document.createElement("div");
                 appointmentDiv.classList.add("appointment");
                 appointmentDiv.innerHTML = `
-                    <span>${appointment.date} - ${appointment.time} : ${appointment.title}</span>
-                    <button class="delete-button" onclick="deleteAppointment(${index})">X</button>
-                `;
+    <span><strong>${appointment.title}</strong></span><br>
+    <span>${formatDateTime(appointment.dateTime)}</span>
+    <button class="delete-button" onclick="deleteAppointment(${index})">X</button>
+`;
+
                 appointmentsList.appendChild(appointmentDiv);
             });
         }
@@ -223,14 +198,68 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
+            loadAppointments();
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let dateTimeInput = document.getElementById("appointmentDateTime");
+            let logButton = document.getElementById("toggleFormBtn");
+            let form = document.getElementById("appointmentForm");
+            let addButton = document.getElementById("addAppointmentBtn");
+
+            if (dateTimeInput) {
+                dateTimeInput.addEventListener("focus", function() {
+                    this.showPicker && this.showPicker();
+                });
+            }
+
+            if (logButton) {
+                logButton.addEventListener("click", function() {
+                    if (form) {
+                        form.style.display = "flex";
+                        logButton.style.display = "none";
+                    }
+                });
+            }
+
+            if (addButton) {
+                addButton.addEventListener("click", function() {
+                    let title = document.getElementById("appointmentTitle").value;
+                    let dateTime = document.getElementById("appointmentDateTime").value;
+                    
+                    if (title.trim() === "" || dateTime.trim() === "") {
+                        alert("Please complete all fields.");
+                        return;
+                    }
+                    
+                    setTimeout(() => {
+                        if (form) form.style.display = "none";
+                        if (logButton) logButton.style.display = "block";
+                    }, 500);
+                });
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
     let dateTimeInput = document.getElementById("appointmentDateTime");
+    let confirmButton = document.getElementById("confirmDateTime");
 
-    dateTimeInput.addEventListener("click", function() {
-        this.showPicker && this.showPicker(); 
-    });
+    if (dateTimeInput) {
+        dateTimeInput.addEventListener("focus", function() {
+            this.showPicker && this.showPicker();
+            confirmButton.style.display = "block";
+        });
+
+        confirmButton.addEventListener("click", function() {
+            confirmButton.style.display = "none";
+        });
+    }
 });
-    </script>
 
+
+        
+    </script>
     
 </body>
+
 </html>
