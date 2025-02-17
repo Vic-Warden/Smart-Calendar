@@ -1,4 +1,4 @@
-# Ideal Planning
+# Planning
 
 ## Second Week (Holidays):
 
@@ -8,12 +8,10 @@
 - ✅ Connecting basic components and testing circuits  
 
 ### Tuesday 18/02
-- ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs  
-- ✅ Learning Fritzing  
-- ✅ Connecting basic components and testing circuits  
+ 
 
 ---
-Test
+
 ## First Week:
 
 ### Monday 10/02
