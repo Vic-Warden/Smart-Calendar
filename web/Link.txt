@@ -1,3 +1,5 @@
 https://loca.lt/mytunnelpassword
 
 http://localhost/phpmyadmin/
+
+https://hoegyv.loca.lt/
