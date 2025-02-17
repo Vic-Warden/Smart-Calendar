@@ -1,40 +1,42 @@
 # Ideal Planning
 
-## Second Week ( Holidays ):
+## Second Week (Holidays):
 
-  **Monday 17/02**
-  - ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs
-  - ✅ Learning Fritzing
-  - ✅ Connecting basic components and testing circuits
+### Monday 17/02
+- ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs  
+- ✅ Learning Fritzing  
+- ✅ Connecting basic components and testing circuits  
 
-  **Tuesday 18/02**
-  - ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs
-  - ✅ Learning Fritzing
-  - ✅ Connecting basic components and testing circuits
+### Tuesday 18/02
+- ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs  
+- ✅ Learning Fritzing  
+- ✅ Connecting basic components and testing circuits  
 
+---
+Test
 ## First Week:
 
-**Monday 10/02**
-  - ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs
-  - ✅ Learning Fritzing
-  - ✅ Connecting basic components and testing circuits
+### Monday 10/02
+- ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs  
+- ✅ Learning Fritzing  
+- ✅ Connecting basic components and testing circuits  
 
-**Tuesday 11/02**
-  -✅ SG90 Servo Motor added to the circuit
-  -✅ Finalizing the circuit model
-  -✅ Cutting and preparing audio files
-  -✅ Start of website development (Front-end)
+### Tuesday 11/02
+- ✅ SG90 Servo Motor added to the circuit  
+- ✅ Finalizing the circuit model  
+- ✅ Cutting and preparing audio files  
+- ✅ Start of website development (Front-end)  
 
-  **Wednesday 12/02**
-  -✅ Revision of database courses (ERD, relations)
-  -✅ Finalize database diagram
-  -✅ Addition of documentation and correction of audio files
+### Wednesday 12/02
+- ✅ Revision of database courses (ERD, relations)  
+- ✅ Finalize database diagram  
+- ✅ Addition of documentation and correction of audio files  
 
-  **Thursday 13/02**
--✅ MySQL Workbench connection with teacher's help
--✅ Create database schema
--✅ Table configuration and index corrections
+### Thursday 13/02
+- ✅ MySQL Workbench connection with teacher's help  
+- ✅ Create database schema  
+- ✅ Table configuration and index corrections  
 
-  **Friday 14/02**
--✅ Resolution of table configuration errors
--✅ Troubleshooting Wemos connection problems
+### Friday 14/02
+- ✅ Resolution of table configuration errors  
+- ✅ Troubleshooting Wemos connection problems  
