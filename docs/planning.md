@@ -8,7 +8,8 @@
 - ✅ Connecting basic components and testing circuits  
 
 ### Tuesday 18/02
-- ✅ 
+- ✅ I've added my Requirements section
+- ✅ Transferred my audio files to my SD card
 
 ---
 

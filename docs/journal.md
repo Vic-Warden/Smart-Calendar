@@ -11,6 +11,8 @@ But the problem with this site is that it took me at least 1h30 to reconfigure e
 
 ## Second Week ( Holiday ): Tuesday 18/02
 
+So today I didn't do much work because my girlfriend came to see me during the vacations, but today I really wanted to add my requirements section because I know that if I don't do it now I'll forget to do it. I sent my file with the audio files to her PC because for some reason my computer, which cost me over 1600 euros, doesn't have an SD drive, whereas hers does, so I sent her my audio files so she could put them on my SD card. And tomorrow I'm going to start assembling my components together and start coding on my arduino.
+
 ---
 
 ## First Week: Friday 14/02
