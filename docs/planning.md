@@ -8,7 +8,7 @@
 - ✅ Connecting basic components and testing circuits  
 
 ### Tuesday 18/02
- 
+- ✅ 
 
 ---
 
