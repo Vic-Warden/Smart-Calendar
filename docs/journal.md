@@ -16,7 +16,7 @@ So today I didn't do much work because my girlfriend came to see me during the v
 ---
 
 ## First Week: Friday 14/02
-
+So today, I continued to work on the database part, I made some modifications that Mats had told me to make, I'm thinking particularly of the primary key, the indexes to foreign keys... I uploaded some files that weren't right, and improved some aspects of my planning. Oh yes, and I saw my mentor for the first time, or my coach, I forget which role he's affiliated with. I'm glad I managed to get Above Expectation, I imagine he was pleased with my work.
 
 ## First Week: Thursday 13/02
 ![Menu](teacher's_help.jpg)
