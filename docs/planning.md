@@ -11,6 +11,10 @@
 - ✅ I've added my Requirements section
 - ✅ Transferred my audio files to my SD card
 
+### Thursday 20/02
+- ✅ Start the assembly section
+- ✅ Led and PIR sensor test program
+
 ---
 
 ## First Week:
