@@ -13,6 +13,10 @@ But the problem with this site is that it took me at least 1h30 to reconfigure e
 
 So today I didn't do much work because my girlfriend came to see me during the vacations, but today I really wanted to add my requirements section because I know that if I don't do it now I'll forget to do it. I sent my file with the audio files to her PC because for some reason my computer, which cost me over 1600 euros, doesn't have an SD drive, whereas hers does, so I sent her my audio files so she could put them on my SD card. And tomorrow I'm going to start assembling my components together and start coding on my arduino.
 
+## Second Week ( Holiday ): Thursday 20/02
+
+Today was mainly the test phase, and although I was on vacation with my girlfriend, we took some time to work separately. For the construction part, I was disappointed to see that I'd made 2 very stupid mistakes concerning my LEDs: I'd reversed the anodes and catodes... I was able to run 2 test programs, one that lets me test my LEDs to see if everything's working properly, and the other my PIR sensor. In both cases, everything's working perfectly, so tomorrow I'll continue working on my real model and finally test my loudspeakers. 
+
 ---
 
 ## First Week: Friday 14/02
