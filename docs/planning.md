@@ -2,6 +2,13 @@
 
 ## Second Week (Holidays):
 
+### Monday 24/02
+- ✅ Watch a youtube video to understand wemos  
+
+---
+
+## Second Week (Holidays):
+
 ### Monday 17/02
 - ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs  
 - ✅ Learning Fritzing  
