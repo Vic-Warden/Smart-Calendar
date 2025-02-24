@@ -7,6 +7,7 @@ So for example when you receive feedback on your project, you can write down the
 ## Third week : Monday 24/02
 
 Today I started my day early because my girlfriend is still here, she's leaving on Wednesday, which is why today I'm working in the morning as opposed to my habit of working late into the evening. This morning, someone in class had sent me a youtube link https://youtu.be/VnfX9YJbaU8?si=uhN22vAEtGgXQCOh I watched it to understand the whole connectivity part, I admit I have a lot of trouble with this part and it's the part that scares me the most...
+While surfing the web I found the video I needed to learn how to connect my website to my database ! https://youtu.be/tHKsZdS8Oug?si=_tlX0Q8mqJxHsq8b
 
 ## Second Week ( Holiday ): Monday 17/02
 
