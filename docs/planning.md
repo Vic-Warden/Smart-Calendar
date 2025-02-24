@@ -12,44 +12,44 @@
 
 ## Third Week (Holidays):
 
-### Monday 17/02
-- ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs  
-- ✅ Learning Fritzing  
-- ✅ Connecting basic components and testing circuits  
+### Thursday 20/02
+- ✅ Start the assembly section
+- ✅ Led and PIR sensor test program
 
 ### Tuesday 18/02
 - ✅ I've added my Requirements section
 - ✅ Transferred my audio files to my SD card
 
-### Thursday 20/02
-- ✅ Start the assembly section
-- ✅ Led and PIR sensor test program
+### Monday 17/02
+- ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs  
+- ✅ Learning Fritzing  
+- ✅ Connecting basic components and testing circuits  
 
 ---
 
 ## Second Week:
 
-### Monday 10/02
-- ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs  
-- ✅ Learning Fritzing  
-- ✅ Connecting basic components and testing circuits  
-
-### Tuesday 11/02
-- ✅ SG90 Servo Motor added to the circuit  
-- ✅ Finalizing the circuit model  
-- ✅ Cutting and preparing audio files  
-- ✅ Start of website development (Front-end)  
-
-### Wednesday 12/02
-- ✅ Revision of database courses (ERD, relations)  
-- ✅ Finalize database diagram  
-- ✅ Addition of documentation and correction of audio files  
+### Friday 14/02
+- ✅ Resolution of table configuration errors  
+- ✅ Troubleshooting Wemos connection problems  
 
 ### Thursday 13/02
 - ✅ MySQL Workbench connection with teacher's help  
 - ✅ Create database schema  
 - ✅ Table configuration and index corrections  
 
-### Friday 14/02
-- ✅ Resolution of table configuration errors  
-- ✅ Troubleshooting Wemos connection problems  
+### Wednesday 12/02
+- ✅ Revision of database courses (ERD, relations)  
+- ✅ Finalize database diagram  
+- ✅ Addition of documentation and correction of audio files  
+
+### Tuesday 11/02
+- ✅ SG90 Servo Motor added to the circuit  
+- ✅ Finalizing the circuit model  
+- ✅ Cutting and preparing audio files  
+- ✅ Start of website development (Front-end) 
+
+### Monday 10/02
+- ✅ List of components: Arduino UNO, DFPlayer Module, ESP8266, PIR sensor, 2 red LEDs  
+- ✅ Learning Fritzing  
+- ✅ Connecting basic components and testing circuits 
