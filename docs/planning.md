@@ -3,7 +3,8 @@
 ## Second Week (Holidays):
 
 ### Monday 24/02
-- ✅ Watch a youtube video to understand wemos  
+- 🔄 Watch a youtube video to understand wemos  
+- 🔄 Watch a video to learn how to connect a website to a database
 
 ---
 
