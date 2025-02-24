@@ -1,6 +1,6 @@
 # Planning
 
-## Second Week (Holidays):
+## Third week : Monday 24/02
 
 ### Monday 24/02
 - 🔄 Watch a youtube video to understand wemos  
