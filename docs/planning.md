@@ -2,7 +2,7 @@
 
 ---
 
-## Fourth week : Monday 24/02
+## Fourth week :
 
 ### Monday 24/02
 - 🔄 Watch a youtube video to understand wemos  
