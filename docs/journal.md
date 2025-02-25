@@ -10,6 +10,8 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Tuesday 25/02
 
+Today I really wanted to get my DFPlayer Mini working with my speakers, I finally managed to see about my resistors, thanks to my friends they helped me identify them properly because I have problems with some colors but with the right resistors I managed to get it working! I'm so happy that my DFPlayer Mini is working, I had a lot of problems with the “listing” part of my audio files. I had to rename them all, which took a bit of time, but I had no choice, because when I put in the 2nd audio file, it put me in the 20th. But now I'm running into a problem that I don't understand at all: when I change the file I'm compiling, it gives me saturations, whereas when I unplug and plug in my arduino board with the program already on it, it runs without saturation. I'm going to see the teacher tomorrow so he can give me a hand to understand all this
+
 ## Monday 24/02
 
 Today I started my day early because my girlfriend is still here, she's leaving on Wednesday, which is why today I'm working in the morning as opposed to my habit of working late into the evening. This morning, someone in class had sent me a youtube link https://youtu.be/VnfX9YJbaU8?si=uhN22vAEtGgXQCOh I watched it to understand the whole connectivity part, I admit I have a lot of trouble with this part and it's the part that scares me the most...
