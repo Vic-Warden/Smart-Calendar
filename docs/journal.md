@@ -8,10 +8,13 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Fourth week
 
+## Tuesday 25/02
+
 ## Monday 24/02
 
 Today I started my day early because my girlfriend is still here, she's leaving on Wednesday, which is why today I'm working in the morning as opposed to my habit of working late into the evening. This morning, someone in class had sent me a youtube link https://youtu.be/VnfX9YJbaU8?si=uhN22vAEtGgXQCOh I watched it to understand the whole connectivity part, I admit I have a lot of trouble with this part and it's the part that scares me the most...
 While surfing the web I found the video I needed to learn how to connect my website to my database ! https://youtu.be/tHKsZdS8Oug?si=_tlX0Q8mqJxHsq8b
+During the course I had my first lesson on the laser cutter, that we had programs that were already pre-made to help us, that we could customize infi because each line and each cut had its own parameter. That the cutting order was obviously important, and that we were even entitled to a board to help us set the right parameters for speed and distance. So I started thinking about how I was going to make my real final product. The laser cutter or the 3D printer, knowing that at our school we have 5 3D printers, and that I know I want to make something really in line with my theme, so I decided to go for the 3D printer, I did a lot of research to see what model I could use, and luckily found lots. There's a box I found that I'm going to use as a starting point and I'm going to change all the desuss elements to make a box that goes well with my theme.
 
 ---
 

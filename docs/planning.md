@@ -4,9 +4,14 @@
 
 ## Fourth week :
 
+### Tuesday 25/02
+
 ### Monday 24/02
 - 🔄 Watch a youtube video to understand wemos  
 - 🔄 Watch a video to learn how to connect a website to a database
+- ✅ Find the astra militarum emblem I'm going to use for my 3D model
+- ✅ Find Seal of purity from astra militarum which I will use
+- ✅ Find the model I'm going to start from to make my real model that I'll modify to make something I really like
 
 ---
 
