@@ -8,6 +8,11 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Fourth week
 
+## Wednesday 26/02
+
+Today I spoke to my teacher about my problems and he tried to help me. I still don't understand why I'm having these problems, but there's no question of withdrawing. I'll continue to search and find a solution. I've tried changing all my cables, changing speakers, changing the format of audio files, changing the size of files - I've tried everything and I don't know why I can't get it right. 
+For my style, I decided to use a screen to display a heartbeat simulation to accentuate the machine spirit side of my project. Unfortunately, the teacher doesn't have a back pack that I could use, so I'm a bit limited on that front. I wanted to go on and connect a 7-segment display to have a way of displaying the time in real time, but I'm running out of space on my arduino board.
+
 ## Tuesday 25/02
 
 Today I really wanted to get my DFPlayer Mini working with my speakers, I finally managed to see about my resistors, thanks to my friends they helped me identify them properly because I have problems with some colors but with the right resistors I managed to get it working! I'm so happy that my DFPlayer Mini is working, I had a lot of problems with the “listing” part of my audio files. I had to rename them all, which took a bit of time, but I had no choice, because when I put in the 2nd audio file, it put me in the 20th. But now I'm running into a problem that I don't understand at all: when I change the file I'm compiling, it gives me saturations, whereas when I unplug and plug in my arduino board with the program already on it, it runs without saturation. I'm going to see the teacher tomorrow so he can give me a hand to understand all this
