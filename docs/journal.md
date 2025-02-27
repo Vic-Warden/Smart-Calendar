@@ -8,7 +8,7 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Fourth week
 
-## Wednesday 27/02
+## Thursday 27/02
 
 Today I wasn't able to work on what I wanted to do, the teacher asked us to do a presentation on front end, back end and the data base part. I admit that I was a bit skeptical, it's true that I learned a lot, but I admit that I would have preferred to go ahead with what I wanted to do, i.e. the connectivity part for the wemos and my website.
 
