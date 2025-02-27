@@ -10,13 +10,23 @@ Let's start with the table, which is the most important for me, because it's the
 
 This table will enable me to manage the various tasks that the user will enter on my website.
 
-As you'd expect, I'll be using two keys: the first will be a main appointment_id key, which will give me a unique ID for each appointment. If the user has to see his doctor every month, even if the appointments have exactly the same names, this won't prevent me from identifying them. And for my second key, which will be my foreign key, I'll use device_id, which will link me to my Wemos D1 Mini table, enabling me to associate the corresponding task with a device. 
+As you'd expect, I'll be using two keys: the first will be a primary key appointment_id, which will give me a unique identifier for each appointment. If the user has to see his doctor every month, even if the appointments have exactly the same name, this won't prevent me from identifying them. And for my second key, which will be my foreign key, I'll use device_id, which will link me to my Wemos D1 Mini table, allowing me to associate the corresponding task with a device. 
 
 As for the attributes, I decided to use task for the task (obviously), date for the date (obviously again) and hour (you get the idea).
 
 I decided to choose the relationship ( 1 : N ) because each device ( here, it doesn't really apply because I only have one wemos but if one day there's a need to add a second one, there'd be no problem ) can have several tasks.
 
+Si une table contient des informations à envoyer, il y a forcément une table qui les reçoit. Voyons ensemble cette table 
 
+### WeMos D1 Mini
+
+This table allows me to represent the WeMos D1 Mini, a device capable of integrating sensors and performing various tasks.
+
+Pour la clée primaire, j'ai décidé de prendre device_id, je m'étais fait la réflexion si pour une raison quelconque il fallait en brancher une deuxième, cela n'allait pas poser de problème. Pas besoin d'avoir de clé étrangère pour la Wemos D1 Mini parce qu'elle n'a pas besoin d'être relié à une autre entité pour exister car il intègre les capteurs et il est lié à des tâches alors pas besoin d'avoir une clé étrangère pour cette table.
+
+Concernant les attributs, name pour le noom de l'appareil tout simplement et ip_address pour l'adresse IP de l'appareil sur le réseau.
+
+J'ai décidé de choisir la relation ( 1 : N) car lla Wemos D1 Mini peut avoir plusieurs capteurs mais un capteur est lié à qu'une seule Wemos 
 
 ![Menu](Database Schema.png)
 
