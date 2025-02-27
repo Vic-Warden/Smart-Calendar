@@ -4,37 +4,19 @@ Write here your own content!
 
 ![Menu](ERD Diagram.drawio.png)
 
-For the WeMos D1 Mini table, it represents the microcontroller that executes the programmed appointments and integrates several sensors to collect environmental data.
+Let's start with the table, which is the most important for me, because it's the table at the heart of my project. Knowing that I'm doing the smart calendar, if I can't retrieve the appointments entered by the user, that's a bit silly...
 
-I've chosen device_id as the primary key to uniquely identify each WeMos module in the system, thus avoiding any conflict if several devices exist at the same time. The name and ip_address attributes are there to differentiate the devices and enable network communication if required.
+### Table Appointments
 
-The relationship between WeMos D1 Mini and Sensor is important, as the WeMos is the central unit that manages the connected sensors.
+This table will enable me to manage the various tasks that the user will enter on my website.
 
-A WeMos can manage several sensors (0,N), while each sensor is linked to a single WeMos (1,1). This is why device_id is a foreign key in the Sensor table.
+As you'd expect, I'll be using two keys: the first will be a main appointment_id key, which will give me a unique ID for each appointment. If the user has to see his doctor every month, even if the appointments have exactly the same names, this won't prevent me from identifying them. And for my second key, which will be my foreign key, I'll use device_id, which will link me to my Wemos D1 Mini table, enabling me to associate the corresponding task with a device. 
 
-With this structure, I ensure that each sensor is associated with a specific WeMos, thus avoiding any ambiguity when retrieving data. This relationship is called Integral, since it reflects the fact that the WeMos D1 Mini manages the sensors connected to it.
+As for the attributes, I decided to use task for the task (obviously), date for the date (obviously again) and hour (you get the idea).
 
-For the Sensor table, I have chosen to group all sensor types in a single table, rather than creating a separate table for each type.
+I decided to choose the relationship ( 1 : N ) because each device ( here, it doesn't really apply because I only have one wemos but if one day there's a need to add a second one, there'd be no problem ) can have several tasks.
 
-The sensor_id attribute is the primary key that uniquely identifies each sensor, while the type attribute is used to differentiate between sensors (e.g. presence sensor, light sensor, button).
 
-I've also added the activation_threshold attribute, which defines a specific value at which an action can be triggered.
-
-This avoids redundancy and makes it easier to add new sensor types without having to modify the database structure.
-
-The relationship between Sensor and Sensor_Data ensures that each sensor can generate multiple data records over time (0,N), but that each piece of data belongs to a single sensor (1,1).
-
-This is why sensor_id is a foreign key in the Sensor_Data table. The data_id attribute is the primary key of Sensor_Data, uniquely identifying each collected measurement.
-
-The value, timestamp and button_state attributes store the data actually collected by the sensor.
-
-The Generate relationship describes how a sensor continuously generates data, ensuring that the system can track and record environmental changes in real time.
-
-By structuring the database in this way, I ensure that all components are well connected, avoiding redundancy and maintaining flexibility.
-
-The relationships between tables are designed to reflect the reality of the system, ensuring that each appointment is linked to a specific WeMos, that each WeMos integrates several sensors and that each sensor generates several data records.
-
-This structure enables the system to automate task execution efficiently and collect the necessary environmental data without adding unnecessary complexity.
 
 ![Menu](Database Schema.png)
 
