@@ -8,6 +8,10 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Fourth week
 
+## Wednesday 27/02
+
+Today I wasn't able to work on what I wanted to do, the teacher asked us to do a presentation on front end, back end and the data base part. I admit that I was a bit skeptical, it's true that I learned a lot, but I admit that I would have preferred to go ahead with what I wanted to do, i.e. the connectivity part for the wemos and my website.
+
 ## Wednesday 26/02
 
 Today I spoke to my teacher about my problems and he tried to help me. I still don't understand why I'm having these problems, but there's no question of withdrawing. I'm going to keep looking and finding a solution. I've tried changing all my cables, changing my speakers, changing the format of the audio files, changing the size of the files, I've tried everything and I don't know why I can't manage it, I'll try to sort it out next time maybe tomorrow or maybe not, I don't really know if I'm behind or if I'm on schedule with the project.
