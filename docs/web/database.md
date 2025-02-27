@@ -4,6 +4,8 @@ Write here your own content!
 
 ![Menu](ERD Diagram.drawio.png)
 
+---
+
 Let's start with the table, which is the most important for me, because it's the table at the heart of my project. Knowing that I'm doing the smart calendar, if I can't retrieve the appointments entered by the user, that's a bit silly...
 
 ### Table Appointments
@@ -16,17 +18,37 @@ As for the attributes, I decided to use task for the task (obviously), date for 
 
 I decided to choose the relationship ( 1 : N ) because each device ( here, it doesn't really apply because I only have one wemos but if one day there's a need to add a second one, there'd be no problem ) can have several tasks.
 
-Si une table contient des informations à envoyer, il y a forcément une table qui les reçoit. Voyons ensemble cette table 
+---
+
+If a table contains information to be sent, there's bound to be a table that receives it. Let's take a look at this table.
 
 ### WeMos D1 Mini
 
 This table allows me to represent the WeMos D1 Mini, a device capable of integrating sensors and performing various tasks.
 
-Pour la clée primaire, j'ai décidé de prendre device_id, je m'étais fait la réflexion si pour une raison quelconque il fallait en brancher une deuxième, cela n'allait pas poser de problème. Pas besoin d'avoir de clé étrangère pour la Wemos D1 Mini parce qu'elle n'a pas besoin d'être relié à une autre entité pour exister car il intègre les capteurs et il est lié à des tâches alors pas besoin d'avoir une clé étrangère pour cette table.
+For the primary key, I decided to use device_id, because I thought that if for some reason I had to plug in a second one, it wouldn't be a problem, because I will be able to identifie it. There's no need to have a foreign key for the Wemos D1 Mini because it doesn't need to be linked to another entity to exist because it integrates sensors and it's linked to tasks, so there's no need to have a foreign key for this table.
 
-Concernant les attributs, name pour le noom de l'appareil tout simplement et ip_address pour l'adresse IP de l'appareil sur le réseau.
+Concerning the attributes, name simply stands for the device's name and ip_address for the device's IP address on the network.
 
-J'ai décidé de choisir la relation ( 1 : N) car lla Wemos D1 Mini peut avoir plusieurs capteurs mais un capteur est lié à qu'une seule Wemos 
+I decided to choose the relationship ( 1 : N) because the Wemos D1 Mini can have several sensors, but a sensor is linked to only one Wemos. 
+
+---
+
+I must confess that I don't really have any words to introduce the new table we're about to see, other than to say that it's far from useless. 
+
+### Table Sensor
+
+This table allows me to identify the various sensors connected to the wemos D1 Mini. 
+
+Concerning the keys, the primary key I'm going to use is sensor_id, which will enable me to have a unique identifier for each sensor, even if I add the same sensor I'll be able to identify them. For the foreign key, I've chosen device_id (as you'd expect), which allows me to refer to the device to which the sensor is attached.
+
+For attributes, type for the sensor type, activation_threshold for a sensor activation threshold, e.g. when a person approaches within 1 meter of the smart calendar, an action will be taken.
+
+I decided to choose the relationship ( 1 : N ) because a sensor can generate several pieces of data, but each piece of data is linked to only one sensor.
+
+---
+
+The last table but not least
 
 ![Menu](Database Schema.png)
 
