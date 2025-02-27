@@ -6,17 +6,17 @@ Keep your system architecture up-to-date during the project. It is a living docu
 
 ![Menu](Diagram.png)
 
-Pir Sensor: Since it's used to detect someone's presence, I'd like to use it to let me play a sound and light up 2 LEDs to simulate red eyes with a voice that says, Machine Spirits are conscious. As for the leds, I'm planning to 3D print the astra militarum emblem and where its eyes are, so that I can light them up. As for the code, I wanted to get the information and be able to use it.
+Pir Sensor: I wanted a component that would allow me to detect the presence of a person
 
-Wemos D1 mini: This is going to be my gateway that will allow me to send all the information that the user enters into my website and send it to the intelligent calendar. I think with APIs it should work, but I haven't figured out how I'm going to do it yet.
+Wemos D1 mini: I don't really have a choice, as this will enable me to collect information from a cloud via APIs
 
-SV90 Servo: This will enable me to move my “cuckoo”, which I'm going to replace with a commissair. I preferred to use it because, from what I understood, it was a continuous movement and not a stroke-by-stroke one.
+SV90 Servo: I needed a motor that would allow me to translate my “cuckoo clock”, so I decided to get a servo motor
 
-DFRobot DFPlayer Mini: This will enable me to store (using an SD card) and manage the audio files I want to use.
+DFRobot DFPlayer Mini: This lets me manage my audio files, choosing when I want a specific file to play. With the help of an SD card, so I can store more than one file
 
-Buttons : When the user presses the button, it switches to silent mode.
+Buttons : When the user presses the button, the device switches between English and French
 
-Led: As I said before, this will allow me to illuminate them when someone is in front of my smart calendar.
+Led: Switching on and off 
 
 Speaker: This will allow me to play a sound
 
