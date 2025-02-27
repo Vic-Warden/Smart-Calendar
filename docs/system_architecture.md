@@ -4,7 +4,7 @@ On this page you can describe the system architecture of your full-project. This
 
 Keep your system architecture up-to-date during the project. It is a living document that should reflect the current state of your project.
 
-![Menu](Diagram.drawio.png)
+![Menu](Diagram.png)
 
 Pir Sensor: Since it's used to detect someone's presence, I'd like to use it to let me play a sound and light up 2 LEDs to simulate red eyes with a voice that says, Machine Spirits are conscious. As for the leds, I'm planning to 3D print the astra militarum emblem and where its eyes are, so that I can light them up. As for the code, I wanted to get the information and be able to use it.
 
