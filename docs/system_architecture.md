@@ -22,4 +22,6 @@ Speaker: This will allow me to play a sound
 
 Photoresistor: Detects whether the device is in the dark; if it is, it switches to silent mode if the user wants to go to sleep.
 
+Oled display : It's purely for the “beauty” of my project, it's just to support my universe. I wanted to have a compositor that would allow me to simulate the impulses of a heart, to pretend that the machine's mind was in my intelligent calendar
+
 Arduino: It is the centerpiece of my project, it is the one that will receive all the programs that I need to create
