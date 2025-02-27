@@ -48,7 +48,16 @@ I decided to choose the relationship ( 1 : N ) because a sensor can generate sev
 
 ---
 
-The last table but not least
+The last table but not least 
+
+### Sensor_Data
+
+This table allows me to store sensor data
+
+Concerning the keys, data_id is my primary key which allows me to set a unique identifier for each piece of data if my sensor sends me the same data several times, this will allow me to identify them no matter how many times the sensor sends the same data. As you'd expect, my foreign key is sensor_id, which allows me to identify the sensor that sent the data
+
+Concerning the attributes, value for the value ( Of course ), timestamp it allows me to record the moment when the data was generated. I can't really do otherwise (well, it's the only idea I had for sorting the data). I figured that sorting by date and time wouldn't be such a bad idea. And button_state for the state of the button, whether it's pressed or not.
+
 
 ![Menu](Database Schema.png)
 
