@@ -2,6 +2,8 @@
 
 Write here your own content!
 
+### ERD Diagram
+
 ![Menu](ERD Diagram.drawio.png)
 
 ---
@@ -58,11 +60,14 @@ Concerning the keys, data_id is my primary key which allows me to set a unique i
 
 Concerning the attributes, value for the value ( Of course ), timestamp it allows me to record the moment when the data was generated. I can't really do otherwise (well, it's the only idea I had for sorting the data). I figured that sorting by date and time wouldn't be such a bad idea. And button_state for the state of the button, whether it's pressed or not.
 
+### Database Schema
 
 ![Menu](Database Schema.png)
 
-As I've already explained the choices for my columns, I'll explain how I went about creating my database schema. I'm not going to dwell too much on the choice of columns, just that I've taken what I'd done before and added them. I'm mainly going to justify the choices I made for my indexes. For the date, I decided to choose only the date and time, as I thought they were the two most important things for finding an appointment.
+As I've already explained the choices for my columns, I'll explain how I went about creating my database schema. I'm not going to dwell too much on the choice of columns, just that I've taken what I'd done before and added them. I'm mainly going to justify the choices I made for my indexes. 
+
+For the date, I decided to choose only the date and time, as I thought these were the two most important elements for finding an appointment. It's true that I could have grouped them together, but I thought that if one day I needed to search for all the appointments for a day, for example, or all the appointments for an hour, that would make the search easier.
 
 For the sensors, the type seemed the most relevant because if I can find out what type of sensor it is, I'll be able to find out directly what data I'm receiving. 
 
-And finally, for the sensor data, naturally the timestamp. As soon as I receive the information I can take this or that action
+And finally, for the sensor data, naturally the timestamp. It allows me to record the moment when the data was generated. I can't really do otherwise (well, it's the only idea I had for sorting the data). I figured that sorting by date and time wouldn't be such a bad idea. And button_state for the state of the button, whether it's pressed or not.
