@@ -4,7 +4,15 @@
 
 ## Fourth week :
 
-### Tuesday 25/02
+### Thursday 27/02
+
+- 🔄 Watch a youtube video to understand wemos  
+- 🔄 Watch a video to learn how to connect a website to a database
+- 🔄 Understanding where saturation comes from
+- ✅ Participate at a presentation 
+
+
+### Wednesday 26/02
 
 - 🔄 Watch a youtube video to understand wemos  
 - 🔄 Watch a video to learn how to connect a website to a database
