@@ -10,8 +10,12 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Wednesday 26/02
 
-Today I spoke to my teacher about my problems and he tried to help me. I still don't understand why I'm having these problems, but there's no question of withdrawing. I'll continue to search and find a solution. I've tried changing all my cables, changing speakers, changing the format of audio files, changing the size of files - I've tried everything and I don't know why I can't get it right. 
-For my style, I decided to use a screen to display a heartbeat simulation to accentuate the machine spirit side of my project. Unfortunately, the teacher doesn't have a back pack that I could use, so I'm a bit limited on that front. I wanted to go on and connect a 7-segment display to have a way of displaying the time in real time, but I'm running out of space on my arduino board.
+Today I spoke to my teacher about my problems and he tried to help me. I still don't understand why I'm having these problems, but there's no question of withdrawing. I'm going to keep looking and finding a solution. I've tried changing all my cables, changing my speakers, changing the format of the audio files, changing the size of the files, I've tried everything and I don't know why I can't manage it, I'll try to sort it out next time maybe tomorrow or maybe not, I don't really know if I'm behind or if I'm on schedule with the project.
+I decided to use a screen to display a simulated heartbeat to emphasize the machine-like aspect of my project. 
+Unfortunately, the teacher didn't have a backpack to give me, so I wanted to connect the screen we'd been given to display the various tasks the user would be entering.
+I wanted to go ahead and connect a 7-segment display to have a way of showing the time in real time, but I'm running out of space on my arduino board.
+So instead I've decided to continue connecting my wires with a good “presentation” so that it's clearly visible, and I'm going to ask for feedback on this to see what they think. 
+Today the teacher reminded us not to forget to add what we're doing on our System Architecture, so that's why I did it
 
 ## Tuesday 25/02
 
