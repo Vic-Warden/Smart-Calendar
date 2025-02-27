@@ -8,6 +8,16 @@
 
 - 🔄 Watch a youtube video to understand wemos  
 - 🔄 Watch a video to learn how to connect a website to a database
+- 🔄 Understanding where saturation comes from
+- ✅ Redo the documentation for my Wiring Diagram
+- ✅ Find a way to save space for wemos
+- ✅ Add element to system architecture
+- ✅ Heartbeat simulation
+
+### Tuesday 25/02
+
+- 🔄 Watch a youtube video to understand wemos  
+- 🔄 Watch a video to learn how to connect a website to a database
 - 🔄 Redo the documentation for my Wiring Diagram
 - 🔄 Understanding where saturation comes from
 - ✅ Operating the DF Player mini on its own
