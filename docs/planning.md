@@ -5,8 +5,8 @@
 ## Fourth week :
 
 ### Friday 28/02
-- 🔄 Watch a video to learn how to connect a website to a database
-- 🔄 Watch a youtube video to understand wemos
+- ✅ Watch a video to learn how to connect a website to a database
+- ✅ Watch a youtube video to understand wemos
 - ✅ 🥳🥳 Have a database connection 🥳🥳
 
 

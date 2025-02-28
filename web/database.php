@@ -6,11 +6,12 @@ $database = 'iot';
 
 $link = mysqli_connect($host, $user, $password, $database);
 
-if (!$link) {
+if (!$link) 
+{
     die('Échec de la connexion : ' . mysqli_connect_error());
 }
 
-echo 'Connexion réussie !';
+echo 'Retreat is not an option !';
 
 mysqli_close($link);
 ?>
