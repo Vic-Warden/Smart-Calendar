@@ -4,13 +4,15 @@
 SoftwareSerial mySerial(10, 11); 
 DFRobotDFPlayerMini myDFPlayer;
 
-void setup() {
+void setup() 
+{
     Serial.begin(9600);
     mySerial.begin(9600);
     
     Serial.println("Initialisation du DFPlayer Mini...");
     
-    if (!myDFPlayer.begin(mySerial)) {  
+    if (!myDFPlayer.begin(mySerial)) 
+    {  
         Serial.println("Erreur : DFPlayer Mini non détecté !");
         while (true);
     }
@@ -22,6 +24,7 @@ void setup() {
     myDFPlayer.play(4);
 }
 
-void loop() {
+void loop() 
+{
 
 }

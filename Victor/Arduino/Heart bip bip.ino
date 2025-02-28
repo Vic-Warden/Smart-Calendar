@@ -16,7 +16,8 @@ int offset = 0;  // Position initiale de la droite
 void setup() {
   Serial.begin(115200);
   
-  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) 
+  {
     Serial.println(F("Échec de l'initialisation de l'écran OLED"));
     while (1);
   }
@@ -25,7 +26,8 @@ void setup() {
   generateECGWave();
 }
 
-void loop() {
+void loop() 
+{
   display.clearDisplay();
   drawECG();
   scrollECG();
@@ -33,7 +35,8 @@ void loop() {
   delay(30);
 }
 
-void generateECGWave() {
+void generateECGWave() 
+{
   int baseY = SCREEN_HEIGHT / 2;
   int x = 0;
 
@@ -62,7 +65,8 @@ void generateECGWave() {
 }
 
 // Dessiner les différents pic
-void drawECG() {
+void drawECG() 
+{
   for (int x = 1; x < SCREEN_WIDTH; x++) {
     int index1 = (x + offset) % ECG_TOTAL_WIDTH;
     int index2 = (x - 1 + offset) % ECG_TOTAL_WIDTH;
@@ -72,6 +76,7 @@ void drawECG() {
 }
 
 // Défilement
-void scrollECG() {
+void scrollECG() 
+{
   offset = (offset + 1) % ECG_TOTAL_WIDTH;
 }

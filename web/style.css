@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-.background-section {
+.background-section 
+{
     width: 100%;
     height: 100vh; 
     background-image: url('Home_page.png');
@@ -13,7 +14,8 @@
     position: relative;
 }
 
-.title-text {
+.title-text 
+{
     font-family: 'Orbitron', sans-serif;
     font-size: 3rem;
     color: #646d5f;
@@ -22,7 +24,8 @@
     margin-top: 90px;
 }
 
-.overlay-links {
+.overlay-links 
+{
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -31,7 +34,8 @@
     border-radius: 8px;
 }
 
-.overlay-links a {
+.overlay-links a 
+{
     color: white;
     text-decoration: none;
     font-size: 1rem;
@@ -39,18 +43,21 @@
     margin: 5px 0;
 }
 
-.overlay-links a:hover {
+.overlay-links a:hover 
+{
     text-decoration: underline;
 }
 
-body, html {
+body, html 
+{
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
 }
 
-.content-section {
+.content-section 
+{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,27 +73,31 @@ body, html {
     transform: translateX(-50%);
 }
 
-.content-image {
+.content-image 
+{
     width: 150px;
     height: auto;
     border-radius: 10px;
     margin-right: 15px;
 }
 
-.content-text {
+.content-text 
+{
     font-size: 1rem;
     color: #ffffff;
     margin-top: 0px;
 }
 
-.button-container {
+.button-container 
+{
     position: absolute;
     bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.button {
+.button 
+{
     background-color: #8b0000;
     color: white;
     padding: 10px 20px;
@@ -98,12 +109,14 @@ body, html {
     transition: background-color 0.3s;
 }
 
-.button:hover {
+.button:hover 
+{
     background-color: #a52a2a;
 }
 
 
-#loading-screen {
+#loading-screen 
+{
     position: fixed;
     top: 0;
     left: 0;
@@ -124,7 +137,8 @@ body, html {
     background-repeat: no-repeat;
 }
 
-#loader-container {
+#loader-container 
+{
     position: fixed;
     top: 50%;
     left: 50%;
@@ -138,7 +152,8 @@ body, html {
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-.ism-background-section {
+.ism-background-section 
+{
     width: 100%;
     height: 100vh;
     background-image: url('Priest.png');
@@ -153,7 +168,8 @@ body, html {
     padding-top: 40px;
 }
 
-.ism-quote-box {
+.ism-quote-box 
+{
     background: rgba(0, 0, 0, 0.6);
     padding: 20px;
     border-radius: 10px;
@@ -164,7 +180,8 @@ body, html {
     margin-bottom: 20px;
 }
 
-.ism-quote-text {
+.ism-quote-text 
+{
     font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
     color: #ffffff;
@@ -172,7 +189,8 @@ body, html {
     font-style: italic;
 }
 
-.ism-button {
+.ism-button 
+{
     background-color: #8b0000;
     color: white;
     padding: 10px 20px;
@@ -185,11 +203,13 @@ body, html {
     margin-top: 10px;
 }
 
-.ism-button:hover {
+.ism-button:hover 
+{
     background-color: #a52a2a;
 }
 
-.ism-appointments-container {
+.ism-appointments-container 
+{
     background: rgba(0, 0, 0, 0.7);
     padding: 20px;
     border-radius: 10px;
@@ -199,7 +219,8 @@ body, html {
     color: white;
 }
 
-.ism-appointment {
+.ism-appointment 
+{
     background: rgba(255, 255, 255, 0.2);
     padding: 10px;
     margin: 5px 0;
@@ -209,7 +230,8 @@ body, html {
     align-items: center;
 }
 
-.ism-delete-button {
+.ism-delete-button 
+{
     background-color: red;
     border: none;
     color: white;
@@ -218,11 +240,13 @@ body, html {
     cursor: pointer;
 }
 
-.ism-delete-button:hover {
+.ism-delete-button:hover 
+{
     background-color: darkred;
 }
 
-.ism-form-container {
+.ism-form-container 
+{
     display: none;
     flex-direction: column;
     gap: 10px;
@@ -236,6 +260,7 @@ body, html {
     margin-top: 10px;
 }
 
-input {
+input 
+{
     color: black !important;
 }
