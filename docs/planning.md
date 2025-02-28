@@ -10,6 +10,9 @@
 - 🔄 Watch a video to learn how to connect a website to a database
 - 🔄 Understanding where saturation comes from
 - ✅ Participate at a presentation 
+- ✅ Redo System Architecture to include input, output and text
+- ✅ Redo Data Base with detailed why and how 
+- ✅ Redo Requirements 
 
 
 ### Wednesday 26/02
