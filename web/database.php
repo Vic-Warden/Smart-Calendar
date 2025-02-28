@@ -1,5 +1,5 @@
 <?php
-$host = 'localhost';
+$host = 'mariadb';
 $user = 'root';
 $password = '7YKyE8R2AhKzswfN';
 $database = 'iot';
