@@ -12,12 +12,11 @@ So for example when you receive feedback on your project, you can write down the
 
 ### By the emperor it will be done ! 
 
-Finally, I succeeded (with the help of Yanis) my mistake was not to put the right name of the database, I spent so much time yesterday looking everywhere how to connect it. It was just the name, I want to smash everything !
-
 ![truc](zerzrzerzer.png)
 
 ![truc](kdkdkd.png)
 
+Finally, I succeeded (with the help of Yanis) my mistake was not to put the right name of the database, I spent so much time yesterday looking everywhere how to connect it. It was just the name, I want to smash everything !
 
 ## Thursday 27/02
 

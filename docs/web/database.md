@@ -4,7 +4,7 @@ Write here your own content!
 
 ### ERD Diagram
 
-![Menu](ERD Diagram.drawio.png)
+![Menu](ERD Diagram.png)
 
 ---
 
