@@ -12,7 +12,7 @@ So for example when you receive feedback on your project, you can write down the
 
 Today I wasn't able to work on what I wanted to do, the teacher asked us to do a presentation on the front end, back end and database part. It's true that I learned a lot, but I must admit that I would have preferred to move on to what I really wanted to do, i.e. the connectivity part for my wemos and my website. It's really this part where I'm treading more on unfamiliar ground. Today I reread the feedback I'd received and saw that I had quite a few things to redo, which is what I did today. I had to redo my entire System architecture part, because the visibility wasn't up to scratch, and I also had to redo the text part because I'd missed some important information. As for the database part, it was Professor Mats (I hope I didn't misspell his first name...) who told us to be careful to justify our various choices, so I decided to take his advice and apply it to make it a priority. When my friend asked me what I thought of his requirement, he explained that it had to be well detailed so that if one day someone wanted to take over our project, he could deal with it easily. I went back to my requirement and completed it as best I could.
 
-[victory](little_victory.png)
+![victory](little_victory.png)
 
 I've managed to access my database on my terminal, but I don't understand why I can't access it with my website. For some reason I'm completely stuck on this part, I don't know what to do even though I've watched the videos I wanted to see. I'm going to watch them again and ask for help with this part because I'm really struggling.
 
