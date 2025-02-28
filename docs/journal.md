@@ -14,7 +14,7 @@ Today I wasn't able to work on what I wanted to do, the teacher asked us to do a
 
 [victory](little_victory.png)
 
-I've managed to access my database on my terminal, but I don't understand why I can't access it with my website
+I've managed to access my database on my terminal, but I don't understand why I can't access it with my website. For some reason I'm completely stuck on this part, I don't know what to do even though I've watched the videos I wanted to see. I'm going to watch them again and ask for help with this part because I'm really struggling.
 
 
 ## Wednesday 26/02

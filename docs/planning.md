@@ -4,11 +4,16 @@
 
 ## Fourth week :
 
+### Friday 28/02
+- ✅ Watch a video to learn how to connect a website to a database
+- 🔄 Watch a youtube video to understand wemos
+
+
 ### Thursday 27/02
 
-- 🔄 Watch a youtube video to understand wemos  
-- 🔄 Watch a video to learn how to connect a website to a database
-- 🔄 Understanding where saturation comes from
+- 🔄 Watch a youtube video to understand wemos
+- 🔄 Understanding where saturation comes from  
+- ✅ Watch a video to learn how to connect a website to a database
 - ✅ Participate at a presentation 
 - ✅ Redo System Architecture to include input, output and text
 - ✅ Redo Data Base with detailed why and how 
