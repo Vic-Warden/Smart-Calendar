@@ -1,18 +1,16 @@
 <?php
 $servername = "localhost";
-$username = "root"; //
+$username = "root";
 $password = "7YKyE8R2AhKzswfN";
 $dbname = "iot";
 
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-$login = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($login->connect_error) {
-    die("❌ Connection failed: " . $login->connect_error);
+if ($conn->connect_error) {
+    die("❌" . $conn->connect_error);
 } else {
-    echo "✅ Connection successful!";
+    echo "✅";
 }
 
-$login->close();
+$conn->close();
 ?>
