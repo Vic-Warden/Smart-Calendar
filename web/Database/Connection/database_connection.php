@@ -8,10 +8,6 @@ $link = mysqli_connect($host, $user, $password, $database);
 
 if (!$link) 
 {
-    die('Emporor forgive me, I have failed' . mysqli_connect_error());
+    die('Emperor forgive me, I have failed' . mysqli_connect_error());
 }
-
-echo 'Retreat is not an option !';
-
-mysqli_close($link);
 ?>
