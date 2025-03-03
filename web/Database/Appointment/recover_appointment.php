@@ -1,14 +1,18 @@
 <?php
-require __DIR__ . 'Database/Connection/database_connection.php';
+require __DIR__ . '/../Connection/database_connection.php';
 
-$result = $link->query("SELECT * FROM Appointment ORDER BY date_hour ASC");
+header('Content-Type: application/json; charset=utf-8');
+
+$result = $link->query("SELECT * FROM Appointment");
+
 $appointments = [];
 
 while ($row = $result->fetch_assoc()) 
 {
-    $appointments[] = $row;
+    $appointments[] = $row;  //
 }
 
-echo json_encode($appointments);
+echo json_encode($appointments, JSON_PRETTY_PRINT);
+
 $link->close();
 ?>
