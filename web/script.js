@@ -93,6 +93,7 @@ function ism_deleteAppointment(index)
 
 document.addEventListener("DOMContentLoaded", function() 
 {
+    ism_loadAppointments();
     let dateTimeInput = document.getElementById("ism-appointmentDateTime");
 
     if (dateTimeInput) {
