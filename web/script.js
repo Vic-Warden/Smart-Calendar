@@ -73,7 +73,11 @@ function ism_loadAppointments()
         appointmentDiv.innerHTML = `
             <span><strong>${appointment.title}</strong></span><br>
             <span>${ism_formatDateTime(appointment.dateTime)}</span>
-            <button class="ism-delete-button" onclick="ism_deleteAppointment(${index})">X</button>`;
+            <div>
+                <button class="ism-edit-button" onclick="ism_editAppointment(${index})">✏️</button>
+                <button class="ism-delete-button" onclick="ism_deleteAppointment(${index})">❌</button>
+            </div>
+        `;
 
         appointmentsList.appendChild(appointmentDiv);
     });
@@ -107,3 +111,18 @@ document.addEventListener("DOMContentLoaded", function()
     }
 });
 
+function ism_editAppointment(index) 
+{
+    let appointments = JSON.parse(localStorage.getItem("ism-appointments")) || [];
+    let appointment = appointments[index];
+
+    let newTitle = prompt("Modifier le titre :", appointment.title);
+    if (newTitle === null || newTitle.trim() === "") return; 
+
+    let newDateTime = prompt("Modifier la date et l'heure (AAAA-MM-JJTHH:MM) :", appointment.dateTime);
+    if (newDateTime === null || newDateTime.trim() === "") return;
+
+    appointments[index] = { title: newTitle, dateTime: newDateTime };
+    localStorage.setItem("ism-appointments", JSON.stringify(appointments));
+    ism_loadAppointments();
+}

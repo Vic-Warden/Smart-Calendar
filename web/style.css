@@ -230,6 +230,12 @@ body, html
     align-items: center;
 }
 
+.ism-appointment div 
+{
+    display: flex;
+    gap: 5px;
+}
+
 .ism-delete-button 
 {
     background-color: red;
@@ -263,4 +269,19 @@ body, html
 input 
 {
     color: black !important;
+}
+
+.ism-edit-button 
+{
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.ism-edit-button:hover 
+{
+    background-color: #005f73;
 }
