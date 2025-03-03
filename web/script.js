@@ -84,29 +84,33 @@ function ism_formatDateTime(dateTime)
     return date.toLocaleDateString('en-US', options);
 }
 
-function ism_loadAppointments() 
-{
+function ism_loadAppointments() {
     let appointmentsList = document.getElementById("ism-appointmentsList");
     appointmentsList.innerHTML = "";
 
-    let appointments = JSON.parse(localStorage.getItem("ism-appointments")) || [];
+    fetch("Database/Appointment/recover_appointment.php")
+    .then(response => response.json())
+    .then(appointments => {
+        appointmentsList.innerHTML = "";
 
-    appointments.forEach((appointment, index) => 
-    {
-        let appointmentDiv = document.createElement("div");
-        appointmentDiv.classList.add("ism-appointment");
-        appointmentDiv.innerHTML = `
-            <span><strong>${appointment.title}</strong></span><br>
-            <span>${ism_formatDateTime(appointment.dateTime)}</span>
-            <div>
-                <button class="ism-edit-button" onclick="ism_editAppointment(${index})">✏️</button>
-                <button class="ism-delete-button" onclick="ism_deleteAppointment(${index})">❌</button>
-            </div>
-        `;
+        appointments.forEach(appointment => {
+            let appointmentDiv = document.createElement("div");
+            appointmentDiv.classList.add("ism-appointment");
+            appointmentDiv.innerHTML = `
+                <span><strong>${appointment.task}</strong></span><br>
+                <span>${appointment.date_hour}</span>
+                <div>
+                    <button class="ism-edit-button" onclick="ism_editAppointment(${appointment.appointment_id}, '${appointment.task}', '${appointment.date_hour}')">✏️</button>
+                    <button class="ism-delete-button" onclick="ism_deleteAppointment(${appointment.appointment_id})">❌</button>
+                </div>
+            `;
 
-        appointmentsList.appendChild(appointmentDiv);
-    });
+            appointmentsList.appendChild(appointmentDiv);
+        });
+    })
+    .catch(error => console.error("Erreur lors du chargement des rendez-vous :", error));
 }
+
 
 function ism_deleteAppointment(index) 
 {
