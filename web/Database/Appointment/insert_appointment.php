@@ -1,5 +1,5 @@
 <?php
-require '/../Connection/database_connection.php';
+require __DIR__ . '/../Connection/database_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
