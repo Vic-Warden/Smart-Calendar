@@ -23,9 +23,10 @@ CREATE TABLE IF NOT EXISTS `iot`.`Device` (
   `device_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `ip_address` VARCHAR(45) NOT NULL UNIQUE,
-  PRIMARY KEY (`device_id`),
-  INDEX `ip_address` (`ip_address` ASC) VISIBLE)
+  PRIMARY KEY (`device_id`)
+) 
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
