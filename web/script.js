@@ -19,11 +19,14 @@ document.addEventListener("DOMContentLoaded", function()
 function ism_toggleForm() 
 {
     let form = document.getElementById("ism-appointmentForm");
+    
     if (form) 
     {
-        form.style.display = (form.style.display === "none" || form.style.display === "") ? "flex" : "none";
+        form.style.display = 
+        (form.style.display === "none" || form.style.display === "") 
+        ? "flex" : "none";
     } 
-    
+
     else 
     {
         console.error("Element #ism-appointmentForm not found");
@@ -32,30 +35,52 @@ function ism_toggleForm()
 
 function ism_addAppointment() 
 {
-    let title = document.getElementById("ism-appointmentTitle").value;
-    let dateTime = document.getElementById("ism-appointmentDateTime").value;
+    let task = document.getElementById("ism-appointmentTitle").value;
+    let date_hour = document.getElementById("ism-appointmentDateTime").value;
+    let device_id = 1;
 
-    if (title.trim() === "" || dateTime.trim() === "") 
+    if (task.trim() === "" || date_hour.trim() === "") 
     {
-        alert("Please complete all fields.");
+        alert("Veuillez remplir tous les champs.");
         return;
     }
 
-    let appointments = JSON.parse(localStorage.getItem("ism-appointments")) || [];
-    let appointment = { title, dateTime };
-    appointments.push(appointment);
-    localStorage.setItem("ism-appointments", JSON.stringify(appointments));
+    fetch("insert_appointment.php", 
+    {
+        method: "POST",
+        headers: 
+        { 
+            "Content-Type": "application/x-www-form-urlencoded" 
+        },
+            body: `task=${encodeURIComponent(task)}&date_hour=${encodeURIComponent(date_hour)}&device_id=${device_id}`
+    })
 
-    document.getElementById("ism-appointmentTitle").value = "";
-    document.getElementById("ism-appointmentDateTime").value = "";
-    ism_toggleForm();
-    ism_loadAppointments();
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        if (data.status === "success") {
+            document.getElementById("ism-appointmentTitle").value = "";
+            document.getElementById("ism-appointmentDateTime").value = "";
+            ism_toggleForm();
+            ism_loadAppointments();
+        }
+    })
+    .catch(error => console.error("Erreur AJAX :", error));
 }
+
 
 function ism_formatDateTime(dateTime) 
 {
     let date = new Date(dateTime);
-    let options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    let options = 
+    { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    };
+    
     return date.toLocaleDateString('en-US', options);
 }
 
@@ -96,7 +121,8 @@ document.addEventListener("DOMContentLoaded", function()
     ism_loadAppointments();
     let dateTimeInput = document.getElementById("ism-appointmentDateTime");
 
-    if (dateTimeInput) {
+    if (dateTimeInput) 
+    {
         dateTimeInput.addEventListener("focus", function() 
         {
             if (this.showPicker) 
@@ -104,8 +130,8 @@ document.addEventListener("DOMContentLoaded", function()
                 this.showPicker(); 
             }
         });
-    } 
-    
+    }
+
     else 
     {
         console.error("L'élément #ism-appointmentDateTime est introuvable !");
@@ -147,8 +173,12 @@ function ism_saveEditedAppointment(index)
         return;
     }
 
-    appointments[index] = { title: newTitle, dateTime: newDateTime };
+    appointments[index] = 
+    { 
+        title: newTitle, 
+        dateTime: newDateTime 
+    };
+    
     localStorage.setItem("ism-appointments", JSON.stringify(appointments));
-
     ism_loadAppointments();
 }
