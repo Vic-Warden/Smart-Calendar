@@ -116,13 +116,38 @@ function ism_editAppointment(index)
     let appointments = JSON.parse(localStorage.getItem("ism-appointments")) || [];
     let appointment = appointments[index];
 
-    let newTitle = prompt("Modifier le titre :", appointment.title);
-    if (newTitle === null || newTitle.trim() === "") return; 
+    let editForm = document.createElement("div");
+    editForm.classList.add("ism-edit-form");
+    editForm.innerHTML = `
+        <label>Edit title :</label>
+        <input type="text" id="ism-edit-title" value="${appointment.title}">
 
-    let newDateTime = prompt("Modifier la date et l'heure (AAAA-MM-JJTHH:MM) :", appointment.dateTime);
-    if (newDateTime === null || newDateTime.trim() === "") return;
+        <label>Change date and time :</label>
+        <input type="datetime-local" id="ism-edit-datetime" value="${appointment.dateTime}">
+
+        <button onclick="ism_saveEditedAppointment(${index})">💾 Save</button>
+        <button onclick="this.parentElement.remove()">❌ Cancel</button>
+    `;
+
+    let appointmentDiv = document.getElementsByClassName("ism-appointment")[index];
+    appointmentDiv.appendChild(editForm);
+}
+
+function ism_saveEditedAppointment(index) 
+{
+    let appointments = JSON.parse(localStorage.getItem("ism-appointments")) || [];
+
+    let newTitle = document.getElementById("ism-edit-title").value;
+    let newDateTime = document.getElementById("ism-edit-datetime").value;
+
+    if (newTitle.trim() === "" || newDateTime.trim() === "") 
+    {
+        alert("Heresy detected ! The registration rite is incomplete. Machine Spirit requires all fields to be sanctified before validation !");
+        return;
+    }
 
     appointments[index] = { title: newTitle, dateTime: newDateTime };
     localStorage.setItem("ism-appointments", JSON.stringify(appointments));
+
     ism_loadAppointments();
 }
