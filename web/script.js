@@ -45,7 +45,7 @@ function ism_addAppointment()
         return;
     }
 
-    fetch("insert_appointment.php", 
+    fetch("Database/Appointment/insert_appointment.php",
     {
         method: "POST",
         headers: 
@@ -110,7 +110,6 @@ function ism_loadAppointments() {
     })
     .catch(error => console.error("Erreur lors du chargement des rendez-vous :", error));
 }
-
 
 function ism_deleteAppointment(index) 
 {
