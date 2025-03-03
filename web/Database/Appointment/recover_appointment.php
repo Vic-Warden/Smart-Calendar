@@ -9,7 +9,7 @@ $appointments = [];
 
 while ($row = $result->fetch_assoc()) 
 {
-    $appointments[] = $row;  //
+    $appointments[] = $row;
 }
 
 echo json_encode($appointments, JSON_PRETTY_PRINT);
