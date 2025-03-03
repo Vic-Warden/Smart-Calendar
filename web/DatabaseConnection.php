@@ -8,7 +8,7 @@ $link = mysqli_connect($host, $user, $password, $database);
 
 if (!$link) 
 {
-    die('Échec de la connexion : ' . mysqli_connect_error());
+    die('Emporor forgive me, I have failed' . mysqli_connect_error());
 }
 
 echo 'Retreat is not an option !';
