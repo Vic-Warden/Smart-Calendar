@@ -35,7 +35,7 @@ Proof of Execution
 
 - JSON file created
 
-![Menu](Json appointment.png)
+![Menu](Json_appointment.png)
 
 ---
 
