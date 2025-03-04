@@ -91,11 +91,15 @@ Proof of Execution
 
 - Only the last added displayed
 
+- http://localhost/Database/Appointment/get_last_appointment.php
+
 ![Menu](5.png)
 
 ---
 
 - All appointments displayed
+
+- http://localhost/Database/Appointment/recover_appointment.php
 
 ![Menu](6.png)
 
@@ -132,3 +136,31 @@ Return Value
 Proof of Execution
 
 ---
+
+- Edited from the website
+
+![Menu](7.png)
+
+---
+
+- Only the last edited displayed
+
+- http://localhost/Database/Appointment/get_last_updated_appointment.php
+
+![Menu](8.png)
+
+---
+
+- Only the last added displayed ( no changement here )
+
+- http://localhost/Database/Appointment/get_last_appointment.php
+
+![Menu](8.png)
+
+---
+
+- All appointments displayed
+
+- http://localhost/Database/Appointment/recover_appointment.php
+
+![Menu](9.png)
