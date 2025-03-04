@@ -61,9 +61,20 @@ Warning : if an argument is missing, it will not work
 
 Return Value
 
-This allows me to display in a JSON file only the last appointment that was added
+- This allows me to display in a JSON file only the last appointment that was added
 
-http://localhost/Database/Appointment/get_last_appointment.php
+- http://localhost/Database/Appointment/get_last_appointment.php
 
 Proof of Execution
 
+![Menu](insert.png)
+
+- Added from the website
+
+![Menu](app add.png)
+
+- Only the last added displayed
+
+![Menu](add.png)
+
+- All appointments displayed
