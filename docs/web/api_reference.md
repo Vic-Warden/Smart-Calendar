@@ -187,8 +187,72 @@ Warning : if an argument is missing, it will not work
 
 Return Value
 
-- This allows me to display in a JSON file only the last appointment that was updated
+- This allows me to display in a JSON file only the last appointment that was deleted
+
+- http://localhost/Database/Appointment/get_last_deleted_appointment.php
+
+Proof of Execution
+
+---
+
+- Deleted from the website
+
+![Menu](10.png)
+
+---
+
+- Only the last edited displayed ( no changement here )
 
 - http://localhost/Database/Appointment/get_last_updated_appointment.php
 
-Proof of Execution
+![Menu](11.png)
+
+---
+
+- Only the last added displayed ( no changement here )
+
+- http://localhost/Database/Appointment/get_last_appointment.php
+
+![Menu](12.png)
+
+---
+
+- All appointments displayed
+
+- http://localhost/Database/Appointment/recover_appointment.php
+
+![Menu](13.png)
+
+---
+
+## If we deleted the last add
+
+---
+
+- Deleted from the website
+
+![Menu](14.png)
+
+---
+
+- Only the last edited displayed ( no changement here )
+
+- http://localhost/Database/Appointment/get_last_updated_appointment.php
+
+![Menu](15.png)
+
+---
+
+- If the last appointment is deleted, you're back to the one before 
+
+- http://localhost/Database/Appointment/get_last_appointment.php
+
+![Menu](16.png)
+
+---
+
+- All appointments displayed
+
+- http://localhost/Database/Appointment/recover_appointment.php
+
+![Menu](17.png)
