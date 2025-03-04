@@ -27,6 +27,8 @@ Return Value
 
 - A JSON table containing all appointments
 
+- http://localhost/Database/Appointment/recover_appointment.php
+
 Proof of Execution
 
 ---
