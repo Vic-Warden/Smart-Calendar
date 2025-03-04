@@ -11,13 +11,22 @@ La dernière API que j'utilise me permet de récupérer les appointments que j'a
 
 - URL (Endpoint)
 
-http://localhost/Database/Appointment/recover_appointment.php
+    http://localhost/Database/Appointment/recover_appointment.php
 
 - Request Method
 
+    GET 
+
 - Arguments
 
-- Body
+    None
 
 - Return Value
 
+    A JSON table containing all appointments
+
+![Menu](Json appointment.png)
+
+![Menu](appointment.png)
+
+![Menu](Proof.png)
