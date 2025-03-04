@@ -56,9 +56,10 @@ function ism_addAppointment()
     })
 
     .then(response => response.json())
-    .then(data => {
-        alert(data.message);
-        if (data.status === "success") {
+    .then(data => 
+    {
+        if (data.status === "success") 
+        {
             document.getElementById("ism-appointmentTitle").value = "";
             document.getElementById("ism-appointmentDateTime").value = "";
             ism_toggleForm();
