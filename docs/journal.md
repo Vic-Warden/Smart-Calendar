@@ -10,7 +10,9 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Monday 03/02
 
-I've finally managed to connect my website to my database à developper demain
+Today I've decided not to give up. Retreat is not an option! I started my day by reworking my data schema with the right conventions to redo the forward engineer and send it back to my database. I had a hard time understanding that I had to make all the attributes visible, but I admit I still don't understand why I had to do that.
+Once my database was perfect, I took care of everything at once. In a youtube video, it was said that you had to create a php file for each major part of your code, i.e. what you wanted to do, e.g. if you wanted to add or delete an appointment, you had to create 2 and not put both in the same file. I created all the files I thought would be useful for my project, and the first thing I did was to add an appointment to my database. After 3 hours, I remembered that I'd set devide_id as a foreign key, and that if my device_id wasn't created, I couldn't add an appointment... It was a very sad moment
+I manually created a test device with a random IP address with an SQL query to test my site, I was able to add one, then I added delete an appointment to be able to change it. 
 
 ---
 
