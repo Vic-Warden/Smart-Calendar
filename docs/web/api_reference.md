@@ -61,7 +61,9 @@ Warning : if an argument is missing, it will not work
 
 Return Value
 
+This allows me to display in a JSON file only the last appointment that was added
 
+http://localhost/Database/Appointment/get_last_appointment.php
 
 Proof of Execution
 
