@@ -4,10 +4,12 @@ Write here your own content!
 
 ## Appointment
 
-Concernant la partie appointment, j'utilise plusieurs API en particulier 4, une api qui me permet d'envoyer un appointment à partir de mon site internet à la base de donnée, une API qui me permet de la supprimer à partir de mon site et de la modifier.
-La dernière API que j'utilise me permet de récupérer les appointments que j'ai sur ma base de donnée j'ai fait un test avec mon ami et lorsque je lui ai envoyé le lien de mon site internet il arrive bien à voir les appointments que moi j'avais mis.
+Concerning the appointment part, I use several APIs, in particular 4, an API that lets me send an appointment from my website to the database, an API that lets me delete it from my website and modify it.
+The last API I use allows me to retrieve the appointments I have on my database. I did a test with my friend and when I sent him the link to my website, he was able to see the appointments I had put there.
 
 ## Recover all appointments
+
+This endpoint recover the complete list of appointments stored in the database
 
 - URL (Endpoint)
 
@@ -15,15 +17,17 @@ La dernière API que j'utilise me permet de récupérer les appointments que j'a
 
 - Request Method
 
-    GET 
+    GET ( Because all I need to do is read the data stored in my database, and make no changes. I just recover everything )
 
 - Arguments
 
-    None
+    None 
 
 - Return Value
 
     A JSON table containing all appointments
+
+- Proof of Execution
 
 ![Menu](Json appointment.png)
 
