@@ -35,19 +35,19 @@ Proof of Execution
 
 - JSON file created
 
-![Menu](Json_appointment.png)
+![Menu](1.png)
 
 ---
 
 - In PHP MyAdmin
 
-![Menu](appointment.png)
+![Menu](2.png)
 
 ---
 
 - On the website
 
-![Menu](Proof.png)
+![Menu](3.png)
 
 ---
 
@@ -85,19 +85,19 @@ Proof of Execution
 
 - Added from the website
 
-![Menu](insert.png)
+![Menu](4.png)
 
 ---
 
 - Only the last added displayed
 
-![Menu](app add.png)
+![Menu](5.png)
 
 ---
 
 - All appointments displayed
 
-![Menu](add.png)
+![Menu](6.png)
 
 ---
 
