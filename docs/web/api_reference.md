@@ -155,7 +155,7 @@ Proof of Execution
 
 - http://localhost/Database/Appointment/get_last_appointment.php
 
-![Menu](8.png)
+![Menu](85.png)
 
 ---
 
@@ -164,3 +164,31 @@ Proof of Execution
 - http://localhost/Database/Appointment/recover_appointment.php
 
 ![Menu](9.png)
+
+---
+
+## Delete appointment
+
+This endpoint allows you to edit an appointment to the database
+
+URL (Endpoint)
+
+- http://localhost/Database/Appointment/delete_appointment.php
+
+Request Method
+
+- POST ( I know there's a PUT option for modifying data, but I prefer to stick with POST because the result is the same: I can modify data )
+
+Arguments
+
+- appointment_id (integer, required) → The ID of the appointment
+
+Warning : if an argument is missing, it will not work
+
+Return Value
+
+- This allows me to display in a JSON file only the last appointment that was updated
+
+- http://localhost/Database/Appointment/get_last_updated_appointment.php
+
+Proof of Execution

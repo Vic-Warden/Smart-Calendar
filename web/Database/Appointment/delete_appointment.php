@@ -13,11 +13,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         exit;
     }
 
+    $query = $link->prepare("SELECT * FROM Appointment WHERE appointment_id = ?");
+    $query->bind_param("i", $appointment_id);
+    $query->execute();
+    $result = $query->get_result();
+
+    if ($result->num_rows === 0) 
+    {
+        echo json_encode(["status" => "error", "message" => "Appointment not found"]);
+        exit;
+    }
+
+    $appointment = $result->fetch_assoc();
+
     $stmt = $link->prepare("DELETE FROM Appointment WHERE appointment_id = ?");
     $stmt->bind_param("i", $appointment_id);
 
     if ($stmt->execute()) 
     {
+        file_put_contents(__DIR__ . "/last_deleted_appointment.json", json_encode($appointment, JSON_PRETTY_PRINT));
+
         $json_file = __DIR__ . "/last_appointment.json";
         if (file_exists($json_file)) 
         {
@@ -38,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 }
             }
         }
-        echo json_encode(["status" => "success", "message" => "Appointment deleted"]);
+
+        echo json_encode(["status" => "success", "message" => "Appointment deleted", "deleted_appointment" => $appointment]);
     }
-    
     
     else 
     {
