@@ -29,9 +29,21 @@ Return Value
 
 Proof of Execution
 
+---
+
+- JSON file created
+
 ![Menu](Json appointment.png)
 
+---
+
+- In PHP MyAdmin
+
 ![Menu](appointment.png)
+
+---
+
+- On the website
 
 ![Menu](Proof.png)
 
@@ -67,14 +79,24 @@ Return Value
 
 Proof of Execution
 
-![Menu](insert.png)
+---
 
 - Added from the website
 
-![Menu](app add.png)
+![Menu](insert.png)
+
+---
 
 - Only the last added displayed
 
-![Menu](add.png)
+![Menu](app add.png)
+
+---
 
 - All appointments displayed
+
+![Menu](add.png)
+
+---
+
+## Insert appointment

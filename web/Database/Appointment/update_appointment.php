@@ -21,8 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     if ($stmt->execute()) 
     {
-        echo json_encode(["status" => "success", "message" => "Rendez-vous mis à jour avec succès !"]);
-    } 
+        $query = $link->prepare("SELECT * FROM Appointment WHERE appointment_id = ?");
+        $query->bind_param("i", $appointment_id);
+        $query->execute();
+        $result = $query->get_result();
+        $appointment = $result->fetch_assoc();
+    
+        file_put_contents(__DIR__ . "/last_appointment.json", json_encode($appointment, JSON_PRETTY_PRINT));
+    
+        echo json_encode(["status" => "success", "message" => "Appointment updated"]);
+    }
+    
     
     else 
     {
