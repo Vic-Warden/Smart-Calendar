@@ -112,12 +112,27 @@ function ism_loadAppointments() {
     .catch(error => console.error("Erreur lors du chargement des rendez-vous :", error));
 }
 
-function ism_deleteAppointment(index) 
+function ism_deleteAppointment(appointment_id) 
 {
-    let appointments = JSON.parse(localStorage.getItem("ism-appointments")) || [];
-    appointments.splice(index, 1);
-    localStorage.setItem("ism-appointments", JSON.stringify(appointments));
-    ism_loadAppointments();
+    fetch("Database/Appointment/delete_appointment.php", 
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `appointment_id=${encodeURIComponent(appointment_id)}`
+    })
+    .then(response => response.json())
+    .then(data => 
+    {
+        console.log("Réponse du serveur : ", data);
+
+        if (data.status === "success") 
+        {
+            ism_loadAppointments();
+        }
+    })
+    .catch(error => console.error("Erreur AJAX : ", error));
 }
 
 document.addEventListener("DOMContentLoaded", function() 
