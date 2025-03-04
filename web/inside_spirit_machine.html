@@ -32,6 +32,18 @@
         </div>
     </div>
 
+    <div class="ism-edit-form">
+        <label>Edit title:</label>
+        <input type="text" id="ism-edit-title" value="Current Title">
+    
+        <label>Change date and time:</label>
+        <input type="datetime-local" id="ism-edit-datetime" value="2025-03-07T20:45">
+    
+        <button onclick="ism_saveEditedAppointment(appointment_id)">Save</button>
+        <button onclick="this.parentElement.remove()">Cancel</button>
+    </div>
+    
+
     <script src="script.js"></script>
 </body>
 

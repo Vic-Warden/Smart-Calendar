@@ -85,7 +85,8 @@ function ism_formatDateTime(dateTime)
     return date.toLocaleDateString('en-US', options);
 }
 
-function ism_loadAppointments() {
+function ism_loadAppointments() 
+{
     let appointmentsList = document.getElementById("ism-appointmentsList");
     appointmentsList.innerHTML = "";
 
@@ -94,9 +95,12 @@ function ism_loadAppointments() {
     .then(appointments => {
         appointmentsList.innerHTML = "";
 
-        appointments.forEach(appointment => {
+        appointments.forEach(appointment => 
+        {
             let appointmentDiv = document.createElement("div");
             appointmentDiv.classList.add("ism-appointment");
+            appointmentDiv.setAttribute("data-id", appointment.appointment_id);
+
             appointmentDiv.innerHTML = `
                 <span><strong>${appointment.task}</strong></span><br>
                 <span>${appointment.date_hour}</span>
@@ -112,14 +116,17 @@ function ism_loadAppointments() {
     .catch(error => console.error("Erreur lors du chargement des rendez-vous :", error));
 }
 
+
 function ism_deleteAppointment(appointment_id) 
 {
     fetch("Database/Appointment/delete_appointment.php", 
     {
         method: "POST",
-        headers: {
+        headers: 
+        {
             "Content-Type": "application/x-www-form-urlencoded"
         },
+        
         body: `appointment_id=${encodeURIComponent(appointment_id)}`
     })
     .then(response => response.json())
@@ -157,47 +164,79 @@ document.addEventListener("DOMContentLoaded", function()
     }
 });
 
-function ism_editAppointment(index) 
+function ism_editAppointment(appointment_id, currentTitle, currentDateTime) 
 {
-    let appointments = JSON.parse(localStorage.getItem("ism-appointments")) || [];
-    let appointment = appointments[index];
 
     let editForm = document.createElement("div");
     editForm.classList.add("ism-edit-form");
+
     editForm.innerHTML = `
-        <label>Edit title :</label>
-        <input type="text" id="ism-edit-title" value="${appointment.title}">
+        <label>Edit title:</label>
+        <input type="text" id="ism-edit-title" value="${currentTitle}">
 
-        <label>Change date and time :</label>
-        <input type="datetime-local" id="ism-edit-datetime" value="${appointment.dateTime}">
+        <label>Change date and time:</label>
+        <input type="datetime-local" id="ism-edit-datetime" value="${currentDateTime}">
 
-        <button onclick="ism_saveEditedAppointment(${index})">💾 Save</button>
+        <button onclick="ism_saveEditedAppointment(${appointment_id})">💾 Save</button>
         <button onclick="this.parentElement.remove()">❌ Cancel</button>
     `;
 
-    let appointmentDiv = document.getElementsByClassName("ism-appointment")[index];
-    appointmentDiv.appendChild(editForm);
+    let appointmentDiv = document.querySelector(`[data-id='${appointment_id}']`);
+    
+    if (appointmentDiv) 
+    {
+        appointmentDiv.appendChild(editForm);
+
+        let dateTimeInput = document.getElementById("ism-edit-datetime");
+
+        dateTimeInput.addEventListener("click", function() 
+        {
+            if (this.showPicker) 
+            {
+                this.showPicker();
+            }
+        });
+
+    } 
+    
+    else 
+    {
+        console.error("L'élément avec l'ID donné n'a pas été trouvé");
+    }
 }
 
-function ism_saveEditedAppointment(index) 
+function ism_saveEditedAppointment(appointment_id) 
 {
-    let appointments = JSON.parse(localStorage.getItem("ism-appointments")) || [];
-
     let newTitle = document.getElementById("ism-edit-title").value;
     let newDateTime = document.getElementById("ism-edit-datetime").value;
 
     if (newTitle.trim() === "" || newDateTime.trim() === "") 
     {
-        alert("Heresy detected ! The registration rite is incomplete. Machine Spirit requires all fields to be sanctified before validation !");
+        alert("Tous les champs doivent être remplis !");
         return;
     }
 
-    appointments[index] = 
-    { 
-        title: newTitle, 
-        dateTime: newDateTime 
-    };
-    
-    localStorage.setItem("ism-appointments", JSON.stringify(appointments));
-    ism_loadAppointments();
+    fetch("Database/Appointment/update_appointment.php", 
+    {
+        method: "POST",
+        
+        headers: 
+        {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `appointment_id=${encodeURIComponent(appointment_id)}&task=${encodeURIComponent(newTitle)}&date_hour=${encodeURIComponent(newDateTime)}`
+    })
+    .then(response => response.json())
+    .then(data => 
+    {
+        console.log("Réponse du serveur : ", data);
+        if (data.status === "success") 
+        {
+            ism_loadAppointments();
+        }
+    })
+    .catch(error => {
+        console.error("Erreur AJAX : ", error);
+        alert("Une erreur est survenue, veuillez réessayer.");
+    });
 }
