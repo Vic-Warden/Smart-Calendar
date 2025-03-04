@@ -5,7 +5,6 @@ header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
-
     $appointment_id = $_POST['appointment_id'] ?? null;
     $task = $_POST['task'] ?? null;
     $date_hour = $_POST['date_hour'] ?? null;
@@ -26,12 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $query->execute();
         $result = $query->get_result();
         $appointment = $result->fetch_assoc();
-    
-        file_put_contents(__DIR__ . "/last_appointment.json", json_encode($appointment, JSON_PRETTY_PRINT));
-    
-        echo json_encode(["status" => "success", "message" => "Appointment updated"]);
-    }
-    
+
+        file_put_contents(__DIR__ . "/last_updated_appointment.json", json_encode($appointment, JSON_PRETTY_PRINT));
+
+        echo json_encode([
+            "status" => "success",
+            "message" => "Appointment updated",
+            "updated_appointment" => $appointment
+        ]);
+    } 
     
     else 
     {

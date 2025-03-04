@@ -99,4 +99,34 @@ Proof of Execution
 
 ---
 
-## Insert appointment
+## Edit appointment
+
+This endpoint allows you to edit an appointment to the database
+
+URL (Endpoint)
+
+- http://localhost/Database/Appointment/update_appointment.php
+
+Request Method
+
+- POST ( I know there's a PUT option for modifying data, but I prefer to stick with POST because the result is the same: I can modify data )
+
+Arguments
+
+- appointment_id (integer, required) → The ID of the appointment
+
+- task (string, required) -> Name of task
+
+- date_hour (string - format YYYY-MM-DD HH:MM:SS, required) → Date and time of appointment
+
+Warning : if an argument is missing, it will not work
+
+Return Value
+
+- This allows me to display in a JSON file only the last appointment that was updated
+
+- http://localhost/Database/Appointment/get_last_updated_appointment.php
+
+Proof of Execution
+
+---
