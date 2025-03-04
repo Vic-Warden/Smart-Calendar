@@ -11,26 +11,57 @@ The last API I use allows me to retrieve the appointments I have on my database.
 
 This endpoint recover the complete list of appointments stored in the database
 
-- URL (Endpoint)
+URL (Endpoint)
 
-    http://localhost/Database/Appointment/recover_appointment.php
+- http://localhost/Database/Appointment/recover_appointment.php
 
-- Request Method
+Request Method
 
-    GET ( Because all I need to do is read the data stored in my database, and make no changes. I just recover everything )
+- GET ( Because all I need to do is read the data stored in my database, and make no changes. I just recover everything )
 
-- Arguments
+Arguments
 
-    None 
+- None 
 
-- Return Value
+Return Value
 
-    A JSON table containing all appointments
+- A JSON table containing all appointments
 
-- Proof of Execution
+Proof of Execution
 
 ![Menu](Json appointment.png)
 
 ![Menu](appointment.png)
 
 ![Menu](Proof.png)
+
+---
+
+## Insert appointment
+
+This endpoint allows you to add an appointment to the database
+
+URL (Endpoint)
+
+- http://localhost/Database/Appointment/insert_appointment.php
+
+Request Method
+
+- POST ( Because I need it to send new data to my database )
+
+Arguments
+
+- task (string, required) -> Name of task
+
+- date_hour (string - format YYYY-MM-DD HH:MM:SS, required) → Date and time of appointment
+
+- device_id (integer, required) → ID of the device associated with the appointment
+
+Warning : if an argument is missing, it will not work
+
+Return Value
+
+
+
+Proof of Execution
+
