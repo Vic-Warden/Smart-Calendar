@@ -6,7 +6,8 @@
 
 ### Tuesday 04/02
 
-- 🔄 Connecting to the internet with WiFi Manager
+- ✅ Connecting to the internet with WiFi Manager
+- ✅ Recover the IP Adress 
 - 🔄 Connecting to an API using the wemos
 - 🔄 Send data from wemos to the database
 

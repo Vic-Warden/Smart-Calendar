@@ -6,6 +6,11 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Fith week
 
+## Wenesday 05/02
+
+Today I decided to work on the wemos connectivity part, I wanted to make myself a little schedule for the day to enable me to connect the wemos to my database, the first code I wrote allows me to retrieve the IP address of the wemos, I'll have to find a solution to manage to put it in a JSON file with its ID and IP address. 
+
+
 ## Tuesday 04/02
 
 Today I spent the whole day dealing with one thing and that's connecting my website to my database, yesterday I'd managed to send an appointment to my database, the next step I had to take was to delete, modify and retrieve all the appointments in a JSON file. I started by learning about the API part, from what I found in the video a friend had given me. I needed an API for an “action”, so I created a delete, insert, update and recover. Then I saw in the assignments what was needed to have the above exceptation, so I spent the whole day doing that. To be able to display the add part correctly, for example, I had to create an API that would allow me to recover only the last appointment I'd added, by creating get_last_appointment.php with sceens shots. For proof of all this, I invite you to see my https://buudiizaaduu29-e0e00a.dev.hihva.nl/web/api_reference/. 
