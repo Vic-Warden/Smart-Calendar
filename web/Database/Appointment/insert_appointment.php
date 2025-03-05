@@ -69,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         echo json_encode(["status" => "success", "message" => "Appointment added", "appointment" => $appointment]);
     } 
     else 
+    
     {
         echo json_encode(["status" => "error", "message" => "Error: " . $stmt->error]);
     }

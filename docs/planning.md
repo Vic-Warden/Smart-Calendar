@@ -6,6 +6,12 @@
 
 ### Tuesday 04/02
 
+- 🔄 Connecting to the internet with WiFi Manager
+- 🔄 Connecting to an API using the wemos
+- 🔄 Send data from wemos to the database
+
+### Tuesday 04/02
+
 - ✅ API when adding an appointment
 - ✅ API when deleting an appointment 
 - ✅ API when editing an appointment 
