@@ -9,7 +9,7 @@ So for example when you receive feedback on your project, you can write down the
 ## Wenesday 05/02
 
 Today I decided to work on the wemos connectivity part, I wanted to make myself a little schedule for the day to enable me to connect the wemos to my database, the first code I wrote allows me to retrieve the IP address of the wemos, I'll have to find a solution to manage to put it in a JSON file with its ID and IP address. 
-
+I've found some videos explaining the different connections I could use, because I need to re-adapt the whole embedded device part for simplicity's sake, because putting all my sensors on the Wemos will enable me to access them more easily, whereas on the arduino board as I was planning to do, I could have encountered a lot of difficulties. So my goal for tonight is to redo the whole embedded device part, and if I make good and rapid progress I'll be able to finish it tonight. I don't know what time I'll go to bed, but in any case here's my plan for tonight
 
 ## Tuesday 04/02
 
