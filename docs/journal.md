@@ -8,6 +8,9 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Tuesday 04/02
 
+Today I spent the whole day dealing with one thing and that's connecting my website to my database, yesterday I'd managed to send an appointment to my database, the next step I had to take was to delete, modify and retrieve all the appointments in a JSON file. I started by learning about the API part, from what I found in the video a friend had given me. I needed an API for an “action”, so I created a delete, insert, update and recover. Then I saw in the assignments what was needed to have the above exceptation, so I spent the whole day doing that. To be able to display the add part correctly, for example, I had to create an API that would allow me to recover only the last appointment I'd added, by creating get_last_appointment.php with sceens shots. For proof of all this, I invite you to see my https://buudiizaaduu29-e0e00a.dev.hihva.nl/web/api_reference/. 
+You'll be able to see everything I did for a whole day
+
 ## Monday 03/02
 
 Today I've decided not to give up. Retreat is not an option! I started my day by reworking my data schema with the right conventions to redo the forward engineer and send it back to my database. I had a hard time understanding that I had to make all the attributes visible, but I admit I still don't understand why I had to do that.
