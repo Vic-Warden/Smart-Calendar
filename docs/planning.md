@@ -16,7 +16,7 @@
 
 - 🔄 Button -> Wemos
 
-- 🔄 Photo resistor -> Wemos
+- ✅ Photo resistor -> Wemos
 
 - 🔄 DF Player Mini -> Wemos
 
