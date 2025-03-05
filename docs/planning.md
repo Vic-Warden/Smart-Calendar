@@ -10,6 +10,11 @@
 - ✅ Recover the IP Adress 
 - 🔄 Connecting to an API using the wemos
 - 🔄 Send data from wemos to the database
+- 🔄 Connecting Wemos to the database
+- 🔄 Wemos mini -> PIR sensor, Button, Photo resistor, 2 Leds, DF Player mini, screen with back pack ( to buy )
+- 🔄 Arduino -> 7 segments display time, heartbeat
+- 🔄 3D model change stuff
+- 🔄 Resume API reference
 
 ### Tuesday 04/02
 
