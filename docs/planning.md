@@ -10,7 +10,7 @@
 
 - ✅ Recover the IP Adress 
 
-- 🔄 2 LED -> Wemos
+- ✅ 2 LED -> Wemos
 
 - 🔄 PIR sensor -> Wemos
 
