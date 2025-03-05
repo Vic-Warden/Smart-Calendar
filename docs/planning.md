@@ -4,7 +4,7 @@
 
 ## Fith week
 
-### Tuesday 04/02
+## Wenesday 05/02
 
 - ✅ Connecting to the internet with WiFi Manager
 - ✅ Recover the IP Adress 
