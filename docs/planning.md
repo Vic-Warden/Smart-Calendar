@@ -4,6 +4,26 @@
 
 ## Fith week
 
+## Thursday 06/02
+
+- 🔄 PIR sensor -> Wemos 
+
+- 🔄 DF Player Mini -> Wemos
+
+- ✅ 7 segments display time -> Arduino
+
+- ✅ Heartbeat -> Arduino
+
+- 🔄 Connecting to an API using the wemos
+
+- 🔄 Connecting Wemos to the database
+
+- 🔄 Send data from wemos to the database 
+
+- 🔄 3D model change stuff
+
+- 🔄 Resume API reference
+
 ## Wenesday 05/02
 
 - ✅ Connecting to the internet with WiFi Manager
@@ -12,7 +32,7 @@
 
 - ✅ 2 LED -> Wemos
 
-- 🔄 PIR sensor -> Wemos 
+- ✅ PIR sensor -> Wemos 
 
 - ✅ Button -> Wemos
 
@@ -20,9 +40,9 @@
 
 - 🔄 DF Player Mini -> Wemos
 
-- ✅ 7 segments display time -> Arduino
+- 🔄 7 segments display time -> Arduino
 
-- ✅ Heartbeat -> Arduino
+- 🔄 Heartbeat -> Arduino
 
 - 🔄 Connecting to an API using the wemos
 

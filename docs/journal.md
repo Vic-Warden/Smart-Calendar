@@ -6,10 +6,23 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Fith week
 
+## Thursday 06/02
+
+( Probably between 00h00 and 4h in the morning )
+So I started by connecting all my first part which was to connect the easiest that is to say the LEDs to my wemos, although the LEDs do not send things to the wemos they can receive, my goal is to succeed in making when a person passes by that it can light.
+The second component I connected was the button. I'd like to make it so that when someone presses it, it plays a game like my Dawn of War game, because anyone who's ever played that game knows how much the characters talk in it.
+The PIR sensor to have a person detector to turn on the LEDs and play a sound when a person is in front of the smart calendar.
+I wanted to connect my DF player but for some reason I'm having too many problems connecting it and I can't figure out why it's not working...
+
+( 10h20 - 15h20 )
+I started my day by wanting to continue to solve my DF Player mini problem but I'm still having problems. I wanted to restore my PIR sensor but for some reason it doesn't work anymore and I'm having the same problems as yesterday which is that it keeps showing me that a movement is detected when it's not.
+I've connected the screen that allows me to display the heartbeat simulation to my arduous card.
+
+
 ## Wenesday 05/02
 
 Today I decided to work on the wemos connectivity part, I wanted to make myself a little schedule for the day to enable me to connect the wemos to my database, the first code I wrote allows me to retrieve the IP address of the wemos, I'll have to find a solution to manage to put it in a JSON file with its ID and IP address. 
-I've found some videos explaining the different connections I could use, because I need to re-adapt the whole embedded device part for simplicity's sake, because putting all my sensors on the Wemos will enable me to access them more easily, whereas on the arduino board as I was planning to do, I could have encountered a lot of difficulties. So my goal for tonight is to redo the whole embedded device part, and if I make good and rapid progress I'll be able to finish it tonight. I don't know what time I'll go to bed, but in any case here's my plan for tonight
+I've found some videos explaining the different connections I could use, because I need to re-adapt the whole embedded device part for simplicity's sake, because putting all my sensors on the Wemos will enable me to access them more easily, whereas on the arduino board as I was planning to do, I could have encountered a lot of difficulties. So my goal for tonight is to redo the whole embedded device part, and if I make good and rapid progress I'll be able to finish it tonight. I don't know what time I'll go to bed, but in any case here's my plan for tonight.
 
 ## Tuesday 04/02
 
