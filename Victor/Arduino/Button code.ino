@@ -1,23 +1,25 @@
-#define BUTTON_PIN D3
-#define LED_PIN D4
+#define BOUTON_PIN 16  // GPIO 16
 
 void setup() 
 {
-    pinMode(BUTTON_PIN, INPUT_PULLUP);
-    pinMode(LED_PIN, OUTPUT);  
+  Serial.begin(115200);
+  pinMode(BOUTON_PIN, INPUT_PULLUP);
+  Serial.println("Test du bouton - Appuie pour voir le changement !");
 }
 
 void loop() 
 {
-    int buttonState = digitalRead(BUTTON_PIN);
-    
-    if (buttonState == LOW) 
-    { 
-        digitalWrite(LED_PIN, HIGH);
-    } 
-    
-    else 
-    {
-        digitalWrite(LED_PIN, LOW); 
-    }
+  int etatBouton = digitalRead(BOUTON_PIN);
+
+  if (etatBouton == LOW) 
+  {
+    Serial.println("Not pressed");
+  } 
+  
+  else 
+  {
+    Serial.println("Pressed");
+  }
+
+  delay(100);
 }
