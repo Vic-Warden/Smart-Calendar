@@ -1,21 +1,30 @@
-const int pirPin = 2;
+#define PIR_PIN 14 
+#define LED_PIN 4  
 
 void setup() 
 {
-    pinMode(pirPin, INPUT);
-    Serial.begin(9600);
+  Serial.begin(115200);
+  pinMode(PIR_PIN, INPUT);
+  pinMode(LED_PIN, OUTPUT);
+  Serial.println("PIR prêt !");
 }
 
 void loop() 
 {
-    int motionState = digitalRead(pirPin);
-    
-    if (motionState == HIGH) 
-    {
-        Serial.println("Mouvement détecté !");
-    } else {
-        Serial.println("Aucun mouvement");
-    }
-    
-    delay(500);
+  int detection = digitalRead(PIR_PIN);
+    detection = !detection;
+
+  if (detection == HIGH) 
+  {  
+    Serial.println("🚨 Mouvement détecté ! Allumage LED.");
+    digitalWrite(LED_PIN, HIGH);  
+  } 
+  
+  else 
+  {  
+    Serial.println("Aucun mouvement...");
+    digitalWrite(LED_PIN, LOW);  
+  }
+
+  delay(500);
 }
