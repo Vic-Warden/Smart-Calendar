@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $task = trim($_POST['task']);
     } 
+
     else 
     {
         echo json_encode(["status" => "error", "message" => "Task field is required"]);
@@ -17,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $date_hour = trim($_POST['date_hour']);
     } 
+
     else 
     {
         echo json_encode(["status" => "error", "message" => "Date and time field is required"]);
@@ -27,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $device_id = intval($_POST['device_id']);
     } 
+
     else 
     {
         echo json_encode(["status" => "error", "message" => "Device ID field is required and must be a number"]);
@@ -39,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         exit;
     }
 
-    // Vérifier si le device existe
     $check_device = $link->prepare("SELECT device_id FROM Device WHERE device_id = ?");
     $check_device->bind_param("i", $device_id);
     $check_device->execute();
@@ -67,9 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         file_put_contents(__DIR__ . "/last_appointment.json", json_encode($appointment, JSON_PRETTY_PRINT));
 
         echo json_encode(["status" => "success", "message" => "Appointment added", "appointment" => $appointment]);
-    } 
+    }
+
     else 
-    
     {
         echo json_encode(["status" => "error", "message" => "Error: " . $stmt->error]);
     }
