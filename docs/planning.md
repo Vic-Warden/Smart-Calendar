@@ -12,7 +12,7 @@
 
 - ✅ 2 LED -> Wemos
 
-- ✅ PIR sensor -> Wemos 
+- 🔄 PIR sensor -> Wemos 
 
 - ✅ Button -> Wemos
 
@@ -20,7 +20,7 @@
 
 - 🔄 DF Player Mini -> Wemos
 
-- 🔄 7 segments display time -> Arduino
+- ✅ 7 segments display time -> Arduino
 
 - ✅ Heartbeat -> Arduino
 
