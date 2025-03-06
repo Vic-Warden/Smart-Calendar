@@ -14,6 +14,8 @@
 
 - ✅ Heartbeat -> Arduino
 
+- ✅ Servo motor -> Arduino
+
 - 🔄 Connecting to an API using the wemos
 
 - 🔄 Connecting Wemos to the database
@@ -43,6 +45,8 @@
 - 🔄 7 segments display time -> Arduino
 
 - 🔄 Heartbeat -> Arduino
+
+- 🔄 Servo motor -> Arduino
 
 - 🔄 Connecting to an API using the wemos
 
