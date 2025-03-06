@@ -22,7 +22,7 @@
 
 - 🔄 7 segments display time -> Arduino
 
-- 🔄 Heartbeat -> Arduino
+- ✅ Heartbeat -> Arduino
 
 - 🔄 Connecting to an API using the wemos
 
