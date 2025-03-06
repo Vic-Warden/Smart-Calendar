@@ -10,4 +10,5 @@ if (!$link)
 {
     die('Emperor forgive me, I have failed' . mysqli_connect_error());
 }
+
 ?>
