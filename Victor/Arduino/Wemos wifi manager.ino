@@ -1,13 +1,14 @@
 #include <ESP8266WiFi.h>
 
-const char* ssid = "DeKey-Fraijlemaborg";
-const char* password = "i3xHp*ag";
+const char* ssid = "iotroam";         
+const char* password = "uBZTpJnK5M";      
 
 void setup() 
 {  
   Serial.begin(115200);
-  delay(2000);
+  delay(2000);  
 
+  
   Serial.println("Tentative de connexion au Wi-Fi...");
   WiFi.begin(ssid, password);
 
@@ -20,7 +21,7 @@ void setup()
   Serial.println();
   Serial.println("Connecté au Wi-Fi!");
   Serial.print("Adresse IP : ");
-  Serial.println(WiFi.localIP());
+  Serial.println(WiFi.localIP()); 
 }
 
 void loop() 
