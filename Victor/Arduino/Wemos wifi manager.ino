@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 
-const char* ssid = "iotroam";
-const char* password = "uBZTpJnK5M";
+const char* ssid = "DeKey-Fraijlemaborg";
+const char* password = "i3xHp*ag";
 
 void setup() 
 {  

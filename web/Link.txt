@@ -3,3 +3,13 @@ https://loca.lt/mytunnelpassword
 http://localhost/phpmyadmin/
 
 https://hoegyv.loca.lt/
+
+Appartement
+
+const char* ssid = "DeKey-Fraijlemaborg";
+const char* password = "i3xHp*ag";
+
+Ecole
+
+const char* ssid = "iotroam";
+const char* password = "uBZTpJnK5M";
