@@ -1,12 +1,14 @@
-#define LED_PIN 5 // define the LED pin
+#define LED_PIN 5 
 
-void setup() {
-  pinMode(LED_PIN, OUTPUT); // set the LED pin as an output
+void setup() 
+{
+  pinMode(LED_PIN, OUTPUT); 
 }
 
-void loop() {
-  digitalWrite(LED_PIN, HIGH); // turn the LED on
-  delay(1000); // wait for 1 second
-  digitalWrite(LED_PIN, LOW); // turn the LED off
-  delay(1000); // wait for 1 second
+void loop() 
+{
+  digitalWrite(LED_PIN, HIGH); 
+  delay(1000); 
+  digitalWrite(LED_PIN, LOW); 
+  delay(1000); 
 }
