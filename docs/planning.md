@@ -12,9 +12,9 @@
 
 - ✅ 2 LED -> Wemos
 
-- ✅ PIR sensor -> Wemos 
+- 🔄 PIR sensor -> Wemos 
 
-- 🔄 Button -> Wemos
+- ✅ Button -> Wemos
 
 - ✅ Photo resistor -> Wemos
 
