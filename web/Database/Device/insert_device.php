@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../Connection/database_connection.php';
 
+header('Content-Type: application/json');
+
 if ($_SERVER["REQUEST_METHOD"] !== "POST") 
 {
     http_response_code(405);
@@ -35,7 +37,7 @@ if (!filter_var($ip_address, FILTER_VALIDATE_IP))
     exit;
 }
 
-$check_query = "SELECT device_id, ip_address FROM Device WHERE name = ?";
+$check_query = "SELECT device_id, name, ip_address FROM Device WHERE name = ?";
 $stmt_check = mysqli_prepare($link, $check_query);
 mysqli_stmt_bind_param($stmt_check, "s", $name);
 mysqli_stmt_execute($stmt_check);
@@ -55,9 +57,16 @@ if ($row = mysqli_fetch_assoc($result))
         if (mysqli_stmt_execute($stmt_update)) 
         {
             http_response_code(200);
-            echo json_encode(["success" => "Adresse IP mise à jour.", "device_id" => $device_id]);
+            echo json_encode([
+                "success" => "Adresse IP mise à jour.",
+                "device" => [
+                    "device_id" => $device_id,
+                    "name" => $name,
+                    "ip_address" => $ip_address
+                ]
+            ]);
         } 
-        
+
         else 
         {
             http_response_code(500);
@@ -66,11 +75,19 @@ if ($row = mysqli_fetch_assoc($result))
 
         mysqli_stmt_close($stmt_update);
     } 
-    
+
     else 
     {
         http_response_code(200);
-        echo json_encode(["success" => "Aucune modification nécessaire.", "device_id" => $device_id]);
+        echo json_encode([
+            "success" => "Aucune modification nécessaire.",
+            "device" => 
+            [
+                "device_id" => $device_id,
+                "name" => $name,
+                "ip_address" => $ip_address
+            ]
+        ]);
     }
 } 
 
@@ -82,15 +99,24 @@ else
 
     if (mysqli_stmt_execute($stmt_insert)) 
     {
+        $new_device_id = mysqli_insert_id($link);
         http_response_code(201);
-        echo json_encode(["success" => "Appareil ajouté avec succès!", "device_id" => mysqli_insert_id($link)]);
+        echo json_encode([
+            "success" => "Appareil ajouté avec succès!",
+            "device" => 
+            [
+                "device_id" => $new_device_id,
+                "name" => $name,
+                "ip_address" => $ip_address
+            ]
+        ]);
     } 
-    
     else 
     {
         http_response_code(500);
         echo json_encode(["error" => "Erreur lors de l'insertion."]);
     }
+    
     mysqli_stmt_close($stmt_insert);
 }
 
