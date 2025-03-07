@@ -1,8 +1,10 @@
 https://loca.lt/mytunnelpassword
 
+https://hoegyv.loca.lt/
+
 http://localhost/phpmyadmin/
 
-https://hoegyv.loca.lt/
+http://hoegyv.loca.lt/
 
 Appartement
 

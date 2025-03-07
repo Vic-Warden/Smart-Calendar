@@ -5,6 +5,11 @@
             "device_id": "1",
             "name": "Test Device",
             "ip_address": "192.168.1.1"
+        },
+        {
+            "device_id": "2",
+            "name": "By the Emperor, it will be done !",
+            "ip_address": "145.109.225.146"
         }
     ]
 }
