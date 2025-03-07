@@ -4,6 +4,22 @@
 
 ## Fith week
 
+## Friday 06/02
+
+- 🔄 PIR sensor -> Wemos 
+
+- 🔄 DF Player Mini -> Wemos
+
+- ✅ Connecting to an API using the wemos
+
+- ✅ Connecting Wemos to the database
+
+- 🔄 Send data from wemos to the database 
+
+- 🔄 3D model change stuff
+
+- 🔄 Resume API reference
+
 ## Thursday 06/02
 
 - 🔄 PIR sensor -> Wemos 
