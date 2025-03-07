@@ -18,6 +18,8 @@ I wanted to connect my DF player but for some reason I'm having too many problem
 I started my day by wanting to continue to solve my DF Player mini problem but I'm still having problems. I wanted to restore my PIR sensor but for some reason it doesn't work anymore and I'm having the same problems as yesterday which is that it keeps showing me that a movement is detected when it's not.
 I've connected the screen that allows me to display the heartbeat simulation to my arduous card.
 
+(16h00 - 2h00)
+As soon as I got home I set to work to make the best progress I could but for some reason my port 80 has a problem, I really don't know what to do to fix it I saw on the internet that you could change the port but being far from a pro I prefer to stop for today and ask Mats if he could give me a hand...
 
 ## Wenesday 05/02
 

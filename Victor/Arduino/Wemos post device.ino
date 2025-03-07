@@ -14,7 +14,8 @@ void setup()
   WiFi.begin(ssid, password);
 
   Serial.print("Connexion au Wi-Fi...");
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) 
+  {
     delay(500);
     Serial.print(".");
   }
@@ -30,7 +31,7 @@ void loop()
   {
     HTTPClient http;
 
-    String name = "Wemos";
+    String name = "By the Emperor, it will be done !";
     String ip_address = WiFi.localIP().toString();
 
     String postData = "name=" + name + "&ip_address=" + ip_address;
@@ -46,6 +47,7 @@ void loop()
       Serial.println("Réponse de l'API : ");
       Serial.println(response);
     } 
+
     else 
     {
       Serial.print("Erreur requête HTTP : ");
@@ -54,6 +56,7 @@ void loop()
 
     http.end();
   }
+  
   else
   {
     Serial.println("Déconnecté du WiFi, tentative de reconnexion...");
