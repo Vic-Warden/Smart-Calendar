@@ -6,7 +6,12 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Fith week
 
-## Thursday 06/02
+## Friday 07/03
+
+Today I went to see Mats to talk to him about my problems, what was too weird was when I put the local host to see the devices I had in my database. Before dealing with the loss of the connection, I wanted to make sure I could recover the device ids I'd already created, so I started by creating a recover device file that would allow me to just recover the devices I had in my database. I'd already created a device for the test device because I needed one to be able to add or delete appointments on my database. So after creating it, I did a “classic” test just by putting the link on the Internet and adding localhost without my IP address. I wanted to try again, the experience with my IP address where I had problems, I wanted to show my problems to Mats to show him my problems to my great surprise everything worked normally. I was really surprised and I was a man with more questions than before. I explained everything to Mats, from what I understood it was the fact that I was in my home network that was blocking my connection.
+After the explanations I understood that I had to make a tunnel for it to work. Or use my phone's connection to make it work, but now I'll be able to go ahead and finish my embedded device part, my database part and send data to my database.
+
+## Thursday 06/03
 
 ( Probably between 00h00 and 4h in the morning )
 So I started by connecting all my first part which was to connect the easiest that is to say the LEDs to my wemos, although the LEDs do not send things to the wemos they can receive, my goal is to succeed in making when a person passes by that it can light.
@@ -21,17 +26,17 @@ I've connected the screen that allows me to display the heartbeat simulation to 
 (16h00 - 2h00)
 As soon as I got home I set to work to make the best progress I could but for some reason my port 80 has a problem, I really don't know what to do to fix it I saw on the internet that you could change the port but being far from a pro I prefer to stop for today and ask Mats if he could give me a hand...
 
-## Wenesday 05/02
+## Wenesday 05/03
 
 Today I decided to work on the wemos connectivity part, I wanted to make myself a little schedule for the day to enable me to connect the wemos to my database, the first code I wrote allows me to retrieve the IP address of the wemos, I'll have to find a solution to manage to put it in a JSON file with its ID and IP address. 
 I've found some videos explaining the different connections I could use, because I need to re-adapt the whole embedded device part for simplicity's sake, because putting all my sensors on the Wemos will enable me to access them more easily, whereas on the arduino board as I was planning to do, I could have encountered a lot of difficulties. So my goal for tonight is to redo the whole embedded device part, and if I make good and rapid progress I'll be able to finish it tonight. I don't know what time I'll go to bed, but in any case here's my plan for tonight.
 
-## Tuesday 04/02
+## Tuesday 04/03
 
 Today I spent the whole day dealing with one thing and that's connecting my website to my database, yesterday I'd managed to send an appointment to my database, the next step I had to take was to delete, modify and retrieve all the appointments in a JSON file. I started by learning about the API part, from what I found in the video a friend had given me. I needed an API for an “action”, so I created a delete, insert, update and recover. Then I saw in the assignments what was needed to have the above exceptation, so I spent the whole day doing that. To be able to display the add part correctly, for example, I had to create an API that would allow me to recover only the last appointment I'd added, by creating get_last_appointment.php with sceens shots. For proof of all this, I invite you to see my https://buudiizaaduu29-e0e00a.dev.hihva.nl/web/api_reference/. 
 You'll be able to see everything I did for a whole day
 
-## Monday 03/02
+## Monday 03/03
 
 Today I've decided not to give up. Retreat is not an option! I started my day by reworking my data schema with the right conventions to redo the forward engineer and send it back to my database. I had a hard time understanding that I had to make all the attributes visible, but I admit I still don't understand why I had to do that.
 Once my database was perfect, I took care of everything at once. In a youtube video, it was said that you had to create a php file for each major part of your code, i.e. what you wanted to do, e.g. if you wanted to add or delete an appointment, you had to create 2 and not put both in the same file. I created all the files I thought would be useful for my project, and the first thing I did was to add an appointment to my database. After 3 hours, I remembered that I'd set devide_id as a foreign key, and that if my device_id wasn't created, I couldn't add an appointment... It was a very sad moment

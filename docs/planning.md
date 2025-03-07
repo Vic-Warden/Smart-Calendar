@@ -4,7 +4,7 @@
 
 ## Fith week
 
-## Friday 06/02
+## Friday 07/03
 
 - 🔄 PIR sensor -> Wemos 
 
@@ -20,7 +20,7 @@
 
 - 🔄 Resume API reference
 
-## Thursday 06/02
+## Thursday 06/03
 
 - 🔄 PIR sensor -> Wemos 
 
@@ -42,7 +42,7 @@
 
 - 🔄 Resume API reference
 
-## Wenesday 05/02
+## Wenesday 05/03
 
 - ✅ Connecting to the internet with WiFi Manager
 
@@ -74,7 +74,7 @@
 
 - 🔄 Resume API reference
 
-### Tuesday 04/02
+### Tuesday 04/03
 
 - ✅ API when adding an appointment
 - ✅ API when deleting an appointment 
@@ -85,7 +85,7 @@
 - ✅ API to have only the last edited 
 - ✅ API to have only the last updated 
 
-### Monday 03/02
+### Monday 03/03
 
 - ✅ Add an appointment from the website
 - ✅ Delete an appointment from the website
