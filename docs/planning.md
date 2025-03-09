@@ -6,7 +6,7 @@
 
 ## Friday 07/03
 
-- 🔄 PIR sensor -> Wemos 
+- ✅ PIR sensor -> Wemos 
 
 - 🔄 DF Player Mini -> Wemos
 
