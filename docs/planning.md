@@ -6,15 +6,67 @@
 
 ### Monday 10/03
 
-- ✅ PIR sensor -> Wemos 
+Wemos Connection :
 
-- ✅ DF Player Mini -> Wemos
+- ✅ PIR sensor
 
-- 🔄 Send data from wemos to the database 
+- ✅ Photoresistor
+
+- ✅ Button
+
+- ✅ Arduino
+
+Arduino Connection :
+
+- ✅ 7 segments display time
+
+- ✅ Heartbeat
+
+- ✅ Servo motor
+
+- ✅ DF Player Mini
+
+- ✅ Wemos
+
+API :
+
+- ✅ Connecting to an API using the wemos
+
+- ✅ Connecting Wemos to the database
+
+- ✅ Send data from wemos to the database 
+
+- 🔄 Insert Sensor
+
+- 🔄 Delete Sensor
+
+- 🔄 Recover Sensor
+
+- 🔄 Instert Sensor Data
+
+- 🔄 Delete Sensor Data
+
+- 🔄 Recover Sensor Data
+
+Documentation :
+
+- 🔄 Frietzing
+
+Program :
+
+- 🔄 Wemos
+
+- 🔄 Arduino
+
+To be done later :
 
 - 🔄 3D model change stuff
 
 - 🔄 Resume API reference
+
+- 🔄 Research part to be done from Friday
+
+---
 
 ## Fith week
 
