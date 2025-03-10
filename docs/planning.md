@@ -4,19 +4,19 @@
 
 ## Sixth week
 
-## Fith week
-
-### Monday 03/03
+### Monday 10/03
 
 - ✅ PIR sensor -> Wemos 
 
-- 🔄 DF Player Mini -> Wemos
+- ✅ DF Player Mini -> Wemos
 
 - 🔄 Send data from wemos to the database 
 
 - 🔄 3D model change stuff
 
 - 🔄 Resume API reference
+
+## Fith week
 
 ## Friday 07/03
 
