@@ -1,0 +1,84 @@
+// #include<SoftwareSerial.h>
+
+// #define RX_PIN 6
+// #define TX_PIN 7
+
+// SoftwareSerial com_wemos(RX_PIN, TX_PIN);
+
+const int ledPin = 8;
+//   // Pin de la LED sur Arduino (par défaut, pin 13)
+
+// void setup() 
+// {
+//   // Initialisation de la communication série avec la Wemos
+//   Serial.begin(9600);  // Serial pour communiquer avec Wemos via la liaison série
+//   com_wemos.begin(9600);
+
+//   // Configuration de la LED
+  // pinMode(ledPin, OUTPUT);
+  // digitalWrite(ledPin, LOW);  // Assurez-vous que la LED est éteinte au démarrage
+// }
+
+// void loop() 
+// {
+//   if (com_wemos.available()) 
+//   {
+//     String command = com_wemos.readStringUntil('\n');  // Lire la commande envoyée par la Wemos
+//     com_wemos.println(command);
+
+//     // Si la commande est "LED_ON", allumer la LED
+//     if (command == "LED_ON") 
+//     {
+//       digitalWrite(ledPin, HIGH);
+//     }
+//     // Si la commande est "LED_OFF", éteindre la LED
+//     else if (command == "LED_OFF") {
+//       digitalWrite(ledPin, LOW);
+//     }
+//   }
+// }
+
+#include <SoftwareSerial.h>
+
+SoftwareSerial mySerial(12, 13);  // RX = 12, TX = 13
+
+void setup() {
+    Serial.begin(9600);  // USB Debugging
+    mySerial.begin(9600); // Communication with ESP8266
+    Serial.println("Arduino: Ready");
+    pinMode(ledPin, OUTPUT);
+    digitalWrite(ledPin, LOW);  // Assurez-vous que la LED est éteinte au démarrage
+}
+
+void loop() {
+    Serial.print("Serial available: ");
+    Serial.println(mySerial.available());  // Show number of available bytes
+
+    if (mySerial.available()) {
+        Serial.println("Data available!");
+        String received = mySerial.readStringUntil('\n');
+        received.trim();
+        Serial.println("Arduino Received: " + received);
+
+        // Echo message back to Wemos
+        mySerial.println("Echo: " + received);
+
+      // Si la commande est "LED_ON", allumer la LED
+      if (received == "LED_ON") 
+      {
+        digitalWrite(ledPin, HIGH);
+        Serial.println("Turning on led");
+      }
+      // Si la commande est "LED_OFF", éteindre la LED
+      else if (received == "LED_OFF") {
+        digitalWrite(ledPin, LOW);
+        Serial.println("Turning off led");
+      }
+      } 
+      else 
+      {
+          Serial.println("No data received...");
+      }
+
+    delay(1000);
+}
