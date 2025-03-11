@@ -10,6 +10,8 @@ Database :
 
 - ✅ Database Schema
 
+- ✅ ERD Schema
+
 API :
 
 - ✅ Insert Device
