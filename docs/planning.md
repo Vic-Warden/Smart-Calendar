@@ -12,19 +12,23 @@ Database :
 
 API :
 
-- 🔄 Insert Sensor
+- ✅ Insert Sensor
 
 - 🔄 Delete Sensor
 
 - 🔄 Recover Sensor
 
-- 🔄 Instert Sensor Data
+- ✅ Instert Sensor Data
 
 - 🔄 Delete Sensor Data
 
 - 🔄 Recover Sensor Data
 
 Program :
+
+- ✅ Arduino control via wemos
+
+- ✅ Control sound at the touch of a button
 
 - 🔄 Wemos
 
