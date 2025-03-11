@@ -2,7 +2,7 @@
 
 Servo monServomoteur;
 
-int brocheServo = 8;
+int brocheServo = 4;
 
 void setup() 
 {
