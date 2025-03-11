@@ -6,6 +6,10 @@
 
 ### Tuesday 11/03
 
+Database :
+
+- ✅ Database Schema
+
 API :
 
 - 🔄 Insert Sensor
