@@ -1,10 +1,17 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
+// Appartement
+
 const char* ssid = "DeKey-Fraijlemaborg";
 const char* password = "i3xHp*ag";
 
-const char* apiUrl = "http://217.117.224.118/Database/Device/insert_device.php";
+// // Ecole
+
+// const char* ssid = "iotroam";
+// const char* password = "uBZTpJnK5M";
+
+const char* apiUrl = "http://100.74.252.69/Database/Device/insert_device.php";
 
 WiFiClient wifiClient;
 

@@ -11,30 +11,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     if (!empty($name) && !empty($ip_address)) 
     {
-        $stmt = $link->prepare("INSERT INTO Device (name, ip_address) VALUES (?, ?)");
-        $stmt->bind_param("ss", $name, $ip_address);
+        $stmt = $link->prepare("SELECT device_id FROM Device WHERE name = ?");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if ($stmt->execute()) 
+        if ($result->num_rows > 0) 
         {
-            $response['status'] = 'success';
-            $response['message'] = 'Nouveau périphérique ajouté avec succès.';
-            $response['device'] = 
-            [
-                'device_id' => $stmt->insert_id,
-                'name' => $name,
-                'ip_address' => $ip_address
-            ];
+            $row = $result->fetch_assoc();
+            $device_id = $row['device_id'];
+
+            $stmt = $link->prepare("UPDATE Device SET ip_address = ? WHERE device_id = ?");
+            $stmt->bind_param("si", $ip_address, $device_id);
+            
+            if ($stmt->execute()) 
+            {
+                $response['status'] = 'success';
+                $response['message'] = 'Adresse IP mise à jour.';
+                $response['device'] = [
+                    'device_id' => $device_id,
+                    'name' => $name,
+                    'ip_address' => $ip_address
+                ];
+            } 
+
+            else 
+            {
+                $response['status'] = 'error';
+                $response['message'] = $stmt->error;
+            }
         } 
-        
+
         else 
         {
-            $response['status'] = 'error';
-            $response['message'] = $stmt->error;
+            $stmt = $link->prepare("INSERT INTO Device (name, ip_address) VALUES (?, ?)");
+            $stmt->bind_param("ss", $name, $ip_address);
+
+            if ($stmt->execute()) 
+            {
+                $response['status'] = 'success';
+                $response['message'] = 'Nouveau périphérique ajouté avec succès.';
+                $response['device'] = [
+                    'device_id' => $stmt->insert_id,
+                    'name' => $name,
+                    'ip_address' => $ip_address
+                ];
+            } 
+            
+            else 
+            {
+                $response['status'] = 'error';
+                $response['message'] = $stmt->error;
+            }
         }
 
         $stmt->close();
     } 
-    
     else 
     {
         $response['status'] = 'error';
