@@ -52,6 +52,8 @@ Documentation :
 
 - ✅ Frietzing
 
+- 🔄 System Architecture
+
 Program :
 
 - 🔄 Wemos

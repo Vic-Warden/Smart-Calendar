@@ -4,6 +4,14 @@ Your learning journal can be seen as a diary of your learning process. It is a p
 
 So for example when you receive feedback on your project, you can write down the feedback and your reflection on it in your learning journal. You can also write down what you have learned from the feedback, and how you will apply it in your project.
 
+## Sixth week
+
+### Monday 10/03
+
+Today I decided to go back to my embedded system and redo everything from scratch, I had to change my approach because I was missing some pins and my goal is to succeed in putting all the inputs on my wemos and all the outputs on my arduino board. Today I enlisted the help of Indigo, who gave me a lot of help with this part of the project. It took me the whole morning and afternoon to get it working. I started by connecting all my inputs, including my PIR sensor, the photoresistor and my button. Then I finished with my part with the various outputs. Which I did when I got home and did all my Frietzing part, which took me a long time, but tomorrow I'm going to keep working. I've set myself the goal of finishing all the embedded part today, all the connection part tomorrow, and after tomorrow all the data sending part between the wemos and my arduino board. 
+
+---
+
 ## Fith week
 
 ## Friday 07/03
