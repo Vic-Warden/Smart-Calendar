@@ -6,58 +6,56 @@ $response = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
-    $name = trim($_POST['name'] ?? '');
-    $type = trim($_POST['type'] ?? '');
+    $name = trim($_POST['name']);
+    $type = trim($_POST['type']);
     $activation_threshold = isset($_POST['activation_threshold']) ? floatval($_POST['activation_threshold']) : null;
     $device_id = isset($_POST['device_id']) ? intval($_POST['device_id']) : 0;
 
-    if (empty($name) || empty($type) || empty($device_id)) 
+    if (!empty($name) && !empty($type) && !empty($device_id)) 
     {
-        echo json_encode(["status" => "error", "message" => "Tous les champs requis doivent être remplis."]);
-        exit;
-    }
+        $stmt = $link->prepare("SELECT sensor_id FROM Sensor WHERE name = ? AND device_id = ?");
+        $stmt->bind_param("si", $name, $device_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    $valid_types = ['Presence', 'Light', 'Button'];
-    if (!in_array($type, $valid_types)) 
-    {
-        echo json_encode(["status" => "error", "message" => "Type de capteur invalide. Types valides : Presence, Light, Button."]);
-        exit;
-    }
+        if ($result->num_rows > 0) 
+        {
+            $response['status'] = 'error';
+            $response['message'] = 'Un capteur avec ce nom existe déjà pour ce périphérique.';
+        } 
 
-    $stmt = $link->prepare("SELECT device_id FROM Device WHERE device_id = ?");
-    $stmt->bind_param("i", $device_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+        else 
+        {
+            $stmt = $link->prepare("INSERT INTO Sensor (name, type, activation_threshold, device_id) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssdi", $name, $type, $activation_threshold, $device_id);
 
-    if ($result->num_rows === 0) 
-    {
-        echo json_encode(["status" => "error", "message" => "L'appareil (device_id) spécifié n'existe pas."]);
-        exit;
-    }
+            if ($stmt->execute()) 
+            {
+                $response['status'] = 'success';
+                $response['message'] = 'Capteur ajouté avec succès.';
+                $response['sensor'] = [
+                    'sensor_id' => $stmt->insert_id,
+                    'name' => $name,
+                    'type' => $type,
+                    'activation_threshold' => $activation_threshold,
+                    'device_id' => $device_id
+                ];
+            } 
+            else 
+            {
+                $response['status'] = 'error';
+                $response['message'] = $stmt->error;
+            }
+        }
 
-    $stmt = $link->prepare("INSERT INTO Sensor (name, type, activation_threshold, device_id) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssdi", $name, $type, $activation_threshold, $device_id);
-
-    if ($stmt->execute()) 
-    {
-        $response['status'] = 'success';
-        $response['message'] = 'Capteur ajouté avec succès.';
-        $response['sensor'] = [
-            'sensor_id' => $stmt->insert_id,
-            'name' => $name,
-            'type' => $type,
-            'activation_threshold' => $activation_threshold,
-            'device_id' => $device_id
-        ];
+        $stmt->close();
     } 
-    
     else 
     {
         $response['status'] = 'error';
-        $response['message'] = $stmt->error;
+        $response['message'] = 'Veuillez remplir tous les champs requis.';
     }
 
-    $stmt->close();
     echo json_encode($response);
 }
 
