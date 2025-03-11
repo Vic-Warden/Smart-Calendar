@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `iot`.`Sensor` ;
 
 CREATE TABLE IF NOT EXISTS `iot`.`Sensor` (
   `sensor_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(20) NOT NULL,
   `type` ENUM('Presence', 'Light', 'Button') NOT NULL,
   `activation_threshold` FLOAT NULL,
   `device_id` INT NOT NULL,
