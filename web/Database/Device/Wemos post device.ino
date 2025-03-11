@@ -31,7 +31,7 @@ void loop()
   {
     HTTPClient http;
 
-    String name = "By the Emperor, it will be done !";
+    String name = "Wemos";
     String ip_address = WiFi.localIP().toString();
 
     String postData = "name=" + name + "&ip_address=" + ip_address;
