@@ -1,0 +1,39 @@
+#include <SoftwareSerial.h>
+
+#define TX_PIN 13
+#define RX_PIN 12
+#define BUTTON_PIN 16
+
+SoftwareSerial mySerial(RX_PIN, TX_PIN);
+
+bool buttonState = HIGH;
+bool lastButtonState = HIGH;
+
+void setup() {
+    Serial.begin(9600); 
+    mySerial.begin(9600); 
+    pinMode(BUTTON_PIN, INPUT_PULLUP);
+
+    Serial.println("Wemos: Ready");
+}
+
+void loop() 
+{
+    buttonState = digitalRead(BUTTON_PIN);
+
+    if (buttonState == LOW && lastButtonState == HIGH) 
+    {
+        Serial.println("Bouton pressé ! Envoi de LED_ON");
+        mySerial.println("LED_OFF");
+    }
+
+    else if (buttonState == HIGH && lastButtonState == LOW) 
+    {
+        Serial.println("Bouton relâché ! Envoi de LED_OFF");
+        mySerial.println("LED_ON"); 
+    }
+
+    lastButtonState = buttonState;
+
+    delay(50);
+}
