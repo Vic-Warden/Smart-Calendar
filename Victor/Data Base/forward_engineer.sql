@@ -21,12 +21,11 @@ DROP TABLE IF EXISTS `iot`.`Device` ;
 
 CREATE TABLE IF NOT EXISTS `iot`.`Device` (
   `device_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `ip_address` VARCHAR(45) NOT NULL UNIQUE,
-  PRIMARY KEY (`device_id`)
-) 
+  `name` VARCHAR(20) NOT NULL,
+  `ip_address` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`device_id`),
+  UNIQUE INDEX `ip_address_UNIQUE` (`ip_address` ASC) VISIBLE)
 ENGINE = InnoDB;
-
 
 
 -- -----------------------------------------------------
@@ -57,6 +56,7 @@ DROP TABLE IF EXISTS `iot`.`Sensor` ;
 
 CREATE TABLE IF NOT EXISTS `iot`.`Sensor` (
   `sensor_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20) NOT NULL,
   `type` ENUM('Presence', 'Light', 'Button') NOT NULL,
   `activation_threshold` FLOAT NULL,
   `device_id` INT NOT NULL,
@@ -79,13 +79,13 @@ DROP TABLE IF EXISTS `iot`.`SensorData` ;
 CREATE TABLE IF NOT EXISTS `iot`.`SensorData` (
   `data_id` INT NOT NULL AUTO_INCREMENT,
   `value` FLOAT NOT NULL,
-  `time_stamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `button_state` TINYINT NULL,
+  `time_stamp` DATETIME NOT NULL,
+  `button_state` TINYINT NULL DEFAULT 0,
   `sensor_id` INT NOT NULL,
   PRIMARY KEY (`data_id`),
-  INDEX `sensor_id_fk` (`sensor_id` ASC) VISIBLE,
   INDEX `timestamp` (`time_stamp` ASC) VISIBLE,
-  CONSTRAINT `fk_sensor_data`
+  INDEX `fk_data` (`sensor_id` ASC) VISIBLE,
+  CONSTRAINT `fk_data`
     FOREIGN KEY (`sensor_id`)
     REFERENCES `iot`.`Sensor` (`sensor_id`)
     ON DELETE CASCADE
