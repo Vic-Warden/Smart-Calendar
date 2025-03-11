@@ -1,0 +1,65 @@
+#include <SoftwareSerial.h>
+#include <DFRobotDFPlayerMini.h>
+
+#define LED_PIN 8
+#define WEMOS_RX 12
+#define WEMOS_TX 13
+#define DF_RX 10
+#define DF_TX 11
+
+SoftwareSerial mySerial(WEMOS_RX, WEMOS_TX);
+SoftwareSerial dfSerial(DF_RX, DF_TX);
+DFRobotDFPlayerMini myDFPlayer;
+
+bool playing = false;
+bool secondTrackPlaying = false;
+unsigned long lastPressTime = 0;
+const long songDuration = 5000;
+
+void setup() {
+    Serial.begin(9600);
+    mySerial.begin(9600);
+    dfSerial.begin(9600);
+    pinMode(LED_PIN, OUTPUT);
+    digitalWrite(LED_PIN, LOW);
+
+    Serial.println("Arduino: Ready");
+
+    if (!myDFPlayer.begin(dfSerial)) 
+    {
+        Serial.println("❌ Erreur : DFPlayer Mini non détecté !");
+        while (true);
+    }
+    Serial.println("✅ DFPlayer Mini prêt !");
+    myDFPlayer.volume(10);
+
+    mySerial.listen();
+}
+
+void loop() 
+{
+    if (mySerial.available()) 
+    {
+        String received = mySerial.readStringUntil('\n');
+        received.trim();
+        Serial.println("Commande reçue : " + received);
+
+        if (received == "LED_ON" && !playing) {  
+            playing = true;  
+            secondTrackPlaying = false;  
+            digitalWrite(LED_PIN, HIGH);
+            Serial.println("✅ LED allumée !");
+
+            dfSerial.listen();
+            Serial.println("🎵 Lecture du fichier 1.mp3...");
+            myDFPlayer.play(20);  
+            delay(5000);
+            myDFPlayer.play(35);            
+            delay(5000);
+            myDFPlayer.play(29);
+            lastPressTime = millis();
+            mySerial.listen();
+        }
+    }
+
+}
