@@ -12,11 +12,17 @@ Database :
 
 API :
 
+- ✅ Insert Device
+
+- 🔄 Delete Device
+
+- ✅ Recover Device
+
 - ✅ Insert Sensor
 
 - 🔄 Delete Sensor
 
-- 🔄 Recover Sensor
+- ✅ Recover Sensor
 
 - ✅ Instert Sensor Data
 
