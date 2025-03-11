@@ -28,7 +28,7 @@ API :
 
 - 🔄 Delete Sensor Data
 
-- 🔄 Recover Sensor Data
+- ✅ Recover Sensor Data
 
 Program :
 
