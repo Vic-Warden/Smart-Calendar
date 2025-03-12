@@ -10,7 +10,15 @@ Documentation
 
 - ✅ System Architecture
 
-- 🔄 Technical documentation
+- 🔄 Requirements
+
+- 🔄 Technical documentation Embedded
+
+- 🔄 Embedded code
+
+- 🔄 Technical Documentation Web
+
+- 🔄 Database
 
 Program :
 
