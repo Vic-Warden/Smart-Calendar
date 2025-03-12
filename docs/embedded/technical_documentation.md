@@ -4,6 +4,8 @@ Your Wiring Diagram, Bill of Materials, ... everything about how you built your 
 
 ![Menu](Embedded_device.png)
 
+---
+
 ## Wemos ( Inputs )
 
 __Button :__
@@ -32,7 +34,7 @@ VCC : 5 V
 
 ## Arduino ( Outputs )
 
-__LED :__
+__LED__
 
 Connected to PIN 2
 
