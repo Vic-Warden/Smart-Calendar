@@ -6,6 +6,14 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Sixth week
 
+## Wenesday 12/03
+
+Lundi j'ai refait toute ma partie embedded devices, toute ma partie de reconnexion de tous mes fils,
+
+hier j'ai fait toute ma partie base de donnée
+
+et aujourd'hui je compte faire toute ma partie de documentation que ça soit la partie System architecture, requirements, technical documentation embedded, embedded code, technical documentation web et la database
+
 ### Tuesday 11/03
 
 After finishing all the connection work, I started the day by working on my Database Schema. Today I wanted to finish all my database stuff, whether it was to be able to send, receive or delete data in my database. I'll go into more detail today. I wanted to modify some data on my Data Schema to make my life easier, whether to add or delete data, so I had to make the changes. For example, for the component names, I had set 255 when it wasn't really very consistent, so I modified my tables to ensure that there was a real dependency between the tables, e.g. if you delete the Sensor table, the SensorData table is automatically deleted because the sensor data depends on the sensors, and I did the same for the Device and Appointment tables.
