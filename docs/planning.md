@@ -22,7 +22,7 @@ API :
 
 - ✅ Insert Sensor
 
-- 🔄 Delete Sensor
+- ✅ Delete Sensor
 
 - ✅ Recover Sensor
 
