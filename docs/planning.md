@@ -12,7 +12,7 @@ Documentation
 
 - ✅ Requirements
 
-- 🔄 Technical documentation Embedded
+- ✅ Technical documentation Embedded
 
 - 🔄 Embedded code
 
