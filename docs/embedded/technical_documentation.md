@@ -34,7 +34,7 @@ VCC : 5 V
 
 ## Arduino ( Outputs )
 
-__LED__
+__LED :__
 
 Connected to PIN 2
 
@@ -90,3 +90,15 @@ Connected to PIN SPK_2 **on DF Player mini**
 ---
 
 ## Sends data between Wemos and arduino
+
+__Wemos :__
+
+Connected to PIN D7 ( 13 ) **TX**
+
+Connected to PIN D6 ( 12 )**RX**
+
+__Arduino :__
+
+Connected to PIN 12 **RX**
+
+Connected to PIN 13 **TX**
