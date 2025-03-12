@@ -1,1 +1,0 @@
-![Menu](circuit_Arduino_DFPlayer_ESP8266_PIR_sensor.png)
