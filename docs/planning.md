@@ -10,7 +10,7 @@ Documentation
 
 - ✅ System Architecture
 
-- 🔄 Requirements
+- ✅ Requirements
 
 - 🔄 Technical documentation Embedded
 
