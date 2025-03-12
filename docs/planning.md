@@ -8,7 +8,7 @@
 
 Documentation
 
-- 🔄 System Architecture
+- ✅ System Architecture
 
 - 🔄 Technical documentation
 
