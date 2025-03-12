@@ -6,6 +6,26 @@
 
 ### Wenesday 12/03
 
+Documentation
+
+- 🔄 System Architecture
+
+- 🔄 Technical documentation
+
+Program :
+
+- 🔄 Wemos
+
+- 🔄 Arduino
+
+To be done later :
+
+- 🔄 3D model change stuff
+
+- 🔄 Resume API reference
+
+- 🔄 Research part to be done from Friday
+
 ### Tuesday 11/03
 
 Database :
