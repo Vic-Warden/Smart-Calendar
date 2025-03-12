@@ -16,7 +16,7 @@ API :
 
 - ✅ Insert Device
 
-- 🔄 Delete Device
+- ✅ Delete Device
 
 - ✅ Recover Device
 
