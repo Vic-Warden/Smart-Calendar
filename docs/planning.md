@@ -28,7 +28,7 @@ API :
 
 - ✅ Instert Sensor Data
 
-- 🔄 Delete Sensor Data
+- ✅ Delete Sensor Data
 
 - ✅ Recover Sensor Data
 
