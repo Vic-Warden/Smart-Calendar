@@ -16,7 +16,7 @@ Documentation
 
 - 🔄 Embedded code
 
-- 🔄 Technical Documentation Web
+- ✅ Technical Documentation Web
 
 - 🔄 Database
 
