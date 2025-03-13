@@ -8,11 +8,17 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Wenesday 12/03
 
-Lundi j'ai refait toute ma partie embedded devices, toute ma partie de reconnexion de tous mes fils,
+On Monday I redid all my embedded devices, i.e. I started from scratch all my connections for my components, I completely rechanged all my inputs and outputs. It took me all day, but I did it. I'm not going to go into detail again, because I've already done that, but what I mean by that is that every day I have some kind of big “theme”.
 
-hier j'ai fait toute ma partie base de donnée
+Monday Embedded device
 
-et aujourd'hui je compte faire toute ma partie de documentation que ça soit la partie System architecture, requirements, technical documentation embedded, embedded code, technical documentation web et la database
+Tuesday Database
+
+Wednesday Documentation
+
+Thursday Code to communicate with the arduino via wemos
+
+So today I went back to my System Architecture section and tried to add everything in it to keep it up to date, as our teacher had asked us to do. Hoping I've filled it in properly, I went back to my requirements documentation and added the latest components I've decided to use. For my embedded technical documentation, I rearranged everything to explain each component and the pins it uses. As for my technical documentation for the web part, I explained each page with what users can do. And for my database, I've added a criticism I noticed. 
 
 ### Tuesday 11/03
 
