@@ -4,6 +4,7 @@
         "*.ndjson": "jsonl",
         "*.dbclient-js": "javascript",
         "*.embeddedhtml": "html",
-        "arduino connected to the wemos": "cpp"
+        "arduino connected to the wemos": "cpp",
+        "wemos connected to the arduino": "cpp"
     }
 }

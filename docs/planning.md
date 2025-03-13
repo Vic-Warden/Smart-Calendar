@@ -30,7 +30,13 @@ Wemos :
 
 Program working together ( in pairs ):
 
+- 🔄 When a button is clicked, a random sound is played
 
+- 🔄 When the PIR sensor detects someone, it launches a single specific voice line
+
+- 🔄 When the photo resistance falls below 200, it launches a voice line to indicate that it is switching to silent mode
+
+- 🔄 When an appointment is received, it launches a sound
 
 ### Wenesday 12/03
 
