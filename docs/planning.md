@@ -6,19 +6,31 @@
 
 ### Thursday 13/03
 
-Program :
+Program working alone :
 
-- 🔄 Premier programme tester si tout fonctionne séparemment
+Arduino :
 
-- 🔄 Deuxième programme envoyer donnée à partir d'un bouton en passant par la wemos
+- ✅ Heart Bip Bip code
 
-- 🔄 Troisième programme 
+- ✅ DF Player mini code
 
-- 🔄 Quatrième
+- ✅ LED code
 
-- 🔄 Wemos
+- ✅ Servo motor code
 
-- 🔄 Arduino
+- ✅ 7 segments code
+
+Wemos :
+
+- ✅ Button code
+
+- ✅ Photoresistor code
+
+- ✅ PIR Sensor code
+
+Program working together ( in pairs ):
+
+
 
 ### Wenesday 12/03
 
