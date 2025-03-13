@@ -71,3 +71,7 @@ For the date, I decided to choose only the date and time, as I thought these wer
 For the sensors, the type seemed the most relevant because if I can find out what type of sensor it is, I'll be able to find out directly what data I'm receiving. 
 
 And finally, for the sensor data, naturally the timestamp. It allows me to record the moment when the data was generated. I can't really do otherwise (well, it's the only idea I had for sorting the data). I figured that sorting by date and time wouldn't be such a bad idea. And button_state for the state of the button, whether it's pressed or not.
+
+### Critique sur ma table SensorData
+
+I'd have to replace the fact that in JSON files, for example, data is sent to the sensor with ID 1 with its name, it was just something I'd been thinking about. My table works perfectly, but in terms of “comfort” and ease, it would be simpler to have the name rather than the number.

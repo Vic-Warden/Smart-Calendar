@@ -14,7 +14,7 @@ Documentation
 
 - ✅ Technical documentation Embedded
 
-- 🔄 Embedded code
+- 🔄 Embedded code ( need to finish the code first, I will code tomorrow I mean in few hours )
 
 - ✅ Technical Documentation Web
 
