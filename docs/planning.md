@@ -4,6 +4,22 @@
 
 ## Sixth week
 
+### Thursday 13/03
+
+Program :
+
+- 🔄 Premier programme tester si tout fonctionne séparemment
+
+- 🔄 Deuxième programme envoyer donnée à partir d'un bouton en passant par la wemos
+
+- 🔄 Troisième programme 
+
+- 🔄 Quatrième
+
+- 🔄 Wemos
+
+- 🔄 Arduino
+
 ### Wenesday 12/03
 
 Documentation
