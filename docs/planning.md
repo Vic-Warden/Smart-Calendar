@@ -56,9 +56,9 @@ Documentation
 
 Program :
 
-- 🔄 Wemos
+- ❌ Wemos
 
-- 🔄 Arduino
+- ❌ Arduino
 
 To be done later :
 

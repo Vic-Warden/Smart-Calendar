@@ -13,6 +13,8 @@ The craziest thing is that it works, I can send data but I don't understand why 
 
 I've got to get some sleep, I need to rest so I can work on finding the problem tomorrow, or at least in a few hours.
 
+I spent a lot of hours trying to send specific data to my Arduino, but I don't know why it didn't work... I replaced my jumper wires. I tried to begin and restart all my programs to try to solve it, but even if I met a lot of problems, I know all my programs are working separately and the only solution I found is to buy an ESP32. I already received it but to my home. I did a lot of research to see if I could connect all my components to the ESP32 and, if I'm right, it should work because the problem with sending data to the Arduino from the Wemos will disappear. 
+
 ## Wenesday 12/03
 
 On Monday I redid all my embedded devices, i.e. I started from scratch all my connections for my components, I completely rechanged all my inputs and outputs. It took me all day, but I did it. I'm not going to go into detail again, because I've already done that, but what I mean by that is that every day I have some kind of big “theme”.
