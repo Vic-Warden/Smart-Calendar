@@ -6,7 +6,11 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Sixth week
 
-## Thursday 12/03
+## Friday 14/03
+
+
+
+## Thursday 13/03
 
 It's 3:00 AM as I write this leaning journal, I've been working on the part of the code that would allow me to control the connected outputs of my arduino board from my Wemos, but what I don't understand is why I can't do it. At first I thought it was a connection problem, but then I went back and reconnected what I thought was a potential problem. I ran tests to check every output without going through wemos because I thought it was a pin problem in the code or something.
 The craziest thing is that it works, I can send data but I don't understand why I can only do it once, at least I know it's a code problem and not a problem with what I've plugged in.

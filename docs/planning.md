@@ -4,6 +4,16 @@
 
 ## Sixth week
 
+### Friday 14/03
+
+To be done later :
+
+- 🔄 3D model change stuff
+
+- 🔄 Resume API reference
+
+- 🔄 Research part to be done from Friday
+
 ### Thursday 13/03
 
 Program working alone :
@@ -30,13 +40,21 @@ Wemos :
 
 Program working together ( in pairs ):
 
-- 🔄 When a button is clicked, a random sound is played
+- ❌ When a button is clicked, a random sound is played
 
-- 🔄 When the PIR sensor detects someone, it launches a single specific voice line
+- ❌ When the PIR sensor detects someone, it launches a single specific voice line
 
-- 🔄 When the photo resistance falls below 200, it launches a voice line to indicate that it is switching to silent mode
+- ❌ When the photo resistance falls below 200, it launches a voice line to indicate that it is switching to silent mode
 
-- 🔄 When an appointment is received, it launches a sound
+- ❌ When an appointment is received, it launches a sound
+
+To be done later :
+
+- 🔄 3D model change stuff
+
+- 🔄 Resume API reference
+
+- 🔄 Research part to be done from Friday
 
 ### Wenesday 12/03
 
@@ -56,9 +74,9 @@ Documentation
 
 Program :
 
-- ❌ Wemos
+- 🔄 Wemos
 
-- ❌ Arduino
+- 🔄 Arduino
 
 To be done later :
 
