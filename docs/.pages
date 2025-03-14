@@ -2,8 +2,8 @@ nav:
     - 🏚️ Home: index.md
     - 📦 System Architecture: system_architecture
     - ♟️ Learning journal: journal
-    - 📅 Planning : planning
-    - 🧐 Research to Market : research
+    - 📅 Planning: planning
+    - 🧐 Research to Market: research
     - 🧰 Embedded:
       - Requirements: embedded/requirements
       - Technical documentation: embedded/technical_documentation
