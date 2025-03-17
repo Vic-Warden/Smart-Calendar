@@ -2,6 +2,20 @@
 
 ---
 
+## Seventh week
+
+### Monday 17/03
+
+Research part
+
+- 🔄 Choose the following are to focus on
+
+- 🔄 Introduction
+
+- 🔄 Research method
+
+---
+
 ## Sixth week
 
 ### Friday 14/03
