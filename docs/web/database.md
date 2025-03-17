@@ -62,7 +62,7 @@ Concerning the attributes, value for the value ( Of course ), timestamp it allow
 
 ### Database Schema
 
-![Menu](Database Schema.png)
+![Menu](Database_Schema.png)
 
 As I've already explained the choices for my columns, I'll explain how I went about creating my database schema. I'm not going to dwell too much on the choice of columns, just that I've taken what I'd done before and added them. I'm mainly going to justify the choices I made for my indexes. 
 
