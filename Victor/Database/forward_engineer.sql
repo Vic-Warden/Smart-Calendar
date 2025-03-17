@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `iot`.`Appointment` (
   `appointment_id` INT NOT NULL AUTO_INCREMENT,
   `task` VARCHAR(255) NOT NULL,
   `date_hour` DATETIME NOT NULL,
+  `note` VARCHAR(7) NOT NULL,
   `device_id` INT NOT NULL,
   PRIMARY KEY (`appointment_id`),
   INDEX `date_hour` (`date_hour` ASC) VISIBLE,
@@ -56,7 +57,7 @@ DROP TABLE IF EXISTS `iot`.`Sensor` ;
 
 CREATE TABLE IF NOT EXISTS `iot`.`Sensor` (
   `sensor_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(20) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
   `type` ENUM('Presence', 'Light', 'Button') NOT NULL,
   `activation_threshold` FLOAT NULL,
   `device_id` INT NOT NULL,
