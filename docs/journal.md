@@ -4,6 +4,14 @@ Your learning journal can be seen as a diary of your learning process. It is a p
 
 So for example when you receive feedback on your project, you can write down the feedback and your reflection on it in your learning journal. You can also write down what you have learned from the feedback, and how you will apply it in your project.
 
+## Seventh week
+
+### Monday 17/03
+
+
+
+---
+
 ## Sixth week
 
 ## Friday 14/03
@@ -11,6 +19,8 @@ So for example when you receive feedback on your project, you can write down the
 I failed, yesterday I couldn't do the programs I wanted to do, I had a lot of problems with the connection between the Arduino and the Wemos, I tried everything but I even got some help from Indigo who gave me some components to be able to do it, last week it was a Friday if I remember correctly he came to help me for more than 2 hours. I went over his Frietzing file with him, I went over his code with him and we modified everything, and even with that he told me that the configuration we'd managed to make was that only the wemos could send data, but that the arduino couldn't send any. In itself, I don't have a problem with that, because that's how I want it done.
 
 That's why this week I've started all over again with my connection part, but I've found a solution which is just to buy an ESP32. Which I've done, I should receive it tomorrow, and as I'm going back to France today I'll be able to pick up the components I need. I ordered an LCD screen and an ESP32 for all my connections.
+
+
 
 ## Thursday 13/03
 
