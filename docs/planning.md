@@ -14,6 +14,22 @@ Research part
 
 - 🔄 Research method
 
+ESP32 
+
+- ✅ 7 segments
+
+- ✅ Button
+
+- ✅ DF Player Mini
+
+- ✅ LED
+
+- ✅ Photo Resistor
+
+- ✅ Screens ( Both )
+
+- ✅ Servo
+
 ---
 
 ## Sixth week
