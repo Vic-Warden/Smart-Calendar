@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $task = trim($_POST['task']);
     } 
-
+    
     else 
     {
         echo json_encode(["status" => "error", "message" => "Task field is required"]);
@@ -53,23 +53,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         exit;
     }
 
-    $stmt = $link->prepare("INSERT INTO Appointment (task, date_hour, device_id) VALUES (?, ?, ?)");
-    $stmt->bind_param("ssi", $task, $date_hour, $device_id);
+    $note = "active";
+
+    $stmt = $link->prepare("INSERT INTO Appointment (task, date_hour, note, device_id) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("sssi", $task, $date_hour, $note, $device_id);
 
     if ($stmt->execute()) 
     {
-        $last_id = $stmt->insert_id;
-
-        $query = $link->prepare("SELECT * FROM Appointment WHERE appointment_id = ?");
-        $query->bind_param("i", $last_id);
-        $query->execute();
-        $result = $query->get_result();
-        $appointment = $result->fetch_assoc();
-
-        file_put_contents(__DIR__ . "/last_appointment.json", json_encode($appointment, JSON_PRETTY_PRINT));
-
-        echo json_encode(["status" => "success", "message" => "Appointment added", "appointment" => $appointment]);
-    }
+        echo json_encode(["status" => "success", "message" => "Appointment added", "appointment_id" => $stmt->insert_id]);
+    } 
 
     else 
     {
@@ -80,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $check_device->close();
     $link->close();
 } 
+
 else 
 {
     echo json_encode(["status" => "error", "message" => "Invalid request"]);
