@@ -12,7 +12,8 @@ void setup() {
     Serial.begin(115200);
     mySerial.begin(9600, SERIAL_8N1, 16, 17);
     
-    if (!myDFPlayer.begin(mySerial)) {
+    if (!myDFPlayer.begin(mySerial)) 
+    {
         Serial.println("Échec de la connexion au DFPlayer Mini !");
         while (true);
     }
@@ -23,11 +24,13 @@ void setup() {
 }
 
 void loop() {
-    if (digitalRead(boutonPin) == LOW) {
+    if (digitalRead(boutonPin) == LOW) 
+    {
         boutonAppuye = true;
     }
 
-    if (boutonAppuye && digitalRead(boutonPin) == HIGH) {
+    if (boutonAppuye && digitalRead(boutonPin) == HIGH) 
+    {
         Serial.println("Clic détecté ! Lecture d'une musique aléatoire...");
         int trackNumber = random(1, 37); 
         myDFPlayer.play(trackNumber);

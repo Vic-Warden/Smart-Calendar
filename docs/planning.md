@@ -8,13 +8,13 @@
 
 Research part
 
-- 🔄 Choose the following are to focus on
+- ✅ Choose the following are to focus on
 
 - 🔄 Introduction
 
 - 🔄 Research method
 
-ESP32 
+Composants connected to the ESP32 
 
 - ✅ 7 segments
 
@@ -29,6 +29,10 @@ ESP32
 - ✅ Screens ( Both )
 
 - ✅ Servo
+
+Programs
+
+- ✅ DF Player with button
 
 ---
 
