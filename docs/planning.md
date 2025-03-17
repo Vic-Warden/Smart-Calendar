@@ -36,9 +36,9 @@ Programs
 
 Database
 
-- ✅ Add status appointment
+- ✅ Add status -> appointment
 
-- ✅ Add note insert appointment
+- ✅ Add note & request method put -> update appointment
 
 ---
 

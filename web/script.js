@@ -218,13 +218,16 @@ function ism_saveEditedAppointment(appointment_id)
 
     fetch("Database/Appointment/update_appointment.php", 
     {
-        method: "POST",
-        
+        method: "PUT",
         headers: 
         {
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/json"
         },
-        body: `appointment_id=${encodeURIComponent(appointment_id)}&task=${encodeURIComponent(newTitle)}&date_hour=${encodeURIComponent(newDateTime)}`
+        body: JSON.stringify({
+            appointment_id: appointment_id,
+            task: newTitle,
+            date_hour: newDateTime
+        })
     })
     .then(response => response.json())
     .then(data => 
