@@ -40,6 +40,10 @@ Database
 
 - ✅ Add note & request method put -> update appointment
 
+Website
+
+- ✅ Changement Request method put -> update appointment
+
 ---
 
 ## Sixth week

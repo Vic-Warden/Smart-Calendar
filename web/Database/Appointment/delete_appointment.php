@@ -3,71 +3,55 @@ require __DIR__ . '/../Connection/database_connection.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
+if ($_SERVER["REQUEST_METHOD"] !== "DELETE") 
 {
-    $appointment_id = $_POST['appointment_id'] ?? null;
+    echo json_encode(["status" => "error", "message" => "Méthode de requête invalide, utilisez DELETE"]);
+    exit;
+}
 
-    if (!$appointment_id || !is_numeric($appointment_id)) 
-    {
-        echo json_encode(["status" => "error", "message" => "Valid appointment ID is required."]);
-        exit;
-    }
+$input_data = json_decode(file_get_contents("php://input"), true);
+$appointment_id = $input_data['appointment_id'] ?? null;
 
-    $query = $link->prepare("SELECT * FROM Appointment WHERE appointment_id = ?");
-    $query->bind_param("i", $appointment_id);
-    $query->execute();
-    $result = $query->get_result();
+if (!$appointment_id || !is_numeric($appointment_id)) 
+{
+    echo json_encode(["status" => "error", "message" => "Valid appointment ID is required."]);
+    exit;
+}
 
-    if ($result->num_rows === 0) 
-    {
-        echo json_encode(["status" => "error", "message" => "Appointment not found"]);
-        exit;
-    }
+$query = $link->prepare("SELECT * FROM Appointment WHERE appointment_id = ?");
+$query->bind_param("i", $appointment_id);
+$query->execute();
+$result = $query->get_result();
 
-    $appointment = $result->fetch_assoc();
+if ($result->num_rows === 0) 
+{
+    echo json_encode(["status" => "error", "message" => "Appointment not found"]);
+    exit;
+}
 
-    $stmt = $link->prepare("DELETE FROM Appointment WHERE appointment_id = ?");
-    $stmt->bind_param("i", $appointment_id);
+$appointment = $result->fetch_assoc();
 
-    if ($stmt->execute()) 
-    {
-        file_put_contents(__DIR__ . "/last_deleted_appointment.json", json_encode($appointment, JSON_PRETTY_PRINT));
+$note = "deleted";
+$update_stmt = $link->prepare("UPDATE Appointment SET note = ? WHERE appointment_id = ?");
+$update_stmt->bind_param("si", $note, $appointment_id);
+$update_stmt->execute();
+$update_stmt->close();
 
-        $json_file = __DIR__ . "/last_appointment.json";
-        if (file_exists($json_file)) 
-        {
-            $last_appointment = json_decode(file_get_contents($json_file), true);
-            if ($last_appointment && $last_appointment["appointment_id"] == $appointment_id) 
-            {
-                $query = $link->query("SELECT * FROM Appointment ORDER BY appointment_id DESC LIMIT 1");
-                $new_last_appointment = $query->fetch_assoc();
-    
-                if ($new_last_appointment) 
-                {
-                    file_put_contents($json_file, json_encode($new_last_appointment, JSON_PRETTY_PRINT));
-                } 
-                
-                else 
-                {
-                    file_put_contents($json_file, json_encode(["status" => "error", "message" => "No appointment found"], JSON_PRETTY_PRINT));
-                }
-            }
-        }
+$stmt = $link->prepare("DELETE FROM Appointment WHERE appointment_id = ?");
+$stmt->bind_param("i", $appointment_id);
 
-        echo json_encode(["status" => "success", "message" => "Appointment deleted", "deleted_appointment" => $appointment]);
-    }
-    
-    else 
-    {
-        echo json_encode(["status" => "error", "message" => "Error: " . $stmt->error]);
-    }
+if ($stmt->execute()) 
+{
+    file_put_contents(__DIR__ . "/last_deleted_appointment.json", json_encode($appointment, JSON_PRETTY_PRINT));
 
-    $stmt->close();
-    $link->close();
+    echo json_encode(["status" => "success", "message" => "Appointment deleted", "deleted_appointment" => $appointment]);
 } 
 
 else 
 {
-    echo json_encode(["status" => "error", "message" => "Invalid request method."]);
+    echo json_encode(["status" => "error", "message" => "Error: " . $stmt->error]);
 }
+
+$stmt->close();
+$link->close();
 ?>
