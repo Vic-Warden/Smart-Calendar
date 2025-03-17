@@ -121,19 +121,19 @@ function ism_deleteAppointment(appointment_id)
 {
     fetch("Database/Appointment/delete_appointment.php", 
     {
-        method: "POST",
+        method: "DELETE",
         headers: 
         {
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/json"
         },
-        
-        body: `appointment_id=${encodeURIComponent(appointment_id)}`
+        body: JSON.stringify({
+            appointment_id: appointment_id
+        })
     })
     .then(response => response.json())
     .then(data => 
     {
         console.log("Réponse du serveur : ", data);
-
         if (data.status === "success") 
         {
             ism_loadAppointments();
