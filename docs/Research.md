@@ -4,7 +4,8 @@
 
 Research question :
 
-How does the adoption of React.js for the front-end and Node.js with Express.js for the back-end improve the scalability and performance compared to a than the current one used ?
+How does using React for the front-end and Node with Express for the back-end improve scalability and performance compared  than the current one used ?
 
 ![truc](Research_method.png)
 
+Research method used :
