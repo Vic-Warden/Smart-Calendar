@@ -20,17 +20,17 @@ I connected my photo resistor because I really wanted to connect all my inputs a
 
 Since last time I hadn't managed to play a sound when a button was clicked, but it was a one-off, I wanted to see if I could play a sound when I pressed the button and I managed to do it, I was so happy to have succeeded ! That's why once I'd done that, I knew the rest would be much easier.
 
-I've connected the LEDs, so that's it
+I connected the LEDs in such a way as to be able to switch them on when someone is standing in front of the smart calendar, while initiating a specific voice line. To do this, I used a PIR motion sensor to detect movement. I connected the sensor to the ESP32. Once the sensor detected a presence, the ESP32 triggered the corresponding LED to light up. Each time a movement was detected, a specific voice was launched by a connected loudspeaker.
 
-I connected my 7-segment display and succeeded in displaying the time in real time
+I connected the 7-segment display to my ESP32, as it allowed the user to see the time. I used an RTC (Real-Time Clock) module to get the time. I wrote a function in my code to retrieve the current time and display it correctly for the 7-segment display.
 
-I've kept the momentum going by connecting my 2 screens, one to display my heartbeat and the other to display my apointments.
+I followed this up by connecting my 2 screens, one to display my heart rate and the other to display my appointments. For the heart rate display, I integrated a pulse sensor into the ESP32. I took over my code that allowed me to send analog signals representing a heart rate. The second screen, an LCD, was dedicated to appointments. It retrieved data from my database. The user interface was designed to be simple, so that upcoming appointments were clearly visible.
 
-I connected my servo motor too 
+I also connected my servomotor. The servomotor has been integrated to move my commissar forward or backward, and will serve as a cuckoo clock.
 
-J'ai ajouté une note à mes appointments pour pouvoir faire une action spécifique lorsqu'on décide d'ajouter un appointment, de modifier ou de supprimer un appointment. Pour ça j'ai du changer d'abord mon 
+I've added a note to my appointments so that I can perform a specific action when I decide to add, modify or delete an appointment. To do this, I first had to modify my database schema to add a note to an appointment, and I modified my database at the same time. To store the additional notes field, I updated my database schema by adding a new column to the appointments table. The “note” field allows me to add 3 small notes for my appointments that I'll use in my code. In addition, I modified my API endpoints to accept and return note data when retrieving appointment details. 
 
-
+I've adapted my JavaScript code to work with what I've modified. To make the frontend reflect the new database structure, I updated my JavaScript code to handle the new notes function. These notes were then stored in the database and retrieved each time appointment data was retrieved. I also added event receivers to dynamically update the user interface when an appointment was modified or deleted. 
 
 ---
 
