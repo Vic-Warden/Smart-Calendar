@@ -6,6 +6,8 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Seventh week
 
+### Tuesday 18/03
+
 ### Monday 17/03
 
 Today I started my day planning what I was going to do for today, I knew I wanted to start the research part but I don't know where to start. So I took a few minutes to write down my schedule to be sure of what I was going to do today. After planning my day well, I read the different topics in relation to the research part, I admit that my initial choice was to want to do the Business part except that I remembered that I'm going to try to make a 3D model that comes from Games Workshop ( Warhammer 40,000 creators ) and then not to mention that all the voices line that I use comes from a game which is Dawn of War which also comes from Games Worshop so I knew that this part was screwed for me. When I read the Embedded Technology section, I didn't really want to do it, just like the User Interaction section. Since I don't have any cyber knowledge, I naturally chose the Web Application part. 
