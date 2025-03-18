@@ -8,7 +8,7 @@
 
 ESP32 Code
 
-- 🔄 Connect to the Internet using wifi manager
+- ❌ Connect to the Internet using wifi manager
 
 - 🔄 Retrieve appointments and take action accordingly
 
