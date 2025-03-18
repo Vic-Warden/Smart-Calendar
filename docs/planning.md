@@ -8,7 +8,13 @@
 
 ESP32 Code
 
-- 🔄 Almost...
+- 🔄 Connect to the Internet using wifi manager
+
+- 🔄 Retrieve appointments and take action accordingly
+
+- 🔄 Send data
+
+- 🔄 Make sensors do something once activated
 
 ### Monday 17/03
 
