@@ -8,6 +8,28 @@ So for example when you receive feedback on your project, you can write down the
 
 ### Monday 17/03
 
+Today I started my day planning what I was going to do for today, I knew I wanted to start the research part but I don't know where to start. So I took a few minutes to write down my schedule to be sure of what I was going to do today. After planning my day well, I read the different topics in relation to the research part, I admit that my initial choice was to want to do the Business part except that I remembered that I'm going to try to make a 3D model that comes from Games Workshop ( Warhammer 40,000 creators ) and then not to mention that all the voices line that I use comes from a game which is Dawn of War which also comes from Games Worshop so I knew that this part was screwed for me. When I read the Embedded Technology section, I didn't really want to do it, just like the User Interaction section. Since I don't have any cyber knowledge, I naturally chose the Web Application part. 
+
+Once I'd chosen the topic that suited me best, I did my research into the different research methods. Given that in France we'd never done this before, it was a first for me, which is why choosing the Web part seemed the most affordable for me. Once I'd done my research, I started writing what I thought was relevant.
+
+When I got home, I decided to take care of my embedded devices game once again. I'd already accepted that I'd have to pay for this defeat on my own, but I was determined to only pay for one. I started by looking up the ESP32 datasheet on the Internet, so as not to get the pins wrong.
+
+I did the same as last time, I started by plugging in things I knew how to plug in without any problem, just the button to start with. What's really practical compared to ESP32 is that there was no need to make a lot of changes. 
+
+I connected my photo resistor because I really wanted to connect all my inputs and then all my outputs. Same as the button, no great difficulty just that I was surprised that on the ESP32 it's not between 0 - 1023 but between 0 - 4095, that's why at the beginning when I saw ~2000 I was saying to myself that it's ok I've run my ESP32 already that this morning Mennos had succeeded for some reason that we all don't know in killing his Wemos. I was thinking I was rehashing the feat. But no, everything's working perfectly.
+
+Since last time I hadn't managed to play a sound when a button was clicked, but it was a one-off, I wanted to see if I could play a sound when I pressed the button and I managed to do it, I was so happy to have succeeded ! That's why once I'd done that, I knew the rest would be much easier.
+
+I've connected the LEDs, so that's it
+
+I connected my 7-segment display and succeeded in displaying the time in real time
+
+I've kept the momentum going by connecting my 2 screens, one to display my heartbeat and the other to display my apointments.
+
+I connected my servo motor too 
+
+J'ai ajouté une note à mes appointments pour pouvoir faire une action spécifique lorsqu'on décide d'ajouter un appointment, de modifier ou de supprimer un appointment. Pour ça j'ai du changer d'abord mon 
+
 
 
 ---
