@@ -13,16 +13,15 @@
 #define OLED_RESET    -1   
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-#define ECG_CYCLE_WIDTH 50  
-#define ECG_TOTAL_WIDTH (ECG_CYCLE_WIDTH * 2 + 30)  
+#include <vector>
+std::vector<String> knownAppointments;
 
-int ecgWave[ECG_TOTAL_WIDTH];  
-int offset = 0;  
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 HardwareSerial mySoftwareSerial(2); 
 DFRobotDFPlayerMini dfPlayer;
+bool dfPlayerInitialized = false;
 
 const char* apiUrl = "http://100.74.252.69/Database/Appointment/recover_appointment.php";
 
@@ -30,65 +29,42 @@ WiFiClient wifiClient;
 DynamicJsonDocument doc(1024);
 JsonArray appointments;
 int currentAppointment = 0;
-unsigned long lastUpdate = 0;
+unsigned long lastWifiCheck = 0;
+unsigned long lastCheckTime = 0;
 
-void setup() 
+void checkWifiConnection();
+void fetchAppointments();
+void waitForNewAppointments();
+void checkAppointmentsForActions(JsonArray newAppointments);
+void displayNextAppointment();
+
+void checkWifiConnection() 
 {
-    Serial.begin(115200);
-    mySoftwareSerial.begin(9600, SERIAL_8N1, 16, 17);
-
-    if (!dfPlayer.begin(mySoftwareSerial)) 
+    if (WiFi.status() != WL_CONNECTED) 
     {
-        Serial.println("❌ DFPlayer Mini non détecté !");
-    } 
-    
-    else 
-    {
-        dfPlayer.volume(10);
-        Serial.println("✅ DFPlayer Mini initialisé !");
-    }
-
-    WiFiManager wifiManager;
-    if (!wifiManager.autoConnect("ESP32-Setup")) 
-    {
-        ESP.restart();
-    }
-
-    lcd.init();
-    lcd.backlight();
-    lcd.setCursor(0, 0);
-    lcd.print("Wi-Fi Connecte!");
-    delay(2000);
-
-    fetchAppointments();
-}
-
-void loop() 
-{
-    display.clearDisplay();
-    drawECG();
-    scrollECG();
-    display.display();
-    delay(30);
-
-    if (millis() - lastUpdate > 60000) 
-    {
-        fetchAppointments();
-        lastUpdate = millis();
-    }
-
-    if (millis() - lastUpdate > 5000 && appointments.size() > 0) 
-    {
-        displayNextAppointment();
-        lastUpdate = millis();
+        Serial.println("❌ Wi-Fi déconnecté, tentative de reconnexion...");
+        WiFi.begin();
+        delay(5000);
+        
+        if (WiFi.status() == WL_CONNECTED) 
+        {
+            Serial.println("✅ Wi-Fi reconnecté !");
+        } 
+        
+        else 
+        {
+            Serial.println("⚠️ Impossible de se reconnecter !");
+        }
     }
 }
 
 void fetchAppointments() 
 {
-    if (WiFi.status() != WL_CONNECTED) {
-        Serial.println("⚠️ Pas de connexion Wi-Fi !");
-        return;
+    Serial.println("📡 Vérification des rendez-vous...");
+
+    if (WiFi.status() != WL_CONNECTED) 
+    {
+        checkWifiConnection();
     }
 
     HTTPClient http;
@@ -98,145 +74,253 @@ void fetchAppointments()
     if (httpResponseCode > 0) 
     {
         String response = http.getString();
-        Serial.println("📩 Réponse de l'API : ");
-        Serial.println(response);
+        DynamicJsonDocument newDoc(1024);
+        DeserializationError error = deserializeJson(newDoc, response);
 
-        doc.clear();
-        DeserializationError error = deserializeJson(doc, response);
-        if (error) 
+        if (!error) 
+        {
+            JsonArray newAppointments = newDoc.as<JsonArray>();
+            checkAppointmentsForActions(newAppointments);
+
+        } 
+        
+        else 
         {
             Serial.println("❌ Erreur de parsing JSON !");
-            return;
         }
-
-        appointments = doc.as<JsonArray>();
-        if (appointments.isNull()) 
-        {
-            Serial.println("❌ JSON vide ou mal formé !");
-            return;
-        }
-
-        Serial.println("✅ Appointments mis à jour !");
-        currentAppointment = 0;
-        checkAppointmentsForActions();
-        displayNextAppointment();
     } 
     
     else 
     {
-        Serial.print("❌ Erreur HTTP : ");
-        Serial.println(http.errorToString(httpResponseCode));
+        Serial.println("❌ Erreur de requête API !");
+    }
+
+    http.end();
+}
+
+void displayNextAppointment() 
+{
+    display.clearDisplay();
+    
+    if (appointments.size() == 0) 
+    {
+        display.setCursor(0, 10);
+        display.print("Aucun RDV");
+    } 
+    
+    else 
+    {
+        JsonObject app = appointments[currentAppointment];
+        String task = app["task"].as<String>();
+        
+        display.setCursor(0, 10);
+        display.print("RDV:");
+        display.setCursor(0, 30);
+        display.print(task);
+    }
+    display.display();
+}
+
+void setup() 
+{
+    Serial.begin(115200);
+    Serial.println("🔄 Démarrage du programme...");
+    delay(1000);
+
+    mySoftwareSerial.begin(9600, SERIAL_8N1, 16, 17);
+    Serial.println("✅ Initialisation du port série DFPlayer Mini...");
+    delay(1000);
+
+    if (dfPlayer.begin(mySoftwareSerial)) 
+    {
+        dfPlayer.volume(10);
+        dfPlayerInitialized = true;
+        Serial.println("✅ DFPlayer Mini initialisé !");
+    } 
+
+    else 
+    {
+        Serial.println("❌ DFPlayer Mini non détecté !");
+    }
+
+    delay(1000);
+
+    WiFiManager wifiManager;
+    Serial.println("📡 Connexion au Wi-Fi...");
+    delay(1000);
+
+    if (!wifiManager.autoConnect("ESP32-Setup")) 
+    {
+        Serial.println("❌ Connexion Wi-Fi échouée. Redémarrage...");
+        ESP.restart();
+    }
+
+    Serial.println("✅ Connexion Wi-Fi réussie !");
+    lcd.init();
+    lcd.backlight();
+    lcd.setCursor(0, 0);
+    lcd.print("Wi-Fi Connecté!");
+    delay(2000);
+
+    lastCheckTime = millis();
+}
+
+void loop() 
+{
+    checkWifiConnection();
+
+    if (millis() - lastCheckTime >= 5000) 
+    {
+        Serial.println("⏳ En attente d'un nouvel événement...");
+        fetchAppointments();
+        lastCheckTime = millis();
+    }
+
+    delay(1000);
+}
+
+
+
+void waitForNewAppointments() 
+{
+    if (WiFi.status() != WL_CONNECTED) 
+    {
+        checkWifiConnection();
+    }
+
+    HTTPClient http;
+    http.begin(apiUrl);
+    int httpResponseCode = http.GET();
+
+    if (httpResponseCode > 0) 
+    {
+        String response = http.getString();
+        DynamicJsonDocument newDoc(1024);
+        DeserializationError error = deserializeJson(newDoc, response);
+        if (!error) 
+        {
+            JsonArray newAppointments = newDoc.as<JsonArray>();
+            checkAppointmentsForActions(newAppointments);
+            doc = newDoc;
+            appointments = newAppointments;
+            currentAppointment = 0;
+            displayNextAppointment();
+        }
     }
     http.end();
 }
 
-void checkAppointmentsForActions() 
-{
-    for (JsonObject appointment : appointments) 
+
+void checkAppointmentsForActions(JsonArray newAppointments) {
+    Serial.println("🔎 Vérification des rendez-vous...");
+
+    std::vector<String> newKnownAppointments;
+
+    if (newAppointments.size() == 0 && !knownAppointments.empty()) 
     {
-        if (!appointment.containsKey("task") || !appointment.containsKey("date_hour") || !appointment.containsKey("note")) 
-        {
-            Serial.println("⚠️ Données JSON invalides !");
-            continue;
-        }
-
-        String task = appointment["task"].as<String>();
-        String note = appointment["note"].as<String>();
-
-        Serial.print("📌 Note détectée : ");
-        Serial.println(note);
-        
-        if (note == "active") 
-        {
-            playRandomTrack({1, 2, 3, 6, 7, 8, 9, 10, 31, 33, 34});
-        } 
-        
-        else if (note == "updated") 
-        {
-            playRandomTrack({4, 5, 12, 14, 17, 20, 26, 28, 29, 30, 32});
-        } 
-        
-        else if (note == "deleted") 
-        {
-            playRandomTrack({11, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 27});
-        }
-    }
-}
-
-void playRandomTrack(std::initializer_list<int> tracks) 
-{
-    if (!dfPlayer.available()) {
-        Serial.println("⚠️ DFPlayer Mini non prêt, tentative ignorée !");
+        Serial.println("❌ TOUS les rendez-vous ont été supprimés !");
+        playRandomTrackDeleted();
+        delay(1000);
+        knownAppointments.clear();
         return;
     }
 
-    int trackArray[tracks.size()];
-    std::copy(tracks.begin(), tracks.end(), trackArray);
-    int trackNumber = trackArray[random(0, tracks.size())];
+    for (JsonObject newApp : newAppointments) 
+    {
+        String newId = newApp["appointment_id"].as<String>();
+        String newTask = newApp["task"].as<String>();
+        String newNote = newApp["note"].as<String>();
+        bool found = false;
 
-    Serial.print("🎵 Lecture de la piste ");
+        for (JsonObject oldApp : doc.as<JsonArray>()) 
+        {
+            if (oldApp["appointment_id"].as<String>() == newId) 
+            {
+                found = true;
+
+                if (oldApp["task"].as<String>() != newTask || oldApp["note"].as<String>() != newNote) 
+                {
+                    Serial.println("📢 Mise à jour détectée !");
+                    playRandomTrackUpdated();
+                    delay(1000);
+                }
+
+                break;
+            }
+        }
+
+        if (!found) 
+        {
+            Serial.println("🆕 Nouveau rendez-vous détecté !");
+            playRandomTrackActive();
+            delay(1000);
+        }
+
+        newKnownAppointments.push_back(newId);
+    }
+
+    for (String oldId : knownAppointments) 
+    {
+        bool stillExists = false;
+
+        for (JsonObject newApp : newAppointments) 
+        {
+            if (newApp["appointment_id"].as<String>() == oldId) 
+            {
+                stillExists = true;
+                break;
+            }
+        }
+
+        if (!stillExists) 
+        {
+            Serial.println("❌ Rendez-vous supprimé !");
+            playRandomTrackDeleted();
+            delay(1000);
+        }
+    }
+
+    knownAppointments = newKnownAppointments;
+    doc.clear();
+    doc.set(newAppointments);
+}
+
+void playRandomTrackActive() 
+{
+    Serial.println("🎵 Lecture d'un son pour 'active'...");
+    delay(500);
+
+    int tracks[] = {1, 2, 3, 6, 7, 8, 9, 10, 31, 33, 34, 35};
+
+    int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
+    Serial.print("🎵 Lecture de la piste : ");
     Serial.println(trackNumber);
-
     dfPlayer.play(trackNumber);
-    delay(100);
+    delay(200);
 }
 
-void displayNextAppointment() {
-    if (appointments.size() == 0) 
-    {
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        lcd.print("Aucun RDV !");
-        return;
-    }
-
-    if (currentAppointment >= appointments.size()) 
-    {
-        currentAppointment = 0;
-    }
-
-    JsonObject appointment = appointments[currentAppointment];
-
-    if (!appointment.containsKey("task") || !appointment.containsKey("date_hour")) 
-    {
-        Serial.println("⚠️ Données RDV invalides !");
-        return;
-    }
-
-    String task = appointment["task"].as<String>();
-    String date_hour = appointment["date_hour"].as<String>();
-    String formatted_date = date_hour.substring(8, 10) + "-" + date_hour.substring(5, 7) + " " + date_hour.substring(11, 16);
-
-    lcd.clear();
-    scrollText(0, task);
-    scrollText(1, formatted_date);
-
-    Serial.println("\n📅 RDV affiché : ");
-    Serial.print("Tâche: "); Serial.println(task);
-    Serial.print("Date/Heure: "); Serial.println(formatted_date);
-
-    currentAppointment++;
-    if (currentAppointment >= appointments.size()) 
-    {
-        currentAppointment = 0;
-    }
-}
-
-void scrollText(int row, String text) 
+void playRandomTrackUpdated() 
 {
-    if (text.length() <= 16) 
-    {
-        lcd.setCursor(0, row);
-        lcd.print(text);
-        return;
-    }
+    Serial.println("🎵 Lecture d'un son pour 'updated'...");
+    delay(500);
 
-    for (int i = 0; i <= text.length() - 16; i++) 
-    {
-        lcd.setCursor(0, row);
-        lcd.print(text.substring(i, i + 16));
-        delay(300);
-    }
+    int tracks[] = {4, 5, 12, 17, 20, 28, 29, 30};
 
-    delay(1000);
+    int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
+    Serial.print("🎵 Lecture de la piste : ");
+    Serial.println(trackNumber);
+    dfPlayer.play(trackNumber);
+    delay(200);
+}
+
+void playRandomTrackDeleted() 
+{
+    Serial.println("🎵 Lecture d'un son pour 'deleted'...");
+    delay(500);
+    int tracks[] = {24, 25, 26, 27, 23, 13, 14, 32};
+    int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
+    Serial.print("🎵 Lecture de la piste : ");
+    Serial.println(trackNumber);
+    dfPlayer.play(trackNumber);
+    delay(200);
 }
