@@ -4,6 +4,12 @@
 
 ## Seventh week
 
+### Tuesday 18/03
+
+ESP32 Code
+
+- 🔄 Almost...
+
 ### Monday 17/03
 
 Research part
