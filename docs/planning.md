@@ -44,6 +44,16 @@ Website
 
 - ✅ Changement Request method put -> update appointment
 
+- ✅ Changement JS -> update appointment
+
+- ✅ Changement Request method delete -> delete appointment
+
+- ✅ Changement JS -> delete appointment
+
+ESP32 Code
+
+- 🔄 Almost...
+
 ---
 
 ## Sixth week
