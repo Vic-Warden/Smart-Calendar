@@ -8,6 +8,8 @@
 
 ESP32 Code
 
+- ✅ Play a sound when we add, edit or delete an appointment
+
 - ❌ Connect to the Internet using wifi manager
 
 - 🔄 Retrieve appointments and take action accordingly
