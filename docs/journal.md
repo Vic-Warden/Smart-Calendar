@@ -6,7 +6,12 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Seventh week
 
+### Wenesday 19/03
+
 ### Tuesday 18/03
+
+Today, I wanted to get down to the nitty-gritty of solving a problem I had encountered with the Wemos and the Arduino. Managing to launch a sound when a user adds, modifies or deletes an appointment. To say that it was easy would be a lie, because I've had my share of problems. First of all, I tried to connect my ESP32 to the Internet using the Wifi Manager, and all I could come up with was problems. For some reason, it kept reconnecting, even though I managed to retrieve the IP address to check if I was really connected, and I was so unsure that I started to doubt my connections - I thought I had too many components connected and that's why, for example, my DF Player Mini with its LCD screen kept rebooting. But no, my only problem was the wifi manager, but I'll have to deal with that later.
+After that I had to sleep because I was tired, and since we don't have classes on Tuesday, I decided to keep working when I woke up. I continued my ESP32's code, I really want to have a sound when I add, edit or delete an appointment. Concerning my problems I fixed it all and now everthything is working now. I need to continue my code for display my differents appointment to my LCD screen.  
 
 ### Monday 17/03
 
