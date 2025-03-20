@@ -48,9 +48,13 @@ Step 2 : The rectangle is trimmed to fit around the base
 
 ![Menu](Step2.png)
 
-Step 1 :
+Step 3 : Trim the rectangle to make a pillar
 
-Step 1 :
+![Menu](Step3.png)
+
+Step 4 : Repeat the process to make more pillars
+
+![Menu](Step4.png)
 
 Step 1 :
 
