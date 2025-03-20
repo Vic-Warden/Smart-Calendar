@@ -18,4 +18,6 @@ Oled Display : **24.70 mm x 16.60 mm** ( Lenght x Width )
 
 LCD Screen : **72 mm x 24 mm** ( Lenght x Width )
 
+Breadboard : **165 mm * 55 mm** ( Length x Width )
+
 Speaker : Need to use a ruler
