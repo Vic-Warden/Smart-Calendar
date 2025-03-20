@@ -141,12 +141,12 @@
 - 🔄 At least four failure during the design and creation process are given
 
 **Research to market**
-<!--
- - ✅ Introduction / context
+
+- ✅ Introduction / context
 
 - ✅ Research question
 
-- ✅ Research method -->
+- ✅ Research method
 
 - 🔄 Implementation & Results
 

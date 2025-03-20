@@ -6,7 +6,9 @@
 
 ### Thursday 20/03
 
+**Create & Test**
 
+- 🔄 The manufacturing process is logged with pictures and/or video’s as proof
 
 ### Wenesday 19/03
 
