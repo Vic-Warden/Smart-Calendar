@@ -76,4 +76,10 @@ Step 4 : Repeat the process to make more pillars
 
 ![Menu](Step4.png)
 
-Step 1 :
+Step 5 : Try to make it look like a power generator
+
+![Menu](Step5.png)
+
+Step 6 : Repeat the process to make more power generators
+
+![Menu](Step6.png)
