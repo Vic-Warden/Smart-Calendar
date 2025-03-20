@@ -2,6 +2,8 @@
 
 Write here your own content!
 
+
+
 ---
 
 ![Menu](Front.png)
@@ -36,12 +38,13 @@ Top
 
 **The manufacturing process is logged with pictures and/or video’s as proof**
 
+<u>Software used Tinkercad</u>
 
-Step 1 : Put a rectangle with the dimension of the Breadboard : **165 mm x 55 mm x 60 mm** ( Length x Width x Height )
+Step 1 : Lay out a first rectangle to serve as a base
 
 ![Menu](Step1.png)
 
-Step 2 : Put a rectangle with the following dimension : **300 mm x 258 mm x 85 mm** ( Length x Width x Height )
+Step 2 : The rectangle is trimmed to fit around the base
 
 ![Menu](Step2.png)
 
