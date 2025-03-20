@@ -97,3 +97,14 @@ Step 5 : Try to make it look like a power generator
 Step 6 : Repeat the process to make more power generators
 
 ---
+
+![Menu](Step7.png)
+
+Step 7 : Increase the size of the bease
+
+---
+
+![Menu](Step8.png)
+![Menu](Step88.png)
+
+Step 8 : Setting up the observation post
