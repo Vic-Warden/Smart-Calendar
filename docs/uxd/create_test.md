@@ -4,9 +4,13 @@ Write here your own content!
 
 **The manufacturing process is logged with pictures and/or video’s as proof**
 
-Step 1 :
+Step 1 : Put a rectangle with the dimension of the Breadboard : **165 mm x 55 mm x 60 mm** ( Length x Width x Height )
 
-Step 1 :
+![Menu](Step1.png)
+
+Step 2 : Put a rectangle with the following dimension : **300 mm x 258 mm x 85 mm** ( Length x Width x Height )
+
+![Menu](Step2.png)
 
 Step 1 :
 

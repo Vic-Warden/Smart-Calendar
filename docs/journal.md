@@ -8,6 +8,8 @@ So for example when you receive feedback on your project, you can write down the
 
 ### Wenesday 19/03
 
+Aujourd'hui j'ai travaillé sur ma partie recherche
+
 ### Tuesday 18/03
 
 Today, I wanted to get down to the nitty-gritty of solving a problem I had encountered with the Wemos and the Arduino. Managing to launch a sound when a user adds, modifies or deletes an appointment. To say that it was easy would be a lie, because I've had my share of problems. First of all, I tried to connect my ESP32 to the Internet using the Wifi Manager, and all I could come up with was problems. For some reason, it kept reconnecting, even though I managed to retrieve the IP address to check if I was really connected, and I was so unsure that I started to doubt my connections - I thought I had too many components connected and that's why, for example, my DF Player Mini with its LCD screen kept rebooting. But no, my only problem was the wifi manager, but I'll have to deal with that later.
