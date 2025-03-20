@@ -22,9 +22,9 @@ Breadboard : **165 mm * 55 mm** ( Length x Width )
 
 Speaker : Need to use a ruler
 
-**Inspiration**
-
 ---
+
+**Inspiration**
 
 ![Menu](Front.png)
 
