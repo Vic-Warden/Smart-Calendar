@@ -22,7 +22,7 @@ Why using React for the front-end and Node.js with Express for the back-end real
 
 **Front-end**
 
-Why is React best suited to improving the interactivity and user experience of my web interface ?
+Why is React best suited to improve the interactivity and user experience of my web interface ?
 
 How can React help me easily create an interface where users choose their own Warhammer-inspired voices and interactions ?
 
@@ -30,7 +30,7 @@ How can React help me easily create an interface where users choose their own Wa
 
 Why choose Node.js with Express rather than another technology to improve server-side performance and data management ?
 
-Is Node.js really effective for managing real-time data exchanges between my website and my ESP32 ? And how ?
+Is Node.js really effective for managing real-time data exchanges between my website and my ESP32 ?
 
 ---
 
@@ -44,17 +44,15 @@ Here's how I'll try to do my research :
 
 **Step 1: Make a prototype**
 
-I'll start by creating a new version:
+I'll start by creating a new version of the website:
 
-The first version, which I already have
-
-The second version will be made with React for the front-end and Node.js with Express for the back-end
+I will be made with React for the front-end and Node.js with Express for the back-end
 
 **Step 2: Find the criteria for comparing the two versions**
 
 To compare the prototypes, I'm going to check a few things, such as :
 
-Site speed.
+Website speed.
 
 Server response time.
 
@@ -64,7 +62,7 @@ And whether the interface is pleasant and easy to use for users.
 
 **Step 3: Technical testing**
 
-For this step, I'm going to use some tools that I'm not very familiar with at the moment. For example, I've heard of Lighthouse to test site speed, but I haven't really tested it myself yet. I may also use Postman to see how the server responds to requests.
+For this step, I'm going to use some tools that I'm not very familiar with at the moment. For example, I've heard of Lighthouse to test website speed, but I haven't really tested it myself yet. I may also use Postman to see how the server responds to requests.
 
 
 **Step 4: Ask for user feedback**
@@ -73,9 +71,9 @@ In addition to the technical tests, I'm going to ask a few people to try out the
 
 The questions will be simple, such as:
 
-Which version do you prefer and why?
+Which version do you prefer and why ?
 
-Which version do you find easier to use?
+Which version do you find easier to use ?
 
 **How I will present the results :**
 
