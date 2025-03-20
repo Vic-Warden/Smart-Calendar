@@ -60,26 +60,40 @@ Top
 
 <u>Software used Tinkercad</u>
 
-Step 1 : Lay out a first rectangle to serve as a base
+---
 
 ![Menu](Step1.png)
 
-Step 2 : The rectangle is trimmed to fit around the base
+Step 1 : Lay out a first rectangle to serve as a base
+
+---
 
 ![Menu](Step2.png)
 
-Step 3 : Trim the rectangle to make a pillar
+Step 2 : The rectangle is trimmed to fit around the base
+
+---
 
 ![Menu](Step3.png)
 
-Step 4 : Repeat the process to make more pillars
+Step 3 : Trim the rectangle to make a pillar
+
+---
 
 ![Menu](Step4.png)
 
-Step 5 : Try to make it look like a power generator
+Step 4 : Repeat the process to make more pillars
+
+---
 
 ![Menu](Step5.png)
 
-Step 6 : Repeat the process to make more power generators
+Step 5 : Try to make it look like a power generator
+
+---
 
 ![Menu](Step6.png)
+
+Step 6 : Repeat the process to make more power generators
+
+---
