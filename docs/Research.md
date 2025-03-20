@@ -1,9 +1,5 @@
 # Research to Market
 
-### Research method
-
----
-
 **Introduction / Context :**
 
 When we need to add a task to our schedule, whether in a calendar or on our phone, we always do the same thing, and this can quickly become monotonous. To make this task more attractive, my aim was to transform the traditional cuckoo clock and reminder into a fully personalized smart calendar. In concrete terms, users will be able to enter their appointments via a website which, of course, is calendar-themed in the Warhammer 40,000 universe. This will enable them to organize their daily activities.
@@ -38,7 +34,49 @@ Is Node.js really effective for managing real-time data exchanges between my web
 
 ---
 
-Research method used :
+**Research method :**
 
-![truc](Research_method.png)
+To answer my research question, I chose a comparative experimental method. I took this method because I believe it could help me clearly understand whether React and Node.js with Express really improve things compared to what I'm already using at the moment.
 
+Before deciding on this method, I did a bit of research and thought about other possible methods. For example, I also thought about a literature search, but that seemed too abstract and perhaps less useful for my specific case.
+
+Here's how I'll try to do my research :
+
+**Step 1: Make a prototype**
+
+I'll start by creating a new version:
+
+The first version, which I already have
+
+The second version will be made with React for the front-end and Node.js with Express for the back-end
+
+**Step 2: Find the criteria for comparing the two versions**
+
+To compare the prototypes, I'm going to check a few things, such as :
+
+Site speed.
+
+Server response time.
+
+What happens when several users connect at the same time.
+
+And whether the interface is pleasant and easy to use for users.
+
+**Step 3: Technical testing**
+
+For this step, I'm going to use some tools that I'm not very familiar with at the moment. For example, I've heard of Lighthouse to test site speed, but I haven't really tested it myself yet. I may also use Postman to see how the server responds to requests.
+
+
+**Step 4: Ask for user feedback**
+
+In addition to the technical tests, I'm going to ask a few people to try out the two prototypes. I'm going to use the feedback system we've been given. I'm not yet sure exactly how many people I'm going to ask, but I think 3 or 4 might be enough.
+
+The questions will be simple, such as:
+
+Which version do you prefer and why?
+
+Which version do you find easier to use?
+
+**How I will present the results :**
+
+To be honest, I'm still not sure how I'm going to present the results. I think I'll do a table with technical results on one side and user opinions on the other. I'll try to make things clear, even if it's not perfect.
