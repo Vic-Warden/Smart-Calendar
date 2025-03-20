@@ -150,11 +150,11 @@
 
 **Research to market**
 
-- 🔄 Introduction / context
+- ✅ Introduction / context
 
-- 🔄 Research question
+- ✅ Research question
 
-- 🔄 Research method
+- ✅ Research method
 
 - 🔄 Implementation & Results
 
