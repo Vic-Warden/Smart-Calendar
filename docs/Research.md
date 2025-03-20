@@ -16,7 +16,7 @@ The last but not least, to enhance the user experience, the improvement I had in
 
 **Research question :**
 
-Will using React for the front-end and Node.js with Express for the back-end really improve the performance and user experience of my couou-calendar compared with the solution I'm currently using ?
+Why using React for the front-end and Node.js with Express for the back-end really improve the performance and user experience of my cuckoo clock compared with the solution I'm currently using ?
 
 **Sub-questions :**
 
