@@ -6,9 +6,17 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Seventh week
 
+### Friday 21/03
+
+
+
+### Thursday 20/03
+
+Step 1 - 8 for the 3D Models
+
 ### Wenesday 19/03
 
-Aujourd'hui j'ai travaillé sur ma partie recherche
+Research part, Introduction, Research question, Sub question, Research method
 
 ### Tuesday 18/03
 
