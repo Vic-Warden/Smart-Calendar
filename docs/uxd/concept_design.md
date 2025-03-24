@@ -159,3 +159,9 @@ Step 15 : Trim the rectangle to make a nice tour
 ![Menu](Step16.png)
 
 Step 16 : Increase the size of the tour
+
+---
+
+![Menu](Step17.png)
+
+Step 17 : Add a square above the tower and reduce the middle to make it look like an observation post
