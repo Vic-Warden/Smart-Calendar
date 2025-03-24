@@ -6,6 +6,7 @@
         "*.embeddedhtml": "html",
         "arduino connected to the wemos": "cpp",
         "wemos connected to the arduino": "cpp",
-        "wemos code com arduino": "cpp"
+        "wemos code com arduino": "cpp",
+        "vector": "cpp"
     }
 }

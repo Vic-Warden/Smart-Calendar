@@ -1,7 +1,5 @@
 // Includes
 #include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
 #include <LiquidCrystal_I2C.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -10,13 +8,7 @@
 #include <HardwareSerial.h>
 #include <vector>
 
-// Defines 
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
-#define OLED_RESET -1
-
 // Objects 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 HardwareSerial mySoftwareSerial(2);
 DFRobotDFPlayerMini dfPlayer;
@@ -54,7 +46,8 @@ void playRandomTrackDeleted();
 void advanceToNextAppointment();
 
 // Setup 
-void setup() {
+void setup() 
+{
   Serial.begin(115200);
   mySoftwareSerial.begin(9600, SERIAL_8N1, 16, 17);
 
