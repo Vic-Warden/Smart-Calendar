@@ -165,3 +165,9 @@ Step 16 : Increase the size of the tour
 ![Menu](Step17.png)
 
 Step 17 : Add a square above the tower and reduce the middle to make it look like an observation post
+
+---
+
+![Menu](Step18.png)
+
+Step 18 : Add the tower above the base
