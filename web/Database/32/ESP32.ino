@@ -128,17 +128,32 @@ void checkForAppointmentChanges(DynamicJsonDocument& newAppointments)
   std::vector<String> currentIds;
   bool changesDetected = false;
 
-  for (JsonObject app : newAppointments.as<JsonArray>()) 
+  for (JsonObject newApp : newAppointments.as<JsonArray>()) 
   {
-    String appId = app["appointment_id"].as<String>();
-    currentIds.push_back(appId);
+    String newAppId = newApp["appointment_id"].as<String>();
+    currentIds.push_back(newAppId);
 
     bool isNew = true;
+    bool isModified = false;
+    
     for (String prevId : previousAppointmentIds) 
     {
-      if (prevId == appId) 
+      if (prevId == newAppId) 
       {
         isNew = false;
+        
+        // Find matching appointment in old data to check for modifications
+        for (JsonObject oldApp : appointments.as<JsonArray>()) 
+        {
+          if (oldApp["appointment_id"] == newAppId) 
+          {
+            if (oldApp["task"] != newApp["task"] || oldApp["date_hour"] != newApp["date_hour"]) 
+            {
+              isModified = true;
+            }
+            break;
+          }
+        }
         break;
       }
     }
@@ -147,15 +162,21 @@ void checkForAppointmentChanges(DynamicJsonDocument& newAppointments)
     {
       playRandomSound(ACTIVE_TRACKS, sizeof(ACTIVE_TRACKS)/sizeof(int));
       changesDetected = true;
+    } 
+
+    else if (isModified) 
+    {
+      playRandomSound(UPDATED_TRACKS, sizeof(UPDATED_TRACKS)/sizeof(int));
+      changesDetected = true;
     }
   }
 
   for (String prevId : previousAppointmentIds) 
   {
     bool stillExists = false;
-    for (JsonObject app : newAppointments.as<JsonArray>()) 
+    for (JsonObject newApp : newAppointments.as<JsonArray>()) 
     {
-      if (app["appointment_id"].as<String>() == prevId) 
+      if (newApp["appointment_id"].as<String>() == prevId) 
       {
         stillExists = true;
         break;
