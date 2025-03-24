@@ -1,326 +1,288 @@
+// Includes
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <LiquidCrystal_I2C.h>
-#include <WiFiManager.h>
+#include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 #include <DFRobotDFPlayerMini.h>
 #include <HardwareSerial.h>
-
-#define SCREEN_WIDTH 128   
-#define SCREEN_HEIGHT 64   
-#define OLED_RESET    -1   
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-
 #include <vector>
-std::vector<String> knownAppointments;
 
+// Defines 
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1
 
+// Objects 
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-
-HardwareSerial mySoftwareSerial(2); 
+HardwareSerial mySoftwareSerial(2);
 DFRobotDFPlayerMini dfPlayer;
-bool dfPlayerInitialized = false;
+WiFiClient wifiClient;
+DynamicJsonDocument doc(2048);
 
+// Variables 
+std::vector<String> knownAppointments;
+JsonArray appointments;
+
+const char* ssid = "DeKey-Fraijlemaborg";
+const char* password = "i3xHp*ag";
 const char* apiUrl = "http://100.74.252.69/Database/Appointment/recover_appointment.php";
 
-WiFiClient wifiClient;
-DynamicJsonDocument doc(1024);
-JsonArray appointments;
 int currentAppointment = 0;
-unsigned long lastWifiCheck = 0;
 unsigned long lastCheckTime = 0;
+unsigned long lastScrollTime = 0;
+unsigned long lastDisplayTime = 0;
+int scrollIndex = 0;
+bool dfPlayerInitialized = false;
+bool isScrolling = false;
+bool isShortDisplayed = false;
 
+// Function
+void setup();
+void loop();
 void checkWifiConnection();
 void fetchAppointments();
-void waitForNewAppointments();
 void checkAppointmentsForActions(JsonArray newAppointments);
-void displayNextAppointment();
+void displayCurrentAppointment();
+void scrollTaskOnLCD(String task, String dateLine);
+void playRandomTrackActive();
+void playRandomTrackUpdated();
+void playRandomTrackDeleted();
+void advanceToNextAppointment();
 
-void checkWifiConnection() 
-{
-    if (WiFi.status() != WL_CONNECTED) 
-    {
-        Serial.println("❌ Wi-Fi déconnecté, tentative de reconnexion...");
-        WiFi.begin();
-        delay(5000);
-        
-        if (WiFi.status() == WL_CONNECTED) 
-        {
-            Serial.println("✅ Wi-Fi reconnecté !");
-        } 
-        
-        else 
-        {
-            Serial.println("⚠️ Impossible de se reconnecter !");
-        }
-    }
+// Setup 
+void setup() {
+  Serial.begin(115200);
+  mySoftwareSerial.begin(9600, SERIAL_8N1, 16, 17);
+
+  if (dfPlayer.begin(mySoftwareSerial)) 
+  {
+    dfPlayer.volume(10);
+    dfPlayerInitialized = true;
+  }
+
+  WiFi.begin(ssid, password);
+  int attempts = 0;
+  while (WiFi.status() != WL_CONNECTED && attempts < 10) 
+  {
+    delay(200);
+    attempts++;
+  }
+
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print(WiFi.status() == WL_CONNECTED ? "Wi-Fi Connecte!" : "Wi-Fi ECHEC");
+  delay(2000);
+  lastCheckTime = millis();
+  lastDisplayTime = millis();
 }
 
-void fetchAppointments() 
-{
-    Serial.println("📡 Vérification des rendez-vous...");
-
-    if (WiFi.status() != WL_CONNECTED) 
-    {
-        checkWifiConnection();
-    }
-
-    HTTPClient http;
-    http.begin(apiUrl);
-    int httpResponseCode = http.GET();
-
-    if (httpResponseCode > 0) 
-    {
-        String response = http.getString();
-        DynamicJsonDocument newDoc(1024);
-        DeserializationError error = deserializeJson(newDoc, response);
-
-        if (!error) 
-        {
-            JsonArray newAppointments = newDoc.as<JsonArray>();
-            checkAppointmentsForActions(newAppointments);
-
-        } 
-        
-        else 
-        {
-            Serial.println("❌ Erreur de parsing JSON !");
-        }
-    } 
-    
-    else 
-    {
-        Serial.println("❌ Erreur de requête API !");
-    }
-
-    http.end();
-}
-
-void displayNextAppointment() 
-{
-    display.clearDisplay();
-    
-    if (appointments.size() == 0) 
-    {
-        display.setCursor(0, 10);
-        display.print("Aucun RDV");
-    } 
-    
-    else 
-    {
-        JsonObject app = appointments[currentAppointment];
-        String task = app["task"].as<String>();
-        
-        display.setCursor(0, 10);
-        display.print("RDV:");
-        display.setCursor(0, 30);
-        display.print(task);
-    }
-    display.display();
-}
-
-void setup() 
-{
-    Serial.begin(115200);
-    Serial.println("🔄 Démarrage du programme...");
-    delay(1000);
-
-    mySoftwareSerial.begin(9600, SERIAL_8N1, 16, 17);
-    Serial.println("✅ Initialisation du port série DFPlayer Mini...");
-    delay(1000);
-
-    if (dfPlayer.begin(mySoftwareSerial)) 
-    {
-        dfPlayer.volume(10);
-        dfPlayerInitialized = true;
-        Serial.println("✅ DFPlayer Mini initialisé !");
-    } 
-
-    else 
-    {
-        Serial.println("❌ DFPlayer Mini non détecté !");
-    }
-
-    delay(1000);
-
-    WiFiManager wifiManager;
-    Serial.println("📡 Connexion au Wi-Fi...");
-    delay(1000);
-
-    if (!wifiManager.autoConnect("ESP32-Setup")) 
-    {
-        Serial.println("❌ Connexion Wi-Fi échouée. Redémarrage...");
-        ESP.restart();
-    }
-
-    Serial.println("✅ Connexion Wi-Fi réussie !");
-    lcd.init();
-    lcd.backlight();
-    lcd.setCursor(0, 0);
-    lcd.print("Wi-Fi Connecté!");
-    delay(2000);
-
-    lastCheckTime = millis();
-}
-
+// Loop
 void loop() 
 {
-    checkWifiConnection();
+  checkWifiConnection();
 
-    if (millis() - lastCheckTime >= 5000) 
-    {
-        Serial.println("⏳ En attente d'un nouvel événement...");
-        fetchAppointments();
-        lastCheckTime = millis();
-    }
+  if (millis() - lastCheckTime >= 5000) 
+  {
+    fetchAppointments();
+    lastCheckTime = millis();
+  }
 
-    delay(1000);
+  displayCurrentAppointment();
 }
 
-
-
-void waitForNewAppointments() 
+// Check Wifi
+void checkWifiConnection() 
 {
-    if (WiFi.status() != WL_CONNECTED) 
-    {
-        checkWifiConnection();
-    }
-
-    HTTPClient http;
-    http.begin(apiUrl);
-    int httpResponseCode = http.GET();
-
-    if (httpResponseCode > 0) 
-    {
-        String response = http.getString();
-        DynamicJsonDocument newDoc(1024);
-        DeserializationError error = deserializeJson(newDoc, response);
-        if (!error) 
-        {
-            JsonArray newAppointments = newDoc.as<JsonArray>();
-            checkAppointmentsForActions(newAppointments);
-            doc = newDoc;
-            appointments = newAppointments;
-            currentAppointment = 0;
-            displayNextAppointment();
-        }
-    }
-    http.end();
+  if (WiFi.status() != WL_CONNECTED) 
+  {
+    WiFi.begin(ssid, password);
+    delay(5000);
+  }
 }
 
+// Fetch Appointment
+void fetchAppointments() 
+{
+  if (WiFi.status() != WL_CONNECTED) return;
 
-void checkAppointmentsForActions(JsonArray newAppointments) {
-    Serial.println("🔎 Vérification des rendez-vous...");
+  HTTPClient http;
+  http.begin(apiUrl);
+  int httpResponseCode = http.GET();
 
-    std::vector<String> newKnownAppointments;
-
-    if (newAppointments.size() == 0 && !knownAppointments.empty()) 
+  if (httpResponseCode > 0) 
+  {
+    String response = http.getString();
+    DynamicJsonDocument newDoc(2048);
+    DeserializationError error = deserializeJson(newDoc, response);
+    if (!error) 
     {
-        Serial.println("❌ TOUS les rendez-vous ont été supprimés !");
-        playRandomTrackDeleted();
-        delay(1000);
-        knownAppointments.clear();
-        return;
+      JsonArray newAppointments = newDoc.as<JsonArray>();
+      checkAppointmentsForActions(newAppointments);
+    }
+  }
+  http.end();
+}
+
+// Check appointments
+void checkAppointmentsForActions(JsonArray newAppointments) 
+{
+  std::vector<String> newKnownAppointments;
+
+  for (JsonObject newApp : newAppointments) 
+  {
+    String newId = newApp["appointment_id"].as<String>();
+    String newTask = newApp["task"].as<String>();
+    String newNote = newApp["note"].as<String>();
+    bool found = false;
+
+    for (JsonObject oldApp : doc.as<JsonArray>()) 
+    {
+      if (oldApp["appointment_id"].as<String>() == newId) 
+      {
+        found = true;
+        if (oldApp["task"].as<String>() != newTask || oldApp["note"].as<String>() != newNote) 
+        {
+          playRandomTrackUpdated();
+        }
+
+        break;
+      }
     }
 
+    if (!found) 
+    {
+      playRandomTrackActive();
+    }
+
+    newKnownAppointments.push_back(newId);
+  }
+
+  for (String oldId : knownAppointments) 
+  {
+    bool stillExists = false;
     for (JsonObject newApp : newAppointments) 
     {
-        String newId = newApp["appointment_id"].as<String>();
-        String newTask = newApp["task"].as<String>();
-        String newNote = newApp["note"].as<String>();
-        bool found = false;
-
-        for (JsonObject oldApp : doc.as<JsonArray>()) 
-        {
-            if (oldApp["appointment_id"].as<String>() == newId) 
-            {
-                found = true;
-
-                if (oldApp["task"].as<String>() != newTask || oldApp["note"].as<String>() != newNote) 
-                {
-                    Serial.println("📢 Mise à jour détectée !");
-                    playRandomTrackUpdated();
-                    delay(1000);
-                }
-
-                break;
-            }
-        }
-
-        if (!found) 
-        {
-            Serial.println("🆕 Nouveau rendez-vous détecté !");
-            playRandomTrackActive();
-            delay(1000);
-        }
-
-        newKnownAppointments.push_back(newId);
+      if (newApp["appointment_id"].as<String>() == oldId) 
+      {
+        stillExists = true;
+        break;
+      }
     }
-
-    for (String oldId : knownAppointments) 
+    if (!stillExists) 
     {
-        bool stillExists = false;
-
-        for (JsonObject newApp : newAppointments) 
-        {
-            if (newApp["appointment_id"].as<String>() == oldId) 
-            {
-                stillExists = true;
-                break;
-            }
-        }
-
-        if (!stillExists) 
-        {
-            Serial.println("❌ Rendez-vous supprimé !");
-            playRandomTrackDeleted();
-            delay(1000);
-        }
+      playRandomTrackDeleted();
     }
+  }
 
-    knownAppointments = newKnownAppointments;
-    doc.clear();
-    doc.set(newAppointments);
+  knownAppointments = newKnownAppointments;
+  doc.clear();
+  doc.set(newAppointments);
+  appointments = doc.as<JsonArray>();
+  currentAppointment = 0;
+  scrollIndex = 0;
+  isScrolling = false;
+  isShortDisplayed = false;
 }
 
+// Display appointment
+void displayCurrentAppointment() 
+{
+  if (appointments.size() == 0) return;
+
+  JsonObject app = appointments[currentAppointment];
+  String task = app["task"].as<String>();
+  String dateHour = app["date_hour"].as<String>();
+  String moisJour = dateHour.substring(5, 10);
+  String heureMinute = dateHour.substring(11, 16);
+  String dateLine = moisJour + " a " + heureMinute;
+
+  if (task.length() <= 16) 
+  {
+    if (!isShortDisplayed) 
+    {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Tache: " + task);
+      lcd.setCursor(0, 1);
+      lcd.print(dateLine);
+      lastDisplayTime = millis();
+      isShortDisplayed = true;
+    }
+
+    if (millis() - lastDisplayTime >= 5000) 
+    {
+      advanceToNextAppointment();
+    }
+  } 
+  
+  else 
+  {
+    isScrolling = true;
+    scrollTaskOnLCD(task, dateLine);
+  }
+}
+
+// Scroll
+void scrollTaskOnLCD(String task, String dateLine) 
+{
+  String scrollText = "Tache: " + task + "   ";
+  int maxIndex = scrollText.length() - 16;
+
+  if (millis() - lastScrollTime >= 300) 
+  {
+    lcd.setCursor(0, 0);
+    lcd.print(scrollText.substring(scrollIndex, scrollIndex + 16));
+    lcd.setCursor(0, 1);
+    lcd.print(dateLine);
+
+    scrollIndex++;
+    lastScrollTime = millis();
+
+    if (scrollIndex > maxIndex) 
+    {
+      scrollIndex = 0;
+      isScrolling = false;
+      lastDisplayTime = millis();
+      advanceToNextAppointment();
+    }
+  }
+}
+
+// Next appointment
+void advanceToNextAppointment() 
+{
+  currentAppointment = (currentAppointment + 1) % appointments.size();
+  scrollIndex = 0;
+  isScrolling = false;
+  isShortDisplayed = false;
+}
+
+// Audio
 void playRandomTrackActive() 
 {
-    Serial.println("🎵 Lecture d'un son pour 'active'...");
-    delay(500);
-
-    int tracks[] = {1, 2, 3, 6, 7, 8, 9, 10, 31, 33, 34, 35};
-
-    int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
-    Serial.print("🎵 Lecture de la piste : ");
-    Serial.println(trackNumber);
-    dfPlayer.play(trackNumber);
-    delay(200);
+  if (!dfPlayerInitialized) return;
+  int tracks[] = {1, 2, 3, 6, 7, 8, 9, 10, 31, 33, 34, 35};
+  int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
+  dfPlayer.play(trackNumber);
 }
 
 void playRandomTrackUpdated() 
 {
-    Serial.println("🎵 Lecture d'un son pour 'updated'...");
-    delay(500);
-
-    int tracks[] = {4, 5, 12, 17, 20, 28, 29, 30};
-
-    int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
-    Serial.print("🎵 Lecture de la piste : ");
-    Serial.println(trackNumber);
-    dfPlayer.play(trackNumber);
-    delay(200);
+  if (!dfPlayerInitialized) return;
+  int tracks[] = {4, 5, 12, 17, 20, 28, 29, 30};
+  int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
+  dfPlayer.play(trackNumber);
 }
 
 void playRandomTrackDeleted() 
 {
-    Serial.println("🎵 Lecture d'un son pour 'deleted'...");
-    delay(500);
-    int tracks[] = {24, 25, 26, 27, 23, 13, 14, 32};
-    int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
-    Serial.print("🎵 Lecture de la piste : ");
-    Serial.println(trackNumber);
-    dfPlayer.play(trackNumber);
-    delay(200);
+  if (!dfPlayerInitialized) return;
+  int tracks[] = {24, 25, 26, 27, 23, 13, 14, 32};
+  int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
+  dfPlayer.play(trackNumber);
 }
