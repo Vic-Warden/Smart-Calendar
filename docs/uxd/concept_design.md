@@ -146,7 +146,7 @@ Step 13 : We add a door
 
 ![Menu](Step14.png)
 
-Step 14 : Lay out a first rectangle to serve as a tour
+Step 14 : Lay out a first rectangle as a tour
 
 ---
 
