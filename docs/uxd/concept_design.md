@@ -115,3 +115,23 @@ Step 8 : Setting up the observation post
 ![Menu](Step99.png)
 
 Step 9 : Repeat the process to make more observations post
+
+---
+
+![Menu](Step10.png)
+
+Step 10 : We're going to redo the power generators because they're really ugly
+
+---
+
+![Menu](Step100.png)
+
+Step 11 : Increase the size of the power generators
+
+---
+
+![Menu](Step1000.png)
+
+![Menu](Step10000.png)
+
+Step 12 : Cutting the tip with Tinkercad ( very easy ) and duplicate
