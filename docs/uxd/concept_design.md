@@ -153,3 +153,9 @@ Step 14 : Lay out a first rectangle to serve as a tour
 ![Menu](Step15.png)
 
 Step 15 : Trim the rectangle to make a nice tour
+
+---
+
+![Menu](Step16.png)
+
+Step 16 : Increase the size of the tour
