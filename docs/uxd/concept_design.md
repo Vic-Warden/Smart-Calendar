@@ -141,3 +141,9 @@ Step 12 : Cutting the tip with Tinkercad ( very easy ) and duplicate
 ![Menu](Step13.png)
 
 Step 13 : We add a door 
+
+---
+
+![Menu](Step14.png)
+
+Step 14 : Lay out a first rectangle to serve as a tour
