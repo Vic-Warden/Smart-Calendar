@@ -108,3 +108,10 @@ Step 7 : Increase the size of the bease
 ![Menu](Step88.png)
 
 Step 8 : Setting up the observation post
+
+---
+
+![Menu](Step9.png)
+![Menu](Step99.png)
+
+Step 9 : Repeat the process to make more observations post
