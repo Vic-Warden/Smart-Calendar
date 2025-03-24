@@ -1,73 +1,67 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
-
-// Appartement
+#include <WiFi.h>
+#include <HTTPClient.h>
 
 const char* ssid = "DeKey-Fraijlemaborg";
 const char* password = "i3xHp*ag";
+const char* serverName = "http://100.74.252.69/Database/Device/insert_sensor.php";
 
-// // Ecole
-
-// const char* ssid = "iotroam";
-// const char* password = "uBZTpJnK5M";
-
-const char* apiUrl = "http://100.74.252.69/Database/Device/insert_device.php";
-
-WiFiClient wifiClient;
-
-void setup() 
-{
+void setup() {
   Serial.begin(115200);
   WiFi.begin(ssid, password);
 
   Serial.print("Connexion au Wi-Fi...");
-  while (WiFi.status() != WL_CONNECTED) 
-  {
+  while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
 
-  Serial.println("\nConnecté au Wi-Fi.");
-  Serial.print("IP: ");
-  Serial.println(WiFi.localIP());
+  Serial.println("\nConnecté au Wi-Fi !");
+  
+  sendSensorData("Temperature Sensor", "temperature", 25.5, 1);
 }
 
 void loop() 
 {
-  if (WiFi.status() == WL_CONNECTED) 
+
+}
+
+void sendSensorData(String name, String type, float threshold, int device_id) 
+{
+  if(WiFi.status() == WL_CONNECTED) 
   {
     HTTPClient http;
 
-    String name = "Wemos";
-    String ip_address = WiFi.localIP().toString();
-
-    String postData = "name=" + name + "&ip_address=" + ip_address;
-
-    http.begin(wifiClient, apiUrl);
+    http.begin(serverName);
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
+    String postData = "name=" + name +
+                      "&type=" + type +
+                      "&activation_threshold=" + String(threshold) +
+                      "&device_id=" + String(device_id);
+
     int httpResponseCode = http.POST(postData);
+
+    Serial.print("Code réponse HTTP : ");
+    Serial.println(httpResponseCode);
 
     if (httpResponseCode > 0) 
     {
       String response = http.getString();
-      Serial.println("Réponse de l'API : ");
+      Serial.println("Réponse serveur :");
       Serial.println(response);
     } 
-
+    
     else 
     {
-      Serial.print("Erreur requête HTTP : ");
+      Serial.print("Erreur d'envoi POST : ");
       Serial.println(http.errorToString(httpResponseCode));
     }
 
     http.end();
-  }
+  } 
   
-  else
+  else 
   {
-    Serial.println("Déconnecté du WiFi, tentative de reconnexion...");
+    Serial.println("WiFi non connecté !");
   }
-
-  delay(60000);
 }

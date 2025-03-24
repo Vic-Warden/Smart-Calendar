@@ -142,7 +142,6 @@ void checkForAppointmentChanges(DynamicJsonDocument& newAppointments)
       {
         isNew = false;
         
-        // Find matching appointment in old data to check for modifications
         for (JsonObject oldApp : appointments.as<JsonArray>()) 
         {
           if (oldApp["appointment_id"] == newAppId) 
