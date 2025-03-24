@@ -6,46 +6,31 @@
 #include <ArduinoJson.h>
 #include <DFRobotDFPlayerMini.h>
 #include <HardwareSerial.h>
-#include <vector>
 
 // Objects 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 HardwareSerial mySoftwareSerial(2);
 DFRobotDFPlayerMini dfPlayer;
-WiFiClient wifiClient;
-DynamicJsonDocument doc(2048);
 
-// Variables 
-std::vector<String> knownAppointments;
-JsonArray appointments;
+const char* SSID = "DeKey-Fraijlemaborg";
+const char* PASSWORD = "i3xHp*ag";
+const char* API_URL = "http://100.74.252.69/Database/Appointment/recover_appointment.php";
 
-const char* ssid = "DeKey-Fraijlemaborg";
-const char* password = "i3xHp*ag";
-const char* apiUrl = "http://100.74.252.69/Database/Appointment/recover_appointment.php";
+const unsigned long REFRESH_INTERVAL = 5000;
+const unsigned long DISPLAY_INTERVAL = 3000;
 
-int currentAppointment = 0;
-unsigned long lastCheckTime = 0;
-unsigned long lastScrollTime = 0;
-unsigned long lastDisplayTime = 0;
-int scrollIndex = 0;
+const int ACTIVE_TRACKS[] = {1, 2, 3, 6, 7, 8, 9, 10, 31, 33, 34, 35};
+const int UPDATED_TRACKS[] = {4, 5, 12, 17, 20, 28, 29, 30};
+const int DELETED_TRACKS[] = {24, 25, 26, 27, 23, 13, 14, 32};
+
+DynamicJsonDocument appointments(2048);
+std::vector<String> previousAppointmentIds;
+unsigned long lastRefreshTime = 0;
+unsigned long lastDisplayChangeTime = 0;
+int currentAppointmentIndex = 0;
 bool dfPlayerInitialized = false;
-bool isScrolling = false;
-bool isShortDisplayed = false;
+bool dataRefreshed = false;
 
-// Function
-void setup();
-void loop();
-void checkWifiConnection();
-void fetchAppointments();
-void checkAppointmentsForActions(JsonArray newAppointments);
-void displayCurrentAppointment();
-void scrollTaskOnLCD(String task, String dateLine);
-void playRandomTrackActive();
-void playRandomTrackUpdated();
-void playRandomTrackDeleted();
-void advanceToNextAppointment();
-
-// Setup 
 void setup() 
 {
   Serial.begin(115200);
@@ -55,227 +40,196 @@ void setup()
   {
     dfPlayer.volume(10);
     dfPlayerInitialized = true;
-  }
-
-  WiFi.begin(ssid, password);
-  int attempts = 0;
-  while (WiFi.status() != WL_CONNECTED && attempts < 10) 
-  {
-    delay(200);
-    attempts++;
+    Serial.println("DFPlayer initialized");
   }
 
   lcd.init();
   lcd.backlight();
-  lcd.setCursor(0, 0);
-  lcd.print(WiFi.status() == WL_CONNECTED ? "Wi-Fi Connecte!" : "Wi-Fi ECHEC");
-  delay(2000);
-  lastCheckTime = millis();
-  lastDisplayTime = millis();
+  lcd.clear();
+  lcd.print("Initializing...");
+
+  connectToWiFi();
 }
 
-// Loop
 void loop() 
 {
-  checkWifiConnection();
+  if (WiFi.status() != WL_CONNECTED) 
+  {
+    connectToWiFi();
+    return;
+  }
 
-  if (millis() - lastCheckTime >= 5000) 
+  if (!dataRefreshed) 
   {
     fetchAppointments();
-    lastCheckTime = millis();
+    dataRefreshed = true;
+    lastRefreshTime = millis();
+  }
+
+  if (millis() - lastRefreshTime >= REFRESH_INTERVAL) 
+  {
+    dataRefreshed = false;
   }
 
   displayCurrentAppointment();
 }
 
-// Check Wifi
-void checkWifiConnection() 
+void connectToWiFi() 
 {
-  if (WiFi.status() != WL_CONNECTED) 
+  Serial.print("Connecting to WiFi...");
+  WiFi.begin(SSID, PASSWORD);
+
+  int attempts = 0;
+  while (WiFi.status() != WL_CONNECTED && attempts < 10) 
   {
-    WiFi.begin(ssid, password);
-    delay(5000);
+    delay(500);
+    Serial.print(".");
+    attempts++;
+  }
+
+  if (WiFi.status() == WL_CONNECTED) 
+  {
+    Serial.println("\nConnected!");
+    lcd.clear();
+    lcd.print("WiFi Connected");
+    delay(2000);
+  } 
+  
+  else 
+  {
+    Serial.println("\nFailed to connect");
+    lcd.clear();
+    lcd.print("WiFi Failed");
   }
 }
 
-// Fetch Appointment
 void fetchAppointments() 
 {
-  if (WiFi.status() != WL_CONNECTED) return;
-
   HTTPClient http;
-  http.begin(apiUrl);
-  int httpResponseCode = http.GET();
+  http.begin(API_URL);
+  int httpCode = http.GET();
 
-  if (httpResponseCode > 0) 
+  if (httpCode > 0) 
   {
-    String response = http.getString();
-    DynamicJsonDocument newDoc(2048);
-    DeserializationError error = deserializeJson(newDoc, response);
+    String payload = http.getString();
+    DynamicJsonDocument newAppointments(2048);
+    DeserializationError error = deserializeJson(newAppointments, payload);
+
     if (!error) 
     {
-      JsonArray newAppointments = newDoc.as<JsonArray>();
-      checkAppointmentsForActions(newAppointments);
+      checkForAppointmentChanges(newAppointments);
     }
   }
   http.end();
 }
 
-// Check appointments
-void checkAppointmentsForActions(JsonArray newAppointments) 
+void checkForAppointmentChanges(DynamicJsonDocument& newAppointments) 
 {
-  std::vector<String> newKnownAppointments;
+  std::vector<String> currentIds;
+  bool changesDetected = false;
 
-  for (JsonObject newApp : newAppointments) 
+  for (JsonObject app : newAppointments.as<JsonArray>()) 
   {
-    String newId = newApp["appointment_id"].as<String>();
-    String newTask = newApp["task"].as<String>();
-    String newNote = newApp["note"].as<String>();
-    bool found = false;
+    String appId = app["appointment_id"].as<String>();
+    currentIds.push_back(appId);
 
-    for (JsonObject oldApp : doc.as<JsonArray>()) 
+    bool isNew = true;
+    for (String prevId : previousAppointmentIds) 
     {
-      if (oldApp["appointment_id"].as<String>() == newId) 
+      if (prevId == appId) 
       {
-        found = true;
-        if (oldApp["task"].as<String>() != newTask || oldApp["note"].as<String>() != newNote) 
-        {
-          playRandomTrackUpdated();
-        }
-
+        isNew = false;
         break;
       }
     }
 
-    if (!found) 
+    if (isNew) 
     {
-      playRandomTrackActive();
+      playRandomSound(ACTIVE_TRACKS, sizeof(ACTIVE_TRACKS)/sizeof(int));
+      changesDetected = true;
     }
-
-    newKnownAppointments.push_back(newId);
   }
 
-  for (String oldId : knownAppointments) 
+  for (String prevId : previousAppointmentIds) 
   {
     bool stillExists = false;
-    for (JsonObject newApp : newAppointments) 
+    for (JsonObject app : newAppointments.as<JsonArray>()) 
     {
-      if (newApp["appointment_id"].as<String>() == oldId) 
+      if (app["appointment_id"].as<String>() == prevId) 
       {
         stillExists = true;
         break;
       }
     }
+
     if (!stillExists) 
     {
-      playRandomTrackDeleted();
+      playRandomSound(DELETED_TRACKS, sizeof(DELETED_TRACKS)/sizeof(int));
+      changesDetected = true;
     }
   }
 
-  knownAppointments = newKnownAppointments;
-  doc.clear();
-  doc.set(newAppointments);
-  appointments = doc.as<JsonArray>();
-  currentAppointment = 0;
-  scrollIndex = 0;
-  isScrolling = false;
-  isShortDisplayed = false;
+  if (changesDetected || previousAppointmentIds.size() == 0) 
+  {
+    appointments = newAppointments;
+    previousAppointmentIds = currentIds;
+    currentAppointmentIndex = 0;
+    lastDisplayChangeTime = millis();
+  }
 }
 
-// Display appointment
 void displayCurrentAppointment() 
 {
-  if (appointments.size() == 0) return;
-
-  JsonObject app = appointments[currentAppointment];
-  String task = app["task"].as<String>();
-  String dateHour = app["date_hour"].as<String>();
-  String moisJour = dateHour.substring(5, 10);
-  String heureMinute = dateHour.substring(11, 16);
-  String dateLine = moisJour + " a " + heureMinute;
-
-  if (task.length() <= 16) 
+  static int lastDisplayedIndex = -1;
+  
+  if (appointments.size() == 0) 
   {
-    if (!isShortDisplayed) 
+    if (lastDisplayedIndex != -1) 
     {
       lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print("Tache: " + task);
-      lcd.setCursor(0, 1);
-      lcd.print(dateLine);
-      lastDisplayTime = millis();
-      isShortDisplayed = true;
+      lastDisplayedIndex = -1;
     }
 
-    if (millis() - lastDisplayTime >= 5000) 
-    {
-      advanceToNextAppointment();
-    }
-  } 
-  
-  else 
-  {
-    isScrolling = true;
-    scrollTaskOnLCD(task, dateLine);
-  }
-}
-
-// Scroll
-void scrollTaskOnLCD(String task, String dateLine) 
-{
-  String scrollText = "Tache: " + task + "   ";
-  int maxIndex = scrollText.length() - 16;
-
-  if (millis() - lastScrollTime >= 300) 
-  {
     lcd.setCursor(0, 0);
-    lcd.print(scrollText.substring(scrollIndex, scrollIndex + 16));
+    lcd.print("No appointments");
+    return;
+  }
+
+  if (millis() - lastDisplayChangeTime >= DISPLAY_INTERVAL) 
+  {
+    currentAppointmentIndex = (currentAppointmentIndex + 1) % appointments.size();
+    lastDisplayChangeTime = millis();
+  }
+
+  if (currentAppointmentIndex != lastDisplayedIndex) 
+  {
+    lcd.clear();
+    lastDisplayedIndex = currentAppointmentIndex;
+    
+    JsonObject appointment = appointments[currentAppointmentIndex];
+    String task = appointment["task"].as<String>();
+    String dateTime = appointment["date_hour"].as<String>();
+
+    lcd.setCursor(0, 0);
+    lcd.print("RDV ");
+    lcd.print(currentAppointmentIndex + 1);
+    lcd.print("/");
+    lcd.print(appointments.size());
+    lcd.print(" ");
+    lcd.print(task.substring(0, 8));
+
     lcd.setCursor(0, 1);
-    lcd.print(dateLine);
-
-    scrollIndex++;
-    lastScrollTime = millis();
-
-    if (scrollIndex > maxIndex) 
-    {
-      scrollIndex = 0;
-      isScrolling = false;
-      lastDisplayTime = millis();
-      advanceToNextAppointment();
-    }
+    lcd.print(dateTime.substring(8, 10));
+    lcd.print("/");
+    lcd.print(dateTime.substring(5, 7));
+    lcd.print(" ");
+    lcd.print(dateTime.substring(11, 16));
   }
 }
 
-// Next appointment
-void advanceToNextAppointment() 
-{
-  currentAppointment = (currentAppointment + 1) % appointments.size();
-  scrollIndex = 0;
-  isScrolling = false;
-  isShortDisplayed = false;
-}
-
-// Audio
-void playRandomTrackActive() 
+void playRandomSound(const int tracks[], int count) 
 {
   if (!dfPlayerInitialized) return;
-  int tracks[] = {1, 2, 3, 6, 7, 8, 9, 10, 31, 33, 34, 35};
-  int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
-  dfPlayer.play(trackNumber);
-}
-
-void playRandomTrackUpdated() 
-{
-  if (!dfPlayerInitialized) return;
-  int tracks[] = {4, 5, 12, 17, 20, 28, 29, 30};
-  int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
-  dfPlayer.play(trackNumber);
-}
-
-void playRandomTrackDeleted() 
-{
-  if (!dfPlayerInitialized) return;
-  int tracks[] = {24, 25, 26, 27, 23, 13, 14, 32};
-  int trackNumber = tracks[random(0, sizeof(tracks) / sizeof(tracks[0]))];
-  dfPlayer.play(trackNumber);
+  int randomIndex = random(0, count);
+  dfPlayer.play(tracks[randomIndex]);
 }
