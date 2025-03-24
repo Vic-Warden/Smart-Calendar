@@ -135,3 +135,9 @@ Step 11 : Increase the size of the power generators
 ![Menu](Step10000.png)
 
 Step 12 : Cutting the tip with Tinkercad ( very easy ) and duplicate
+
+---
+
+![Menu](Step13.png)
+
+Step 13 : We add a door 
