@@ -147,3 +147,9 @@ Step 13 : We add a door
 ![Menu](Step14.png)
 
 Step 14 : Lay out a first rectangle to serve as a tour
+
+---
+
+![Menu](Step15.png)
+
+Step 15 : Trim the rectangle to make a nice tour
