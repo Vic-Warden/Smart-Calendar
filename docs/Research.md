@@ -39,3 +39,10 @@ Which do you find more pleasant or intuitive?
 Have you noticed any difference in the way you interact with the interface elements?
 
 This feedback will give me a qualitative overview of React's impact on the user experience. To present the results, I plan to draw up a comparative table, so as to highlight the positive or negative points observed in each version.
+
+---
+
+**Sources and References**
+
+[For the Research Method](https://www.scribbr.com/category/methodology/)
+
