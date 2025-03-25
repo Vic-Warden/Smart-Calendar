@@ -70,6 +70,9 @@ Step 1 : Lay out a first rectangle to serve as a base
 
 ![Menu](Step2.png)
 
+<a href="./3D%20Model/Step2.stl" download>Download step 2</a>
+
+
 Step 2 : The rectangle is trimmed to fit around the base
 
 ---
