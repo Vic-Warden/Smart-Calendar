@@ -199,4 +199,6 @@ Step 21 : Tell yourself you have to do it in 2 stages, first the tower, then the
 
 ![Menu](Step222.png)
 
+![Menu](Step2222.png)
+
 Step 22 : Want to break everything and open Meshmixer to make the 3D model hollow
