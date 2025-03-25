@@ -70,7 +70,7 @@ Step 1 : Lay out a first rectangle to serve as a base
 
 ![Menu](Step2.png)
 
-<a href="./3D%20Model/Step2.stl" download>Download step 2</a>
+[Download Step 2](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step2.stl?ref_type=heads)
 
 
 Step 2 : The rectangle is trimmed to fit around the base
