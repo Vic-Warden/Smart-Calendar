@@ -16,21 +16,11 @@ The last but not least, to enhance the user experience, the improvement I had in
 
 **Research question :**
 
-How can React help me design an interface where users customize the voices of their cuckoo clock?
+How can React help me design an interface where users customize the voices of their cuckoo clock ?
 
 **Sub-questions :**
 
-**Front-end**
-
-Why is React best suited to improve the interactivity and user experience of my web interface ?
-
-How can React help me easily create an interface where users choose their own Warhammer-inspired voices and interactions ?
-
-**Back-end**
-
-Why choose Node.js with Express rather than another technology to improve server-side performance and data management ?
-
-Is Node.js really effective for managing real-time data exchanges between my website and my ESP32 ?
+How does React make it easy to manage customizable options (such as Warhammer voice lists) in a user interface ?
 
 ---
 
