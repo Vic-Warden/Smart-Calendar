@@ -26,45 +26,16 @@ How does React make it easy to manage customizable options (such as Warhammer vo
 
 **Research method :**
 
-To answer my research question, I chose a comparative experimental method. I took this method because I believe it could help me clearly understand whether React and Node.js with Express really improve things compared to what I'm already using at the moment.
+To answer my research question, I have chosen to adopt a comparative experimental approach focusing on the user interface. My objective is to determine whether using React for front-end development will improve the usability and interactivity of my connected cuckoo clock website, compared with the solution I'm currently using.
 
-Before deciding on this method, I did a bit of research and thought about other possible methods. For example, I also thought about a literature search, but that seemed too abstract and perhaps less useful for my specific case.
+To do this, I'm going to design a new version of the website interface using React. In particular, this new version will enable users to customize their cuckoo's voices and interactions.
 
-Here's how I'll try to do my research :
+The evaluation will be based mainly on user feedback, as the main criterion I wish to analyze is perceived ease of use. A small group of people (around 3-4 users) will test both versions of the site. I'll then ask them to answer a few simple but targeted questions, such as:
 
-**Step 1: Make a prototype**
+Which version did you find easier to use?
 
-I'll start by creating a new version of the website:
+Which do you find more pleasant or intuitive?
 
-I will be made with React for the front-end and Node.js with Express for the back-end
+Have you noticed any difference in the way you interact with the interface elements?
 
-**Step 2: Find the criteria for comparing the two versions**
-
-To compare the prototypes, I'm going to check a few things, such as :
-
-Website speed.
-
-Server response time.
-
-What happens when several users connect at the same time.
-
-And whether the interface is pleasant and easy to use for users.
-
-**Step 3: Technical testing**
-
-For this step, I'm going to use some tools that I'm not very familiar with at the moment. For example, I've heard of Lighthouse to test website speed, but I haven't really tested it myself yet. I may also use Postman to see how the server responds to requests.
-
-
-**Step 4: Ask for user feedback**
-
-In addition to the technical tests, I'm going to ask a few people to try out the two prototypes. I'm going to use the feedback system we've been given. I'm not yet sure exactly how many people I'm going to ask, but I think 3 or 4 might be enough.
-
-The questions will be simple, such as:
-
-Which version do you prefer and why ?
-
-Which version do you find easier to use ?
-
-**How I will present the results :**
-
-To be honest, I'm still not sure how I'm going to present the results. I think I'll do a table with technical results on one side and user opinions on the other. I'll try to make things clear, even if it's not perfect.
+This feedback will give me a qualitative overview of React's impact on the user experience. To present the results, I plan to draw up a comparative table, so as to highlight the positive or negative points observed in each version.
