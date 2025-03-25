@@ -174,3 +174,9 @@ Step 17 : Add a square above the tower and reduce the middle to make it look lik
 ![Menu](Step18.png)
 
 Step 18 : Add the tower above the base
+
+---
+
+![Menu](Step19.png)
+
+Step 19 : Increase the size of the tower and base to fit the LCD screen and pir sensor on the breadbord

@@ -4,6 +4,14 @@ Your learning journal can be seen as a diary of your learning process. It is a p
 
 So for example when you receive feedback on your project, you can write down the feedback and your reflection on it in your learning journal. You can also write down what you have learned from the feedback, and how you will apply it in your project.
 
+## Eighth week
+
+### Tuesday 25/03
+
+### Monday 24/03
+
+---
+
 ## Seventh week
 
 ### Friday 21/03
