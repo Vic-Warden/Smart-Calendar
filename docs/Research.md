@@ -16,7 +16,7 @@ The last but not least, to enhance the user experience, the improvement I had in
 
 **Research question :**
 
-Why using React for the front-end and Node.js with Express for the back-end really improve the performance and user experience of my cuckoo clock compared with the solution I'm currently using ?
+How can React help me design an interface where users customize the voices of their cuckoo clock?
 
 **Sub-questions :**
 
