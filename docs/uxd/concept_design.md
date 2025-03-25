@@ -187,3 +187,16 @@ Step 19 : Increase the size of the tower and base to fit the LCD screen and pir 
 
 Step 20 : Try everything to make the base hollow
 
+---
+
+![Menu](Step21.png)
+
+Step 21 : Tell yourself you have to do it in 2 stages, first the tower, then the base
+
+---
+
+![Menu](Step22.png)
+
+![Menu](Step222.png)
+
+Step 22 : Want to break everything and open Meshmixer to make the 3D model hollow
