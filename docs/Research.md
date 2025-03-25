@@ -46,3 +46,8 @@ This feedback will give me a qualitative overview of React's impact on the user 
 
 [For the Research Method](https://www.scribbr.com/category/methodology/)
 
+[Comparative Method](https://csus.libguides.com/res-meth/comp-meth-quasi)
+
+[React](https://react.dev/learn)
+
+[W3schools](https://www.w3schools.com/REACT/DEFAULT.ASP)
