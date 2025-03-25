@@ -228,7 +228,8 @@ void connectToWiFi()
 
 void update7SegmentDisplay() 
 {
-  if (!timeInitialized) {
+  if (!timeInitialized) 
+  {
     display.showNumberDec(9999);
     return;
   }
@@ -443,7 +444,6 @@ void displayCurrentAppointment(unsigned long currentMillis)
   {
     lcd.clear();
     lastDisplayedIndex = currentAppointmentIndex;
-    
     JsonObject appointment = appointments[currentAppointmentIndex];
     String task = appointment["task"].as<String>();
     String dateTime = appointment["date_hour"].as<String>();

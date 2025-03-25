@@ -180,3 +180,10 @@ Step 18 : Add the tower above the base
 ![Menu](Step19.png)
 
 Step 19 : Increase the size of the tower and base to fit the LCD screen and pir sensor on the breadbord
+
+---
+
+![Menu](Step20.png)
+
+Step 20 : Try everything to make the base hollow
+
