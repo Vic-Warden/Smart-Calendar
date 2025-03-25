@@ -50,6 +50,9 @@ const unsigned long TIME_UPDATE_INTERVAL = 60000;
 const unsigned long NTP_RETRY_INTERVAL = 30000;
 const unsigned long BUTTON_DEBOUNCE_TIME = 50;      
 const unsigned long WIFI_RECONNECT_DELAY = 1000;
+unsigned long lastHourCheck = 0;
+const unsigned long HOUR_CHECK_INTERVAL = 60000;
+int lastPlayedHour = -1;
 
 // Sound 
 const int BUTTON_TRACKS_MIN = 1;
@@ -60,6 +63,10 @@ const int LIGHT_TRACK = 4;
 const int ACTIVE_TRACKS[] = {5, 6, 7};
 const int UPDATED_TRACKS[] = {8, 9, 10};
 const int DELETED_TRACKS[] = {11, 12, 13};
+
+// Night Mode Thresholds with Hysteresis
+const int NIGHT_MODE_ENTER_THRESHOLD = 650;  
+const int NIGHT_MODE_EXIT_THRESHOLD = 750;   
 
 // Sensor
 const int BUTTON_PIN = 14;
@@ -79,6 +86,7 @@ unsigned long lastReconnectAttempt = 0;
 int currentAppointmentIndex = 0;
 bool dfPlayerInitialized = false;
 bool dataRefreshed = false;
+bool nightMode = false;
 
 // Sensor 
 int lastButtonState = HIGH;
@@ -100,7 +108,10 @@ void setup()
     dfPlayer.volume(5);
     dfPlayerInitialized = true;
     Serial.println("DFPlayer initialized");
-  } else {
+  } 
+  
+  else 
+  {
     Serial.println("DFPlayer initialization failed!");
   }
 
@@ -119,9 +130,9 @@ void setup()
 
   lastLDRValue = analogRead(LDR_PIN);
   lastPIRState = digitalRead(PIR_PIN);
+  nightMode = (lastLDRValue < NIGHT_MODE_ENTER_THRESHOLD);
 
   connectToWiFi();
-
   timeClient.begin();
   initializeTime();
 }
@@ -137,6 +148,7 @@ void loop()
       lastReconnectAttempt = currentMillis;
       connectToWiFi();
     }
+
     return;
   }
 
@@ -153,8 +165,8 @@ void loop()
   }
 
   handleAppointments(currentMillis);
-
   handleSensors(currentMillis);
+  checkHourlyChime(currentMillis);
 }
 
 void initializeTime() 
@@ -166,7 +178,7 @@ void initializeTime()
     timeInitialized = true;
     Serial.println("Time initialized successfully");
   } 
-  
+
   else 
   {
     Serial.println("Failed to initialize time");
@@ -205,7 +217,7 @@ void connectToWiFi()
     timeInitialized = false;
     initializeTime();
   } 
-  
+
   else 
   {
     Serial.println("\nFailed to connect");
@@ -244,6 +256,41 @@ void handleAppointments(unsigned long currentMillis)
   displayCurrentAppointment(currentMillis);
 }
 
+void checkHourlyChime(unsigned long currentMillis) 
+{
+  static unsigned long lastCheckTime = 0;
+  static int lastChimeHour = -1;
+  
+  if (currentMillis - lastCheckTime >= 60000) 
+  {
+    lastCheckTime = currentMillis;
+    
+    if (nightMode || !timeInitialized) return;
+    
+    timeClient.update();
+    int currentHour = timeClient.getHours();
+    int currentMinute = timeClient.getMinutes();
+    
+    if (currentMinute == 0 && currentHour != lastChimeHour) 
+    {
+      if (dfPlayerInitialized) 
+      {
+        dfPlayer.play(14);
+        Serial.print("Playing hourly chime at ");
+        Serial.print(currentHour);
+        Serial.println(":00");
+      }
+
+      lastChimeHour = currentHour;
+    }
+
+    else if (currentMinute != 0) 
+    {
+      lastChimeHour = -1;
+    }
+  }
+}
+
 void fetchAppointments() 
 {
   HTTPClient http;
@@ -270,23 +317,24 @@ void fetchAppointments()
         Serial.print("JSON deserialization failed: ");
         Serial.println(error.c_str());
       } 
-      
+
       else 
       {
         checkForAppointmentChanges(newAppointments);
       }
     } 
-    
+
     else 
     {
       Serial.printf("HTTP error code: %d\n", httpCode);
     }
   } 
-  
+
   else 
   {
     Serial.printf("HTTP GET failed: %s\n", http.errorToString(httpCode).c_str());
   }
+
   http.end();
 }
 
@@ -326,13 +374,13 @@ void checkForAppointmentChanges(DynamicJsonDocument& newAppointments)
       }
     }
 
-    if (isNew) 
+    if (isNew && !nightMode) 
     {
       playRandomSound(ACTIVE_TRACKS, sizeof(ACTIVE_TRACKS)/sizeof(int));
       changesDetected = true;
     } 
-    
-    else if (isModified) 
+
+    else if (isModified && !nightMode) 
     {
       playRandomSound(UPDATED_TRACKS, sizeof(UPDATED_TRACKS)/sizeof(int));
       changesDetected = true;
@@ -352,7 +400,7 @@ void checkForAppointmentChanges(DynamicJsonDocument& newAppointments)
       }
     }
 
-    if (!stillExists) 
+    if (!stillExists && !nightMode) 
     {
       playRandomSound(DELETED_TRACKS, sizeof(DELETED_TRACKS)/sizeof(int));
       changesDetected = true;
@@ -379,6 +427,7 @@ void displayCurrentAppointment(unsigned long currentMillis)
       lcd.clear();
       lastDisplayedIndex = -1;
     }
+
     lcd.setCursor(0, 0);
     lcd.print("No appointments");
     return;
@@ -418,7 +467,7 @@ void displayCurrentAppointment(unsigned long currentMillis)
       lcd.print(" ");
       lcd.print(dateTime.substring(11, 16));
     } 
-    
+
     else 
     {
       lcd.print("Invalid date");
@@ -435,33 +484,91 @@ void handleSensors(unsigned long currentMillis)
     int buttonState = digitalRead(BUTTON_PIN);
     int pirState = digitalRead(PIR_PIN);
     int ldrValue = analogRead(LDR_PIN);
-
-    if (buttonState == LOW && lastButtonState == HIGH && (currentMillis - lastButtonPress) >= BUTTON_DEBOUNCE_TIME) 
+    static bool wasInNightMode = nightMode;
+    
+    if (nightMode) 
+    {
+      if (ldrValue >= NIGHT_MODE_EXIT_THRESHOLD) 
       {
-      Serial.println("Button pressed!");
-      sendSensorData(BUTTON_SENSOR_ID, 1);
-      
-      if (dfPlayerInitialized) 
-      {
-        dfPlayer.play(random(BUTTON_TRACKS_MIN, BUTTON_TRACKS_MAX + 1));
+        nightMode = false;
       }
-
-      lastButtonPress = currentMillis;
+    } 
+    
+    else 
+    {
+      if (ldrValue < NIGHT_MODE_ENTER_THRESHOLD) 
+      {
+        nightMode = true;
+      }
     }
 
-    lastButtonState = buttonState;
-
-    if (pirState == HIGH && lastPIRState == LOW && !pirLocked) 
+    if (nightMode != wasInNightMode) 
     {
-      Serial.println("Motion detected!");
-      sendSensorData(PIR_SENSOR_ID, 1);
-      
-      if (dfPlayerInitialized) 
+      if (nightMode) 
       {
-        dfPlayer.play(PIR_TRACK);
+        Serial.println("Entering night mode");
+      } 
+
+      else 
+      {
+        Serial.println("Exiting night mode");
+
+        if (dfPlayerInitialized) 
+        {
+          dfPlayer.play(LIGHT_TRACK);
+        }
       }
-      lastPIRTime = currentMillis;
-      pirLocked = true;
+
+      wasInNightMode = nightMode;
+      sendSensorData(LDR_SENSOR_ID, ldrValue);
+    }
+
+    if (!nightMode) 
+    {
+      if (buttonState == LOW && lastButtonState == HIGH && (currentMillis - lastButtonPress) >= BUTTON_DEBOUNCE_TIME) 
+      {
+        Serial.println("Button pressed!");
+        sendSensorData(BUTTON_SENSOR_ID, 1);
+        
+        if (dfPlayerInitialized) 
+        {
+          dfPlayer.play(random(BUTTON_TRACKS_MIN, BUTTON_TRACKS_MAX + 1));
+        }
+
+        lastButtonPress = currentMillis;
+      }
+
+      if (pirState == HIGH && lastPIRState == LOW && !pirLocked) 
+      {
+        Serial.println("Motion detected!");
+        sendSensorData(PIR_SENSOR_ID, 1);
+        
+        if (dfPlayerInitialized) 
+        {
+          dfPlayer.play(PIR_TRACK);
+        }
+
+        lastPIRTime = currentMillis;
+        pirLocked = true;
+      }
+    }
+
+    else 
+    {
+      if (buttonState == LOW && lastButtonState == HIGH && (currentMillis - lastButtonPress) >= BUTTON_DEBOUNCE_TIME) 
+      {
+        Serial.println("Button pressed (night mode - no sound)");
+        sendSensorData(BUTTON_SENSOR_ID, 1);
+        lastButtonPress = currentMillis;
+      }
+
+      if (pirState == HIGH && lastPIRState == LOW && !pirLocked) 
+      {
+        Serial.println("Motion detected (night mode - no sound)");
+        sendSensorData(PIR_SENSOR_ID, 1);
+        lastPIRTime = currentMillis;
+        pirLocked = true;
+      }
     }
 
     if (pirLocked && currentMillis - lastPIRTime >= pirInterval) 
@@ -469,25 +576,8 @@ void handleSensors(unsigned long currentMillis)
       pirLocked = false;
     }
 
+    lastButtonState = buttonState;
     lastPIRState = pirState;
-
-    static bool wasDark = (lastLDRValue < 500);
-    bool isDarkNow = (ldrValue < 500);
-    
-    if (isDarkNow != wasDark) 
-    {
-      Serial.print("Light threshold crossed: ");
-      Serial.println(ldrValue);
-      sendSensorData(LDR_SENSOR_ID, ldrValue);
-      
-      if (dfPlayerInitialized) 
-      {
-        dfPlayer.play(isDarkNow ? DARK_TRACK : LIGHT_TRACK);
-      }
-
-      wasDark = isDarkNow;
-    }
-
     lastLDRValue = ldrValue;
   }
 }
@@ -537,7 +627,7 @@ void sendSensorData(int sensor_id, float value)
 
     http.end();
   } 
-  
+
   else 
   {
     Serial.println("Unable to begin HTTP connection");
@@ -565,7 +655,7 @@ String getCurrentTime()
 
 void playRandomSound(const int tracks[], int count) 
 {
-  if (!dfPlayerInitialized || count <= 0) return;
+  if (!dfPlayerInitialized || count <= 0 || nightMode) return;
   
   static unsigned long lastPlayTime = 0;
   unsigned long currentMillis = millis();
