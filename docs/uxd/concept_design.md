@@ -112,6 +112,7 @@ Step 7 : Increase the size of the bease
 ---
 
 ![Menu](Step8.png)
+
 ![Menu](Step88.png)
 
 [Download Step 8](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step8.stl?ref_type=heads)
@@ -121,6 +122,7 @@ Step 8 : Setting up the observation post
 ---
 
 ![Menu](Step9.png)
+
 ![Menu](Step99.png)
 
 [Download Step 9](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step9.stl?ref_type=heads)
@@ -189,6 +191,7 @@ Step 18 : Add the tower above the base
 ---
 
 ![Menu](Step19.png)
+
 [Download Step 19](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step19.stl?ref_type=heads)
 
 Step 19 : Increase the size of the tower and base to fit the LCD screen and pir sensor on the breadbord
@@ -222,6 +225,7 @@ Step 22 : Want to break everything and open Meshmixer to make the 3D model hollo
 ---
 
 ![Menu](Last.png)
+
 [Download the last step](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Last.stl?ref_type=heads)
 
 Step 23 : Drill holes for all components and print
