@@ -85,6 +85,8 @@ Step 3 : Trim the rectangle to make a pillar
 
 ![Menu](Step4.png)
 
+[Download Step 4](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step4.stl?ref_type=heads)
+
 Step 4 : Repeat the process to make more pillars
 
 ---
@@ -96,6 +98,8 @@ Step 5 : Try to make it look like a power generator
 ---
 
 ![Menu](Step6.png)
+
+[Download Step 6](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step6.stl?ref_type=heads)
 
 Step 6 : Repeat the process to make more power generators
 
@@ -110,6 +114,8 @@ Step 7 : Increase the size of the bease
 ![Menu](Step8.png)
 ![Menu](Step88.png)
 
+[Download Step 8](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step8.stl?ref_type=heads)
+
 Step 8 : Setting up the observation post
 
 ---
@@ -117,11 +123,15 @@ Step 8 : Setting up the observation post
 ![Menu](Step9.png)
 ![Menu](Step99.png)
 
+[Download Step 9](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step9.stl?ref_type=heads)
+
 Step 9 : Repeat the process to make more observations post
 
 ---
 
 ![Menu](Step10.png)
+
+[Download Step 10](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step10.stl?ref_type=heads)
 
 Step 10 : We're going to redo the power generators because they're really ugly
 
@@ -174,10 +184,12 @@ Step 17 : Add a square above the tower and reduce the middle to make it look lik
 ![Menu](Step18.png)
 
 Step 18 : Add the tower above the base
+[Download Step 18](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step18.stl?ref_type=heads)
 
 ---
 
 ![Menu](Step19.png)
+[Download Step 19](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step19.stl?ref_type=heads)
 
 Step 19 : Increase the size of the tower and base to fit the LCD screen and pir sensor on the breadbord
 
@@ -201,10 +213,15 @@ Step 21 : Tell yourself you have to do it in 2 stages, first the tower, then the
 
 ![Menu](Step2222.png)
 
+[Download the tour](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step222.stl?ref_type=heads)
+
+[Download the base](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step2222.stl?ref_type=heads)
+
 Step 22 : Want to break everything and open Meshmixer to make the 3D model hollow
 
 ---
 
 ![Menu](Last.png)
+[Download the last step](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Last.stl?ref_type=heads)
 
 Step 23 : Drill holes for all components and print
