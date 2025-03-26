@@ -1,5 +1,19 @@
 # Planning
 
+## Eighth week
+
+### Wenesday 26/03
+
+- ✅ See for prints, documentation and pick up my cuckoo clock for the 3D model
+
+### Tuesday 25/03
+
+- ✅ ESP32 Code
+
+### Monday 24/03
+
+- ✅ 3D Models
+
 --- 
 
 ## Seventh week

@@ -6,9 +6,39 @@ So for example when you receive feedback on your project, you can write down the
 
 ## Eighth week
 
+### Wenesday 26/03
+
+Today, I was finally able to 3D print my servo-skull, which will serve as the cuckoo in my project. After inspecting the result, I made the final modifications, including adjusting the holes for the final assembly. This step allowed me to be sure that all the parts would fit together perfectly during assembly.
+
+At the same time, I updated my Fritzing diagram. This took some time, as I wanted to be precise to avoid any confusion in the next steps. From now on, my diagram accurately reflects all the real connections in the project.
+
 ### Tuesday 25/03
 
+Today I devoted my entire day to making progress on the code part of my project. Above all, I wanted to make sure that all the components interacted correctly with the ESP32.
+
+I started by reviewing the physical connections in detail, checking one by one which pins were used for each component. Once I was sure that everything was properly connected, I initialized all my components: the LCD screen correctly configured, the DFPlayer module managing all sound effects, and the time display on the 7-segment module. Next, I integrated precise time synchronization using the NTP protocol, ensuring that my system always had the correct time.
+
+I had a few problems with the WiFi connection, including intermittent disconnections. To resolve this, I added automatic reconnection logic to my code every second in the event of WiFi signal loss. I also added display messages on the LCD screen to inform the user of the connection status.
+
+Much of my work today focused on dynamic appointment management. I coded a routine that allows the ESP32 to regularly (every 5 seconds) retrieve appointments from my API. These appointments are then clearly displayed on the LCD screen with date, time and label. To enhance user interaction, I programmed a sound feature with the DFPlayer: a specific sound is triggered each time an appointment is added, modified or deleted.
+
+As far as sensor management is concerned, I've set up a “night mode” logic controlled by the photoresistor. As soon as ambient brightness falls below a certain predefined threshold, the system activates this mode, suspending all automatic sounds so as not to disturb during the night. When brightness rises above a second, slightly higher threshold, night mode is automatically deactivated and sounds resume as normal.
+
+I've also added a function that plays a sound every hour on the hour, except when night mode is activated. This function uses the regular updating of the time by the NTP protocol.
+
+Finally, I've refined the management of the PIR motion sensor to prevent unwanted triggering by adding a 5-minute time lock. This ensures that the system doesn't play motion detection sounds too often. 
+
 ### Monday 24/03
+
+Today, I decided to concentrate fully on my 3D model. I knew I had a lot of work ahead of me to completely remake my model, so I preferred to clearly structure the steps I needed to take.
+
+I started by taking precise measurements to ensure that the proportions were correct from the outset. This step took longer than expected, as I had to make several adjustments to ensure that everything corresponded perfectly to my references.
+
+Next, I made the initial sketch directly on my modeling software. This part was pretty straightforward, but I did run into a few difficulties when it came to detailing specific parts of the model. I took my time to ensure that each element was well placed and proportioned.
+
+Once the sketch was complete, I moved on to the actual modeling, step by step, working first on the general shapes before tackling the details. During this process, I had a few minor problems with the textures, particularly in achieving the effect I wanted on certain surfaces, but after several attempts, I finally found a satisfactory solution.
+
+Towards the end of the day, I was able to start working on the fine details and decorative elements of the model.I haven't quite finished this stage yet, but I'm happy with the current result. 
 
 ---
 

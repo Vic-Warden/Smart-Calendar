@@ -1,4 +1,4 @@
-1. La peur assure la loyauté, où a-t-on besoin de moi ?  // Commissar
+1. La peur assure la loyauté, où a-t-on besoin de moi ?  // ****************************** Commissar
 2. Où réclame-t-on Sa volonté ?  
 3. Par l'Empereur, ce sera fait !  
 4. Que voulez-vous ?  
@@ -32,14 +32,14 @@
 32. Je pars... Ne me trahissez pas !  
 33. Il est juste qu'on nous transporte au combat.  
 34. Nous allons maintenant marcher.  
-35. La mort vient dans l'ombre. // Assassin
+35. La mort vient dans l'ombre. // ****************************** Assassin
 36. L'ennemi connaît ma position...
-37. On a aperçu une sorte de monstre // Spot voice lines
+37. On a aperçu une sorte de monstre // ****************************** Spot voice lines
 38. Par l'Empereur, pas eux !
 39. Quoi que ce soit, c'est une abomination pour l'Empereur
 40. J'ai l'ennemi en visée
 41. Ennemi aperçu. Quels sont les ordres ?
-42. Dites aux hommes que la cavalerie est là // Leman Russ
+42. Dites aux hommes que la cavalerie est là // ****************************** Leman Russ
 43. Prêts à gagner la guerre
 44. L'épine dorsale de la Garde est prête
 45. Compris. En route
@@ -49,7 +49,7 @@
 49. Ecrasez-les !
 50. Donnez-vous à fond !
 51. Graissez les chenilles au sang !
-52. Nous ne laisserons rien debout !  // Baneblade
+52. Nous ne laisserons rien debout !  // ****************************** Baneblade
 53. Prêts à libérer l'enfer par 11 tubes !  
 54. Quoi que vous vouliez, on est prêts !  
 55. L'Empereur va être fier.  
