@@ -2,6 +2,12 @@
 
 ## Eighth week
 
+### Thursday 27/03
+
+- ✅ Print the base 3D models
+
+- ✅ Technical documentation
+
 ### Wenesday 26/03
 
 - ✅ See for prints, documentation and pick up my cuckoo clock for the 3D model

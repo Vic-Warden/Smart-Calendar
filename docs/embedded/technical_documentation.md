@@ -56,15 +56,13 @@ Connected to PIN A4 **SDA**
 
 VCC : 5 V
 
-__LCD Screen :__ **Not connected yet need to wait to receive it**
+__LCD Screen :__ 
 
 Connected to PIN D22 **SCL**
 
 Connected to PIN D21 **SDA**
 
-VCC : ??
-
-Resistance of ?? Ohm
+VCC : 5 V
 
 __DF Player Mini :__
 
