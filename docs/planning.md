@@ -8,6 +8,12 @@
 
 - ✅ Technical documentation
 
+- 🔄 Split the embedded code
+
+- 🔄 Improve front-end with React
+
+- 🔄 Documentation
+
 ### Wenesday 26/03
 
 - ✅ See for prints, documentation and pick up my cuckoo clock for the 3D model

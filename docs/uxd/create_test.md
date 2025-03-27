@@ -38,7 +38,7 @@ Infill Pattern **Grid**
 
 ---
 
-Material 
+**Material** 
 
 Printing Temperature **210.0 °C**
 
@@ -76,8 +76,8 @@ When I split them, I reduce the time by **1h41**
 
 ---
 
-But when I flip them I reduce the time by **11 hours et 34 minutes !**
-
 ![Menu](Just_BASE_Better.png)
 
 ![Menu](Just_TOUR_Better.png)
+
+But when I flip them I reduce the time by **11 hours and 34 minutes !**
