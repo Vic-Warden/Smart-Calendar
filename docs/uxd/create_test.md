@@ -2,7 +2,41 @@
 
 Write here your own content!
 
-## Optimisations
+## **DIGITAL MANUFACTURING**
+
+The chosen device(s) and material are described
+
+---
+
+Manufacturing settings that are used are given
+
+---
+
+Optimisations are described with their impact
+
+---
+
+The manufacturing process is logged with pictures and/or video’s as proof.
+
+---
+
+Manufacturing files are present
+
+## **(USER)TEST**
+
+Describe what (user) requirements you want to test
+
+---
+
+Describe how you are going tot test
+
+---
+
+Describe what works on your design and what you are going to change for you final version
+
+---
+
+Optimise your design according to your manual manufacturing experience
 
 **Quality**
 

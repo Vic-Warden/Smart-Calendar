@@ -2,6 +2,8 @@
 
 Your Wiring Diagram, Bill of Materials, ... everything about how you built your embedded device should be documented here.
 
+## **Wiring Diagram**
+
 ![Menu](Embedded_device.png)
 
 ---
@@ -79,3 +81,11 @@ __Speaker :__
 Connected to PIN SPK_1 **on DF Player mini**
 
 Connected to PIN SPK_2 **on DF Player mini**
+
+---
+
+## **Bill of Materials**
+
+| Part #    | Manufacturer | Description       | Quantity | Price (incl. VAT) | Subtotal (incl. VAT) | Example url         |
+|-----------|--------------|-------------------|----------|-------------------|----------------------|--------------------|
+| ABC   | Example Inc. | Exemple    | ?        | ? €             | ? €                | example.com/abc123 |

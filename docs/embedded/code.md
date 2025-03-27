@@ -4,8 +4,28 @@ This is not a place to put your code, but to describe the code that you have wri
 
 ---
 
-My second program allowed me to test my PIR sensor, which works perfectly. 
+CC#01 Program code contains comment in the top the file stating:
+// 1. author information
+// 2. goal of this part of the program
+// 3. license type.
 
 ---
 
-My very first program let me know whether or not the connections I'd made were good, and I realized that I'd made some mistakes in relation to the leds... But otherwise the program works perfectly 
+CC#02 Program code (single lines of code, code constructs, code blocks, functions) is consequently indented with tabs or spaces for readability. 
+Code blocks contain matching curly brackets { }.
+
+---
+
+CC#03 Program code does not contain magic numbers (for readability and maintainability)
+
+---
+
+CC#04 Program code is commented
+
+---
+
+CC#05 Program is written in a way that does not lead to code duplication.
+
+---
+
+CC#06 There are consequent naming conventions for variables and functions

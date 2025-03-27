@@ -4,4 +4,14 @@ On this page you can describe the system architecture of your full-project. This
 
 Keep your system architecture up-to-date during the project. It is a living document that should reflect the current state of your project.
 
+**Introduction**
+
+---
+
+**Legend**
+
+---
+
+**System architecture diagram**
+
 ![Menu](SystemArchitecture.png)

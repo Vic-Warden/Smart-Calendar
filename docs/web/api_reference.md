@@ -197,7 +197,6 @@ Proof of Execution
 
 - Deleted from the website
 
-![Menu](10.png)
 
 ---
 
@@ -205,15 +204,11 @@ Proof of Execution
 
 - http://localhost/Database/Appointment/get_last_updated_appointment.php
 
-![Menu](11.png)
-
 ---
 
 - Only the last added displayed ( no changement here )
 
 - http://localhost/Database/Appointment/get_last_appointment.php
-
-![Menu](12.png)
 
 ---
 
@@ -221,7 +216,6 @@ Proof of Execution
 
 - http://localhost/Database/Appointment/recover_appointment.php
 
-![Menu](13.png)
 
 ---
 
@@ -231,7 +225,6 @@ Proof of Execution
 
 - Deleted from the website
 
-![Menu](14.png)
 
 ---
 
@@ -239,7 +232,6 @@ Proof of Execution
 
 - http://localhost/Database/Appointment/get_last_updated_appointment.php
 
-![Menu](15.png)
 
 ---
 
@@ -247,7 +239,6 @@ Proof of Execution
 
 - http://localhost/Database/Appointment/get_last_appointment.php
 
-![Menu](16.png)
 
 ---
 
@@ -255,4 +246,13 @@ Proof of Execution
 
 - http://localhost/Database/Appointment/recover_appointment.php
 
-![Menu](17.png)
+
+The REST API documentation explains the input, output, and endpoint URL for each API to help you use them effectively.
+
+---
+
+There is a full explanation of the used technology.
+
+---
+
+All the design choices are explained in detail of the front-end and back-end of the web application.

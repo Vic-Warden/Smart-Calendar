@@ -75,3 +75,23 @@ And finally, for the sensor data, naturally the timestamp. It allows me to recor
 ### Critique sur ma table SensorData
 
 I'd have to replace the fact that in JSON files, for example, data is sent to the sensor with ID 1 with its name, it was just something I'd been thinking about. My table works perfectly, but in terms of “comfort” and ease, it would be simpler to have the name rather than the number.
+
+---
+
+All the sensor-data of the embedded device is stored in the database.
+
+---
+
+The database is normalized into a correct relational database. Tool: MySQL Workbench
+
+---
+
+All the tables in the database have a logical and correct Primary Key.
+
+---
+
+The structure of all the columns and tables is in such way that there is no data saved in a wrong format.
+
+---
+
+The build script of your MySQL Database should be stored as .sql files in your portfolio website with detailed instructions on how to use.

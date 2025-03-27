@@ -2,6 +2,8 @@
 
 Write here your own content!
 
+## **CONCEPT**
+
 Dimensions :
 
 Button : **11 mm** ( Diameter )
@@ -23,6 +25,24 @@ Breadboard : **165 mm * 55 mm** ( Length x Width )
 Speaker : Need to use a ruler
 
 ---
+
+
+
+---
+
+## **DIGITAL MANUFACTURING & MATERIAL**
+
+The choice for the digital manufacturing technique(s) and material(s) is justified
+
+---
+
+## **Digital Design**
+
+Choices for software are given
+
+---
+
+Design process is documented
 
 **Inspiration**
 
@@ -229,3 +249,7 @@ Step 22 : Want to break everything and open Meshmixer to make the 3D model hollo
 [Download the last step](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Last.stl?ref_type=heads)
 
 Step 23 : Drill holes for all components and print
+
+---
+
+Design files are proved
