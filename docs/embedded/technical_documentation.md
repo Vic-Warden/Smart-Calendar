@@ -6,11 +6,11 @@ Your Wiring Diagram, Bill of Materials, ... everything about how you built your 
 
 ---
 
-## Wemos ( Inputs )
+## ESP32 ( Inputs )
 
 __Button :__
 
-Connected to PIN D0 
+Connected to PIN D14
 
 VCC : 3.3 V
 
@@ -18,7 +18,7 @@ Resistance of 10k Ohm
 
 __Photo resistance :__
 
-Connected to PIN A0
+Connected to PIN D34
 
 VCC : 3.3 V
 
@@ -26,31 +26,25 @@ Resistance of 10k Ohm
 
 __PIR Sensor:__
 
-Connected to PIN D2 
+Connected to PIN D35
 
 VCC : 5 V
 
 ---
 
-## Arduino ( Outputs )
-
-__LED :__
-
-Connected to PIN 2
-
-Resistance of 220 Ohm
+## ESP32 ( Outputs )
 
 __4 digits display :__
 
-Connected to PIN 2 **CLK**
+Connected to PIN D18 **CLK**
 
-Connected to PIN 3 **DIO**
+Connected to PIN D19 **DIO**
 
-VCC : 5 V
+VCC : 3.3 V
 
 __SV90 Servo :__
 
-Connected to PIN 7
+Connected to PIN D27
 
 VCC : 5 V
 
@@ -64,7 +58,9 @@ VCC : 5 V
 
 __LCD Screen :__ **Not connected yet need to wait to receive it**
 
-Connected to PIN ??
+Connected to PIN D22 **SCL**
+
+Connected to PIN D21 **SDA**
 
 VCC : ??
 
@@ -72,9 +68,9 @@ Resistance of ?? Ohm
 
 __DF Player Mini :__
 
-Connected to PIN 10 **TX**
+Connected to PIN RX2 **TX**
 
-Connected to PIN 11 **RX**
+Connected to PIN TX2 **RX**
 
 VCC : 5 V
 
@@ -85,20 +81,3 @@ __Speaker :__
 Connected to PIN SPK_1 **on DF Player mini**
 
 Connected to PIN SPK_2 **on DF Player mini**
-
-
----
-
-## Sends data between Wemos and arduino
-
-__Wemos :__
-
-Connected to PIN D7 ( 13 ) **TX**
-
-Connected to PIN D6 ( 12 )**RX**
-
-__Arduino :__
-
-Connected to PIN 12 **RX**
-
-Connected to PIN 13 **TX**
