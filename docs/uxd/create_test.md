@@ -65,3 +65,19 @@ Support horizontal Expansion **0.8 mm**
 ![Menu](Printbase.png)
 
 ![Menu](PrintbaseTime.png)
+
+---
+
+![Menu](Just_BASE.png)
+
+![Menu](Just_TOUR.png)
+
+When I split them, I reduce the time by **1h41**
+
+---
+
+But when I flip them I reduce the time by **11 hours et 34 minutes !**
+
+![Menu](Just_BASE_Better.png)
+
+![Menu](Just_TOUR_Better.png)
