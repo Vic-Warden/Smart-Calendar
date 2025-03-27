@@ -50,4 +50,8 @@ This feedback will give me a qualitative overview of React's impact on the user 
 
 [React](https://react.dev/learn)
 
-[W3schools](https://www.w3schools.com/REACT/DEFAULT.ASP)
+[W3schools ( React )](https://www.w3schools.com/REACT/DEFAULT.ASP)
+
+[Usig public folder ( React )](https://create-react-app.dev/docs/using-the-public-folder/)
+
+[Structure ( React )](https://blog.webdevsimplified.com/2022-07/react-folder-structure/)
