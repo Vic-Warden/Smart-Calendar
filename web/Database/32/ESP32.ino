@@ -9,28 +9,36 @@
 #include <WiFiUdp.h>
 #include <TM1637Display.h>
 #include <WebServer.h>
+#include <ESP32Servo.h>
 
-// LCD 
+// LCD Configuration
 #define LCD_SDA 21
 #define LCD_SCL 22
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-// 7-segment
+// 7-segment Display
 #define CLK_PIN 18
 #define DIO_PIN 19
 TM1637Display display(CLK_PIN, DIO_PIN);
 
-// NTP 
+// NTP Client
 WiFiUDP ntpUDP;
-WebServer server(80); 
+WebServer server(80);
 NTPClient timeClient(ntpUDP, "pool.ntp.org", 3600);
 bool timeInitialized = false;
 
-// DFPlayer
+// DFPlayer Mini
 HardwareSerial mySoftwareSerial(2);
 DFRobotDFPlayerMini dfPlayer;
 
-// Character modes
+// Servo Motor
+static const int servoPin = 27;
+Servo servo1;
+bool servoHourlyTriggered = false;
+unsigned long servoReturnTime = 0;
+const unsigned long HOURLY_SERVO_DURATION = 60000;
+
+// Character Modes
 enum CharacterMode 
 {
   COMMISSAR,
@@ -38,8 +46,9 @@ enum CharacterMode
   BANEBLADE
 };
 CharacterMode currentCharacter = COMMISSAR;
+String currentCharacterName = "Commissar";
 
-// WiFi
+// WiFi Credentials
 const char* SSID = "DeKey-Fraijlemaborg";
 const char* PASSWORD = "i3xHp*ag";
 
@@ -47,27 +56,24 @@ const char* PASSWORD = "i3xHp*ag";
 const char* APPOINTMENT_API_URL = "http://100.74.252.69/Database/Appointment/recover_appointment.php";
 const char* SENSOR_API_URL = "http://100.74.252.69/Database/SensorData/insert_sensor_data.php";
 
-// Device and Sensor ID
+// Device Configuration
 const int DEVICE_ID = 1;
 const int BUTTON_SENSOR_ID = 1;
 const int PIR_SENSOR_ID = 2;
 const int LDR_SENSOR_ID = 3;
 
-// Timing
+// Timing Constants
 const unsigned long APPOINTMENT_REFRESH_INTERVAL = 5000;
 const unsigned long DISPLAY_INTERVAL = 3000;
-const unsigned long SENSOR_CHECK_INTERVAL = 50;      
+const unsigned long SENSOR_CHECK_INTERVAL = 50;
 const unsigned long TIME_UPDATE_INTERVAL = 60000;
 const unsigned long NTP_RETRY_INTERVAL = 30000;
-const unsigned long BUTTON_DEBOUNCE_TIME = 50;      
+const unsigned long BUTTON_DEBOUNCE_TIME = 50;
 const unsigned long WIFI_RECONNECT_DELAY = 1000;
 const unsigned long CHARACTER_NOTIFICATION_DURATION = 2000;
-unsigned long lastHourCheck = 0;
-unsigned long characterNotificationStart = 0;
-bool showingCharacterNotification = false;
-String currentCharacterName = "Commissar";
+const long pirInterval = 300000;
 
-// Sound 
+// Sound Tracks
 const int COMMISSAR_TRACK = 31;
 const int LEMAN_RUSS_TRACK = 42;
 const int BANEBLADE_TRACK = 53;
@@ -75,7 +81,7 @@ const int DARK_TRACK = 35;
 const int LIGHT_TRACK = 36;
 const int PIR_TRACKS[] = {37, 38, 39, 40, 41};
 
-// Appointment tracks
+// Appointment Sound Tracks
 const int COMMISSAR_ACTIVE_TRACKS[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 28, 33, 34};
 const int COMMISSAR_DELETED_TRACKS[] = {11, 20, 23, 24, 25, 26, 27, 29, 30, 32};
 const int LEMAN_RUSS_ACTIVE_TRACKS[] = {43, 44, 45, 46, 47, 48};
@@ -83,16 +89,16 @@ const int LEMAN_RUSS_DELETED_TRACKS[] = {49, 50, 51};
 const int BANEBLADE_ACTIVE_TRACKS[] = {52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 67, 68, 69, 70, 71, 72, 73, 74};
 const int BANEBLADE_DELETED_TRACKS[] = {64, 65, 66};
 
-// Night Mode 
-const int NIGHT_MODE_ENTER_THRESHOLD = 650;  
-const int NIGHT_MODE_EXIT_THRESHOLD = 750;   
+// Night Mode Thresholds
+const int NIGHT_MODE_ENTER_THRESHOLD = 650;
+const int NIGHT_MODE_EXIT_THRESHOLD = 750;
 
-// Sensor
+// Sensor Pins
 const int BUTTON_PIN = 14;
 const int PIR_PIN = 35;
 const int LDR_PIN = 34;
 
-// Variables
+// Global Variables
 DynamicJsonDocument appointments(2048);
 std::vector<String> previousAppointmentIds;
 unsigned long lastAppointmentRefresh = 0;
@@ -102,21 +108,21 @@ unsigned long lastTimeUpdate = 0;
 unsigned long lastNtpRetry = 0;
 unsigned long lastButtonPress = 0;
 unsigned long lastReconnectAttempt = 0;
+unsigned long lastHourCheck = 0;
+unsigned long characterNotificationStart = 0;
+unsigned long lastPIRTime = 0;
 int currentAppointmentIndex = 0;
-bool dfPlayerInitialized = false;
-bool dataRefreshed = false;
-bool nightMode = false;
-
-// Sensor states
 int lastButtonState = HIGH;
 int lastPIRState = LOW;
 int lastLDRValue = -1;
+bool dfPlayerInitialized = false;
+bool dataRefreshed = false;
+bool nightMode = false;
+bool showingCharacterNotification = false;
 bool pirLocked = false;
-unsigned long lastPIRTime = 0;
-const long pirInterval = 300000;
 
-// Display states
-enum DisplayState {
+enum DisplayState 
+{
   SHOWING_CHARACTER_NOTIFICATION,
   SHOWING_APPOINTMENTS,
   SHOWING_NO_APPOINTMENTS,
@@ -124,53 +130,21 @@ enum DisplayState {
 };
 DisplayState currentDisplayState = SHOWING_INITIALIZATION;
 
-// Function declarations
-void updateDisplay(String line1, String line2, DisplayState newState);
-void initializeTime();
-void connectToWiFi();
-void update7SegmentDisplay();
-void handleAppointments(unsigned long currentMillis);
-void checkHourlyChime(unsigned long currentMillis);
-void fetchAppointments();
-void checkForAppointmentChanges(DynamicJsonDocument& newAppointments);
-void playAppropriateSound(bool isActiveOrUpdated);
-void displayCurrentAppointment(unsigned long currentMillis);
-void handleSensors(unsigned long currentMillis);
-void sendSensorData(int sensor_id, float value);
-String getCurrentTime();
-void playRandomSound(const int tracks[], int count);
-void setupServer();
-
-String reverseString(String str) {
-  String reversed = "";
-  for (int i = str.length() - 1; i >= 0; i--) {
-    reversed += str[i];
-  }
-  return reversed;
-}
-
-void updateDisplay(String line1, String line2, DisplayState newState) {
+void updateDisplay(String line1, String line2, DisplayState newState) 
+{
   static String lastLine1 = "";
   static String lastLine2 = "";
   static DisplayState lastState = SHOWING_INITIALIZATION;
 
-  if (newState != lastState || line1 != lastLine1 || line2 != lastLine2) {
+  if (newState != lastState || line1 != lastLine1 || line2 != lastLine2) 
+  {
     lcd.clear();
+    
+    lcd.setCursor(0, 0);  // Top line
+    lcd.print(line1.substring(0, 16));
 
-    // Inverser les chaînes pour affichage tête en bas
-    String rev1 = reverseString(line1);
-    String rev2 = reverseString(line2);
-
-    // Afficher ligne 1 en bas, ligne 2 en haut (car écran retourné)
-    for (int i = 0; i < rev1.length() && i < 16; i++) {
-      lcd.setCursor(15 - i, 1);  // Ligne du bas
-      lcd.print(rev1[i]);
-    }
-
-    for (int i = 0; i < rev2.length() && i < 16; i++) {
-      lcd.setCursor(15 - i, 0);  // Ligne du haut
-      lcd.print(rev2[i]);
-    }
+    lcd.setCursor(0, 1);
+    lcd.print(line2.substring(0, 16));
 
     lastLine1 = line1;
     lastLine2 = line2;
@@ -179,18 +153,39 @@ void updateDisplay(String line1, String line2, DisplayState newState) {
   }
 }
 
-void initializeTime() {
-  if (timeClient.forceUpdate()) {
+void update7SegmentDisplay() 
+{
+  if (!timeInitialized) 
+  {
+    display.showNumberDec(9999);
+    return;
+  }
+  
+  timeClient.update();
+  int hour = timeClient.getHours() + 1;  
+  if (hour >= 24) hour -= 24;          
+  int minute = timeClient.getMinutes();
+  display.showNumberDecEx(hour * 100 + minute, 0b01000000, true);
+}
+
+void initializeTime() 
+{
+  if (timeClient.forceUpdate()) 
+  {
     timeInitialized = true;
     Serial.println("Time initialized");
     updateDisplay("Time initialized", "Fetching data...", SHOWING_INITIALIZATION);
-  } else {
+  } 
+  
+  else 
+  {
     Serial.println("Time init failed");
     updateDisplay("Time init failed", "Retrying...", SHOWING_INITIALIZATION);
   }
 }
 
-void connectToWiFi() {
+void connectToWiFi() 
+{
   if (WiFi.status() == WL_CONNECTED) return;
 
   Serial.print("Connecting to WiFi...");
@@ -199,126 +194,110 @@ void connectToWiFi() {
   WiFi.begin(SSID, PASSWORD);
 
   unsigned long startAttemptTime = millis();
-  while (WiFi.status() != WL_CONNECTED && millis() - startAttemptTime < 10000) {
+
+  while (WiFi.status() != WL_CONNECTED && millis() - startAttemptTime < 10000) 
+  {
     delay(500);
     Serial.print(".");
   }
 
-  if (WiFi.status() == WL_CONNECTED) {
+  if (WiFi.status() == WL_CONNECTED) 
+  {
     Serial.println("\nWiFi connected");
     updateDisplay("WiFi Connected", "Syncing time...", SHOWING_INITIALIZATION);
     initializeTime();
-  } else {
+  } 
+  
+  else 
+  {
     Serial.println("\nWiFi failed");
     updateDisplay("WiFi Failed", "Retrying...", SHOWING_INITIALIZATION);
   }
 }
 
-void update7SegmentDisplay() {
-  if (!timeInitialized) {
-    display.showNumberDec(9999);
-    return;
-  }
-  
-  timeClient.update();
-  int hour = timeClient.getHours();
-  int minute = timeClient.getMinutes();
-  display.showNumberDecEx(hour * 100 + minute, 0b01000000, true);
-}
-
-void handleAppointments(unsigned long currentMillis) {
-  if (!dataRefreshed) {
-    fetchAppointments();
-    dataRefreshed = true;
-    lastAppointmentRefresh = currentMillis;
-  }
-
-  if (currentMillis - lastAppointmentRefresh >= APPOINTMENT_REFRESH_INTERVAL) {
-    dataRefreshed = false;
-  }
-
-  displayCurrentAppointment(currentMillis);
-}
-
-void checkHourlyChime(unsigned long currentMillis) {
-  static unsigned long lastCheckTime = 0;
-  static int lastChimeHour = -1;
-  
-  if (currentMillis - lastCheckTime >= 60000) {
-    lastCheckTime = currentMillis;
-    
-    // Silent during night mode
-    if (nightMode || !timeInitialized) return;
-    
-    timeClient.update();
-    int currentHour = timeClient.getHours();
-    int currentMinute = timeClient.getMinutes();
-    
-    if (currentMinute == 0 && currentHour != lastChimeHour) {
-      if (dfPlayerInitialized) {
-        dfPlayer.play(14);
-      }
-      lastChimeHour = currentHour;
-    } else if (currentMinute != 0) {
-      lastChimeHour = -1;
-    }
-  }
-}
-
-void fetchAppointments() {
+void fetchAppointments() 
+{
   HTTPClient http;
   http.begin(APPOINTMENT_API_URL);
 
   int httpCode = http.GET();
-  if (httpCode == HTTP_CODE_OK) {
+  if (httpCode == HTTP_CODE_OK) 
+  {
     String payload = http.getString();
     DynamicJsonDocument newAppointments(2048);
     deserializeJson(newAppointments, payload);
     checkForAppointmentChanges(newAppointments);
-  } else {
+  } 
+  
+  else 
+  {
     updateDisplay("Fetch failed", "Retrying...", SHOWING_INITIALIZATION);
   }
+
   http.end();
 }
 
-void checkForAppointmentChanges(DynamicJsonDocument& newAppointments) {
+void checkForAppointmentChanges(DynamicJsonDocument& newAppointments) 
+{
   std::vector<String> currentIds;
   bool changesDetected = false;
 
-  for (JsonObject newApp : newAppointments.as<JsonArray>()) {
+  for (JsonObject newApp : newAppointments.as<JsonArray>()) 
+  {
     String newAppId = newApp["appointment_id"].as<String>();
     currentIds.push_back(newAppId);
 
     bool isNew = true;
-    for (String prevId : previousAppointmentIds) {
-      if (prevId == newAppId) {
+    bool isModified = false;
+    
+    for (String prevId : previousAppointmentIds) 
+    {
+      if (prevId == newAppId) 
+      {
         isNew = false;
+
+        for (JsonObject oldApp : appointments.as<JsonArray>()) 
+        {
+          if (oldApp["appointment_id"].as<String>() == newAppId) 
+          {
+            if (oldApp["task"] != newApp["task"] || oldApp["date_hour"] != newApp["date_hour"]) {
+              isModified = true;
+            }
+            break;
+          }
+        }
         break;
       }
     }
 
-    if (isNew && !nightMode) {
+    if ((isNew || isModified) && !nightMode) 
+    {
       playAppropriateSound(true);
       changesDetected = true;
     }
   }
 
-  for (String prevId : previousAppointmentIds) {
+  for (String prevId : previousAppointmentIds) 
+  {
     bool stillExists = false;
-    for (JsonObject newApp : newAppointments.as<JsonArray>()) {
-      if (newApp["appointment_id"].as<String>() == prevId) {
+    for (JsonObject newApp : newAppointments.as<JsonArray>()) 
+    {
+      if (newApp["appointment_id"].as<String>() == prevId) 
+      {
         stillExists = true;
         break;
       }
     }
 
-    if (!stillExists && !nightMode) {
+    if (!stillExists && !nightMode) 
+    {
       playAppropriateSound(false);
       changesDetected = true;
     }
   }
 
-  if (changesDetected || previousAppointmentIds.empty()) {
+  if (changesDetected || previousAppointmentIds.empty()) 
+  {
     appointments = newAppointments;
     previousAppointmentIds = currentIds;
     currentAppointmentIndex = 0;
@@ -326,10 +305,12 @@ void checkForAppointmentChanges(DynamicJsonDocument& newAppointments) {
   }
 }
 
-void playAppropriateSound(bool isActiveOrUpdated) {
+void playAppropriateSound(bool isActiveOrUpdated) 
+{
   if (!dfPlayerInitialized || nightMode) return;
   
-  switch(currentCharacter) {
+  switch(currentCharacter) 
+  {
     case COMMISSAR:
       playRandomSound(isActiveOrUpdated ? COMMISSAR_ACTIVE_TRACKS : COMMISSAR_DELETED_TRACKS, 
                      isActiveOrUpdated ? sizeof(COMMISSAR_ACTIVE_TRACKS)/sizeof(int) : 
@@ -348,19 +329,25 @@ void playAppropriateSound(bool isActiveOrUpdated) {
   }
 }
 
-void displayCurrentAppointment(unsigned long currentMillis) {
-  if (showingCharacterNotification) {
-    return; // Don't update appointments while showing character notification
+void displayCurrentAppointment(unsigned long currentMillis) 
+{
+  if (showingCharacterNotification) 
+  {
+    return;
   }
   
-  if (appointments.size() == 0) {
-    if (currentDisplayState != SHOWING_NO_APPOINTMENTS) {
+  if (appointments.size() == 0) 
+  {
+    if (currentDisplayState != SHOWING_NO_APPOINTMENTS) 
+    {
       updateDisplay("No appointments", "", SHOWING_NO_APPOINTMENTS);
     }
+
     return;
   }
 
-  if (currentMillis - lastDisplayChange >= DISPLAY_INTERVAL) {
+  if (currentMillis - lastDisplayChange >= DISPLAY_INTERVAL) 
+  {
     currentAppointmentIndex = (currentAppointmentIndex + 1) % appointments.size();
     lastDisplayChange = currentMillis;
   }
@@ -371,24 +358,30 @@ void displayCurrentAppointment(unsigned long currentMillis) {
 
   String line2 = "";
   
-  if (dateTime.length() >= 16) {
+  if (dateTime.length() >= 16) 
+  {
     line2 = dateTime.substring(8, 10) + "/" + 
             dateTime.substring(5, 7) + " " + 
             dateTime.substring(11, 16);
-  } else {
+  } 
+  
+  else 
+  {
     line2 = "Invalid date";
   }
 
-  // Truncate task if too long for display
-  if (task.length() > 16) {
+  if (task.length() > 16) 
+  {
     task = task.substring(0, 16);
   }
 
   updateDisplay(task, line2, SHOWING_APPOINTMENTS);
 }
 
-void handleSensors(unsigned long currentMillis) {
-  if (currentMillis - lastSensorCheck >= SENSOR_CHECK_INTERVAL) {
+void handleSensors(unsigned long currentMillis) 
+{
+  if (currentMillis - lastSensorCheck >= SENSOR_CHECK_INTERVAL) 
+  {
     lastSensorCheck = currentMillis;
     
     int buttonState = digitalRead(BUTTON_PIN);
@@ -396,23 +389,27 @@ void handleSensors(unsigned long currentMillis) {
     int ldrValue = analogRead(LDR_PIN);
     static bool wasInNightMode = nightMode;
     
-    // Handle night mode transition
     bool newNightMode = (ldrValue < NIGHT_MODE_ENTER_THRESHOLD);
-    if (newNightMode != nightMode) {
+
+    if (newNightMode != nightMode) 
+    {
       nightMode = newNightMode;
-      if (dfPlayerInitialized) {
+
+      if (dfPlayerInitialized) 
+      {
         dfPlayer.play(nightMode ? DARK_TRACK : LIGHT_TRACK);
       }
+
       wasInNightMode = nightMode;
       sendSensorData(LDR_SENSOR_ID, ldrValue);
     }
 
-    // Handle button press
-    if (buttonState == LOW && lastButtonState == HIGH && 
-        (currentMillis - lastButtonPress) >= BUTTON_DEBOUNCE_TIME) {
+    if (buttonState == LOW && lastButtonState == HIGH && (currentMillis - lastButtonPress) >= BUTTON_DEBOUNCE_TIME) 
+    {
       sendSensorData(BUTTON_SENSOR_ID, 1);
       
-      switch(currentCharacter) {
+      switch(currentCharacter) 
+      {
         case COMMISSAR:
           currentCharacter = LEMAN_RUSS;
           currentCharacterName = "Leman Russ";
@@ -429,8 +426,10 @@ void handleSensors(unsigned long currentMillis) {
       
       updateDisplay("Switched to", currentCharacterName, SHOWING_CHARACTER_NOTIFICATION);
       
-      if (dfPlayerInitialized && !nightMode) {
-        switch(currentCharacter) {
+      if (dfPlayerInitialized && !nightMode) 
+      {
+        switch(currentCharacter) 
+        {
           case COMMISSAR: dfPlayer.play(COMMISSAR_TRACK); break;
           case LEMAN_RUSS: dfPlayer.play(LEMAN_RUSS_TRACK); break;
           case BANEBLADE: dfPlayer.play(BANEBLADE_TRACK); break;
@@ -442,11 +441,12 @@ void handleSensors(unsigned long currentMillis) {
       lastButtonPress = currentMillis;
     }
 
-    // Handle PIR sensor
-    if (pirState == HIGH && lastPIRState == LOW && !pirLocked) {
+    if (pirState == HIGH && lastPIRState == LOW && !pirLocked) 
+    {
       sendSensorData(PIR_SENSOR_ID, 1);
       
-      if (dfPlayerInitialized && !nightMode) {
+      if (dfPlayerInitialized && !nightMode) 
+      {
         playRandomSound(PIR_TRACKS, sizeof(PIR_TRACKS)/sizeof(int));
       }
 
@@ -454,7 +454,8 @@ void handleSensors(unsigned long currentMillis) {
       pirLocked = true;
     }
 
-    if (pirLocked && currentMillis - lastPIRTime >= pirInterval) {
+    if (pirLocked && currentMillis - lastPIRTime >= pirInterval) 
+    {
       pirLocked = false;
     }
 
@@ -464,7 +465,8 @@ void handleSensors(unsigned long currentMillis) {
   }
 }
 
-void sendSensorData(int sensor_id, float value) {
+void sendSensorData(int sensor_id, float value) 
+{
   if (WiFi.status() != WL_CONNECTED) return;
 
   HTTPClient http;
@@ -480,8 +482,10 @@ void sendSensorData(int sensor_id, float value) {
   http.end();
 }
 
-String getCurrentTime() {
-  if (!timeInitialized && !timeClient.forceUpdate()) {
+String getCurrentTime() 
+{
+  if (!timeInitialized && !timeClient.forceUpdate()) 
+  {
     return "1970-01-01 00:00:00";
   }
   
@@ -492,28 +496,32 @@ String getCurrentTime() {
   return String(timeString);
 }
 
-void playRandomSound(const int tracks[], int count) {
+void playRandomSound(const int tracks[], int count) 
+{
   if (!dfPlayerInitialized || count <= 0 || nightMode) return;
   
   static unsigned long lastPlayTime = 0;
   unsigned long currentMillis = millis();
   
-  if (currentMillis - lastPlayTime > 100) {
+  if (currentMillis - lastPlayTime > 100) 
+  {
     int randomIndex = random(0, count);
     dfPlayer.play(tracks[randomIndex]);
     lastPlayTime = currentMillis;
   }
 }
 
-void setupServer() {
-  // Test de base
-  server.on("/", HTTP_GET, []() {
+void setupServer() 
+{
+  server.on("/", HTTP_GET, []() 
+  {
     server.send(200, "text/plain", "Smart Calendar is online!");
   });
 
-  // Changement de personnage via navigateur
-  server.on("/switch_character", HTTP_GET, []() {
-    switch (currentCharacter) {
+  server.on("/switch_character", HTTP_GET, []() 
+  {
+    switch (currentCharacter) 
+    {
       case COMMISSAR:
         currentCharacter = LEMAN_RUSS;
         currentCharacterName = "Leman Russ";
@@ -529,8 +537,10 @@ void setupServer() {
     }
 
     updateDisplay("Switched to", currentCharacterName, SHOWING_CHARACTER_NOTIFICATION);
-    if (dfPlayerInitialized && !nightMode) {
-      switch (currentCharacter) {
+    if (dfPlayerInitialized && !nightMode) 
+    {
+      switch (currentCharacter) 
+      {
         case COMMISSAR: dfPlayer.play(COMMISSAR_TRACK); break;
         case LEMAN_RUSS: dfPlayer.play(LEMAN_RUSS_TRACK); break;
         case BANEBLADE: dfPlayer.play(BANEBLADE_TRACK); break;
@@ -543,10 +553,12 @@ void setupServer() {
     server.send(200, "text/plain", "Character changed to " + currentCharacterName);
   });
 
-  // Fait parler le personnage courant (random)
-  server.on("/play_random", HTTP_GET, []() {
-    if (dfPlayerInitialized && !nightMode) {
-      switch (currentCharacter) {
+  server.on("/play_random", HTTP_GET, []() 
+  {
+    if (dfPlayerInitialized && !nightMode) 
+    {
+      switch (currentCharacter) 
+      {
         case COMMISSAR:
           playRandomSound(COMMISSAR_ACTIVE_TRACKS, sizeof(COMMISSAR_ACTIVE_TRACKS) / sizeof(int));
           break;
@@ -568,17 +580,52 @@ void setupServer() {
   Serial.println("HTTP server started!");
 }
 
-void setup() {
+void handleHourlyServo(unsigned long currentMillis) 
+{
+  static int lastTriggeredHour = -1;
+  
+  if (!timeInitialized) return;
+  
+  timeClient.update();
+  int currentHour = timeClient.getHours();
+  int currentMinute = timeClient.getMinutes();
+  
+  if (currentMinute == 0 && currentHour != lastTriggeredHour) 
+  {
+    servo1.write(90);
+    Serial.println("Servo moved to 90° position");
+    servoHourlyTriggered = true;
+    servoReturnTime = currentMillis + HOURLY_SERVO_DURATION;
+    lastTriggeredHour = currentHour;
+  }
+  
+  if (servoHourlyTriggered && currentMillis >= servoReturnTime) 
+  {
+    servo1.write(180);
+    Serial.println("Servo returned to 180° position");
+    servoHourlyTriggered = false;
+  }
+}
+
+void setup() 
+{
   Serial.begin(115200);
   mySoftwareSerial.begin(9600, SERIAL_8N1, 16, 17);
 
   Wire.begin(LCD_SDA, LCD_SCL);
   
-  if (dfPlayer.begin(mySoftwareSerial)) {
-    dfPlayer.volume(10);
+  servo1.attach(servoPin);
+  servo1.write(180);
+  
+  if (dfPlayer.begin(mySoftwareSerial)) 
+  {
+    dfPlayer.volume(7);
     dfPlayerInitialized = true;
     Serial.println("DFPlayer initialized");
-  } else {
+  } 
+  
+  else 
+  {
     Serial.println("DFPlayer initialization failed!");
   }
 
@@ -606,15 +653,16 @@ void setup() {
   setupServer();
 }
 
-void loop() {
+void loop() 
+{
   unsigned long currentMillis = millis();
 
-  // Always handle HTTP requests
   server.handleClient();
 
-  // Check WiFi connection
-  if (WiFi.status() != WL_CONNECTED) {
-    if (currentMillis - lastReconnectAttempt >= WIFI_RECONNECT_DELAY) {
+  if (WiFi.status() != WL_CONNECTED) 
+  {
+    if (currentMillis - lastReconnectAttempt >= WIFI_RECONNECT_DELAY) 
+    {
       lastReconnectAttempt = currentMillis;
       connectToWiFi();
     }
@@ -633,12 +681,24 @@ void loop() {
     lastNtpRetry = currentMillis;
   }
 
-  handleAppointments(currentMillis);
-  handleSensors(currentMillis);
-  checkHourlyChime(currentMillis);
+  if (!dataRefreshed) 
+  {
+    fetchAppointments();
+    dataRefreshed = true;
+    lastAppointmentRefresh = currentMillis;
+  }
 
-  if (showingCharacterNotification && 
-      currentMillis - characterNotificationStart >= CHARACTER_NOTIFICATION_DURATION) {
+  if (currentMillis - lastAppointmentRefresh >= APPOINTMENT_REFRESH_INTERVAL) 
+  {
+    dataRefreshed = false;
+  }
+
+  displayCurrentAppointment(currentMillis);
+  handleSensors(currentMillis);
+  handleHourlyServo(currentMillis);
+
+  if (showingCharacterNotification && currentMillis - characterNotificationStart >= CHARACTER_NOTIFICATION_DURATION) 
+  {
     showingCharacterNotification = false;
     currentDisplayState = SHOWING_APPOINTMENTS;
     lastDisplayChange = 0;
