@@ -34,7 +34,11 @@ DFRobotDFPlayerMini dfPlayer;
 // Servo Motor
 static const int servoPin = 27;
 Servo servo1;
-bool servoHourlyTriggered = false;
+int servoCurrentPosition = 180;      
+int servoTargetPosition = 180;       
+const int SERVO_SPEED = 1;          
+const unsigned long SERVO_UPDATE_INTERVAL = 20;
+unsigned long lastServoUpdate = 0;
 unsigned long servoReturnTime = 0;
 const unsigned long HOURLY_SERVO_DURATION = 60000;
 
@@ -45,6 +49,7 @@ enum CharacterMode
   LEMAN_RUSS,
   BANEBLADE
 };
+
 CharacterMode currentCharacter = COMMISSAR;
 String currentCharacterName = "Commissar";
 
@@ -128,6 +133,7 @@ enum DisplayState
   SHOWING_NO_APPOINTMENTS,
   SHOWING_INITIALIZATION
 };
+
 DisplayState currentDisplayState = SHOWING_INITIALIZATION;
 
 void updateDisplay(String line1, String line2, DisplayState newState) 
@@ -140,7 +146,7 @@ void updateDisplay(String line1, String line2, DisplayState newState)
   {
     lcd.clear();
     
-    lcd.setCursor(0, 0);  // Top line
+    lcd.setCursor(0, 0);
     lcd.print(line1.substring(0, 16));
 
     lcd.setCursor(0, 1);
@@ -155,15 +161,14 @@ void updateDisplay(String line1, String line2, DisplayState newState)
 
 void update7SegmentDisplay() 
 {
-  if (!timeInitialized) 
-  {
+  if (!timeInitialized) {
     display.showNumberDec(9999);
     return;
   }
   
   timeClient.update();
-  int hour = timeClient.getHours() + 1;  
-  if (hour >= 24) hour -= 24;          
+  int hour = timeClient.getHours() + 1;
+  if (hour >= 24) hour -= 24;
   int minute = timeClient.getMinutes();
   display.showNumberDecEx(hour * 100 + minute, 0b01000000, true);
 }
@@ -190,7 +195,7 @@ void connectToWiFi()
 
   Serial.print("Connecting to WiFi...");
   updateDisplay("Connecting WiFi", "", SHOWING_INITIALIZATION);
-   
+  
   WiFi.begin(SSID, PASSWORD);
 
   unsigned long startAttemptTime = millis();
@@ -221,6 +226,7 @@ void fetchAppointments()
   http.begin(APPOINTMENT_API_URL);
 
   int httpCode = http.GET();
+
   if (httpCode == HTTP_CODE_OK) 
   {
     String payload = http.getString();
@@ -260,7 +266,8 @@ void checkForAppointmentChanges(DynamicJsonDocument& newAppointments)
         {
           if (oldApp["appointment_id"].as<String>() == newAppId) 
           {
-            if (oldApp["task"] != newApp["task"] || oldApp["date_hour"] != newApp["date_hour"]) {
+            if (oldApp["task"] != newApp["task"] || oldApp["date_hour"] != newApp["date_hour"]) 
+            {
               isModified = true;
             }
             break;
@@ -342,7 +349,6 @@ void displayCurrentAppointment(unsigned long currentMillis)
     {
       updateDisplay("No appointments", "", SHOWING_NO_APPOINTMENTS);
     }
-
     return;
   }
 
@@ -571,7 +577,10 @@ void setupServer()
       }
 
       server.send(200, "text/plain", "Random voice line played.");
-    } else {
+    } 
+    
+    else 
+    {
       server.send(503, "text/plain", "Night mode active or DFPlayer unavailable.");
     }
   });
@@ -592,18 +601,30 @@ void handleHourlyServo(unsigned long currentMillis)
   
   if (currentMinute == 0 && currentHour != lastTriggeredHour) 
   {
-    servo1.write(90);
-    Serial.println("Servo moved to 90° position");
-    servoHourlyTriggered = true;
-    servoReturnTime = currentMillis + HOURLY_SERVO_DURATION;
+    servoTargetPosition = 90;
+    Serial.println("Servo moving slowly to 90°");
     lastTriggeredHour = currentHour;
+    servoReturnTime = currentMillis + HOURLY_SERVO_DURATION;
   }
   
-  if (servoHourlyTriggered && currentMillis >= servoReturnTime) 
+  if (servoTargetPosition == 90 && currentMillis >= servoReturnTime) 
   {
-    servo1.write(180);
-    Serial.println("Servo returned to 180° position");
-    servoHourlyTriggered = false;
+    servoTargetPosition = 180;
+    Serial.println("Servo returning slowly to 180°");
+  }
+
+  if (currentMillis - lastServoUpdate >= SERVO_UPDATE_INTERVAL) 
+  {
+    if (servoCurrentPosition != servoTargetPosition) 
+    {
+      int direction = (servoTargetPosition > servoCurrentPosition) ? 1 : -1;
+      servoCurrentPosition += direction * SERVO_SPEED;
+      servoCurrentPosition = constrain(servoCurrentPosition, 90, 180);
+      
+      servo1.write(servoCurrentPosition);
+    }
+
+    lastServoUpdate = currentMillis;
   }
 }
 
@@ -615,7 +636,7 @@ void setup()
   Wire.begin(LCD_SDA, LCD_SCL);
   
   servo1.attach(servoPin);
-  servo1.write(180);
+  servo1.write(servoCurrentPosition);
   
   if (dfPlayer.begin(mySoftwareSerial)) 
   {
