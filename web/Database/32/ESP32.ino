@@ -190,7 +190,7 @@ void connectToWiFi()
 
   Serial.print("Connecting to WiFi...");
   updateDisplay("Connecting WiFi", "", SHOWING_INITIALIZATION);
-  
+   
   WiFi.begin(SSID, PASSWORD);
 
   unsigned long startAttemptTime = millis();
