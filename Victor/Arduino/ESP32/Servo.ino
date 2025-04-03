@@ -1,27 +1,31 @@
+/*********
+  Rui Santos & Sara Santos - Random Nerd Tutorials
+  Complete project details at https://RandomNerdTutorials.com/esp32-servo-motor-web-server-arduino-ide/
+  Based on the ESP32Servo Sweep Example
+*********/
+
 #include <ESP32Servo.h>
 
-const int servoPin = 27;
-Servo monServo;
+static const int servoPin = 27;
+
+Servo servo1;
 
 void setup() {
-    Serial.begin(115200);
-    monServo.attach(servoPin, 500, 2500);
+
+  Serial.begin(115200);
+  servo1.attach(servoPin);
 }
 
 void loop() {
-    for (int angle = 0; angle <= 180; angle += 5) 
-    {
-        monServo.write(angle);
-        Serial.print("Angle: ");
-        Serial.println(angle);
-        delay(20);
-    }
+  for(int posDegrees = 90; posDegrees <= 180; posDegrees++) {
+    servo1.write(posDegrees);
+    Serial.println(posDegrees);
+    delay(20);
+  }
 
-    for (int angle = 180; angle >= 0; angle -= 5) 
-    {
-        monServo.write(angle);
-        Serial.print("Angle: ");
-        Serial.println(angle);
-        delay(20);
-    }
+  for(int posDegrees = 180; posDegrees >= 90; posDegrees--) {
+    servo1.write(posDegrees);
+    Serial.println(posDegrees);
+    delay(20);
+  }
 }

@@ -1,321 +1,418 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
+/* Home Page */
+
 .background-section 
 {
-    width: 100%;
-    height: 100vh; 
-    background-image: url('Home_page.png');
-    background-size: cover;
-    background-position: center calc(50% - 230px);
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('Home_page.png');
+  background-size: cover;
+  background-position: center calc(50% - 230px);
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
 }
 
 .title-text 
 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    color: #646d5f;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-    margin-top: 90px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  color: #646d5f;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  margin-top: 90px;
 }
 
 .overlay-links 
 {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px 15px;
-    border-radius: 8px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 15px;
+  border-radius: 8px;
 }
 
 .overlay-links a 
 {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    display: block;
-    margin: 5px 0;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  margin: 5px 0;
 }
 
 .overlay-links a:hover 
 {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 body, html 
 {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 .content-section 
 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    margin: auto;
-    padding: 30px;
-    background: rgba(55, 55, 60, 0.9);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    position: absolute;
-    bottom: 140px;
-    left: 50%;
-    transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  margin: auto;
+  padding: 30px;
+  background: rgba(55, 55, 60, 0.9);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .content-image 
 {
-    width: 150px;
-    height: auto;
-    border-radius: 10px;
-    margin-right: 15px;
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  margin-right: 15px;
 }
 
 .content-text 
 {
-    font-size: 1rem;
-    color: #ffffff;
-    margin-top: 0px;
+  font-size: 1rem;
+  color: #ffffff;
+  margin-top: 0px;
 }
 
 .button-container 
 {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .button 
 {
-    background-color: #8b0000;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
+  background-color: #8b0000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
 }
 
 .button:hover 
 {
-    background-color: #a52a2a;
+  background-color: #a52a2a;
 }
-
 
 #loading-screen 
 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-    font-size: 1.5rem;
-    font-family: 'Orbitron', sans-serif;
-    z-index: 9999;
-    background-image: url('Home_page.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-size: 1.5rem;
+  font-family: 'Orbitron', sans-serif;
+  z-index: 9999;
+  background-image: url('Home_page.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #loader-container 
 {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
 }
 
-/*Inside Spirit Machine*/
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+/* inside Spirit Machine */
 
 .ism-background-section 
 {
-    width: 100%;
-    height: 100vh;
-    background-image: url('Priest.png');
-    background-size: cover;
-    background-position: center calc(50% - 100px);
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    padding-top: 40px;
+  width: 100%;
+  height: 100vh;
+  background-image: url('Priest.png');
+  background-size: cover;
+  background-position: center calc(50% - 100px);
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding-top: 40px;
 }
 
 .ism-quote-box 
 {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 90%;
-    min-width: 700px;
-    max-width: 1200px;
-    margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  min-width: 700px;
+  max-width: 1200px;
+  margin-bottom: 20px;
 }
 
 .ism-quote-text 
 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-    font-style: italic;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  font-style: italic;
 }
 
 .ism-button 
 {
-    background-color: #8b0000;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
-    margin-top: 10px;
+  background-color: #8b0000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+  margin-top: 10px;
 }
 
 .ism-button:hover 
 {
-    background-color: #a52a2a;
+  background-color: #a52a2a;
 }
 
 .ism-appointments-container 
 {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 800px;
-    margin-top: 20px;
-    color: white;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  margin-top: 20px;
+  color: white;
 }
 
 .ism-appointment 
 {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .ism-appointment div 
 {
-    display: flex;
-    gap: 5px;
+  display: flex;
+  gap: 5px;
 }
 
 .ism-delete-button 
 {
-    background-color: red;
-    border: none;
-    color: white;
-    padding: 5px;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .ism-delete-button:hover 
 {
-    background-color: darkred;
+  background-color: darkred;
 }
 
 .ism-form-container 
 {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    color: white;
-    text-align: center;
-    margin-top: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
 }
 
 input 
 {
-    color: black !important;
+  color: black !important;
 }
 
 .ism-edit-button 
 {
-    background-color: #008CBA;
-    border: none;
-    color: white;
-    padding: 5px;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .ism-edit-button:hover 
 {
-    background-color: #005f73;
+  background-color: #005f73;
 }
 
 .ism-edit-form 
 {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
 }
 
 .ism-edit-form input 
 {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 .ism-edit-form button 
 {
-    background-color: #008CBA;
-    color: white;
-    padding: 5px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: #008CBA;
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .ism-edit-form button:hover 
 {
-    background-color: #005f73;
+  background-color: #005f73;
 }
+
+@keyframes glow-pulse 
+{
+    0%, 100% 
+    {
+      box-shadow: 0 0 0px rgba(0, 255, 153, 0.4);
+    }
+
+    50% 
+    {
+      box-shadow: 0 0 12px rgba(0, 255, 153, 0.8);
+    }
+  }
+  
+  .glow-pulse 
+  {
+    animation: glow-pulse 2.5s ease-in-out infinite;
+  }
+  
+  @keyframes scan 
+  {
+    0% { background-position-y: 0; }
+    100% { background-position-y: 100%; }
+  }
+  
+  .scan-lines_svelte::before 
+  {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(to bottom, rgba(0,255,0,0.1) 50%, transparent 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    animation: scan 8s infinite linear;
+    z-index: 2;
+  }
+  
+  .body_svelte 
+  {
+    background-color: #000;
+    color: #00ff99;
+    font-family: 'Share Tech Mono', monospace;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .terminal_svelte 
+  {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    font-family: 'Share Tech Mono', monospace;
+    border: 1px solid #00ff99;
+    box-shadow: 0 0 15px #00ff99;
+    animation: pulse-glow 2.5s ease-in-out infinite;
+  }
+  
+  .cursor_svelte 
+  {
+    display: inline-block;
+    width: 10px;
+    height: 1em;
+    background-color: #00ff99;
+    margin-left: 5px;
+    animation: blink_svelte 1s infinite steps(1, start);
+  }
+  
+  @keyframes blink_svelte 
+  {
+    50% { opacity: 0; }
+  }
+  
+  @keyframes popup_svelte 
+  {
+    0% 
+    {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+
+    100% 
+    {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .animate-popup 
+  {
+    animation: popup_svelte 0.3s ease-out forwards;
+  }
+  

@@ -16,42 +16,100 @@ The last but not least, to enhance the user experience, the improvement I had in
 
 **Research question :**
 
-How can React help me design an interface where users customize the voices of their cuckoo clock ?
+Which tools can most easily help improve the style of a website’s front-end  ?
 
 **Sub-questions :**
 
-How does React make it easy to manage customizable options (such as Warhammer voice lists) in a user interface ?
+How can the chosen tool be used to integrate interactive elements ?
 
 ---
 
 **Research method :**
 
-To answer my research question, I have chosen to adopt a comparative experimental approach focusing on the user interface. My objective is to determine whether using React for front-end development will improve the usability and interactivity of my connected cuckoo clock website, compared with the solution I'm currently using.
+As for my research, I don't know if this “research technique” has a name because I'm not going to lie to you, sir. Your part is the part I dread the most, I'm not taking too much risk in telling you that we French students this is a first for us, so before doing any kind of research, I took out my phone and started writing down what I really want to do with this upgrade. I only need 2 things to choose the tools
 
-To do this, I'm going to design a new version of the website interface using React. In particular, this new version will enable users to customize their cuckoo's voices and interactions.
+- The first was, of course, the possibility of enhancing the visual
 
-The evaluation will be based mainly on user feedback, as the main criterion I wish to analyze is perceived ease of use. A small group of people (around 3-4 users) will test both versions of the site. I'll then ask them to answer a few simple but targeted questions, such as:
+- if the chosen tool could allow me to add audio, animation and even icons. 
 
-Which version did you find easier to use?
+So I started by searching the Internet for tools that met my two criteria. I noticed that there were often some tools that came up most often, so I looked into them a little more. React, Vue.js, Angular, and of course, Vanilla JS. So I decided to dig a little deeper into each of them.
 
-Which do you find more pleasant or intuitive?
+After a long research session I came across an article [Comparing Angular, React, Vue, and Vanilla-JS](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9) that compared different tools I was planning to use. Although I didn't know which one I should take, I decided to look it up and take only the information that was important to me. 
 
-Have you noticed any difference in the way you interact with the interface elements?
+Thanks to this article, I was able to learn quite a few things:
 
-This feedback will give me a qualitative overview of React's impact on the user experience. To present the results, I plan to draw up a comparative table, so as to highlight the positive or negative points observed in each version.
+- For example, regarding React, the author writes:
+
+" React has suitable testing tools. Their documentation just got a major upgrade and their community can be best described as 'fierce'. "
+
+I know that thanks to this there's documentation and I know that at first glance it's not something you look at first, but I'd already encountered a similar problem because when I had to install a mod for my favorite game, Dawn of War, I was quite happy to have access to a panoply of documentation that allowed me to solve all the problems I'd encountered, and without that I know I'd be unable to play it. So for me, having documentation is an important thing.
+
+- Regarding Vanilla, he explains that:
+
+" Vanilla JavaScript is not a good solution for larger endeavors. "
+
+Even if Vanilla is easy, it quickly becomes difficult to use for larger endeavors, so I don't think I'll be using it.
+
+- Regarding Angular, he explains that:
+
+" Angular is geared to Test Driven Development and is well suited for Enterprise level development. Their documentation is excellent and the community is responsive. "
+
+I can see that it's a development tool, but I'm not doing a professional project... I'm doing a personal project first and foremost, so I'm not going to choose it either!
+
+- For Vue, the author also says:
+
+" The community is small but this can work as an advantage since changes don't come out as frequently as Angular or React; requiring less general updating of the code. "
+
+It's obvious that it's a tool that's easy to use, but the problem is the lack of community and the lack of documentation. I've encountered too many problems to leave that point.
+
+It's not about one tool in particular, but thanks to it, I know that there isn't just one tool that can answer my question, but that there are many that can.
+
+" Many of the popular libraries are now more comparable than ever which allows organizations to truly select which pattern(s) work best for them. "
+
+After reading this article my preferred choice is React because it has good documentation, the ability to do many things including animations, add icons and even sounds.
+
+Then I read an article [Svelte vs React Comparison](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9) that I found interesting, which directly compared Svelte and React. 
+
+" Svelte cuts lots of corners in its compilation. It interprets its application code during build time. "
+
+This shows that Svelte does some of the work at compile time, making it faster and smoother.
+
+He also explains that :
+
+" Reactjs has a larger community and more resources for developers. There are tons upon tons of React blogs treating various features and advanced topics of Reactjs. "
+
+That's a decisive factor for me: having a large community means more tutorials, more answers if you get stuck, and more accessible resources to help you progress.
+
+In the article [Introducing Svelte, and Comparing Svelte with React and Vue](https://joshcollinsworth.com/blog/introducing-svelte-comparing-with-react-vue) I read that he said that 
+
+" From the start, I was consistently and pleasantly surprised how little code I needed to do things in Svelte-and how close it was to the JavaScript, HTML and CSS I already knew. "
+
+And that's exatly how I feel, I'm not a pro developer, I just want to improve my project without learning a super complicated trick, and Svelte makes it possible to do that, it even goes further saying “Svelte is React without all the bullshit.” It's a bit direct, but I understand what he means, simple and fast. 
+
+He also explains that Svelte avoids some common complications, particularly concerning component state, stating that:
+
+" State management is drastically simpler in Svelte compared to React or Vue. "
+
+This confirms the idea that Svelte simplifies things enormously, which is exactly what I'm looking for.
+
+---
+
+**Conclusion**
+
+After looking at different tools and comparing their advantages and disadvantages through various articles, I realize that React is clearly the most powerful tool, it has very complete documentation and a community that is clearly active. That's a real plus, but what I'm looking for above all isn't the most powerful tool, it's a tool that lets me get down to basics. So yes, I admit that thanks to my research I've managed to come to the same conclusion as Yanis, who also agrees that React is an excellent tool, but Yanis is a web developer, he's simply excellent, and I'm clearly not on his level, which is why my solution will be different from yours. And as the article says 
+
+" From the start, I was consistently and pleasantly surprised how little code I needed to do things in Svelte-and how close it was to the JavaScript, HTML and CSS I already knew. "
+
+I'm not a professional developer, I just want to enhance my project with some visuals and animations. And Svelte simplifies things enormously. 
+
+That's why I decided to use Svelte for my implementation !
 
 ---
 
 **Sources and References**
 
-[For the Research Method](https://www.scribbr.com/category/methodology/)
+[Comparing Angular, React, Vue, and Vanilla-JS](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9)
 
-[Comparative Method](https://csus.libguides.com/res-meth/comp-meth-quasi)
+[Svelte vs React Comparison](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9)
 
-[React](https://react.dev/learn)
-
-[W3schools ( React )](https://www.w3schools.com/REACT/DEFAULT.ASP)
-
-[Usig public folder ( React )](https://create-react-app.dev/docs/using-the-public-folder/)
-
-[Structure ( React )](https://blog.webdevsimplified.com/2022-07/react-folder-structure/)
+[Introducing Svelte, and Comparing Svelte with React and Vue](https://joshcollinsworth.com/blog/introducing-svelte-comparing-with-react-vue)
