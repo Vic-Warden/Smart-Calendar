@@ -94,18 +94,6 @@ This confirms the idea that Svelte simplifies things enormously, which is exactl
 
 ---
 
-**Conclusion**
-
-After looking at different tools and comparing their advantages and disadvantages through various articles, I realize that React is clearly the most powerful tool, it has very complete documentation and a community that is clearly active. That's a real plus, but what I'm looking for above all isn't the most powerful tool, it's a tool that lets me get down to basics. So yes, I admit that thanks to my research I've managed to come to the same conclusion as Yanis, who also agrees that React is an excellent tool, but Yanis is a web developer, he's simply excellent, and I'm clearly not on his level, which is why my solution will be different from yours. And as the article says 
-
-" From the start, I was consistently and pleasantly surprised how little code I needed to do things in Svelte-and how close it was to the JavaScript, HTML and CSS I already knew. "
-
-I'm not a professional developer, I just want to enhance my project with some visuals and animations. And Svelte simplifies things enormously. 
-
-That's why I decided to use Svelte for my implementation !
-
----
-
 **Implementation**
 
 After choosing which tool I was going to use to improve my front-end, I thought long and hard about what I could improve or add. I reread my website and asked myself, if I were a person who knew nothing about Warhammer 40k, what elements would I like to have for a little more explanation ? I first wrote my explanatory text to find out more about Omnissiah and techpriests. Then I was thinking, okay, I've got the text, but how do I add my text to my website? I started thinking, well, in Space Marine 2, in the campaign, there's a computer that explains the purpose of our first mission, and I really liked the animations on it, except that I'm not a professional developer, so I made it look like it's an Astra Militarum terminal, I had to add a few more lines to make it look like someone was trying to connect to it, so I'll let you see what I've implemented in the video.
@@ -117,6 +105,18 @@ Concerning the 2nd page, I thought that everything was more or less explained, s
 
 
 📹 **Proof 2**: [See the second proof](./proof2.mp4)  
+
+---
+
+**Conclusion**
+
+After looking at different tools and comparing their advantages and disadvantages through various articles, I realize that React is clearly the most powerful tool, it has very complete documentation and a community that is clearly active. That's a real plus, but what I'm looking for above all isn't the most powerful tool, it's a tool that lets me get down to basics. So yes, I admit that thanks to my research I've managed to come to the same conclusion as Yanis, who also agrees that React is an excellent tool, but Yanis is a web developer, he's simply excellent, and I'm clearly not on his level, which is why my solution will be different from yours. And as the article says 
+
+" From the start, I was consistently and pleasantly surprised how little code I needed to do things in Svelte-and how close it was to the JavaScript, HTML and CSS I already knew. "
+
+I'm not a professional developer, I just want to enhance my project with some visuals and animations. And Svelte simplifies things enormously. 
+
+That's why I decided to use Svelte for my implementation !
 
 
 ---
