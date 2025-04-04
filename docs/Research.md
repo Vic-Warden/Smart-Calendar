@@ -108,16 +108,8 @@ That's why I decided to use Svelte for my implementation !
 
 **Implementation**
 
-<video width="320" height="240" controls>
-  <source src="proof1.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-
-<video width="320" height="240" controls>
-  <source src="proof2.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+📹 **Proof 1**: [Download video](./proof1.mp4)  
+📹 **Proof 2**: [Download video](./proof2.mp4)  
 
 
 ---
