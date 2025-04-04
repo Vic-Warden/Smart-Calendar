@@ -106,6 +106,14 @@ That's why I decided to use Svelte for my implementation !
 
 ---
 
+**Implementation**
+
+![Proof for the Home Page](proof1.mp4)
+
+![Proof for the appointments](proof2.mp4)
+
+---
+
 **Sources and References**
 
 [Comparing Angular, React, Vue, and Vanilla-JS](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9)

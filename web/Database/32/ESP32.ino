@@ -628,25 +628,53 @@ void handleHourlyServo(unsigned long currentMillis)
   }
 }
 
-void setup() 
-{
+void setup() {
   Serial.begin(115200);
   mySoftwareSerial.begin(9600, SERIAL_8N1, 16, 17);
 
   Wire.begin(LCD_SDA, LCD_SCL);
-  
-  servo1.attach(servoPin);
-  servo1.write(servoCurrentPosition);
-  
-  if (dfPlayer.begin(mySoftwareSerial)) 
-  {
+
+
+  if (!servo1.attach(servoPin, 500, 2500)) {
+    Serial.println("Failed to attach servo!");
+  } else {
+    servo1.write(servoCurrentPosition);
+    delay(500); 
+
+    servoTargetPosition = 90;
+    servoMoving = true;
+    while (servoCurrentPosition != servoTargetPosition) {
+      int direction = (servoTargetPosition > servoCurrentPosition) ? 1 : -1;
+      servoCurrentPosition += direction * SERVO_SPEED;
+      servoCurrentPosition = constrain(servoCurrentPosition, 90, 180);
+      servo1.write(servoCurrentPosition);
+      delay(SERVO_UPDATE_INTERVAL);
+    }
+
+    delay(1000); 
+
+    servoTargetPosition = 180;
+    while (servoCurrentPosition != servoTargetPosition) {
+      int direction = (servoTargetPosition > servoCurrentPosition) ? 1 : -1;
+      servoCurrentPosition += direction * SERVO_SPEED;
+      servoCurrentPosition = constrain(servoCurrentPosition, 90, 180);
+      servo1.write(servoCurrentPosition);
+      delay(SERVO_UPDATE_INTERVAL);
+    }
+
+    servoMoving = false;
+    Serial.println("Servo test completed.");
+  }
+
+  if (dfPlayer.begin(mySoftwareSerial)) {
     dfPlayer.volume(7);
     dfPlayerInitialized = true;
     Serial.println("DFPlayer initialized");
-  } 
-  
-  else 
-  {
+
+    if (!nightMode) {
+      dfPlayer.play(1); 
+    }
+  } else {
     Serial.println("DFPlayer initialization failed!");
   }
 
@@ -656,7 +684,7 @@ void setup()
 
   display.setBrightness(0x0a);
   display.clear();
-  display.showNumberDec(8888);
+  display.showNumberDec(8888); 
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(PIR_PIN, INPUT);
@@ -669,8 +697,10 @@ void setup()
   connectToWiFi();
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
+
   timeClient.begin();
   initializeTime();
+
   setupServer();
 }
 
