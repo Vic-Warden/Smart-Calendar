@@ -16,6 +16,8 @@ Its primary purpose is to serve as a reference for understanding the system.
 
 **Legend**  
 
+![Menu](legend.png)  
+
 ---
 
 ## SAD#01, SAD#02, and SAD#03  
@@ -42,6 +44,8 @@ Its primary purpose is to serve as a reference for understanding the system.
 ---
 
 ## SAD#05  
+
+![Menu](legend.png) 
 
 ---
 

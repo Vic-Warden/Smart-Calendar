@@ -98,13 +98,13 @@ This confirms the idea that Svelte simplifies things enormously, which is exactl
 
 After choosing which tool I was going to use to improve my front-end, I thought long and hard about what I could improve or add. I reread my website and asked myself, if I were a person who knew nothing about Warhammer 40k, what elements would I like to have for a little more explanation ? I first wrote my explanatory text to find out more about Omnissiah and techpriests. Then I was thinking, okay, I've got the text, but how do I add my text to my website? I started thinking, well, in Space Marine 2, in the campaign, there's a computer that explains the purpose of our first mission, and I really liked the animations on it, except that I'm not a professional developer, so I made it look like it's an Astra Militarum terminal, I had to add a few more lines to make it look like someone was trying to connect to it, so I'll let you see what I've implemented in the video.
 
-📹 **Proof 1**: [See the first proof](./proof1.mp4)  
+**Proof 1**: [See the first proof](./proof1.mp4)  
 
 
 Concerning the 2nd page, I thought that everything was more or less explained, so why not concentrate on my 3D model? It's true that when you look at my 3D model, you can ask yourself various questions: what does the PIR sensor, the button and the photoresistor do? That's why I've explained everything, and what's more, I've succeeded with great difficulty in implementing my 3D model with the ability to rotate it to show it from all angles ! 
 
 
-📹 **Proof 2**: [See the second proof](./proof2.mp4)  
+**Proof 2**: [See the second proof](./proof2.mp4)  
 
 ---
 
