@@ -8,7 +8,7 @@ This document is regularly updated to reflect the current state of the project.
 
 **Introduction**  
 
-This document outlines the system architecture of my project, *Field Command: Pattern Cuckoo*, presenting a structured overview of its components, including software, databases, and network elements. It explains how these components interact with each other.  
+This document outlines the system architecture of my project, Field Command: Pattern Cuckoo, presenting a structured overview of its components, including software, databases, and network elements. It explains how these components interact with each other.  
 The described architecture includes all elements currently present in the Docker environment.  
 Its primary purpose is to serve as a reference for understanding the system.
 
@@ -69,7 +69,7 @@ Its primary purpose is to serve as a reference for understanding the system.
 | `LiquidCrystal_I2C.h`     | Manages LCD display (text, system status)                                     |
 | `TM1637Display.h`         | Displays time on 7-segment display                                            |
 | `ESP32Servo.h`            | Smooth servo motor control                                                    |
-| `WebServer.h`             | Built-in HTTP server (port 80) for local commands (e.g., switching)          |
+| `WebServer.h`             | Built-in HTTP server (port 80) for local commands (e.g., switching)           |
 
 **Main Functions**  
 - Retrieves appointments via API and displays them on the LCD  
@@ -143,8 +143,8 @@ Containers running in the `iot_default` network:
 ---
 
 ## SAD#11  
-- Personal computer (MacBook/Linux)  
-- Operating system (macOS/Linux)  
+- Personal computer ASUS ROG Strix
+- Operating system Windows 11
 - Installed tools: Docker Engine, Git, IDE, browser  
 
 ---
