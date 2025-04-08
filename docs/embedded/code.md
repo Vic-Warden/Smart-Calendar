@@ -4,28 +4,6 @@ This is not a place to put your code, but to describe the code that you have wri
 
 ---
 
-CC#01 Program code contains comment in the top the file stating:
-// 1. author information
-// 2. goal of this part of the program
-// 3. license type.
+This program, entitled **Smart Calendar System for ESP32**, controls a connected smart calendar. It uses an LCD screen, a 7-segment display, a servo-motor, a DFPlayer audio module, sensors (button, LDR, PIR), and connects to Wi-Fi to retrieve appointments from an external API. It manages event display, user interaction (button and motion detection), time synchronization via NTP, and an embedded web server for remote interaction.
 
----
-
-CC#02 Program code (single lines of code, code constructs, code blocks, functions) is consequently indented with tabs or spaces for readability. 
-Code blocks contain matching curly brackets { }.
-
----
-
-CC#03 Program code does not contain magic numbers (for readability and maintainability)
-
----
-
-CC#04 Program code is commented
-
----
-
-CC#05 Program is written in a way that does not lead to code duplication.
-
----
-
-CC#06 There are consequent naming conventions for variables and functions
+🔗 **Link to the main code on GitLab**: [https://gitlab.com/victor-hoegy/smart-calendar/main.ino](https://gitlab.com/victor-hoegy/smart-calendar/main.ino)

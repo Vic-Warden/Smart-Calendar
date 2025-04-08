@@ -111,3 +111,29 @@
 ## Total  
 
 - **89,41 €** 
+
+CC#01 Program code contains comment in the top the file stating:
+// 1. author information
+// 2. goal of this part of the program
+// 3. license type.
+
+---
+
+CC#02 Program code (single lines of code, code constructs, code blocks, functions) is consequently indented with tabs or spaces for readability. 
+Code blocks contain matching curly brackets { }.
+
+---
+
+CC#03 Program code does not contain magic numbers (for readability and maintainability)
+
+---
+
+CC#04 Program code is commented
+
+---
+
+CC#05 Program is written in a way that does not lead to code duplication.
+
+---
+
+CC#06 There are consequent naming conventions for variables and functions
