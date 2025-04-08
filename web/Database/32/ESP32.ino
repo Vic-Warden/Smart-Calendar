@@ -25,141 +25,133 @@
  #include <TM1637Display.h>
  #include <WebServer.h>
  #include <ESP32Servo.h>
+
+ // Hardware
  
- // =============================================
- // HARDWARE CONFIGURATION CONSTANTS
- // =============================================
+// LCD
+ const int LCD_I2C_ADDRESS = 0x27;     
+ const int LCD_COLUMNS = 16;            
+ const int LCD_ROWS = 2;               
+ const int LCD_SDA_PIN = 21;           
+ const int LCD_SCL_PIN = 22;            
  
- /* LCD Configuration Constants */
- const int LCD_I2C_ADDRESS = 0x27;       // I2C address of the LCD
- const int LCD_COLUMNS = 16;             // Number of columns in LCD
- const int LCD_ROWS = 2;                 // Number of rows in LCD
- const int LCD_SDA_PIN = 21;             // SDA pin for I2C communication
- const int LCD_SCL_PIN = 22;             // SCL pin for I2C communication
+// 7 segment 
+ const int DISPLAY_CLK_PIN = 18;        
+ const int DISPLAY_DIO_PIN = 19;         
+ const uint8_t DISPLAY_BRIGHTNESS = 0x0a;
+ const uint8_t DISPLAY_COLON_MASK = 0b01000000;
+ const int DISPLAY_ERROR_CODE = 9999;   
+ const int DISPLAY_DEFAULT_CODE = 8888;  
  
- /* 7-segment Display Constants */
- const int DISPLAY_CLK_PIN = 18;         // Clock pin for TM1637 display
- const int DISPLAY_DIO_PIN = 19;         // Data pin for TM1637 display
- const uint8_t DISPLAY_BRIGHTNESS = 0x0a;// Brightness level (0-7)
- const uint8_t DISPLAY_COLON_MASK = 0b01000000; // Mask for colon in time display
- const int DISPLAY_ERROR_CODE = 9999;    // Displayed when time not initialized
- const int DISPLAY_DEFAULT_CODE = 8888;  // Default display during initialization
+ // DFPlayer Mini 
+ const int DFPLAYER_RX_PIN = 16;         
+ const int DFPLAYER_TX_PIN = 17;         
+ const int DFPLAYER_VOLUME = 15;          
+ const int DFPLAYER_MIN_PLAY_INTERVAL_MS = 100;
+ const int DFPLAYER_BAUD = 9600;        
  
- /* DFPlayer Mini Audio Player Constants */
- const int DFPLAYER_RX_PIN = 16;         // RX pin for DFPlayer communication
- const int DFPLAYER_TX_PIN = 17;         // TX pin for DFPlayer communication
- const int DFPLAYER_VOLUME = 7;          // Default volume level (0-30)
- const int DFPLAYER_MIN_PLAY_INTERVAL_MS = 100; // Minimum delay between tracks
- const int DFPLAYER_BAUD = 9600;         // Baud rate for DFPlayer communication
+ // Servo Motor 
+ const int SERVO_PIN = 27;               
+ const int SERVO_MIN_POSITION = 90;     
+ const int SERVO_MAX_POSITION = 180;     
+ const int SERVO_SPEED = 1;             
+ const unsigned long SERVO_UPDATE_INTERVAL_MS = 20;
+ const unsigned long SERVO_TEST_PAUSE_MS = 1000;    
+ const unsigned long HOURLY_SERVO_DURATION_MS = 60000; 
+ const int SERVO_PULSE_MIN = 500;      
+ const int SERVO_PULSE_MAX = 2500;      
  
- /* Servo Motor Configuration */
- const int SERVO_PIN = 27;               // GPIO pin connected to servo
- const int SERVO_MIN_POSITION = 90;      // Minimum servo position (degrees)
- const int SERVO_MAX_POSITION = 180;     // Maximum servo position (degrees)
- const int SERVO_SPEED = 1;              // Degrees change per update interval
- const unsigned long SERVO_UPDATE_INTERVAL_MS = 20; // Servo position update interval
- const unsigned long SERVO_TEST_PAUSE_MS = 1000;    // Pause during servo test
- const unsigned long HOURLY_SERVO_DURATION_MS = 60000; // Duration of hourly servo movement
- const int SERVO_PULSE_MIN = 500;        // Minimum pulse width for servo (μs)
- const int SERVO_PULSE_MAX = 2500;       // Maximum pulse width for servo (μs)
+ // Input 
+ const int BUTTON_PIN = 14;             
+ const int PIR_PIN = 35;                
+ const int LDR_PIN = 34;          
+
+ // Network    
  
- /* Sensor Pin Assignments */
- const int BUTTON_PIN = 14;              // GPIO pin for mode switch button
- const int PIR_PIN = 35;                 // GPIO pin for PIR motion sensor
- const int LDR_PIN = 34;                 // GPIO pin for light sensor (LDR)
+ // NTP 
+ const char* NTP_SERVER = "pool.ntp.org";
+ const long NTP_UTC_OFFSET_SECONDS = 3600; 
+ const char* DEFAULT_TIME_STRING = "1970-01-01 00:00:00";
+ const size_t TIME_STRING_BUFFER_SIZE = 25;
+ const char* TIME_STRING_FORMAT = "%Y-%m-%d %H:%M:%S"; 
+ const int HOURS_PER_DAY = 24; 
  
- // =============================================
- // COMMUNICATION AND NETWORK CONSTANTS
- // =============================================
- 
- /* NTP Client Configuration */
- const char* NTP_SERVER = "pool.ntp.org";// NTP server for time synchronization
- const long NTP_UTC_OFFSET_SECONDS = 3600; // UTC offset in seconds
- const char* DEFAULT_TIME_STRING = "1970-01-01 00:00:00"; // Fallback time string
- const size_t TIME_STRING_BUFFER_SIZE = 25; // Buffer size for time strings
- const char* TIME_STRING_FORMAT = "%Y-%m-%d %H:%M:%S"; // Time format string
- const int HOURS_PER_DAY = 24;           // Number of hours in a day
- 
- /* API Endpoints */
+ // API 
  const char* APPOINTMENT_API_URL = "http://100.74.252.69/Database/Appointment/recover_appointment.php";
  const char* SENSOR_API_URL = "http://100.74.252.69/Database/SensorData/insert_sensor_data.php";
  
- /* HTTP Server Configuration */
- const char* WIFI_AP_NAME = "SmartCalendarAP"; // WiFi AP name for configuration
- const char* SERVER_ROOT_RESPONSE = "Smart Calendar is online!"; // Default web response
- const char* CONTENT_TYPE_TEXT = "text/plain"; // MIME type for text responses
- const char* CONTENT_TYPE_JSON = "application/json"; // MIME type for JSON responses
- const int HTTP_OK_CODE = 200;            // HTTP 200 OK status code
- const int HTTP_SERVICE_UNAVAILABLE_CODE = 503; // HTTP 503 status code
+ // Server 
+ const char* WIFI_AP_NAME = "SmartCalendarAP"; 
+ const char* SERVER_ROOT_RESPONSE = "Smart Calendar is online!"; 
+ const char* CONTENT_TYPE_TEXT = "text/plain"; 
+ const char* CONTENT_TYPE_JSON = "application/json"; 
+ const int HTTP_OK_CODE = 200;           
+ const int HTTP_SERVICE_UNAVAILABLE_CODE = 503; 
  
- /* Serial Communication */
- const int SERIAL_BAUD = 115200;         // Baud rate for serial monitor
+ // Serial monitor
+ const int SERIAL_BAUD = 115200;        
+
+ // ID
  
- // =============================================
- // STATE AND LOGIC CONSTANTS
- // =============================================
+ const int DEVICE_ID = 1; // ESP32's ID
  
- /* Device Configuration */
- const int DEVICE_ID = 1;                // Unique identifier for this device
- 
- /* Sensor IDs for API Communication */
- enum SensorIds {
-   BUTTON_SENSOR_ID = 1,                 // ID for button press events
-   PIR_SENSOR_ID = 2,                    // ID for motion detection events
-   LDR_SENSOR_ID = 3                     // ID for light level readings
+ enum SensorIds 
+ {
+   BUTTON_SENSOR_ID = 1, 
+   PIR_SENSOR_ID = 2,        
+   LDR_SENSOR_ID = 3           
  };
  
- /* Timing and Interval Constants */
- const unsigned long APPOINTMENT_REFRESH_INTERVAL_MS = 5000; // Appointment update interval
- const unsigned long DISPLAY_INTERVAL_MS = 3000;    // Time between display updates
- const unsigned long SENSOR_CHECK_INTERVAL_MS = 50; // Interval between sensor checks
- const unsigned long TIME_UPDATE_INTERVAL_MS = 60000; // Time sync interval
- const unsigned long NTP_RETRY_INTERVAL_MS = 30000; // Retry interval for NTP sync
- const unsigned long BUTTON_DEBOUNCE_TIME_MS = 50;  // Debounce time for button
- const unsigned long WIFI_RECONNECT_DELAY_MS = 1000; // WiFi reconnect delay
- const unsigned long DELAY_WIFI_FAIL_MS = 3000;     // Delay before restart on WiFi fail
- const unsigned long DELAY_AFTER_RESTART_MS = 5000; // Delay after restart
- const unsigned long CHARACTER_NOTIFICATION_DURATION_MS = 2000; // Character switch message duration
- const unsigned long PIR_INTERVAL_MS = 300000;      // Minimum interval between PIR triggers
- const unsigned long WIFI_TIMEOUT_MS = 30000;       // WiFi connection timeout
- const unsigned long WATCHDOG_INTERVAL_MS = 60000;  // Watchdog timer interval
- const unsigned long MAX_UPTIME_MS = 86400000;      // Maximum uptime before restart
+ // Timing
+ const unsigned long APPOINTMENT_REFRESH_INTERVAL_MS = 5000; 
+ const unsigned long DISPLAY_INTERVAL_MS = 3000;    
+ const unsigned long SENSOR_CHECK_INTERVAL_MS = 50; 
+ const unsigned long TIME_UPDATE_INTERVAL_MS = 60000; 
+ const unsigned long NTP_RETRY_INTERVAL_MS = 30000; 
+ const unsigned long BUTTON_DEBOUNCE_TIME_MS = 50;  
+ const unsigned long WIFI_RECONNECT_DELAY_MS = 1000; 
+ const unsigned long DELAY_WIFI_FAIL_MS = 3000;    
+ const unsigned long DELAY_AFTER_RESTART_MS = 5000; 
+ const unsigned long CHARACTER_NOTIFICATION_DURATION_MS = 2000; 
+ const unsigned long PIR_INTERVAL_MS = 300000;     
+ const unsigned long WIFI_TIMEOUT_MS = 30000;     
+ const unsigned long WATCHDOG_INTERVAL_MS = 60000; 
+ const unsigned long MAX_UPTIME_MS = 86400000;    
  
- /* Night Mode Thresholds */
- const int NIGHT_MODE_ENTER_THRESHOLD = 650; // LDR value to enter night mode
- const int NIGHT_MODE_EXIT_THRESHOLD = 750;  // LDR value to exit night mode
+ // Night Mode
+ const int NIGHT_MODE_ENTER_THRESHOLD = 650; 
+ const int NIGHT_MODE_EXIT_THRESHOLD = 750;  
  
- /* Character Modes */
- enum CharacterMode { 
-   COMMISSAR,                       // First character mode
-   LEMAN_RUSS,                      // Second character mode
-   BANEBLADE,                       // Third character mode
-   CHARACTER_MODE_COUNT             // Total number of character modes
+ // Character Modes 
+ enum CharacterMode 
+ { 
+   COMMISSAR,                       
+   LEMAN_RUSS,                      
+   BANEBLADE,                      
+   CHARACTER_MODE_COUNT             
  };
  
- /* Servo Test Phases */
- const int INITIAL_PHASE = 0;        // Initial phase - moving to min position
- const int PAUSE_PHASE = 1;          // Pause phase at min position
- const int RETURN_PHASE = 2;         // Return phase to max position
+ // Servo Test 
+ const int INITIAL_PHASE = 0;        
+ const int PAUSE_PHASE = 1;        
+ const int RETURN_PHASE = 2;         
+
+ // TRUE FALSE
+ const int VALUE_TRUE = 1;           
+ const int VALUE_FALSE = 0;         
  
- /* Logic Constants */
- const int VALUE_TRUE = 1;           // Representation of true value
- const int VALUE_FALSE = 0;          // Representation of false value
+ // Date 
+ const int DATE_STRING_LENGTH_THRESHOLD = 16; 
+ const int INDEX_DAY_START = 8;      
+ const int INDEX_DAY_END = 10;      
+ const int INDEX_MONTH_START = 5;  
+ const int INDEX_MONTH_END = 7;      
+ const int INDEX_TIME_START = 11;   
+ const int INDEX_TIME_END = 16;      
  
- /* Date String Processing Constants */
- const int DATE_STRING_LENGTH_THRESHOLD = 16; // Minimum valid date string length
- const int INDEX_DAY_START = 8;      // Start index of day in date string
- const int INDEX_DAY_END = 10;       // End index of day in date string
- const int INDEX_MONTH_START = 5;    // Start index of month in date string
- const int INDEX_MONTH_END = 7;      // End index of month in date string
- const int INDEX_TIME_START = 11;    // Start index of time in date string
- const int INDEX_TIME_END = 16;      // End index of time in date string
+ // Message
  
- // =============================================
- // MESSAGE CONSTANTS
- // =============================================
- 
- /* LCD Display Messages */
+ // LCD Message 
  const char* LCD_MSG_INIT = "Initializing...";
  const char* LCD_MSG_TEST_SERVO = "Testing servo...";
  const char* LCD_MSG_NO_APPOINTMENTS = "No appointments";
@@ -176,7 +168,7 @@
  const char* LCD_MSG_FETCH_FAIL = "Fetch failed";
  const char* LCD_MSG_SWITCHED = "Switched to";
  
- /* Serial Monitor Messages */
+ // Serial Monitor Message
  const char* SERIAL_MSG_TIME_INIT = "Time initialized";
  const char* SERIAL_MSG_TIME_FAIL = "Time init failed";
  const char* SERIAL_MSG_TEST_SERVO = "Testing servo: max -> min -> pause -> max";
@@ -192,14 +184,10 @@
  const char* SERIAL_MSG_HTTP_STARTED = "HTTP server started";
  const char* SERIAL_MSG_IP_ADDRESS = "IP address: ";
  
- /* Web Server Responses */
+ // Web Server Responses 
  const char* SERVER_SWITCH_RESPONSE = "Character changed to ";
  
- // =============================================
- // GLOBAL VARIABLES
- // =============================================
- 
- /* Hardware Objects */
+// Variables
  LiquidCrystal_I2C lcd(LCD_I2C_ADDRESS, LCD_COLUMNS, LCD_ROWS);
  TM1637Display display(DISPLAY_CLK_PIN, DISPLAY_DIO_PIN);
  WiFiUDP ntpUDP;
@@ -209,100 +197,90 @@
  DFRobotDFPlayerMini dfPlayer;
  Servo servo1;
  
- /* State Variables */
- CharacterMode currentCharacter = COMMISSAR; // Current selected character mode
- String currentCharacterNames[CHARACTER_MODE_COUNT] = {
-   "Commissar",                 // Name for COMMISSAR mode
-   "Leman Russ",                // Name for LEMAN_RUSS mode
-   "Baneblade"                  // Name for BANEBLADE mode
+ CharacterMode currentCharacter = COMMISSAR; 
+ String currentCharacterNames[CHARACTER_MODE_COUNT] = 
+ {
+   "Commissar",                 
+   "Leman Russ",                
+   "Baneblade"                  
  };
  
- DynamicJsonDocument appointments(2048);    // Stores current appointments
- std::vector<String> previousAppointmentIds; // Tracks previously seen appointments
+ DynamicJsonDocument appointments(2048);    
+ std::vector<String> previousAppointmentIds; 
  
- /* Timing Trackers */
- unsigned long lastAppointmentRefresh = 0;  // Last time appointments were fetched
- unsigned long lastDisplayChange = 0;       // Last time display was updated
- unsigned long lastSensorCheck = 0;         // Last time sensors were checked
- unsigned long lastTimeUpdate = 0;          // Last time clock was updated
- unsigned long lastNtpRetry = 0;            // Last NTP sync attempt
- unsigned long lastButtonPress = 0;         // Last time button was pressed
- unsigned long lastReconnectAttempt = 0;    // Last WiFi reconnect attempt
- unsigned long lastHourCheck = 0;           // Last hourly check
- unsigned long characterNotificationStart = 0; // When character notification started
- unsigned long lastPIRTime = 0;             // Last PIR sensor trigger time
+ // Timing Trackers 
+ unsigned long lastAppointmentRefresh = 0;  
+ unsigned long lastDisplayChange = 0;       
+ unsigned long lastSensorCheck = 0;         
+ unsigned long lastTimeUpdate = 0;          
+ unsigned long lastNtpRetry = 0;           
+ unsigned long lastButtonPress = 0;        
+ unsigned long lastReconnectAttempt = 0;    
+ unsigned long lastHourCheck = 0;           
+ unsigned long characterNotificationStart = 0; 
+ unsigned long lastPIRTime = 0;           
  
- /* State Trackers */
- int currentAppointmentIndex = 0;           // Index of currently displayed appointment
- int lastButtonState = HIGH;                // Previous button state (for debouncing)
- int lastPIRState = LOW;                    // Previous PIR sensor state
- int lastLDRValue = -1;                     // Previous LDR sensor reading
+ // State Trackers 
+ int currentAppointmentIndex = 0;     
+ int lastButtonState = HIGH;               
+ int lastPIRState = LOW;                    
+ int lastLDRValue = -1;                   
  
- /* System Status Flags */
- bool timeInitialized = false;              // Whether NTP time has been synced
- bool dfPlayerInitialized = false;          // Whether DFPlayer is ready
- bool dataRefreshed = false;                // Whether appointments need refresh
- bool nightMode = false;                    // Whether device is in night mode
- bool showingCharacterNotification = false;  // Whether showing character switch message
- bool pirLocked = false;                    // Whether PIR is in cooldown period
+ bool timeInitialized = false;              
+ bool dfPlayerInitialized = false;         
+ bool dataRefreshed = false;                
+ bool nightMode = false;                   
+ bool showingCharacterNotification = false; 
+ bool pirLocked = false;                   
  
- /* Servo Control Variables */
- int servoCurrentPosition = SERVO_MAX_POSITION; // Current servo position
- int servoTargetPosition = SERVO_MAX_POSITION;  // Target servo position
- unsigned long lastServoUpdate = 0;         // Last servo position update
- unsigned long servoReturnTime = 0;         // Time when servo should return
- bool servoMoving = false;                  // Whether servo is currently moving
+ // Servo Control 
+ int servoCurrentPosition = SERVO_MAX_POSITION; 
+ int servoTargetPosition = SERVO_MAX_POSITION; 
+ unsigned long lastServoUpdate = 0;         
+ unsigned long servoReturnTime = 0;        
+ bool servoMoving = false;                 
  
- /* Sound Track Numbers */
- const int COMMISSAR_TRACK = 31;            // Main track for Commissar mode
- const int LEMAN_RUSS_TRACK = 42;           // Main track for Leman Russ mode
- const int BANEBLADE_TRACK = 53;            // Main track for Baneblade mode
- const int DARK_TRACK = 35;                 // Track played when entering night mode
- const int LIGHT_TRACK = 36;                // Track played when exiting night mode
- 
- /* Character-specific Sound Tracks */
+// Sound
+ const int COMMISSAR_TRACK = 31;            
+ const int LEMAN_RUSS_TRACK = 42;          
+ const int BANEBLADE_TRACK = 53;          
+ const int DARK_TRACK = 35;                
+ const int LIGHT_TRACK = 36;              
  const int COMMISSAR_ACTIVE_TRACKS[] = {1,2,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18,19,21,22,28,33,34};
  const int COMMISSAR_DELETED_TRACKS[] = {11,20,23,24,25,26,27,29,30,32};
  const int LEMAN_RUSS_ACTIVE_TRACKS[] = {43,44,45,46,47,48};
  const int LEMAN_RUSS_DELETED_TRACKS[] = {49,50,51};
  const int BANEBLADE_ACTIVE_TRACKS[] = {52,53,54,55,56,57,58,59,60,61,62,63,67,68,69,70,71,72,73,74};
  const int BANEBLADE_DELETED_TRACKS[] = {64,65,66};
- const int PIR_TRACKS[] = {37,38,39,40,41}; // Tracks played on motion detection
+ const int PIR_TRACKS[] = {37,38,39,40,41}; 
  
- /* Display States */
- enum DisplayState {
-   SHOWING_CHARACTER_NOTIFICATION,    // Displaying character switch message
-   SHOWING_APPOINTMENTS,              // Displaying appointment information
-   SHOWING_NO_APPOINTMENTS,           // Displaying "no appointments" message
-   SHOWING_INITIALIZATION             // Displaying initialization messages
+ // Display States 
+ enum DisplayState 
+ {
+   SHOWING_CHARACTER_NOTIFICATION,   
+   SHOWING_APPOINTMENTS,             
+   SHOWING_NO_APPOINTMENTS,         
+   SHOWING_INITIALIZATION            
  };
- DisplayState currentDisplayState = SHOWING_INITIALIZATION; // Current display state
+ DisplayState currentDisplayState = SHOWING_INITIALIZATION; 
  
- // =============================================
- // FUNCTION DEFINITIONS
- // =============================================
- 
- /**
-  * Updates the LCD display with new content if it has changed
-  * 
-  * @param line1 The text to display on the first line
-  * @param line2 The text to display on the second line
-  * @param newState The new display state to transition to
-  */
- void updateDisplay(String line1, String line2, DisplayState newState) {
+// Updates the LCD display with new content if it has changed
+ void updateDisplay(String line1, String line2, DisplayState newState) 
+ {
    static String lastLine1 = "";      // Previously displayed first line
    static String lastLine2 = "";      // Previously displayed second line
    static DisplayState lastState = SHOWING_INITIALIZATION; // Previous state
  
    // Only update display if content or state has changed
-   if (newState != lastState || line1 != lastLine1 || line2 != lastLine2) {
+   if (newState != lastState || line1 != lastLine1 || line2 != lastLine2) 
+   {
      lcd.clear();  // Clear the display before showing new content
      
-     // Display first line (truncated to LCD column count)
+     // Display first line
      lcd.setCursor(0, 0);
      lcd.print(line1.substring(0, LCD_COLUMNS));
  
-     // Display second line (truncated to LCD column count)
+     // Display second line
      lcd.setCursor(0, 1);
      lcd.print(line2.substring(0, LCD_COLUMNS));
  
@@ -314,12 +292,12 @@
    }
  }
  
- /**
-  * Updates the 7-segment display with current time or error code
-  */
- void update7SegmentDisplay() {
+// Updates the 7-segment display with current time
+ void update7SegmentDisplay() 
+ {
    // Show error code if time hasn't been initialized
-   if (!timeInitialized) {
+   if (!timeInitialized) 
+   {
      display.showNumberDec(DISPLAY_ERROR_CODE);
      return;
    }
@@ -334,48 +312,48 @@
    display.showNumberDecEx(hour * 100 + minute, DISPLAY_COLON_MASK, true);
  }
  
- /**
-  * Initializes time synchronization with NTP server
-  */
- void initializeTime() {
+// Initializes time synchronization with NTP server
+ void initializeTime() 
+ {
    // Attempt to force an NTP time update
-   if (timeClient.forceUpdate()) {
+   if (timeClient.forceUpdate()) 
+   {
      timeInitialized = true;
      Serial.println(SERIAL_MSG_TIME_INIT);
      updateDisplay(LCD_MSG_TIME_INIT, LCD_MSG_FETCHING, SHOWING_INITIALIZATION);
-   } else {
+   } 
+   
+   else 
+   {
      Serial.println(SERIAL_MSG_TIME_FAIL);
      updateDisplay(LCD_MSG_TIME_FAIL, LCD_MSG_RETRYING, SHOWING_INITIALIZATION);
    }
  }
  
- /**
-  * Connects to WiFi using WiFiManager
-  * 
-  * If connection fails, restarts the device after a delay
-  */
- void connectToWiFi() {
+// Connects to WiFi using WiFiManager
+ void connectToWiFi() 
+ {
    WiFiManager wifiManager;
    updateDisplay(LCD_MSG_WIFI_START, "", SHOWING_INITIALIZATION);
    
    // Attempt to connect to WiFi or start configuration AP
-   if (!wifiManager.autoConnect(WIFI_AP_NAME)) {
-     // Connection failed - show message and restart
+   if (!wifiManager.autoConnect(WIFI_AP_NAME)) 
+   {
+     // Connection failed show message and restart
      updateDisplay(LCD_MSG_WIFI_FAIL, LCD_MSG_RESTARTING, SHOWING_INITIALIZATION);
      delay(DELAY_WIFI_FAIL_MS);
      ESP.restart();
      delay(DELAY_AFTER_RESTART_MS);
    }
    
-   // Connection successful - proceed to time sync
+   // Connection successful proceed to time sync
    updateDisplay(LCD_MSG_WIFI_CONNECTED, LCD_MSG_SYNCING, SHOWING_INITIALIZATION);
    initializeTime();
  }
  
- /**
-  * Fetches appointments from the API server
-  */
- void fetchAppointments() {
+// Fetches appointments from the API server
+ void fetchAppointments() 
+ {
    HTTPClient http;
    http.begin(APPOINTMENT_API_URL);
  
@@ -383,12 +361,16 @@
    int httpCode = http.GET();
    
    // Process response if successful
-   if (httpCode == HTTP_CODE_OK) {
+   if (httpCode == HTTP_CODE_OK) 
+   {
      String payload = http.getString();
      DynamicJsonDocument newAppointments(2048);
      deserializeJson(newAppointments, payload);
      checkForAppointmentChanges(newAppointments);
-   } else {
+   } 
+   
+   else 
+   {
      // Show error if fetch failed
      updateDisplay(LCD_MSG_FETCH_FAIL, LCD_MSG_RETRYING, SHOWING_INITIALIZATION);
    }
@@ -396,17 +378,15 @@
    http.end(); // Free resources
  }
  
- /**
-  * Compares new appointments with previous ones and triggers appropriate actions
-  * 
-  * @param newAppointments JSON document containing newly fetched appointments
-  */
- void checkForAppointmentChanges(DynamicJsonDocument& newAppointments) {
+// Compares new appointments with previous ones and triggers appropriate actions
+ void checkForAppointmentChanges(DynamicJsonDocument& newAppointments) 
+ {
    std::vector<String> currentIds;    // Track IDs of current appointments
    bool changesDetected = false;      // Flag for any detected changes
  
    // Check for new or modified appointments
-   for (JsonObject newApp : newAppointments.as<JsonArray>()) {
+   for (JsonObject newApp : newAppointments.as<JsonArray>()) 
+   {
      String newAppId = newApp["appointment_id"].as<String>();
      currentIds.push_back(newAppId);
  
@@ -414,49 +394,61 @@
      bool isModified = false;
      
      // Compare with previous appointments
-     for (String prevId : previousAppointmentIds) {
-       if (prevId == newAppId) {
+     for (String prevId : previousAppointmentIds) 
+     {
+       if (prevId == newAppId) 
+       {
          isNew = false;
  
          // Check if existing appointment has changed
-         for (JsonObject oldApp : appointments.as<JsonArray>()) {
-           if (oldApp["appointment_id"].as<String>() == newAppId) {
+         for (JsonObject oldApp : appointments.as<JsonArray>()) 
+         {
+           if (oldApp["appointment_id"].as<String>() == newAppId) 
+           {
              if (oldApp["task"] != newApp["task"] || oldApp["date_hour"] != newApp["date_hour"]) {
                isModified = true;
              }
+
              break;
            }
          }
+
          break;
        }
      }
  
      // Play sound for new or modified appointments (unless in night mode)
-     if ((isNew || isModified) && !nightMode) {
-       playAppropriateSound(VALUE_TRUE);
-       changesDetected = true;
+     if ((isNew || isModified) && !nightMode) 
+     {
+        playAppropriateSound(VALUE_TRUE);
+        changesDetected = true;
      }
    }
  
    // Check for deleted appointments
-   for (String prevId : previousAppointmentIds) {
+   for (String prevId : previousAppointmentIds) 
+   {
      bool stillExists = false;
-     for (JsonObject newApp : newAppointments.as<JsonArray>()) {
-       if (newApp["appointment_id"].as<String>() == prevId) {
-         stillExists = true;
-         break;
+     for (JsonObject newApp : newAppointments.as<JsonArray>()) 
+     {
+       if (newApp["appointment_id"].as<String>() == prevId) 
+       {
+          stillExists = true;
+          break;
        }
      }
  
      // Play sound for deleted appointments (unless in night mode)
-     if (!stillExists && !nightMode) {
+     if (!stillExists && !nightMode) 
+     {
        playAppropriateSound(VALUE_FALSE);
        changesDetected = true;
      }
    }
  
    // Update stored appointments if changes detected or first load
-   if (changesDetected || previousAppointmentIds.empty()) {
+   if (changesDetected || previousAppointmentIds.empty()) 
+   {
      appointments = newAppointments;
      previousAppointmentIds = currentIds;
      currentAppointmentIndex = 0;
@@ -464,18 +456,15 @@
    }
  }
  
- /**
-  * Plays an appropriate sound based on current character mode and event type
-  * 
-  * @param isActiveOrUpdated Whether the sound is for an active/updated (true) 
-  *                          or deleted (false) appointment
-  */
- void playAppropriateSound(bool isActiveOrUpdated) {
+// Plays an appropriate sound based on current character mode and event type
+ void playAppropriateSound(bool isActiveOrUpdated) 
+ {
    // Don't play sounds if DFPlayer isn't ready or in night mode
    if (!dfPlayerInitialized || nightMode) return;
    
    // Select sound set based on current character mode
-   switch(currentCharacter) {
+   switch(currentCharacter) 
+   {
      case COMMISSAR:
        playRandomSound(isActiveOrUpdated ? COMMISSAR_ACTIVE_TRACKS : COMMISSAR_DELETED_TRACKS, 
                      isActiveOrUpdated ? sizeof(COMMISSAR_ACTIVE_TRACKS)/sizeof(int) : 
@@ -494,25 +483,26 @@
    }
  }
  
- /**
-  * Displays the current appointment on the LCD
-  * 
-  * @param currentMillis Current time in milliseconds (for timing display rotation)
-  */
- void displayCurrentAppointment(unsigned long currentMillis) {
+// Displays the current appointment on the LCD
+ void displayCurrentAppointment(unsigned long currentMillis) 
+ {
    // Don't update display if showing character notification
    if (showingCharacterNotification) return;
    
    // Show "no appointments" message if none are available
-   if (appointments.size() == 0) {
-     if (currentDisplayState != SHOWING_NO_APPOINTMENTS) {
+   if (appointments.size() == 0) 
+   {
+     if (currentDisplayState != SHOWING_NO_APPOINTMENTS) 
+     {
        updateDisplay(LCD_MSG_NO_APPOINTMENTS, "", SHOWING_NO_APPOINTMENTS);
      }
+
      return;
    }
  
    // Rotate to next appointment at defined interval
-   if (currentMillis - lastDisplayChange >= DISPLAY_INTERVAL_MS) {
+   if (currentMillis - lastDisplayChange >= DISPLAY_INTERVAL_MS) 
+   {
      currentAppointmentIndex = (currentAppointmentIndex + 1) % appointments.size();
      lastDisplayChange = currentMillis;
    }
@@ -524,16 +514,21 @@
  
    // Format date string (DD/MM HH:MM)
    String line2 = "";
-   if (dateTime.length() >= DATE_STRING_LENGTH_THRESHOLD) {
+   if (dateTime.length() >= DATE_STRING_LENGTH_THRESHOLD) 
+   {
      line2 = dateTime.substring(INDEX_DAY_START, INDEX_DAY_END) + "/" + 
              dateTime.substring(INDEX_MONTH_START, INDEX_MONTH_END) + " " + 
              dateTime.substring(INDEX_TIME_START, INDEX_TIME_END);
-   } else {
+   } 
+   
+   else 
+   {
      line2 = LCD_MSG_INVALID_DATE;
    }
  
    // Truncate task if too long for display
-   if (task.length() > LCD_COLUMNS) {
+   if (task.length() > LCD_COLUMNS) 
+   {
      task = task.substring(0, LCD_COLUMNS);
    }
  
@@ -541,14 +536,12 @@
    updateDisplay(task, line2, SHOWING_APPOINTMENTS);
  }
  
- /**
-  * Checks and handles sensor inputs
-  * 
-  * @param currentMillis Current time in milliseconds (for timing)
-  */
- void handleSensors(unsigned long currentMillis) {
+// Checks and handles sensor inputs
+ void handleSensors(unsigned long currentMillis) 
+ {
    // Only check sensors at defined interval
-   if (currentMillis - lastSensorCheck >= SENSOR_CHECK_INTERVAL_MS) {
+   if (currentMillis - lastSensorCheck >= SENSOR_CHECK_INTERVAL_MS) 
+   {
      lastSensorCheck = currentMillis;
      
      // Read all sensor values
@@ -559,11 +552,13 @@
      
      // Check for night mode transition
      bool newNightMode = (ldrValue < NIGHT_MODE_ENTER_THRESHOLD);
-     if (newNightMode != nightMode) {
+     if (newNightMode != nightMode) 
+     {
        nightMode = newNightMode;
  
        // Play appropriate day/night sound if DFPlayer is ready
-       if (dfPlayerInitialized) {
+       if (dfPlayerInitialized) 
+       {
          dfPlayer.play(nightMode ? DARK_TRACK : LIGHT_TRACK);
        }
  
@@ -572,8 +567,8 @@
      }
  
      // Check for button press (with debouncing)
-     if (buttonState == LOW && lastButtonState == HIGH && 
-         (currentMillis - lastButtonPress) >= BUTTON_DEBOUNCE_TIME_MS) {
+     if (buttonState == LOW && lastButtonState == HIGH && (currentMillis - lastButtonPress) >= BUTTON_DEBOUNCE_TIME_MS) 
+     {
        sendSensorData(BUTTON_SENSOR_ID, VALUE_TRUE);
        
        // Cycle to next character mode
@@ -584,11 +579,13 @@
        updateDisplay(LCD_MSG_SWITCHED, currentCharacterName, SHOWING_CHARACTER_NOTIFICATION);
        
        // Play character-specific sound if not in night mode
-       if (dfPlayerInitialized && !nightMode) {
-         switch(currentCharacter) {
-           case COMMISSAR: dfPlayer.play(COMMISSAR_TRACK); break;
-           case LEMAN_RUSS: dfPlayer.play(LEMAN_RUSS_TRACK); break;
-           case BANEBLADE: dfPlayer.play(BANEBLADE_TRACK); break;
+       if (dfPlayerInitialized && !nightMode) 
+       {
+         switch(currentCharacter) 
+         {
+            case COMMISSAR: dfPlayer.play(COMMISSAR_TRACK); break;
+            case LEMAN_RUSS: dfPlayer.play(LEMAN_RUSS_TRACK); break;
+            case BANEBLADE: dfPlayer.play(BANEBLADE_TRACK); break;
          }
        }
        
@@ -598,12 +595,14 @@
        lastButtonPress = currentMillis;
      }
  
-     // Check for motion detection (with cooldown period)
-     if (pirState == HIGH && lastPIRState == LOW && !pirLocked) {
+     // Check for motion detection (with cooldown period )
+     if (pirState == HIGH && lastPIRState == LOW && !pirLocked) 
+     {
        sendSensorData(PIR_SENSOR_ID, VALUE_TRUE);
        
        // Play random motion sound if not in night mode
-       if (dfPlayerInitialized && !nightMode) {
+       if (dfPlayerInitialized && !nightMode) 
+       {
          playRandomSound(PIR_TRACKS, sizeof(PIR_TRACKS)/sizeof(int));
        }
  
@@ -613,7 +612,8 @@
      }
  
      // Reset PIR lock after cooldown period
-     if (pirLocked && currentMillis - lastPIRTime >= PIR_INTERVAL_MS) {
+     if (pirLocked && currentMillis - lastPIRTime >= PIR_INTERVAL_MS) 
+     {
        pirLocked = false;
      }
  
@@ -624,13 +624,9 @@
    }
  }
  
- /**
-  * Sends sensor data to the API server
-  * 
-  * @param sensor_id Which sensor is reporting data
-  * @param value The sensor reading to send
-  */
- void sendSensorData(int sensor_id, float value) {
+// Sends sensor data to the API server
+ void sendSensorData(int sensor_id, float value) 
+ {
    // Only send if WiFi is connected
    if (WiFi.status() != WL_CONNECTED) return;
  
@@ -648,15 +644,12 @@
    http.end();
  }
  
- /**
-  * Gets current time as formatted string
-  * 
-  * @return String containing current time in "YYYY-MM-DD HH:MM:SS" format
-  *         or default time if NTP not initialized
-  */
- String getCurrentTime() {
+// Gets current time as formatted string
+ String getCurrentTime() 
+ {
    // Return default time if NTP not ready
-   if (!timeInitialized && !timeClient.forceUpdate()) {
+   if (!timeInitialized && !timeClient.forceUpdate()) 
+   {
      return DEFAULT_TIME_STRING;
    }
    
@@ -668,13 +661,9 @@
    return String(timeString);
  }
  
- /**
-  * Plays a random sound from the specified track list
-  * 
-  * @param tracks Array of track numbers to choose from
-  * @param count Number of tracks in the array
-  */
- void playRandomSound(const int tracks[], int count) {
+// Plays a random sound from the specified track list
+ void playRandomSound(const int tracks[], int count) 
+ {
    // Don't play if DFPlayer not ready, no tracks, or in night mode
    if (!dfPlayerInitialized || count <= 0 || nightMode) return;
    
@@ -682,38 +671,43 @@
    unsigned long currentMillis = millis();
    
    // Only play if minimum interval has passed
-   if (currentMillis - lastPlayTime > DFPLAYER_MIN_PLAY_INTERVAL_MS) {
+   if (currentMillis - lastPlayTime > DFPLAYER_MIN_PLAY_INTERVAL_MS) 
+   {
      int randomIndex = random(0, count);
      dfPlayer.play(tracks[randomIndex]);
      lastPlayTime = currentMillis;
    }
  }
  
- /**
-  * Sets up the web server with all required endpoints
-  */
- void setupServer() {
-   // Root endpoint - simple status response
-   server.on("/", HTTP_GET, []() {
+// Sets up the web server with all required endpoints
+ void setupServer() 
+ {
+   // Root endpoint simple status response
+   server.on("/", HTTP_GET, []() 
+   {
      server.send(HTTP_OK_CODE, CONTENT_TYPE_TEXT, SERVER_ROOT_RESPONSE);
    });
  
-   // Appointments endpoint - returns current appointments as JSON
-   server.on("/appointments", HTTP_GET, []() {
+   // Appointments endpoint returns current appointments as JSON
+   server.on("/appointments", HTTP_GET, []() 
+   {
      String json;
      serializeJson(appointments, json);
      server.send(HTTP_OK_CODE, CONTENT_TYPE_JSON, json);
    });
  
-   // Character switch endpoint - cycles to next character mode
-   server.on("/switch_character", HTTP_GET, []() {
+   // Character switch endpoint cycles to next character mode
+   server.on("/switch_character", HTTP_GET, []() 
+   {
      currentCharacter = static_cast<CharacterMode>((currentCharacter + 1) % CHARACTER_MODE_COUNT);
      String currentCharacterName = currentCharacterNames[currentCharacter];
  
      // Update display and play sound (if not in night mode)
      updateDisplay(LCD_MSG_SWITCHED, currentCharacterName, SHOWING_CHARACTER_NOTIFICATION);
-     if (dfPlayerInitialized && !nightMode) {
-       switch (currentCharacter) {
+     if (dfPlayerInitialized && !nightMode) 
+     {
+       switch (currentCharacter) 
+       {
          case COMMISSAR: dfPlayer.play(COMMISSAR_TRACK); break;
          case LEMAN_RUSS: dfPlayer.play(LEMAN_RUSS_TRACK); break;
          case BANEBLADE: dfPlayer.play(BANEBLADE_TRACK); break;
@@ -728,11 +722,14 @@
      server.send(HTTP_OK_CODE, CONTENT_TYPE_TEXT, SERVER_SWITCH_RESPONSE + currentCharacterName);
    });
  
-   // Play random endpoint - plays random voice line for current character
-   server.on("/play_random", HTTP_GET, []() {
-     if (dfPlayerInitialized && !nightMode) {
+   // Play random endpoint plays random voice line for current character
+   server.on("/play_random", HTTP_GET, []() 
+   {
+     if (dfPlayerInitialized && !nightMode) 
+     {
        // Play random sound based on current character
-       switch (currentCharacter) {
+       switch (currentCharacter) 
+       {
          case COMMISSAR:
            playRandomSound(COMMISSAR_ACTIVE_TRACKS, sizeof(COMMISSAR_ACTIVE_TRACKS)/sizeof(int));
            break;
@@ -743,8 +740,12 @@
            playRandomSound(BANEBLADE_ACTIVE_TRACKS, sizeof(BANEBLADE_ACTIVE_TRACKS)/sizeof(int));
            break;
        }
+
        server.send(HTTP_OK_CODE, CONTENT_TYPE_TEXT, "Random voice line played.");
-     } else {
+     } 
+     
+     else 
+     {
        // Return error if conditions not met
        server.send(HTTP_SERVICE_UNAVAILABLE_CODE, CONTENT_TYPE_TEXT, 
                   "Night mode active or DFPlayer unavailable.");
@@ -755,12 +756,9 @@
    Serial.println(SERIAL_MSG_HTTP_STARTED);
  }
  
- /**
-  * Handles hourly servo movement (for visual clock function)
-  * 
-  * @param currentMillis Current time in milliseconds (for timing)
-  */
- void handleHourlyServo(unsigned long currentMillis) {
+// Handles hourly servo movement 
+ void handleHourlyServo(unsigned long currentMillis) 
+ {
    static int lastTriggeredHour = -1; // Track last hour servo was activated
    
    // Don't activate if time not initialized
@@ -772,7 +770,8 @@
    int currentMinute = timeClient.getMinutes();
    
    // Trigger at top of each new hour
-   if (currentMinute == 0 && currentHour != lastTriggeredHour) {
+   if (currentMinute == 0 && currentHour != lastTriggeredHour) 
+   {
      servoTargetPosition = SERVO_MIN_POSITION;
      servoMoving = true;
      Serial.println(SERIAL_MSG_SERVO_MOVING_MIN);
@@ -780,14 +779,17 @@
      servoReturnTime = currentMillis + HOURLY_SERVO_DURATION_MS;
    }
    
-   if (servoTargetPosition == SERVO_MIN_POSITION && currentMillis >= servoReturnTime) {
+   if (servoTargetPosition == SERVO_MIN_POSITION && currentMillis >= servoReturnTime) 
+   {
      servoTargetPosition = SERVO_MAX_POSITION;
      servoMoving = true;
      Serial.println(SERIAL_MSG_SERVO_MOVING_MAX);
    }
  
-   if (currentMillis - lastServoUpdate >= SERVO_UPDATE_INTERVAL_MS) {
-     if (servoCurrentPosition != servoTargetPosition) {
+   if (currentMillis - lastServoUpdate >= SERVO_UPDATE_INTERVAL_MS) 
+   {
+     if (servoCurrentPosition != servoTargetPosition) 
+     {
        int direction = (servoTargetPosition > servoCurrentPosition) ? 1 : -1;
        servoCurrentPosition += direction * SERVO_SPEED;
        servoCurrentPosition = constrain(servoCurrentPosition, SERVO_MIN_POSITION, SERVO_MAX_POSITION);
@@ -795,17 +797,18 @@
        servo1.write(servoCurrentPosition);
        lastServoUpdate = currentMillis;
      }
-     else if (servoMoving) {
+     
+     else if (servoMoving) 
+     {
        servoMoving = false;
        Serial.println(SERIAL_MSG_SERVO_REACHED);
      }
    }
  }
- /**
-  * Performs a self-test of the servo motor by moving it through its full range
-  * of motion and back to verify proper operation.
-  */
- void performServoSelfTest() {
+
+// Performs a self-test of the servo motor by moving it through its full range
+ void performServoSelfTest() 
+ {
    updateDisplay(LCD_MSG_TEST_SERVO, "", SHOWING_INITIALIZATION);
    Serial.println(SERIAL_MSG_TEST_SERVO);
  
@@ -815,7 +818,8 @@
    bool testComplete = false;
  
    // Continue testing until all phases are complete
-   while (!testComplete) {
+   while (!testComplete) 
+   {
      unsigned long now = millis();
  
      // Handle web server and WiFi during test to maintain responsiveness
@@ -823,16 +827,20 @@
      if (WiFi.status() != WL_CONNECTED) connectToWiFi();
  
      // Control servo movement based on current test phase
-     switch (testPhase) {
+     switch (testPhase) 
+     {
        case INITIAL_PHASE:
          // Move servo to minimum position in steps
-         if (now - lastMove >= SERVO_UPDATE_INTERVAL_MS && 
-             servoCurrentPosition > SERVO_MIN_POSITION) {
-           servoCurrentPosition -= SERVO_SPEED;
-           servoCurrentPosition = max(servoCurrentPosition, SERVO_MIN_POSITION);
-           servo1.write(servoCurrentPosition);
-           lastMove = now;
-         } else if (servoCurrentPosition <= SERVO_MIN_POSITION) {
+         if (now - lastMove >= SERVO_UPDATE_INTERVAL_MS && servoCurrentPosition > SERVO_MIN_POSITION) 
+         {
+            servoCurrentPosition -= SERVO_SPEED;
+            servoCurrentPosition = max(servoCurrentPosition, SERVO_MIN_POSITION);
+            servo1.write(servoCurrentPosition);
+            lastMove = now;
+         } 
+         
+         else if (servoCurrentPosition <= SERVO_MIN_POSITION) 
+         {
            // Transition to pause phase when minimum position reached
            testPhase = PAUSE_PHASE;
            testStart = now;
@@ -841,21 +849,25 @@
  
        case PAUSE_PHASE:
          // Pause at minimum position for defined duration
-         if (now - testStart >= SERVO_TEST_PAUSE_MS) {
-           testPhase = RETURN_PHASE;
-           lastMove = now;
+         if (now - testStart >= SERVO_TEST_PAUSE_MS) 
+         {
+            testPhase = RETURN_PHASE;
+            lastMove = now;
          }
          break;
  
        case RETURN_PHASE:
          // Return servo to maximum position in steps
-         if (now - lastMove >= SERVO_UPDATE_INTERVAL_MS && 
-             servoCurrentPosition < SERVO_MAX_POSITION) {
-           servoCurrentPosition += SERVO_SPEED;
-           servoCurrentPosition = min(servoCurrentPosition, SERVO_MAX_POSITION);
-           servo1.write(servoCurrentPosition);
-           lastMove = now;
-         } else if (servoCurrentPosition >= SERVO_MAX_POSITION) {
+         if (now - lastMove >= SERVO_UPDATE_INTERVAL_MS && servoCurrentPosition < SERVO_MAX_POSITION) 
+          {
+            servoCurrentPosition += SERVO_SPEED;
+            servoCurrentPosition = min(servoCurrentPosition, SERVO_MAX_POSITION);
+            servo1.write(servoCurrentPosition);
+            lastMove = now;
+         } 
+         
+         else if (servoCurrentPosition >= SERVO_MAX_POSITION) 
+         {
            // Mark test complete when maximum position reached
            testComplete = true;
            Serial.println(SERIAL_MSG_SERVO_TEST_COMPLETE);
@@ -865,10 +877,9 @@
    }
  }
  
- /**
-  * Main program setup - initializes all hardware components and services
-  */
- void setup() {
+// Setup
+ void setup() 
+ {
    // Initialize serial communication for debugging
    Serial.begin(SERIAL_BAUD);
    
@@ -883,15 +894,15 @@
    lcd.backlight();
    updateDisplay(LCD_MSG_INIT, "", SHOWING_INITIALIZATION);
  
-   // Initialize and configure 7-segment display
+   // Initialize and configure 7 segment display
    display.setBrightness(DISPLAY_BRIGHTNESS);
    display.clear();
    display.showNumberDec(DISPLAY_DEFAULT_CODE);
  
    // Configure sensor pins
-   pinMode(BUTTON_PIN, INPUT_PULLUP);  // Button with internal pull-up
-   pinMode(PIR_PIN, INPUT);            // PIR motion sensor
-   pinMode(LDR_PIN, INPUT);            // Light sensor
+   pinMode(BUTTON_PIN, INPUT_PULLUP);  
+   pinMode(PIR_PIN, INPUT);            
+   pinMode(LDR_PIN, INPUT);       
  
    // Read initial sensor values
    lastLDRValue = analogRead(LDR_PIN);
@@ -899,9 +910,13 @@
    nightMode = (lastLDRValue < NIGHT_MODE_ENTER_THRESHOLD);
  
    // Initialize and test servo motor
-   if (!servo1.attach(SERVO_PIN, SERVO_PULSE_MIN, SERVO_PULSE_MAX)) {
+   if (!servo1.attach(SERVO_PIN, SERVO_PULSE_MIN, SERVO_PULSE_MAX)) 
+   {
      Serial.println(SERIAL_MSG_SERVO_FAIL);
-   } else {
+   } 
+   
+   else 
+   {
      servo1.write(servoCurrentPosition);
      Serial.println(SERIAL_MSG_SERVO_ATTACHED);
    }
@@ -910,11 +925,15 @@
    performServoSelfTest();
  
    // Initialize DFPlayer audio module
-   if (dfPlayer.begin(mySoftwareSerial)) {
+   if (dfPlayer.begin(mySoftwareSerial)) 
+   {
      dfPlayer.volume(DFPLAYER_VOLUME);
      dfPlayerInitialized = true;
      Serial.println(SERIAL_MSG_DFPLAYER_INIT);
-   } else {
+   } 
+   
+   else 
+   {
      Serial.println(SERIAL_MSG_DFPLAYER_FAIL);
    }
  
@@ -931,10 +950,9 @@
    setupServer();
  }
  
- /**
-  * Main program loop - handles all periodic tasks and event processing
-  */
- void loop() {
+// Loop
+ void loop() 
+ {
    unsigned long currentMillis = millis();
  
    // Handle any incoming web server requests
@@ -942,9 +960,11 @@
  
    // Manage WiFi connection state with timeout
    static unsigned long wifiTimeout = 0;
-   if (WiFi.status() != WL_CONNECTED) {
+   if (WiFi.status() != WL_CONNECTED) 
+   {
      // Attempt to reconnect if delay period has passed
-     if (currentMillis - lastReconnectAttempt >= WIFI_RECONNECT_DELAY_MS) {
+     if (currentMillis - lastReconnectAttempt >= WIFI_RECONNECT_DELAY_MS) 
+     {
        // Initialize timeout on first attempt
        if (wifiTimeout == 0) wifiTimeout = currentMillis + WIFI_TIMEOUT_MS; 
        
@@ -952,40 +972,52 @@
        if (currentMillis < wifiTimeout) {
          lastReconnectAttempt = currentMillis;
          connectToWiFi();
-       } else {
+       } 
+       
+       else 
+       {
          // Continue operation offline after timeout
          Serial.println(SERIAL_MSG_WIFI_TIMEOUT);
          wifiTimeout = 0;
        }
      }
-   } else {
+   } 
+   
+   else 
+   {
      // Reset timeout when connected
      wifiTimeout = 0;
    }
  
    // Update 7-segment display clock at regular interval
-   if (currentMillis - lastTimeUpdate >= TIME_UPDATE_INTERVAL_MS) {
-     if (timeInitialized) {
+   if (currentMillis - lastTimeUpdate >= TIME_UPDATE_INTERVAL_MS) 
+   {
+     if (timeInitialized) 
+     {
        update7SegmentDisplay();
      }
+
      lastTimeUpdate = currentMillis;
    }
  
    // Retry NTP time synchronization if not yet initialized
-   if (!timeInitialized && currentMillis - lastNtpRetry >= NTP_RETRY_INTERVAL_MS) {
+   if (!timeInitialized && currentMillis - lastNtpRetry >= NTP_RETRY_INTERVAL_MS) 
+   {
      initializeTime();
      lastNtpRetry = currentMillis;
    }
  
    // Refresh appointment data if needed
-   if (!dataRefreshed) {
+   if (!dataRefreshed) 
+   {
      fetchAppointments();
      dataRefreshed = true;
      lastAppointmentRefresh = currentMillis;
    }
  
    // Mark data as needing refresh when interval elapses
-   if (currentMillis - lastAppointmentRefresh >= APPOINTMENT_REFRESH_INTERVAL_MS) {
+   if (currentMillis - lastAppointmentRefresh >= APPOINTMENT_REFRESH_INTERVAL_MS) 
+   {
      dataRefreshed = false;
    }
  
@@ -999,18 +1031,20 @@
    handleHourlyServo(currentMillis);
  
    // Clear character notification after display duration
-   if (showingCharacterNotification && 
-       currentMillis - characterNotificationStart >= CHARACTER_NOTIFICATION_DURATION_MS) {
-     showingCharacterNotification = false;
-     currentDisplayState = SHOWING_APPOINTMENTS;
-     lastDisplayChange = 0;
-   }
+   if (showingCharacterNotification && currentMillis - characterNotificationStart >= CHARACTER_NOTIFICATION_DURATION_MS) 
+    {
+      showingCharacterNotification = false;
+      currentDisplayState = SHOWING_APPOINTMENTS;
+      lastDisplayChange = 0;
+    }
  
    // Watchdog timer to restart after maximum uptime
    static unsigned long lastWatchdogCheck = 0;
-   if (currentMillis - lastWatchdogCheck >= WATCHDOG_INTERVAL_MS) { 
+   if (currentMillis - lastWatchdogCheck >= WATCHDOG_INTERVAL_MS) 
+   { 
      lastWatchdogCheck = currentMillis;
-     if (millis() > MAX_UPTIME_MS) { 
+     if (millis() > MAX_UPTIME_MS) 
+     { 
        ESP.restart(); 
      }
    }
