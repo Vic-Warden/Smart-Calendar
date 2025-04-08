@@ -4,6 +4,8 @@ Your Wiring Diagram, Bill of Materials, ... everything about how you built your 
 
 ## **Wiring Diagram**
 
+This Fritzing diagram shows the wiring of the ESP32-based Smart Calendar system. It includes the connection of several hardware components: an I2C LCD, a 7-segment display (TM1637), a DFPlayer Mini audio module, a servo motor, a PIR sensor, a brightness sensor (LDR), and a push-button. The aim is to visualize the project's physical architecture in order to facilitate assembly.
+
 ![Menu](Embedded_device.png)
 
 ---
@@ -50,14 +52,6 @@ Connected to PIN D27
 
 VCC : 5 V
 
-__Oled Display :__
-
-Connected to PIN A5 **SCL**
-
-Connected to PIN A4 **SDA**
-
-VCC : 5 V
-
 __LCD Screen :__ 
 
 Connected to PIN D22 **SCL**
@@ -86,6 +80,10 @@ Connected to PIN SPK_2 **on DF Player mini**
 
 ## **Bill of Materials**
 
-| Part #    | Manufacturer | Description       | Quantity | Price (incl. VAT) | Subtotal (incl. VAT) | Example url         |
-|-----------|--------------|-------------------|----------|-------------------|----------------------|--------------------|
-| ABC   | Example Inc. | Exemple    | ?        | ? €             | ? €                | example.com/abc123 |
+This table lists all the components required to build the ESP32-based Smart Calendar System. Each item includes a description, the quantity used in the project, the estimated price (including VAT), and a link to an example supplier. These components provide the system's main functions: display, sensor reading, network communication and user interaction.
+
+## 🧾 Bill of Materials
+
+| Part #      | Manufacturer | Description                                              | Quantity | Price (incl. VAT) | Subtotal (incl. VAT) | Example url                                                                                                                                       | Extra Info                                  |
+|-------------|--------------|----------------------------------------------------------|----------|-------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| ESP32-DEV-CP2102   | Espressif    | ESP32 WiFi and Bluetooth Dev Board (CP2102, 30 pins)     | 1        | 9.95 €            | 9.95 €               | [Tinytronics](https://www.tinytronics.nl/en/development-boards/microcontroller-boards/with-wi-fi/esp32-wifi-and-bluetooth-board-cp2102) | USB to UART: CP2102, Dual-core MCU, 30 GPIO |
