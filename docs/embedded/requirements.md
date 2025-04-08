@@ -16,7 +16,8 @@ Add some images! 😉
 
 ### EMBRQ#01
 
-The embedded device acts as a client and sends measured sensor data to the application backend over http or https.
+When a sensor (button, PIR or LDR) is triggered, it sends its data via a POST request, thanks to the HTTPClient library.
+The API URL is defined in SENSOR_API_URL, and the sendSensorData function sends to the backend as long as WiFi is connected.
 
 Code:
 ```c++
@@ -56,7 +57,17 @@ const int DEVICE_ID = 1;
 
 ### EMBRQ#02
 
-The embedded device also acts as a server and receives status messages from the application backend over http or https.
+I've defined several endpoints accessible via GET requests:
+
+/ : returns a status message.
+
+/appointments: returns appointments in JSON format.
+
+/switch_character : changes character and triggers the voice of the selected character.
+
+/play_random : plays a random sound.
+
+The server is started in setupServer, enabling the backend to send instructions and receive data.
 
 Code:
 ```c++
@@ -155,7 +166,15 @@ const int HTTP_SERVICE_UNAVAILABLE_CODE = 503;
 
 ### EMBRQ#03
 
-The embedded device contains three or more types of input sensors (e.g. LDR, buttons, joystick, capacitive touch).
+I use 3 inputs
+
+A push-button (pin 14) used to change character.
+
+A PIR sensor (pin 35) to detect movement.
+
+An LDR sensor (pin 34) which measures ambient brightness.
+
+All these sensors are read by the handleSensors function, and each change triggers an action (e.g., sending data, sound). 
 
 Code:
 ```c++
@@ -272,7 +291,15 @@ Code:
 
 ### EMBRQ#04
 
-The embedded device contains three or more types of correctly working visual and/or sensory outputs.
+I use 4 outputs
+
+LCD display (I2C): displays appointments and system messages via updateDisplay
+
+7-segment display: displays time in real time via update7SegmentDisplay.
+
+DFPlayer audio module: plays sounds in response to events (sensors, changes) via playRandomSound
+
+Servomotor: performs a movement every hour via handleHourlyServo
 
 Code:
 ```c++
@@ -445,7 +472,13 @@ Code:
 
 ### EMBRQ#05
 
-The embedded device uses the WifiManager for configuration of SSID and password (PWD) for connecting to the network.
+I used the WiFiManager library, which enables the ESP32 to automatically manage the WiFi connection.
+
+The connectToWiFi function uses wifiManager.autoConnect
+
+If no network is known, the device creates an access point named “SmartCalendarAP” to allow the user to enter the SSID and password via a web interface.
+
+Once connected, the system continues its configuration.
 
 Code:
 ```c++
