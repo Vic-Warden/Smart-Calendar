@@ -33,7 +33,11 @@
  const int LCD_COLUMNS = 16;            
  const int LCD_ROWS = 2;               
  const int LCD_SDA_PIN = 21;           
- const int LCD_SCL_PIN = 22;            
+ const int LCD_SCL_PIN = 22; 
+ const int LCD_START_COL = 0;
+ const int LCD_FIRST_LINE = 0;
+ const int LCD_SECOND_LINE = 1;
+           
  
 // 7 segment 
  const int DISPLAY_CLK_PIN = 18;        
@@ -41,7 +45,8 @@
  const uint8_t DISPLAY_BRIGHTNESS = 0x0a;
  const uint8_t DISPLAY_COLON_MASK = 0b01000000;
  const int DISPLAY_ERROR_CODE = 9999;   
- const int DISPLAY_DEFAULT_CODE = 8888;  
+ const int DISPLAY_DEFAULT_CODE = 8888; 
+ const int DISPLAY_TIME_SCALING = 100; 
  
  // DFPlayer Mini 
  const int DFPLAYER_RX_PIN = 16;         
@@ -116,7 +121,7 @@
  const unsigned long PIR_INTERVAL_MS = 300000;     
  const unsigned long WIFI_TIMEOUT_MS = 30000;     
  const unsigned long WATCHDOG_INTERVAL_MS = 60000; 
- const unsigned long MAX_UPTIME_MS = 86400000;    
+ const unsigned long MAX_UPTIME_MS = 86400000;  
  
  // Night Mode
  const int NIGHT_MODE_ENTER_THRESHOLD = 650; 
@@ -277,11 +282,11 @@
      lcd.clear();  // Clear the display before showing new content
      
      // Display first line
-     lcd.setCursor(0, 0);
+     lcd.setCursor(LCD_START_COL, LCD_FIRST_LINE);
      lcd.print(line1.substring(0, LCD_COLUMNS));
  
      // Display second line
-     lcd.setCursor(0, 1);
+     lcd.setCursor(LCD_START_COL, LCD_SECOND_LINE);
      lcd.print(line2.substring(0, LCD_COLUMNS));
  
      // Update tracking variables
@@ -309,7 +314,8 @@
    if (hour >= HOURS_PER_DAY) hour -= HOURS_PER_DAY;
    int minute = timeClient.getMinutes();
    // Display time with colon (e.g., 12:34)
-   display.showNumberDecEx(hour * 100 + minute, DISPLAY_COLON_MASK, true);
+   int timeDisplay = hour * DISPLAY_TIME_SCALING + minute;
+   display.showNumberDecEx(timeDisplay, DISPLAY_COLON_MASK, true);
  }
  
 // Initializes time synchronization with NTP server
