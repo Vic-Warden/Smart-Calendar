@@ -82,10 +82,6 @@ Connected to PIN SPK_2 **on DF Player mini**
 
 This table lists all the components required to build the ESP32-based Smart Calendar System. Each item includes a description, the quantity used in the project, the estimated price (including VAT), and a link to an example supplier. These components provide the system's main functions: display, sensor reading, network communication and user interaction.
 
-## 🧾 Bill of Materials
-
-## ✅ Bill of Materials (corrected with real prices)
-
 | Part #            | Manufacturer | Description                               | Quantity | Price (incl. VAT) | Subtotal (incl. VAT) | Example url                                                                                                                                       | Extra Info                                                   |
 |-------------------|--------------|-------------------------------------------|----------|-------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
 | ESP32-DEV         | Espressif    | ESP32 development board with WiFi/Bluetooth | 1        | 9.00 €            | 9.00 €               | [Tinytronics](https://www.tinytronics.nl/en/development-boards/microcontroller-boards/with-wi-fi/esp32-wifi-and-bluetooth-board-cp2102)         | ESP32 chip with 512kB RAM (240MHz dual core processor), Two analog (DAC) outputs (pin 25 DAC1 and pin 26 DAC2)          |
