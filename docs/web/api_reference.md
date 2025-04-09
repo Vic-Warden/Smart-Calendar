@@ -378,7 +378,7 @@ No parameters required
 **Method**: POST  
 **Description**: Delete a device from the database using its ID.
 
-### Request Parameters (body: application/x-www-form-urlencoded)
+### Request Parameters body: application/x-www-form-urlencoded
 
 | Parameter     | Type     | Required | Description                    |
 |---------------|----------|----------|--------------------------------|
@@ -524,7 +524,7 @@ No parameters required
 **Method**: POST  
 **Description**: Delete a sensor from the database using its ID.
 
-### Request Parameters (body: application/x-www-form-urlencoded)
+### Request Parameters body: application/x-www-form-urlencoded
 
 | Parameter     | Type     | Required | Description                    |
 |---------------|----------|----------|--------------------------------|
@@ -632,22 +632,22 @@ No parameters required
 
 ---
 
-### Insert Sensor Data (Batch for 3 Sensors)
+### Insert Sensor Data 3 Sensors
 
 **Endpoint**: http://localhost/Database/SensorData/insert_sensor_data.php  
 **Method**: POST  
 **Description**: Insert sensor data for 3 sensors and keep only the latest 20 records per sensor.
 
-### Request Parameters (body: application/x-www-form-urlencoded)
+### Request Parameters body: application/x-www-form-urlencoded
 
 | Parameter        | Type    | Required | Description                            |
 |------------------|---------|----------|----------------------------------------|
-| `sensor_id_1`    | `int`   | Yes      | First sensor ID                        |
-| `value_1`        | `float` | Yes      | Value for first sensor                 |
-| `sensor_id_2`    | `int`   | Yes      | Second sensor ID                       |
-| `value_2`        | `float` | Yes      | Value for second sensor                |
-| `sensor_id_3`    | `int`   | Yes      | Third sensor ID                        |
-| `value_3`        | `float` | Yes      | Value for third sensor                 |
+| sensor_id_1    | int   | Yes      | First sensor ID                        |
+| value_1     | float | Yes      | Value for first sensor                 |
+| sensor_id_2    | int  | Yes      | Second sensor ID                       |
+| value_2        | float | Yes      | Value for second sensor                |
+| sensor_id_3    | int   | Yes      | Third sensor ID                        |
+| value_3        |float | Yes      | Value for third sensor                 |
 
 ### Success Response
 
@@ -696,7 +696,7 @@ No parameters required
 
 **Endpoint**: http://localhost/Database/SensorData/recover_sensor_data.php  
 **Method**: GET  
-**Description**: Retrieve the latest 20 sensor data entries, grouped by sensor.
+**Description**: Retrieve the latest 20 sensor data entries, grouped by sensor
 
 ### Request Parameters
 

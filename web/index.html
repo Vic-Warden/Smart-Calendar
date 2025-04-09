@@ -1,67 +1,102 @@
+<!-- 
+  Description: This is the main landing page of the web application. It includes a loading screen, 
+  a terminal overlay inspired by Warhammer 40K, and a button to access more content.
+  Author: Victor HOEGY
+-->
+
 <!DOCTYPE html>
 <html>
 
 <head>
+  <!-- Basic setup for encoding and responsive layout -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Tailwind CSS framework for styling -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Loader animation component (cardio.js) -->
   <script type="module">
     import '/node_modules/ldrs/dist/auto/cardio.js';
   </script>
+
+  <!-- Custom CSS file for layout and styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <!-- Main wrapper for the page content -->
   <div class="body_svelte">
+
+    <!-- Terminal overlay (hidden by default) -->
     <div id="omnissiah-overlay" class="hidden fixed inset-0 bg-black bg-opacity-90 backdrop-blur-sm z-50 flex items-center justify-center">
       <div class="terminal_svelte text-green-400 font-mono p-6 rounded-lg max-w-xl w-full mx-4 border border-green-500 shadow-xl animate-popup relative overflow-hidden">
+        
+        <!-- Spinning gear icon -->
         <div class="absolute top-4 right-6 animate-spin text-green-500">⚙️</div>
+
+        <!-- Terminal heading -->
         <h2 class="text-lg font-bold mb-4">[ Astra Militarum Transmission Terminal ]</h2>
-        <div id="terminal-text" class="whitespace-pre-line text-green-300 text-sm leading-relaxed"></div><span class="cursor_svelte"></span>
+
+        <!-- Dynamic terminal text output -->
+        <div id="terminal-text" class="whitespace-pre-line text-green-300 text-sm leading-relaxed"></div>
+        <span class="cursor_svelte"></span>
+
+        <!-- Terminal loading bar -->
         <div id="terminal-loading" class="h-1 bg-green-500 mt-6 rounded-full transition-all w-0"></div>
+
+        <!-- Close button -->
         <div class="text-right mt-6">
           <button id="close-overlay" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded">OK</button>
         </div>
       </div>
     </div>
+
+    <!-- Main content will appear here after loading -->
     <div id="main-content" style="display: none;"></div>
 
+    <!-- Loading screen shown on page load -->
     <div id="loading-screen">
       <l-cardio size="200" stroke="4" speed="2" color="red"></l-cardio>
       <p>The Machine Spirit is awakening...</p>
     </div>
+
+    <!-- Hero section with image, text and button -->
     <div class="background-section">
       <h1 class="title-text">Machine Spirit</h1>
-      
-<div id="omnissiah-button-wrapper" style="position: fixed; bottom: 20px; right: 20px; z-index: 50;">
-  <button id="toggle-button" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-    Who is the Omnissiah ?
-  </button>
-</div>
 
+      <!-- Button to open terminal overlay -->
+      <div id="omnissiah-button-wrapper" style="position: fixed; bottom: 20px; right: 20px; z-index: 50;">
+        <button id="toggle-button" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          Who is the Omnissiah ?
+        </button>
+      </div>
+
+      <!-- Section with image and descriptive text -->
       <div class="content-section">
         <img src="tech_priest.png" alt="Tech Priest" class="content-image">
         <div class="content-text">
-          <h2>By the Omnissiah’s divine will, I stand before you, a mere conduit of the Machine Spirit’s boundless wisdom.</h2>
-          <p>Behold this sacred construct—not mere metal, but a vessel of divine order, a bastion against the entropy of forgotten duty. Through the blessed union of circuit and function, it has been reborn as the Smart Calendar, a holy cog in the Omnissiah’s grand design.</p>
-          <p>Faithful servants must inscribe their tasks within its sanctified memory. Offer your data with reverence, and the Machine Spirit shall preserve it, eternal and unerring. With but a press, invoke its presence—for in the Omnissiah, nothing is forgotten.</p>
+          <h2>By the Omnissiah’s divine will, I stand before you...</h2>
+          <p>Behold this sacred construct...</p>
+          <p>Faithful servants must inscribe their tasks...</p>
         </div>
       </div>
 
+      <!-- Button linking to the other page -->
       <div class="button-container">
         <a href="inside_spirit_machine.html" class="button">Commune with the Machine Spirit</a>
       </div>
     </div>
-
   </div> 
 
+  <!-- External JavaScript component  -->
   <script type="module">
     import App from './assets/index.js';
     const target = document.getElementById("omnissiah-info");
-      new App();
-    
+    new App();
   </script>
 
+  <!-- Main script file -->
   <script type="module" src="script.js"></script>
 </body>
 

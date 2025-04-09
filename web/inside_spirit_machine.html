@@ -1,19 +1,37 @@
+<!-- 
+  File: inside_spirit_machine.html
+  Description: Internal page of the web application. Contains an interactive calendar for task scheduling and 
+  a 3D model viewer powered by Three.js. Inspired by the Warhammer 40K universe.
+  Author: Victor HOEGY
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Character encoding and responsive settings -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Tactical Model Inspection</title>
 
+  <!-- TailwindCSS CDN for styling -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Placeholder favicon to avoid browser warnings -->
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Three.js & STLLoader -->
+  <!-- Three.js and STLLoader for 3D model rendering -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.141.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.141.0/examples/js/loaders/STLLoader.js"></script>
+
+  <!-- Inline CSS for animations and effects -->
   <style>
-    .decrypt-text {
+    /* Typing/decryption text effect */
+    .decrypt-text 
+    {
       display: block;
       white-space: pre-wrap;
       font-family: 'Courier New', Courier, monospace;
@@ -23,26 +41,26 @@
       word-break: break-word;
     }
 
-    .viewer-open-animation {
+    /* Scale-in animation for viewer */
+    .viewer-open-animation 
+    {
       animation: openViewer 0.5s ease-out;
     }
 
-    @keyframes openViewer {
-      from {
-        transform: scale(0.95);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
+    @keyframes openViewer 
+    {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
-    .vibrate {
+    /* Vibration animation on decrypt effect */
+    .vibrate 
+    {
       animation: vibrate 0.2s linear;
     }
 
-    @keyframes vibrate {
+    @keyframes vibrate 
+    {
       0% { transform: translateX(0); }
       25% { transform: translateX(-1px); }
       50% { transform: translateX(1px); }
@@ -51,17 +69,21 @@
     }
   </style>
 </head>
+
 <body class="bg-black text-white font-mono">
-  <!-- MAIN CONTENT -->
   <div class="ism-background-section">
+    
+    <!-- Motivational quote -->
     <div class="ism-quote-box">
       <p class="ism-quote-text">
         The Machine Spirit hungers. Inscribe your sacred tasks, offer them with reverence, and let the Omnissiah's will be done. The Machine forgets nothing!
       </p>
     </div>
 
+    <!-- Button to show the appointment form -->
     <button class="ism-button" onclick="ism_toggleForm()">Log Your Sacred Duty</button>
 
+    <!-- Hidden form to create new appointments -->
     <div class="ism-form-container" id="ism-appointmentForm">
       <input type="text" id="ism-appointmentTitle" placeholder="Enter task..." required>
       <input type="datetime-local" id="ism-appointmentDateTime" required>
@@ -69,12 +91,14 @@
       <button class="ism-button" onclick="ism_addAppointment()">Sanctify this duty in the Omnissiah's holy archive!</button>
     </div>
 
+    <!-- List of saved appointments -->
     <div class="ism-appointments-container">
       <h3>Rites of Maintenance, Recorded for Eternity</h3>
       <div id="ism-appointmentsList"></div>
     </div>
   </div>
 
+  <!-- Appointment editing form (hidden by default, shown dynamically) -->
   <div class="ism-edit-form">
     <label>Edit title:</label>
     <input type="text" id="ism-edit-title" value="Current Title">
@@ -84,65 +108,75 @@
     <button onclick="this.parentElement.remove()">Cancel</button>
   </div>
 
-  <!-- 3D VIEWER BUTTON -->
+  <!-- Button to open the 3D viewer -->
   <button onclick="toggleViewer()" class="fixed bottom-6 right-6 bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-50 shadow-lg">
     [ASTRA MILITARUM] - Tactical Model Inspection
   </button>
 
-  <!-- VIEWER CONTAINER -->
+  <!-- 3D viewer overlay -->
   <div id="viewer-container" style="display: none; position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.95); z-index: 9999;" class="flex flex-col items-center justify-center p-6 overflow-y-auto">
     <div class="flex flex-row gap-24 justify-center items-start w-full max-w-7xl">
-      <!-- DYNAMIC CONTENT LEFT -->
+
+      <!-- Left panel with sensor explanations -->
       <div id="dynamic-content" class="w-[42rem] text-green-300">
         <h2 class="text-xl font-bold text-green-400 mb-4">Sensor-Driven Tactical Interface</h2>
 
+        <!-- Info about each sensor used -->
         <div class="mb-6">
           <h3 class="text-green-400 text-lg font-bold mb-2">Photoresistor</h3>
-          <p class="decrypt-text" data-text="When no light is detected, an assassin's voice warns that the Smart Calendar goes into silent mode :
-Death comes in the shadows
-Once the light returns, he announces :
-The enemy knows my position..."></p>
+          <p class="decrypt-text" data-text="When no light is detected..."></p>
         </div>
 
         <div class="mb-6">
           <h3 class="text-green-400 text-lg font-bold mb-2">PIR sensor</h3>
-          <p class="decrypt-text" data-text="The guardmen see everything ! As soon as movement is detected, the system identifies a human presence and triggers an audible alarm."></p>
+          <p class="decrypt-text" data-text="The guardmen see everything..."></p>
         </div>
 
         <div class="mb-6">
           <h3 class="text-green-400 text-lg font-bold mb-2">Button</h3>
-          <p class="decrypt-text" data-text="This button toggles between the Astra Militarum characters: the Commissar, the Baneblade and the Leman Russ. It lets you change the voice lines when receiving appointments, and much more..."></p>
+          <p class="decrypt-text" data-text="This button toggles between..."></p>
         </div>
       </div>
 
+      <!-- 3D canvas for STL rendering -->
       <div id="three-canvas" class="border border-green-500 rounded-lg ml-auto" style="width: 500px; height: 500px;"></div>
     </div>
 
+    <!-- Button to close the viewer -->
     <button onclick="toggleViewer()" class="mt-8 bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded">
       Close
     </button>
   </div>
 
+  <!-- Main JS script file -->
   <script src="script.js"></script>
 
+  <!-- Inline JavaScript for the 3D viewer and decryption animation -->
   <script>
     let scene, camera, renderer, mesh;
 
+    // Toggle viewer visibility and initialize content
     function toggleViewer() {
       const container = document.getElementById('viewer-container');
       const isVisible = container.style.display === 'block';
-      if (!isVisible) {
+      if (!isVisible) 
+      {
         container.classList.add('viewer-open-animation');
         container.style.display = 'block';
         initViewer();
         startDecryptAnimation();
-      } else {
+      } 
+      
+      else 
+      {
         container.style.display = 'none';
         container.classList.remove('viewer-open-animation');
       }
     }
 
-    function initViewer() {
+    // Initialize the Three.js viewer and load the STL model
+    function initViewer() 
+    {
       const canvasDiv = document.getElementById('three-canvas');
       canvasDiv.innerHTML = '';
 
@@ -156,7 +190,8 @@ The enemy knows my position..."></p>
       canvasDiv.appendChild(renderer.domElement);
 
       const loader = new THREE.STLLoader();
-      loader.load('/models/Astra_Militarum_Explication.stl', function (geometry) {
+      loader.load('/models/Astra_Militarum_Explication.stl', function (geometry) 
+      {
         const material = new THREE.MeshStandardMaterial({ color: 0x00ff99 });
         mesh = new THREE.Mesh(geometry, material);
 
@@ -176,7 +211,9 @@ The enemy knows my position..."></p>
       animate();
     }
 
-    function animate() {
+    // Animate the 3D model 
+    function animate() 
+    {
       requestAnimationFrame(animate);
       if (mesh) {
         mesh.rotation.z += 0.001;
@@ -184,7 +221,9 @@ The enemy knows my position..."></p>
       renderer.render(scene, camera);
     }
 
-    function startDecryptAnimation() {
+    // Decryption text animation for terminal-like effect
+    function startDecryptAnimation() 
+    {
       const elements = document.querySelectorAll('.decrypt-text');
       elements.forEach(el => {
         const original = el.getAttribute('data-text');
@@ -192,9 +231,12 @@ The enemy knows my position..."></p>
         let i = 0;
         el.style.opacity = 1;
 
-        const decryptInterval = setInterval(() => {
-          for (let j = i; j < original.length; j++) {
-            if (original[j] === '\n') {
+        const decryptInterval = setInterval(() => 
+        {
+          for (let j = i; j < original.length; j++) 
+          {
+            if (original[j] === '\n') 
+            {
               display[j] = '\n';
               continue;
             }
@@ -203,12 +245,12 @@ The enemy knows my position..."></p>
           el.innerText = display.join('');
           display[i] = original[i];
 
-          // Add vibration effect briefly
           el.classList.add('vibrate');
           setTimeout(() => el.classList.remove('vibrate'), 150);
 
           i++;
-          if (i >= original.length) {
+          if (i >= original.length) 
+          {
             el.innerText = original;
             clearInterval(decryptInterval);
           }
@@ -216,6 +258,7 @@ The enemy knows my position..."></p>
       });
     }
 
+    // Export viewer toggle globally
     window.loadContent = () => {};
     window.toggleViewer = toggleViewer;
   </script>
