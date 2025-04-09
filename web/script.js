@@ -1,14 +1,9 @@
-/**
- * File: script.js
- * Description: This script handles the front-end interactions of the web application,
- * including the loading screen, the terminal effect for the main page, and the 
- * full CRUD management of appointments via a backend PHP API.
- * Author: Victor HOEGY
+/*
+ Description: This script handles the front-end interactions of the web application,
+ including the loading screen, the terminal effect for the main page, and the 
+ full CRUD management of appointments via a backend PHP API.
+ Author: Victor HOEGY
  */
-
-// --------------------------------
-// Main Page Logic (index.html)
-// --------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
   // Show loading screen and hide it after a delay
@@ -71,9 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
       overlay.classList.add("hidden");
     });
 
-    /**
-     * Type out lines one character at a time in a terminal style
-     */
+// Type out lines one character at a time in a terminal style
+
     function typeLines(lines, element, charDelay = 30, lineDelay = 400) {
       let i = 0;
       element.textContent = '';
@@ -97,13 +91,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// --------------------------------
 // Inside Spirit Machine Logic
-// --------------------------------
 
-/**
- * Toggle the visibility of the appointment form
- */
+// Toggle the visibility of the appointment form
+ 
 function ism_toggleForm() {
   const form = document.getElementById("ism-appointmentForm");
   if (form) {
@@ -113,9 +104,8 @@ function ism_toggleForm() {
   }
 }
 
-/**
- * Add a new appointment via POST request
- */
+// Add a new appointment via POST request
+ 
 function ism_addAppointment() {
   const task = document.getElementById("ism-appointmentTitle").value;
   const date_hour = document.getElementById("ism-appointmentDateTime").value;
@@ -143,9 +133,9 @@ function ism_addAppointment() {
     .catch(error => console.error("Erreur AJAX :", error));
 }
 
-/**
- * Format date/time to readable format (not currently used)
- */
+
+// Format date/time to readable format (not currently used)
+ 
 function ism_formatDateTime(dateTime) {
   const date = new Date(dateTime);
   const options = {
@@ -159,9 +149,9 @@ function ism_formatDateTime(dateTime) {
   return date.toLocaleDateString('en-US', options);
 }
 
-/**
- * Load appointments from the database
- */
+
+// Load appointments from the database
+ 
 function ism_loadAppointments() {
   const appointmentsList = document.getElementById("ism-appointmentsList");
   appointmentsList.innerHTML = "";
@@ -189,9 +179,8 @@ function ism_loadAppointments() {
     .catch(error => console.error("Erreur lors du chargement des rendez-vous :", error));
 }
 
-/**
- * Delete an appointment via DELETE request
- */
+// Delete an appointment via DELETE request
+ 
 function ism_deleteAppointment(appointment_id) {
   fetch("Database/Appointment/delete_appointment.php", {
     method: "DELETE",
@@ -227,9 +216,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-/**
- * Show the edit form for a specific appointment
- */
+// Show the edit form for a specific appointment
+ 
 function ism_editAppointment(appointment_id, currentTitle, currentDateTime) {
   const editForm = document.createElement("div");
   editForm.classList.add("ism-edit-form");

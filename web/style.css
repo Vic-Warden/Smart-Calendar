@@ -1,9 +1,13 @@
+/*
+  Description: Styles for both the Home Page and Inside Spirit Machine page. 
+  Includes layout, colors, typography, animations, and responsive design.
+  Author: Victor HOEGY
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-/* Home Page */
-
-.background-section 
-{
+/* Background section with hero image */
+.background-section {
   width: 100%;
   height: 100vh;
   background-image: url('Home_page.png');
@@ -16,8 +20,8 @@
   position: relative;
 }
 
-.title-text 
-{
+/* Title text */
+.title-text {
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
   color: #646d5f;
@@ -26,8 +30,8 @@
   margin-top: 90px;
 }
 
-.overlay-links 
-{
+/* Link box in bottom corner */
+.overlay-links {
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -36,8 +40,7 @@
   border-radius: 8px;
 }
 
-.overlay-links a 
-{
+.overlay-links a {
   color: white;
   text-decoration: none;
   font-size: 1rem;
@@ -45,21 +48,20 @@
   margin: 5px 0;
 }
 
-.overlay-links a:hover 
-{
+.overlay-links a:hover {
   text-decoration: underline;
 }
 
-body, html 
-{
+/* Remove spacing from root */
+body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow: hidden;
 }
 
-.content-section 
-{
+/* Content box with image + text */
+.content-section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,31 +77,28 @@ body, html
   transform: translateX(-50%);
 }
 
-.content-image 
-{
+.content-image {
   width: 150px;
   height: auto;
   border-radius: 10px;
   margin-right: 15px;
 }
 
-.content-text 
-{
+.content-text {
   font-size: 1rem;
   color: #ffffff;
   margin-top: 0px;
 }
 
-.button-container 
-{
+/* Button at bottom */
+.button-container {
   position: absolute;
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.button 
-{
+.button {
   background-color: #8b0000;
   color: white;
   padding: 10px 20px;
@@ -111,13 +110,12 @@ body, html
   transition: background-color 0.3s;
 }
 
-.button:hover 
-{
+.button:hover {
   background-color: #a52a2a;
 }
 
-#loading-screen 
-{
+/* Fullscreen loading screen */
+#loading-screen {
   position: fixed;
   top: 0;
   left: 0;
@@ -138,8 +136,7 @@ body, html
   background-repeat: no-repeat;
 }
 
-#loader-container 
-{
+#loader-container {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -149,10 +146,11 @@ body, html
   border-radius: 10px;
 }
 
-/* inside Spirit Machine */
+/* -----------------------------------------------------
+   INSIDE SPIRIT MACHINE STYLES
+----------------------------------------------------- */
 
-.ism-background-section 
-{
+.ism-background-section {
   width: 100%;
   height: 100vh;
   background-image: url('Priest.png');
@@ -167,8 +165,8 @@ body, html
   padding-top: 40px;
 }
 
-.ism-quote-box 
-{
+/* Quote box */
+.ism-quote-box {
   background: rgba(0, 0, 0, 0.6);
   padding: 20px;
   border-radius: 10px;
@@ -179,8 +177,7 @@ body, html
   margin-bottom: 20px;
 }
 
-.ism-quote-text 
-{
+.ism-quote-text {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.2rem;
   color: #ffffff;
@@ -188,8 +185,8 @@ body, html
   font-style: italic;
 }
 
-.ism-button 
-{
+/* Shared button style */
+.ism-button {
   background-color: #8b0000;
   color: white;
   padding: 10px 20px;
@@ -202,13 +199,12 @@ body, html
   margin-top: 10px;
 }
 
-.ism-button:hover 
-{
+.ism-button:hover {
   background-color: #a52a2a;
 }
 
-.ism-appointments-container 
-{
+/* Appointment list container */
+.ism-appointments-container {
   background: rgba(0, 0, 0, 0.7);
   padding: 20px;
   border-radius: 10px;
@@ -218,8 +214,8 @@ body, html
   color: white;
 }
 
-.ism-appointment 
-{
+/* Each appointment row */
+.ism-appointment {
   background: rgba(255, 255, 255, 0.2);
   padding: 10px;
   margin: 5px 0;
@@ -229,14 +225,13 @@ body, html
   align-items: center;
 }
 
-.ism-appointment div 
-{
+.ism-appointment div {
   display: flex;
   gap: 5px;
 }
 
-.ism-delete-button 
-{
+/* Delete button */
+.ism-delete-button {
   background-color: red;
   border: none;
   color: white;
@@ -245,13 +240,12 @@ body, html
   cursor: pointer;
 }
 
-.ism-delete-button:hover 
-{
+.ism-delete-button:hover {
   background-color: darkred;
 }
 
-.ism-form-container 
-{
+/* Form to create new appointment */
+.ism-form-container {
   display: none;
   flex-direction: column;
   gap: 10px;
@@ -265,13 +259,12 @@ body, html
   margin-top: 10px;
 }
 
-input 
-{
+input {
   color: black !important;
 }
 
-.ism-edit-button 
-{
+/* Edit button */
+.ism-edit-button {
   background-color: #008CBA;
   border: none;
   color: white;
@@ -280,13 +273,12 @@ input
   cursor: pointer;
 }
 
-.ism-edit-button:hover 
-{
+.ism-edit-button:hover {
   background-color: #005f73;
 }
 
-.ism-edit-form 
-{
+/* Edit appointment form */
+.ism-edit-form {
   background: rgba(0, 0, 0, 0.8);
   padding: 10px;
   border-radius: 5px;
@@ -296,16 +288,14 @@ input
   margin-top: 10px;
 }
 
-.ism-edit-form input 
-{
+.ism-edit-form input {
   width: 100%;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
 
-.ism-edit-form button 
-{
+.ism-edit-form button {
   background-color: #008CBA;
   color: white;
   padding: 5px;
@@ -314,105 +304,90 @@ input
   cursor: pointer;
 }
 
-.ism-edit-form button:hover 
-{
+.ism-edit-form button:hover {
   background-color: #005f73;
 }
 
-@keyframes glow-pulse 
-{
-    0%, 100% 
-    {
-      box-shadow: 0 0 0px rgba(0, 255, 153, 0.4);
-    }
+/* Animations */
 
-    50% 
-    {
-      box-shadow: 0 0 12px rgba(0, 255, 153, 0.8);
-    }
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0px rgba(0, 255, 153, 0.4);
   }
-  
-  .glow-pulse 
-  {
-    animation: glow-pulse 2.5s ease-in-out infinite;
+  50% {
+    box-shadow: 0 0 12px rgba(0, 255, 153, 0.8);
   }
-  
-  @keyframes scan 
-  {
-    0% { background-position-y: 0; }
-    100% { background-position-y: 100%; }
-  }
-  
-  .scan-lines_svelte::before 
-  {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(to bottom, rgba(0,255,0,0.1) 50%, transparent 50%);
-    background-size: 100% 4px;
-    pointer-events: none;
-    animation: scan 8s infinite linear;
-    z-index: 2;
-  }
-  
-  .body_svelte 
-  {
-    background-color: #000;
-    color: #00ff99;
-    font-family: 'Share Tech Mono', monospace;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  
-  .terminal_svelte 
-  {
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(4px);
-    font-family: 'Share Tech Mono', monospace;
-    border: 1px solid #00ff99;
-    box-shadow: 0 0 15px #00ff99;
-    animation: pulse-glow 2.5s ease-in-out infinite;
-  }
-  
-  .cursor_svelte 
-  {
-    display: inline-block;
-    width: 10px;
-    height: 1em;
-    background-color: #00ff99;
-    margin-left: 5px;
-    animation: blink_svelte 1s infinite steps(1, start);
-  }
-  
-  @keyframes blink_svelte 
-  {
-    50% { opacity: 0; }
-  }
-  
-  @keyframes popup_svelte 
-  {
-    0% 
-    {
-      transform: scale(0.95);
-      opacity: 0;
-    }
+}
 
-    100% 
-    {
-      transform: scale(1);
-      opacity: 1;
-    }
+.glow-pulse {
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0% { background-position-y: 0; }
+  100% { background-position-y: 100%; }
+}
+
+.scan-lines_svelte::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to bottom, rgba(0,255,0,0.1) 50%, transparent 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scan 8s infinite linear;
+  z-index: 2;
+}
+
+/* Terminal style background */
+.body_svelte {
+  background-color: #000;
+  color: #00ff99;
+  font-family: 'Share Tech Mono', monospace;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.terminal_svelte {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  font-family: 'Share Tech Mono', monospace;
+  border: 1px solid #00ff99;
+  box-shadow: 0 0 15px #00ff99;
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.cursor_svelte {
+  display: inline-block;
+  width: 10px;
+  height: 1em;
+  background-color: #00ff99;
+  margin-left: 5px;
+  animation: blink_svelte 1s infinite steps(1, start);
+}
+
+@keyframes blink_svelte {
+  50% { opacity: 0; }
+}
+
+@keyframes popup_svelte {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
   }
-  
-  .animate-popup 
-  {
-    animation: popup_svelte 0.3s ease-out forwards;
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
+}
+
+.animate-popup {
+  animation: popup_svelte 0.3s ease-out forwards;
+}
