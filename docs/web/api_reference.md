@@ -391,6 +391,7 @@ No parameters required
   "status": "success",
   "message": "Device with ID 3 successfully deleted."
 }
+```
 
 ### Error Responses
 

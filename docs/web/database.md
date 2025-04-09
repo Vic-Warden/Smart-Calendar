@@ -2,9 +2,11 @@
 
 Write here your own content!
 
-## Database Schema
+## ERD Diagram
 
 ![menu](ERD_Diagram.png)
+
+## Database Schema
 
 ![menu](Database_Schema.png)
 
