@@ -229,4 +229,75 @@ No parameters required
   "message": "Error: <SQL error message>"
 }
 ```
-[get_last_updated_appointment.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/delete_appointment.php?ref_type=heads)
+[delete_appointment.php  on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/delete_appointment.php?ref_type=heads)
+
+
+### Get Last Deleted Appointment
+
+**Endpoint**: http://localhost/Database/Appointment/get_last_deleted_appointment.php  
+**Method**: GET  
+**Description**: Retrieve the last deleted appointment saved in a JSON file.
+
+### Request Parameters
+
+No parameters required
+
+### Success Response
+
+```json
+{
+  "status": "success",
+  "message": "Appointment deleted",
+  "deleted_appointment": {
+    "appointment_id": 1,
+    "task": "Fear ensures loyalty ! Where do you need me ?kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+    "date_hour": "2025-03-14 15:00:00",
+    "device_id": 1,
+    "note": "deleted"
+  }
+}
+```
+
+### Error Response
+
+```json
+{
+  "status": "error",
+  "message": "No deleted appointment found"
+}
+```
+
+[get_last_deleted_appointment.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/get_last_deleted_appointment.php?ref_type=heads)
+
+### Get All Appointments
+
+**Endpoint**: http://localhost/Database/Appointment/recover_appointment.php  
+**Method**: GET  
+**Description**: Retrieve all appointments from the database.
+
+### Request Parameters
+
+No parameters required
+
+### Success Response
+
+```json
+[
+  {
+    "appointment_id": 5,
+    "task": "Die for him",
+    "date_hour": "2025-04-10 10:00:00",
+    "note": "active",
+    "device_id": 1
+  },
+  {
+    "appointment_id": 7,
+    "task": "By the Emperor it will be done !",
+    "date_hour": "2025-04-11 15:30:00",
+    "note": "active",
+    "device_id": 1
+  }
+]
+```
+
+[recover_appointment.php  on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/recover_appointment.php?ref_type=heads)
