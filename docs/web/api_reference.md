@@ -97,7 +97,7 @@ No parameters required
 **Method**: PUT  
 **Description**: Update an existing appointment by ID
 
-### Request Body (Content-Type: application/json)
+### Request Body Content-Type: application/json
 
 | Parameter        | Type     | Required | Description                                       |
 |------------------|----------|----------|---------------------------------------------------|
@@ -138,3 +138,95 @@ No parameters required
 ```
 
 [update_appointment.php  on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/get_last_appointment.php?ref_type=heads)
+
+### Get Last Updated Appointment
+
+**Endpoint**: http://localhost/Database/Appointment/get_last_updated_appointment.php  
+**Method**: GET  
+**Description**: Retrieve the last updated appointment saved in a JSON file.
+
+### Request Parameters
+
+No parameters required
+
+### Success Response
+
+```json
+{
+  "appointment_id": 1,
+  "task": "Fear ensures loyalty ! Where do you need me ?kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+  "date_hour": "2025-03-14 15:00:00",
+  "device_id": 1
+}
+```
+
+### Error Response
+
+```json
+{
+  "status": "error",
+  "message": "No updated appointment found"
+}
+```
+
+[get_last_updated_appointment.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/get_last_updated_appointment.php?ref_type=heads)
+
+
+### Delete Appointment
+
+**Endpoint**: http://localhost/Database/Appointment/delete_appointment.php  
+**Method**: DELETE  
+**Description**: Delete an appointment by ID and return its data
+
+### Request Body Content-Type: application/json
+
+| Parameter        | Type     | Required | Description                        |
+|------------------|----------|----------|------------------------------------|
+| `appointment_id` | `int`    | Yes      | ID of the appointment to delete    |
+
+### Success Response
+
+```json
+{
+  "status": "success",
+  "message": "Appointment deleted",
+  "deleted_appointment": {
+    "appointment_id": 1,
+    "task": "Fear ensures loyalty ! Where do you need me ?kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+    "date_hour": "2025-03-14 15:00:00",
+    "device_id": 1,
+    "note": "deleted"
+  }
+}
+```
+
+### Error Responses
+
+```json
+{
+  "status": "error",
+  "message": "Invalid request method, use DELETE"
+}
+```
+
+```json
+{
+  "status": "error",
+  "message": "Valid appointment ID is required."
+}
+```
+
+```json
+{
+  "status": "error",
+  "message": "Appointment not found"
+}
+```
+
+```json
+{
+  "status": "error",
+  "message": "Error: <SQL error message>"
+}
+```
+[get_last_updated_appointment.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/delete_appointment.php?ref_type=heads)
