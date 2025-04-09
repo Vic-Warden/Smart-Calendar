@@ -1,12 +1,16 @@
 <?php
+// Include the database connection
 require __DIR__ . '/../Connection/database_connection.php';
 
+// Set the response content type to JSON
 header('Content-Type: application/json');
 
 $response = [];
 
+// Check if request method is GET
 if ($_SERVER["REQUEST_METHOD"] == "GET") 
 {
+    // Prepare a query to get the last 20 data entries across all sensors
     $stmt = $link->prepare("
         SELECT sensor_id, value, time_stamp 
         FROM SensorData 
@@ -22,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
         $result = $stmt->get_result();
         $sensorData = [];
 
+        // Group data by sensor_id
         while ($row = $result->fetch_assoc()) 
         {
             $sensorData[$row['sensor_id']][] = 
@@ -31,25 +36,27 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
             ];
         }
 
+        // Build success response
         $response['status'] = 'success';
         $response['sensors'] = $sensorData;
     } 
-
     else 
     {
+        // SQL error
         $response['status'] = 'error';
-        $response['message'] = 'Erreur lors de la récupération des données.';
+        $response['message'] = 'Error while retrieving sensor data.';
     }
 
     $stmt->close();
 } 
-
 else 
 {
+    // Invalid method
     $response['status'] = 'error';
-    $response['message'] = 'Méthode invalide.';
+    $response['message'] = 'Invalid method.';
 }
 
+// Send the response
 echo json_encode($response);
 $link->close();
 ?>

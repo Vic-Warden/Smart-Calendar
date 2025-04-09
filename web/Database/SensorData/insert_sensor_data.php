@@ -1,14 +1,19 @@
 <?php
+// Include the database connection
 require __DIR__ . '/../Connection/database_connection.php';
 
+// Set the response content type to JSON
 header('Content-Type: application/json');
 
 $response = [];
 
+// Check if request method is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
+    // Check if all required sensor data is provided
     if (isset($_POST['sensor_id_1'], $_POST['value_1'], $_POST['sensor_id_2'], $_POST['value_2'], $_POST['sensor_id_3'], $_POST['value_3'])) 
     {
+        // Convert and store input values
         $sensor_id_1 = intval($_POST['sensor_id_1']);
         $value_1 = floatval($_POST['value_1']);
         
@@ -20,8 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         $timestamp = date('Y-m-d H:i:s');
 
+        // Prepare the insert statement
         $stmt = $link->prepare("INSERT INTO SensorData (value, time_stamp, sensor_id) VALUES (?, ?, ?)");
 
+        // Insert data for each sensor
         $stmt->bind_param("dsi", $value_1, $timestamp, $sensor_id_1);
         $stmt->execute();
 
@@ -33,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         $stmt->close();
 
+        // Prepare cleanup: keep only last 20 entries per sensor
         $stmtDelete = $link->prepare("
             DELETE FROM SensorData 
             WHERE sensor_id = ? 
@@ -42,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 ) AS temp
             )");
 
+        // Run the cleanup for each sensor
         foreach ([$sensor_id_1, $sensor_id_2, $sensor_id_3] as $sensor_id) 
         {
             $stmtDelete->bind_param("ii", $sensor_id, $sensor_id);
@@ -50,28 +59,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         
         $stmtDelete->close();
 
+        // Prepare success response
         $response['status'] = 'success';
-        $response['message'] = 'Données insérées avec succès et anciennes données supprimées.';
+        $response['message'] = 'Sensor data inserted successfully and old entries cleaned.';
         $response['data'] = [
             ["sensor_id" => $sensor_id_1, "value" => $value_1, "timestamp" => $timestamp],
             ["sensor_id" => $sensor_id_2, "value" => $value_2, "timestamp" => $timestamp],
             ["sensor_id" => $sensor_id_3, "value" => $value_3, "timestamp" => $timestamp]
         ];
     } 
-    
     else 
     {
+        // Missing required fields
         $response['status'] = 'error';
-        $response['message'] = 'Données manquantes.';
+        $response['message'] = 'Missing data.';
     }
 } 
-
 else 
 {
+    // Invalid request method
     $response['status'] = 'error';
-    $response['message'] = 'Requête invalide.';
+    $response['message'] = 'Invalid request.';
 }
 
+// Return the JSON response
 echo json_encode($response);
+
+// Close the database connection
 $link->close();
 ?>
