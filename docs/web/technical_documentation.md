@@ -3,24 +3,58 @@
 Write here your own content!
 
 
-My home page :
+### Design Decision
 
-When you first enter my website, I made sure to add a loading screen that simulates a human heartbeat to match the theme of my smart calendar. At first, it wasn't planned at all: my girlfriend had sent me a video on TikTok with someone who presented different ways of making loading screens.
+For this project, I wanted to bring my personal touch to my favorite universe, Warhammer 40k! Although this universe is extremely vast, I decided to focus on the cult of Omnissiah, with one thing in mind: ease of use. My website is composed of two main pages:
 
- Why the heartbeat simulation? It's all explained on my home page. After a few seconds of loading, you're greeted by a technopriest, with a machine representing the Machine God in the background. The Machine God, also known as the Omnissiah or Deus Mechanicus, is the supernatural entity worshipped by the tech-priests and other servants of the Adeptus Mechanicus as the embodiment and bestower of all knowledge and technology in the universe of Warhammer 40,000. 
- 
- As for the text there, this text allows me to explain to users which blueprint I've chosen, explaining it as if it were the Techpriest speaking with unfailing devotion to the God of the machine, and to explain what awaits the user once he decides to enter his data.
+An introductory page **index.html** with a terminal for more information.
 
-My page where the user can interact :
+A main page **inside_spirit_machine.html** dedicated to adding, modifying and deleting appointments and its 3D model.
 
-On this page, I've put an image in the background showing a technopriest praying to the machine God with 2 other technopriests, with text above to remind the user once again what he can do.
+### Problems Encountered & Solutions
 
-Once you've decided to enter your data, there are 2 places where you can enter your data: the name of your task, and the time and minute information. If the user wants to change any information, he can do so. He can also delete any task he wants and modify any task already entered.
+When I got to my introduction page, not all my elements had time to load properly - well, they did load, but not every time, so to make sure all my elements had time to load properly I set up a loading screen with an animation that simulated the awakening of Machine Spirit. Then all the content was displayed with a transition effect.
 
----
+Some elements of the introduction page, such as the introduction terminal, are managed in JS, and the " Who is the Omnissiah? " button is supposed to open an oerlay terminal. The problem is that the code was looking for the #omnissiahButton in my html file and the ID is toggle-button. As a result, the getElementByI returned null, which caused a block. To avoid this, I corrected the timing by putting everything in a document.addEventListener function.
 
-## 3 weeks ago
+### Technologies Used
 
-I'm going to take the liberty of talking about the very first code I've just made, even though I admit I'd have preferred it to be on the Arduino, but I realized that the components I wanted to use I don't have. I'll be receiving them on Saturday, so to save time I decided to take care of the front-end of my website. I'd already done some because I'd been lucky enough to work for a medical practice and had taken care of their website. So my very first code is an html file in the Warhammer 40,000 universe. I'm so happy with what I've accomplished! I'm really proud of myself for having succeeded in making something that suits me. It was important for me to be able to add my favorite universe to this project. In this HTML file I put an image in the background to give the image a theme, I decided to add a text area with an image of a tech priest that gives the impression of talking to us with a button at the bottom when we're ready to commune with the machine spirit.
+My website relies on HTML files for its structure, CSS for styling and JS for interaction. And PHP to interact with my database. This allows me to better structure my code, and since this is the convention, I might as well kill two birds with one stone.
 
-Regarding what I did last night, I started by changing my text because the feedback I'd received told me it wasn't really clear, so I wanted to change that first. I continued by adding a text first to make them understand what they're supposed to do, I just hope the texts aren't too long. After making the text I put a button that would allow me to display or not the fact of being able to add an apointment, I added the possibility of adding a date, time and task that the user wanted. And finally I added an option to delete if the user has mistakenly added an appointment he didn't want.
+As far as CSS is concerned, I've used CSS that lets me manage animations, for example, and Tailwind CSS to save time when styling my buttons, for example, instead of putting it in my script.js I can directly change the color, size and even the text directly in my html.
+
+As far as JavaScript is concerned, it allows me to manage my terminal on my home page (e.g. line by line writing). The appointment creation form, dynamic data loading and display, appearance animations, loading and integration with the 3D model via Three.js
+
+On the PHP side, it lets me add insert_appointment.php, modify update_appointment.php, delete delete_appointment.php and recover appointments_appointment.php. I used it because it's easy to use and, above all, because it works directly with phpMyAdmin.
+
+Concerning MySQL, it allows me to store my appointments, it contains different tables that I use for my project but for my website I use the Appointment table, which allows me to add the task, date and time. 
+
+Concerning Tree.js, it allows me to display my 3D model thanks to the Tree.js library. With the STLLoader module, I was able to load my stl file and display it when the user pressed the " Tactical Model Inspection " button.
+
+### Structure of the Website
+
+My site is divided into two main parts:
+
+The index.html home page introduces the world of the site. It contains an interactive terminal, animated line by line, which the user can open by clicking on the “Who is the Omnissiah?” button. The purpose of this page is to explain which blueprint I've used, and for those unfamiliar with the Warhammer 40k universe to understand who the Omnissiah is.
+
+The inside_spirit_machine.html main page is where it all happens. The user can :
+
+Add, Modify, Delete, See appointments dynamically displayed and Launch a 3D visualization of an Astra Militarum model.All data is managed via fetch calls to a PHP API, so I don't have to reload the page for each interaction. 
+
+### Test
+
+To make sure everything was working perfectly, I manually checked that every button was working, that every interaction was running smoothly, and for the API test I wrote a PHP script to check that my appointments were present in my database. Once the script was finished, I just had to type this link on my search bar 
+
+http://localhost/Database/Appointment/recover_appointment.php
+
+### Deployment
+
+I used Docker to manage my local environment. This allows me to launch my PHP files, test my queries, and interact with my MySQL database with phpMyAdmin accessible from localhost.
+
+### Target Audience 
+
+This project has obviously been designed for fans of the Warhammer 40k universe, and I've chosen a techno-religious style to stay true to the Techpriest. The terminal, the different colors, the chosen images and even the 3D model are all related to Warhammer 40k, BUT I haven't forgotten all the people who don't know Warhammer 40k at all, thanks to my terminal, which will help them better understand the whys and wherefores.
+
+### Contemporary Developments
+
+I used fetch API calls, Tailwind CSS, I separated my files into HTML, CSS, JS, PHP, Tree.js to integrate a 3D model into the browser.
