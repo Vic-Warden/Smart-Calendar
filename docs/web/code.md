@@ -27,13 +27,14 @@ The project is structured in a clean and modular way :
 I followed code practices for every language used :
 
 ### JavaScript
+
 - All functions are written in camelCase
 - API calls use fetch() with clear HTTP methods
 - DOM interactions are grouped logically
 - Code is fully commented and structured
 
 ### PHP
-- Each route is in its own file (RESTful style)
+- Each route is in its own file 
 - Responses are returned in consistent JSON format
 - Prepared statements are used to prevent SQL injection
 
@@ -46,6 +47,7 @@ I followed code practices for every language used :
 All source files include a comment header with:  
 - Description  
 - Author   
+- Date
 
 And the key functions are explained with inline comments
 

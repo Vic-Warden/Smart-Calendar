@@ -2,96 +2,268 @@
 
 Write here your own content!
 
-### ERD Diagram
+## Database Schema
 
-![Menu](ERD Diagram.png)
+![menu](ERD_Diagram.png)
 
----
+![menu](Database_Schema.png)
 
-Let's start with the table, which is the most important for me, because it's the table at the heart of my project. Knowing that I'm doing the smart calendar, if I can't retrieve the appointments entered by the user, that's a bit silly...
+## Table Structures
 
-### Table Appointments
+### Device Table
 
-This table will enable me to manage the various tasks that the user will enter on my website.
+```sql
+CREATE TABLE IF NOT EXISTS `iot`.`Device` (
+  `device_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20) NOT NULL,
+  `ip_address` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`device_id`),
+  UNIQUE INDEX `ip_address_UNIQUE` (`ip_address` ASC) VISIBLE)
+ENGINE = InnoDB;
+```
 
-As you'd expect, I'll be using two keys: the first will be a primary key appointment_id, which will give me a unique identifier for each appointment. If the user has to see his doctor every month, even if the appointments have exactly the same name, this won't prevent me from identifying them. And for my second key, which will be my foreign key, I'll use device_id, which will link me to my Wemos D1 Mini table, allowing me to associate the corresponding task with a device. 
+**Explanation:**
 
-As for the attributes, I decided to use task for the task (obviously), date for the date (obviously again) and hour (you get the idea).
+Primary Key: device_id (INT AUTO_INCREMENT), unique identifier for each device
 
-I decided to choose the relationship ( 1 : N ) because each device ( here, it doesn't really apply because I only have one wemos but if one day there's a need to add a second one, there'd be no problem ) can have several tasks.
+**Attributes:**
 
----
+- name: Name of the device
+- ip_address: Unique IP address on the network
 
-If a table contains information to be sent, there's bound to be a table that receives it. Let's take a look at this table.
+**Index:**
 
-### WeMos D1 Mini
+On ip_address to ensure uniqueness and speed up searches
 
-This table allows me to represent the WeMos D1 Mini, a device capable of integrating sensors and performing various tasks.
+### Appointment Table
 
-For the primary key, I decided to use device_id, because I thought that if for some reason I had to plug in a second one, it wouldn't be a problem, because I will be able to identifie it. There's no need to have a foreign key for the Wemos D1 Mini because it doesn't need to be linked to another entity to exist because it integrates sensors and it's linked to tasks, so there's no need to have a foreign key for this table.
+```sql
+CREATE TABLE IF NOT EXISTS `iot`.`Appointment` (
+  `appointment_id` INT NOT NULL AUTO_INCREMENT,
+  `task` VARCHAR(255) NOT NULL,
+  `date_hour` DATETIME NOT NULL,
+  `note` VARCHAR(7) NOT NULL,
+  `device_id` INT NOT NULL,
+  PRIMARY KEY (`appointment_id`),
+  INDEX `date_hour` (`date_hour` ASC) VISIBLE,
+  INDEX `fk_appointment` (`device_id` ASC) VISIBLE,
+  CONSTRAINT `fk_appointment`
+    FOREIGN KEY (`device_id`)
+    REFERENCES `iot`.`Device` (`device_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+```
 
-Concerning the attributes, name simply stands for the device's name and ip_address for the device's IP address on the network.
+**Explanation:**
 
-I decided to choose the relationship ( 1 : N) because the Wemos D1 Mini can have several sensors, but a sensor is linked to only one Wemos. 
+Primary Key: appointment_id (INT AUTO_INCREMENT)
+Foreign Key: device_id referencing Device table
 
----
+**Attributes:**
 
-I must confess that I don't really have any words to introduce the new table we're about to see, other than to say that it's far from useless. 
+- task: Task description
+- date_hour: Combined date and time (DATETIME)
+- note: Additional note (limited to 7 characters)
 
-### Table Sensor
+**Index:**
 
-This table allows me to identify the various sensors connected to the wemos D1 Mini. 
+On date_hour to optimize date searches
 
-Concerning the keys, the primary key I'm going to use is sensor_id, which will enable me to have a unique identifier for each sensor, even if I add the same sensor I'll be able to identify them. For the foreign key, I've chosen device_id (as you'd expect), which allows me to refer to the device to which the sensor is attached.
+**Relationship:**
 
-For attributes, type for the sensor type, activation_threshold for a sensor activation threshold, e.g. when a person approaches within 1 meter of the smart calendar, an action will be taken.
+1 device can have N appointments (1:N)
 
-I decided to choose the relationship ( 1 : N ) because a sensor can generate several pieces of data, but each piece of data is linked to only one sensor.
+### Sensor Table
 
----
+```sql
+CREATE TABLE IF NOT EXISTS `iot`.`Sensor` (
+  `sensor_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `type` ENUM('Presence', 'Light', 'Button') NOT NULL,
+  `activation_threshold` FLOAT NULL,
+  `device_id` INT NOT NULL,
+  PRIMARY KEY (`sensor_id`),
+  INDEX `type` (`type` ASC) VISIBLE,
+  INDEX `fk_sensor` (`device_id` ASC) VISIBLE,
+  CONSTRAINT `fk_sensor`
+    FOREIGN KEY (`device_id`)
+    REFERENCES `iot`.`Device` (`device_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+```
 
-The last table but not least 
+**Explanation:**
 
-### Sensor_Data
+Primary Key: sensor_id (INT AUTO_INCREMENT)
+Foreign Key: device_id referencing Device table
 
-This table allows me to store sensor data
+**Attributes:**
 
-Concerning the keys, data_id is my primary key which allows me to set a unique identifier for each piece of data if my sensor sends me the same data several times, this will allow me to identify them no matter how many times the sensor sends the same data. As you'd expect, my foreign key is sensor_id, which allows me to identify the sensor that sent the data
+- name: Sensor name
+- type: Predefined type
+- activation_threshold: Activation threshold
 
-Concerning the attributes, value for the value ( Of course ), timestamp it allows me to record the moment when the data was generated. I can't really do otherwise (well, it's the only idea I had for sorting the data). I figured that sorting by date and time wouldn't be such a bad idea. And button_state for the state of the button, whether it's pressed or not.
+**Index:**
 
-### Database Schema
+On type to facilitate sensor type searches
 
-![Menu](Database_Schema.png)
+**Relationship:**
 
-As I've already explained the choices for my columns, I'll explain how I went about creating my database schema. I'm not going to dwell too much on the choice of columns, just that I've taken what I'd done before and added them. I'm mainly going to justify the choices I made for my indexes. 
+1 device can have N sensors (1:N)
 
-For the date, I decided to choose only the date and time, as I thought these were the two most important elements for finding an appointment. It's true that I could have grouped them together, but I thought that if one day I needed to search for all the appointments for a day, for example, or all the appointments for an hour, that would make the search easier.
+### SensorData Table
 
-For the sensors, the type seemed the most relevant because if I can find out what type of sensor it is, I'll be able to find out directly what data I'm receiving. 
+```sql
+CREATE TABLE IF NOT EXISTS `iot`.`SensorData` (
+  `data_id` INT NOT NULL AUTO_INCREMENT,
+  `value` FLOAT NOT NULL,
+  `time_stamp` DATETIME NOT NULL,
+  `button_state` TINYINT NULL DEFAULT 0,
+  `sensor_id` INT NOT NULL,
+  PRIMARY KEY (`data_id`),
+  INDEX `timestamp` (`time_stamp` ASC) VISIBLE,
+  INDEX `fk_data` (`sensor_id` ASC) VISIBLE,
+  CONSTRAINT `fk_data`
+    FOREIGN KEY (`sensor_id`)
+    REFERENCES `iot`.`Sensor` (`sensor_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+```
 
-And finally, for the sensor data, naturally the timestamp. It allows me to record the moment when the data was generated. I can't really do otherwise (well, it's the only idea I had for sorting the data). I figured that sorting by date and time wouldn't be such a bad idea. And button_state for the state of the button, whether it's pressed or not.
+**Explanation:**
 
-### Critique sur ma table SensorData
+Primary Key: data_id (INT AUTO_INCREMENT)
+Foreign Key: sensor_id referencing Sensor table
 
-I'd have to replace the fact that in JSON files, for example, data is sent to the sensor with ID 1 with its name, it was just something I'd been thinking about. My table works perfectly, but in terms of “comfort” and ease, it would be simpler to have the name rather than the number.
+**Attributes:**
 
----
+- value: Numeric sensor value
+- time_stamp: Measurement timestamp
+- button_state: Button state (0/1)
 
-All the sensor-data of the embedded device is stored in the database.
+**Index:**
 
----
+On time_stamp to optimize time-based queries
 
-The database is normalized into a correct relational database. Tool: MySQL Workbench
+**Relationship:**
 
----
+1 sensor can generate N data entries (1:N)
 
-All the tables in the database have a logical and correct Primary Key.
+## Normalization and Conventions
 
----
+The database complies with the third normal form:
+- No data redundancy
+- All dependencies are towards primary keys
+- No transitive dependencies
 
-The structure of all the columns and tables is in such way that there is no data saved in a wrong format.
+**Conventions used:**
 
----
+- Table names in PascalCase
+- Column names in lowercase_with_underscores
+- Primary keys named as table_id
+- Foreign keys referenced with fk_ prefix
 
-The build script of your MySQL Database should be stored as .sql files in your portfolio website with detailed instructions on how to use.
+### Example Insertions
+
+**Device insertion:**
+
+```sql
+INSERT INTO Device (name, ip_address)
+VALUES ('Calendrier Salon', '192.168.1.10');
+```
+
+**Appointment insertion:**
+
+```sql
+INSERT INTO Appointment (task, date_hour, note, device_id)
+VALUES ('Ready to die for him', '2023-12-15 14:30:00', 'urgent', 1);
+```
+
+**Sensor insertion:**
+
+```sql
+INSERT INTO Sensor (name, type, activation_threshold, device_id)
+VALUES ('PIR', 'Presence', 0, 1);
+```
+
+**SensorData insertion:**
+
+```sql
+INSERT INTO SensorData (value, time_stamp, button_state, sensor_id)
+VALUES (1.2, NOW(), NULL, 1);
+```
+
+## Detailed Guide for SQL Script Usage
+
+### Step 1
+
+**Install MySQL Server:**
+
+- Download MySQL Community Server
+- Follow the installation instructions according to your operating system
+
+**Install MySQL Workbench:**
+
+- Download MySQL Workbench
+- Install and launch the application to confirm installation
+
+### Step 2
+
+- Open MySQL Workbench
+- Click on MySQL Connections to configure a new connection:
+  - Click on "+"
+  - Enter the following:
+    - Connection Name: iot
+    - Hostname: mariadb
+    - Port: 3306
+    - Username: root
+  - Click OK
+
+### Step 3
+
+Select your connection (iot) and click **Open**.
+In the SQL window, create the database by executing:
+
+```sql
+CREATE DATABASE iot;
+USE iot;
+```
+
+Execute your full SQL script:
+- Open your SQL script (forward_engineer.sql) in MySQL Workbench
+- Click the "Execute" icon (lightning bolt) to run the entire script.
+
+### Step 4
+
+Create a specific user to access your database:
+
+```sql
+CREATE USER 'iot_user'@'localhost' IDENTIFIED BY 'user_password';
+GRANT ALL PRIVILEGES ON iot.* TO 'iot_user'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+### Step 5
+
+Refresh the list of databases and tables
+Check that these 4 tables are created:
+- Device
+- Appointment
+- Sensor
+- SensorData
+
+Your `iot` database is now perfectly configured and ready for use.
+
+### Link to SQL Script
+
+[SQL Script](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/Victor/Database/forward_engineer.sql?ref_type=heads)
+
+### Future Improvements
+
+1. Add a description field to the Sensor table
+2. Implement triggers for data validation
+3. Add views for frequent queries
+4. Extend ENUM types for sensors for more flexibility

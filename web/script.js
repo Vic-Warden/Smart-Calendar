@@ -3,6 +3,7 @@
  including the loading screen, the terminal effect for the main page, and the 
  full CRUD management of appointments via a backend PHP API.
  Author: Victor HOEGY
+ Date : 12/02/25
  */
 
 document.addEventListener("DOMContentLoaded", function () {
