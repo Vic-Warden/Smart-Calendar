@@ -5,7 +5,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER["REQUEST_METHOD"] !== "PUT") 
 {
-    echo json_encode(["status" => "error", "message" => "Méthode de requête invalide, utilisez PUT"]);
+    echo json_encode(["status" => "error", "message" => "Invalid request method, use PUT"]);
     exit;
 }
 
@@ -19,7 +19,7 @@ $date_hour = $input_data['date_hour'] ?? null;
 
 if (!$appointment_id || !$task || !$date_hour) 
 {
-    echo json_encode(["status" => "error", "message" => "Tous les champs sont requis."]);
+    echo json_encode(["status" => "error", "message" => "All fields are required"]);
     exit;
 }
 
@@ -32,6 +32,7 @@ if ($stmt->execute())
 {
     echo json_encode(["status" => "success", "message" => "Appointment updated"]);
 } 
+
 else 
 {
     echo json_encode(["status" => "error", "message" => "Erreur SQL : " . $stmt->error]);
@@ -40,3 +41,4 @@ else
 $stmt->close();
 $link->close();
 ?>
+
