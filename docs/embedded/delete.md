@@ -159,3 +159,258 @@ Once you've decided to enter your data, there are 2 places where you can enter y
 I'm going to take the liberty of talking about the very first code I've just made, even though I admit I'd have preferred it to be on the Arduino, but I realized that the components I wanted to use I don't have. I'll be receiving them on Saturday, so to save time I decided to take care of the front-end of my website. I'd already done some because I'd been lucky enough to work for a medical practice and had taken care of their website. So my very first code is an html file in the Warhammer 40,000 universe. I'm so happy with what I've accomplished! I'm really proud of myself for having succeeded in making something that suits me. It was important for me to be able to add my favorite universe to this project. In this HTML file I put an image in the background to give the image a theme, I decided to add a text area with an image of a tech priest that gives the impression of talking to us with a button at the bottom when we're ready to commune with the machine spirit.
 
 Regarding what I did last night, I started by changing my text because the feedback I'd received told me it wasn't really clear, so I wanted to change that first. I continued by adding a text first to make them understand what they're supposed to do, I just hope the texts aren't too long. After making the text I put a button that would allow me to display or not the fact of being able to add an apointment, I added the possibility of adding a date, time and task that the user wanted. And finally I added an option to delete if the user has mistakenly added an appointment he didn't want.
+
+## Appointment
+
+Concerning the appointment part, I use several APIs, in particular 4, an API that lets me send an appointment from my website to the database, an API that lets me delete it from my website and modify it.
+The last API I use allows me to retrieve the appointments I have on my database. I did a test with my friend and when I sent him the link to my website, he was able to see the appointments I had put there.
+
+## Recover all appointments
+
+This endpoint recover the complete list of appointments stored in the database
+
+URL (Endpoint)
+
+- http://localhost/Database/Appointment/recover_appointment.php
+
+Request Method
+
+- GET ( Because all I need to do is read the data stored in my database, and make no changes. I just recover everything )
+
+Arguments
+
+- None 
+
+Return Value
+
+- A JSON table containing all appointments
+
+- http://localhost/Database/Appointment/recover_appointment.php
+
+Proof of Execution
+
+---
+
+- JSON file created
+
+![Menu](1.png)
+
+---
+
+- In PHP MyAdmin
+
+![Menu](2.png)
+
+---
+
+- On the website
+
+![Menu](3.png)
+
+---
+
+## Insert appointment
+
+This endpoint allows you to add an appointment to the database
+
+URL (Endpoint)
+
+- http://localhost/Database/Appointment/insert_appointment.php
+
+Request Method
+
+- POST ( Because I need it to send new data to my database )
+
+Arguments
+
+- task (string, required) -> Name of task
+
+- date_hour (string - format YYYY-MM-DD HH:MM:SS, required) → Date and time of appointment
+
+- device_id (integer, required) → ID of the device associated with the appointment
+
+Warning : if an argument is missing, it will not work
+
+Return Value
+
+- This allows me to display in a JSON file only the last appointment that was added
+
+- http://localhost/Database/Appointment/get_last_appointment.php
+
+Proof of Execution
+
+---
+
+- Added from the website
+
+![Menu](4.png)
+
+---
+
+- Only the last added displayed
+
+- http://localhost/Database/Appointment/get_last_appointment.php
+
+![Menu](5.png)
+
+---
+
+- All appointments displayed
+
+- http://localhost/Database/Appointment/recover_appointment.php
+
+![Menu](6.png)
+
+---
+
+## Edit appointment
+
+This endpoint allows you to edit an appointment to the database
+
+URL (Endpoint)
+
+- http://localhost/Database/Appointment/update_appointment.php
+
+Request Method
+
+- POST ( I know there's a PUT option for modifying data, but I prefer to stick with POST because the result is the same: I can modify data )
+
+Arguments
+
+- appointment_id (integer, required) → The ID of the appointment
+
+- task (string, required) -> Name of task
+
+- date_hour (string - format YYYY-MM-DD HH:MM:SS, required) → Date and time of appointment
+
+Warning : if an argument is missing, it will not work
+
+Return Value
+
+- This allows me to display in a JSON file only the last appointment that was updated
+
+- http://localhost/Database/Appointment/get_last_updated_appointment.php
+
+Proof of Execution
+
+---
+
+- Edited from the website
+
+![Menu](7.png)
+
+---
+
+- Only the last edited displayed
+
+- http://localhost/Database/Appointment/get_last_updated_appointment.php
+
+![Menu](8.png)
+
+---
+
+- Only the last added displayed ( no changement here )
+
+- http://localhost/Database/Appointment/get_last_appointment.php
+
+![Menu](85.png)
+
+---
+
+- All appointments displayed
+
+- http://localhost/Database/Appointment/recover_appointment.php
+
+![Menu](9.png)
+
+---
+
+## Delete appointment
+
+This endpoint allows you to edit an appointment to the database
+
+URL (Endpoint)
+
+- http://localhost/Database/Appointment/delete_appointment.php
+
+Request Method
+
+- POST ( I know there's a PUT option for modifying data, but I prefer to stick with POST because the result is the same: I can modify data )
+
+Arguments
+
+- appointment_id (integer, required) → The ID of the appointment
+
+Warning : if an argument is missing, it will not work
+
+Return Value
+
+- This allows me to display in a JSON file only the last appointment that was deleted
+
+- http://localhost/Database/Appointment/get_last_deleted_appointment.php
+
+Proof of Execution
+
+---
+
+- Deleted from the website
+
+
+---
+
+- Only the last edited displayed ( no changement here )
+
+- http://localhost/Database/Appointment/get_last_updated_appointment.php
+
+---
+
+- Only the last added displayed ( no changement here )
+
+- http://localhost/Database/Appointment/get_last_appointment.php
+
+---
+
+- All appointments displayed
+
+- http://localhost/Database/Appointment/recover_appointment.php
+
+
+---
+
+## If we deleted the last add
+
+---
+
+- Deleted from the website
+
+
+---
+
+- Only the last edited displayed ( no changement here )
+
+- http://localhost/Database/Appointment/get_last_updated_appointment.php
+
+
+---
+
+- If the last appointment is deleted, you're back to the one before 
+
+- http://localhost/Database/Appointment/get_last_appointment.php
+
+
+---
+
+- All appointments displayed
+
+- http://localhost/Database/Appointment/recover_appointment.php
+
+
+The REST API documentation explains the input, output, and endpoint URL for each API to help you use them effectively.
+
+---
+
+There is a full explanation of the used technology.
+
+---
+
+All the design choices are explained in detail of the front-end and back-end of the web application.

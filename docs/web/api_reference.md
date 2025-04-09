@@ -2,257 +2,60 @@
 
 Write here your own content!
 
-## Appointment
-
-Concerning the appointment part, I use several APIs, in particular 4, an API that lets me send an appointment from my website to the database, an API that lets me delete it from my website and modify it.
-The last API I use allows me to retrieve the appointments I have on my database. I did a test with my friend and when I sent him the link to my website, he was able to see the appointments I had put there.
-
-## Recover all appointments
-
-This endpoint recover the complete list of appointments stored in the database
-
-URL (Endpoint)
-
-- http://localhost/Database/Appointment/recover_appointment.php
-
-Request Method
-
-- GET ( Because all I need to do is read the data stored in my database, and make no changes. I just recover everything )
-
-Arguments
-
-- None 
-
-Return Value
-
-- A JSON table containing all appointments
-
-- http://localhost/Database/Appointment/recover_appointment.php
-
-Proof of Execution
-
----
-
-- JSON file created
-
-![Menu](1.png)
-
----
-
-- In PHP MyAdmin
-
-![Menu](2.png)
-
----
-
-- On the website
-
-![Menu](3.png)
-
----
-
-## Insert appointment
-
-This endpoint allows you to add an appointment to the database
-
-URL (Endpoint)
-
-- http://localhost/Database/Appointment/insert_appointment.php
-
-Request Method
-
-- POST ( Because I need it to send new data to my database )
-
-Arguments
-
-- task (string, required) -> Name of task
-
-- date_hour (string - format YYYY-MM-DD HH:MM:SS, required) → Date and time of appointment
-
-- device_id (integer, required) → ID of the device associated with the appointment
-
-Warning : if an argument is missing, it will not work
-
-Return Value
-
-- This allows me to display in a JSON file only the last appointment that was added
-
-- http://localhost/Database/Appointment/get_last_appointment.php
-
-Proof of Execution
-
----
-
-- Added from the website
-
-![Menu](4.png)
-
----
-
-- Only the last added displayed
-
-- http://localhost/Database/Appointment/get_last_appointment.php
-
-![Menu](5.png)
-
----
-
-- All appointments displayed
-
-- http://localhost/Database/Appointment/recover_appointment.php
-
-![Menu](6.png)
-
----
-
-## Edit appointment
-
-This endpoint allows you to edit an appointment to the database
-
-URL (Endpoint)
-
-- http://localhost/Database/Appointment/update_appointment.php
-
-Request Method
-
-- POST ( I know there's a PUT option for modifying data, but I prefer to stick with POST because the result is the same: I can modify data )
-
-Arguments
-
-- appointment_id (integer, required) → The ID of the appointment
-
-- task (string, required) -> Name of task
-
-- date_hour (string - format YYYY-MM-DD HH:MM:SS, required) → Date and time of appointment
-
-Warning : if an argument is missing, it will not work
-
-Return Value
-
-- This allows me to display in a JSON file only the last appointment that was updated
-
-- http://localhost/Database/Appointment/get_last_updated_appointment.php
-
-Proof of Execution
-
----
-
-- Edited from the website
-
-![Menu](7.png)
-
----
-
-- Only the last edited displayed
-
-- http://localhost/Database/Appointment/get_last_updated_appointment.php
-
-![Menu](8.png)
-
----
-
-- Only the last added displayed ( no changement here )
-
-- http://localhost/Database/Appointment/get_last_appointment.php
-
-![Menu](85.png)
-
----
-
-- All appointments displayed
-
-- http://localhost/Database/Appointment/recover_appointment.php
-
-![Menu](9.png)
-
----
-
-## Delete appointment
-
-This endpoint allows you to edit an appointment to the database
-
-URL (Endpoint)
-
-- http://localhost/Database/Appointment/delete_appointment.php
-
-Request Method
-
-- POST ( I know there's a PUT option for modifying data, but I prefer to stick with POST because the result is the same: I can modify data )
-
-Arguments
-
-- appointment_id (integer, required) → The ID of the appointment
-
-Warning : if an argument is missing, it will not work
-
-Return Value
-
-- This allows me to display in a JSON file only the last appointment that was deleted
-
-- http://localhost/Database/Appointment/get_last_deleted_appointment.php
-
-Proof of Execution
-
----
-
-- Deleted from the website
-
-
----
-
-- Only the last edited displayed ( no changement here )
-
-- http://localhost/Database/Appointment/get_last_updated_appointment.php
-
----
-
-- Only the last added displayed ( no changement here )
-
-- http://localhost/Database/Appointment/get_last_appointment.php
-
----
-
-- All appointments displayed
-
-- http://localhost/Database/Appointment/recover_appointment.php
-
-
----
-
-## If we deleted the last add
-
----
-
-- Deleted from the website
-
-
----
-
-- Only the last edited displayed ( no changement here )
-
-- http://localhost/Database/Appointment/get_last_updated_appointment.php
-
-
----
-
-- If the last appointment is deleted, you're back to the one before 
-
-- http://localhost/Database/Appointment/get_last_appointment.php
-
-
----
-
-- All appointments displayed
-
-- http://localhost/Database/Appointment/recover_appointment.php
-
-
-The REST API documentation explains the input, output, and endpoint URL for each API to help you use them effectively.
-
----
-
-There is a full explanation of the used technology.
-
----
-
-All the design choices are explained in detail of the front-end and back-end of the web application.
+Cette API permet de gérer les rendez-vous enregistrés dans la base de données. Elle est utilisée par mon site pour ajouter, récupérer, modifier ou supprimer des données sans recharger la page. L’API est développée en PHP, et toutes les réponses sont retournées au format JSON. Les requêtes sont envoyées avec fetch() côté JavaScript.
+
+[Voir les fichiers liés aux appointments sur GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/tree/main/web/Database/Appointment?ref_type=heads)
+
+
+### Insert a New Appointment
+
+**Endpoint**: /insert_appointment.php  
+**Method**: POST  
+**Description**: Crée un nouvel appointment (rendez-vous) pour un device
+
+### Request Parameters (body: `application/x-www-form-urlencoded`)
+
+| Parameter   | Type     | Required | Description                                                        |
+|-------------|----------|----------|--------------------------------------------------------------------|
+| `task`      | `string` | Yes      | Description de la tâche à accomplir                                |
+| `date_hour` | `string` | Yes      | Date et heure du rendez-vous (format : `YYYY-MM-DD HH:MM:SS`)     |
+| `device_id` | `int`    | Yes      | ID de l'appareil (doit exister dans la table `Device`)             |
+
+
+### Success Response
+
+```json
+{
+  "status": "success",
+  "message": "Appointment added",
+  "appointment_id": 5
+}
+```
+### Error Responses
+
+```json
+{
+  "status": "error",
+  "message": "Task field is required"
+}
+```
+```json
+{
+  "status": "error",
+  "message": "Date and time field is required"
+}
+```
+```json
+{
+  "status": "error",
+  "message": "Device ID field is required and must be a number"
+}
+```
+```json
+{
+  "status": "error",
+  "message": "Wemos not connected"
+}
+```
+
+[insert_appointment.php sur GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/insert_appointment.php?ref_type=heads)
