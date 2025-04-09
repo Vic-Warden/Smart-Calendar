@@ -3,8 +3,7 @@
  * Description: This script handles the front-end interactions of the web application,
  * including the loading screen, the terminal effect for the main page, and the 
  * full CRUD management of appointments via a backend PHP API.
- * Author: [Your Name]
- * Date: [Today's Date]
+ * Author: Victor HOEGY
  */
 
 // --------------------------------
