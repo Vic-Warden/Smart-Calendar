@@ -100,3 +100,11 @@ To improve this project in a future version, I plan to:
 - Add a voice notification when an appointment is reached  
 - Fix the timing delay of the cuckoo  
 - Redesign the internal layout of the tower to simplify wiring
+
+## Product 
+
+**The product from every angle**: [See the product](./turn.mp4)  
+
+**The cuckoo comes out every hour followed by a sound**: [See the product](./sev.mp4)  
+
+**The button does change the character voice, and there is a sound when you add, modify or delete an appointment. There's a motion detector, night mode and the fact that it reverts to daylight.**: [See the product](./all.mp4)  
