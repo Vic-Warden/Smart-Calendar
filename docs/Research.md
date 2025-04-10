@@ -128,7 +128,7 @@ Display the terminal without Svelte :
 
 Display the 3D model and the Animation text with Svelte :
 
-```svelte
+<pre>```svelte
 <script>
   import { onMount } from 'svelte';
   let visible = false;
@@ -172,7 +172,7 @@ Display the 3D model and the Animation text with Svelte :
   </div>
 {/if}
 
-```
+```</pre>
 
 Display the 3D model and the Animation text without Svelte :
 
