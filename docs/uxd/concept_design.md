@@ -6,233 +6,274 @@ Write here your own content!
 
 The main goal is to offer Warhammer 40,000 fans an interactive way to manage their calendar. This is done through a personalized smart calendar that blends physical and digital interaction, allowing users to add and manage appointments via a web interface. Each interaction is enhanced by audio and visual feedback from the Warhammer universe. The final goal is to have a fully functional prototype by the end of the ten weeks.
 
-## Utilisateur Cible 
+## Target User
 
-- **Public cible :** Fans de l'univers Warhammer 40,000 (communauté estimée entre 30 et 50 millions de personnes).
-- **Contexte d'utilisation :** Les utilisateurs souhaitent ajouter des tâches à leur calendrier, mais le processus est répétitif et chiant.
-- **Problématique :** Ajouter des tâches au calendrier est monotone.
-- **Solution :** Un calendrier intelligent thématisé Warhammer, réactif à la présence de l'utilisateur, avec effets lumineux et sons emblématiques.
+- **Target audience:** Fans of the Warhammer 40,000 universe (estimated community between 30 and 50 million people).
+- **Usage context:** Users want to add tasks to their calendar, but the process is repetitive and annoying.
+- **Problem:** Adding tasks to the calendar is monotonous.
+- **Solution:** A Warhammer-themed smart calendar, responsive to user presence, with iconic lighting effects and sounds.
 
 ## User Stories
 
-US01 : En tant que fan de Warhammer, je veux entendre des voix emblématiques lorsque j'ajoute un rendez-vous afin de vivre une expérience immersive.
+US01: As a Warhammer fan, I want to hear iconic voices when I add an appointment so I can have an immersive experience.
 
-US02 : En tant qu'utilisateur, je veux ajouter des rendez-vous rapidement via une interface web pour gagner du temps.
+US02: As a user, I want to quickly add appointments via a web interface to save time.
 
-US03 : En tant qu'utilisateur curieux, je veux découvrir une interface de calendrier originale afin que mon expérience soit nouvelle et engageante.
+US03: As a curious user, I want to explore an original calendar interface so that my experience is new and engaging.
 
-US04 : En tant que passionné, je veux pouvoir choisir une voix pour chaque rendez-vous afin de le personnaliser.
+US04: As a passionate user, I want to choose a voice for each appointment to personalize it.
 
-US05 : En tant qu'utilisateur, je veux que le calendrier réagisse à ma présence afin que l'objet paraisse vivant.
+US05: As a user, I want the calendar to react to my presence so that the object seems alive.
 
-## Exigences 
+## Requirements
 
-PR01 : Le calendrier doit détecter la présence de l'utilisateur et allumer les yeux de l'emblème Warhammer.
+PR01: The calendar must detect user presence and light up the eyes of the Warhammer emblem.
 
-PR02 : L'interface doit permettre l'ajout ou la modification de rendez-vous en moins de 20 secondes.
+PR02: The interface must allow adding or modifying appointments in less than 20 seconds.
 
-PR03 : Chaque interaction doit déclencher un son issu des jeux Warhammer.
+PR03: Each interaction must trigger a sound from Warhammer games.
 
-PR04 : L'utilisateur doit pouvoir sélectionner une voix personnalisée pour chaque rendez-vous.
+PR04: The user must be able to select a custom voice for each appointment.
 
-PR05 : L'appareil doit intégrer un écran LCD et un capteur PIR.
+PR05: The device must integrate an LCD screen and a PIR sensor.
 
-## Fabrication Numérique & Matériaux
+## Digital Manufacturing & Materials
 
-- **Logiciel utilisé :** Tinkercad  
+- **Software used:** Tinkercad  
 
-Choisi pour sa simplicité
+Chosen for its simplicity
 
-- **Matériau utilisé :** **PLA** 
+- **Material used:** **PLA** 
 
-  Le PLA a été choisi pour sa facilité d'impression, sa faible déformation et sa finition esthétique, idéale pour un objet décoratif comme ce calendrier intelligent.
+  PLA was chosen for its ease of printing, low warping, and aesthetic finish, ideal for a decorative object like this smart calendar.
 
-- **Pourquoi cette méthode ?**  
+- **Why this method ?**  
 
-Tinkercad et le PLA permettent un prototypage rapide, un design précis des pièces, et une compatibilité avec les imprimantes 3D
+Tinkercad and PLA allow for fast prototyping, precise part design, and compatibility with 3D printers
 
-
-**Inspiration & Références Visuelles**
+**Inspiration & Visual References**
 
 ![Menu](Front.png)
-Vue de face
+
+Front view
 
 ---
 
 ![Menu](Back.png)
-Vue arrière
+
+Back view
 
 ---
 
 ![Menu](Right.png)
-Côté droit
+
+Right side
 
 ---
 
 ![Menu](Left.png)
-Côté gauche
+
+Left side
 
 ---
 
 ![Menu](Top.png)
-Vue du dessus
+
+Top view
 
 ---
 
-### 2. **Prototypage 3D via Tinkercad**
-> Construction étape par étape : base, tours, générateurs, portes, postes d'observation.
+### 2. **3D Prototyping via Tinkercad**
 
 ![Menu](Step1.png)
-**Step 1 :** Création d'un premier rectangle pour servir de base ( 86 mm x 74 mm)
+
+**Step 1:** Creation of a first rectangle to serve as a base
+
+Dimensions:  86.00 mm × 74.00 mm 
 
 ---
 
 ![Menu](Step2.png)
-[Télécharger Step 2](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step2.stl?ref_type=heads)
 
-**Step 2 :** Ajustement du rectangle pour entourer la base
+[Download Step 2](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step2.stl?ref_type=heads)
+
+**Step 2:** Adjustment of the rectangle to surround the base
+
+Dimensions:  86.00 mm × 74.00 mm × 2.00 mm
 
 ---
 
 ![Menu](Step3.png)
-**Step 3 :** Découpe du rectangle pour créer un pilier
+
+**Step 3:** Cutting the rectangle to create a pillar
 
 ---
 
 ![Menu](Step4.png)
-[Télécharger Step 4](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step4.stl?ref_type=heads)
 
-**Step 4 :** Répétition du processus pour plusieurs piliers
+[Download Step 4](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step4.stl?ref_type=heads)
+
+**Step 4:** Repeat the process for several pillars
 
 ---
 
 ![Menu](Step5.png)
-**Step 5 :** Tentative de création de générateurs d'énergie
+
+**Step 5:** Attempt to create energy generators
 
 ---
 
 ![Menu](Step6.png)
-[Télécharger Step 6](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step6.stl?ref_type=heads)
 
-**Step 6 :** Dupliquer les générateurs
+[Download Step 6](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step6.stl?ref_type=heads)
+
+**Step 6:** Duplicate the generators
 
 ---
 
 ![Menu](Step7.png)
-**Step 7 :** Agrandissement de la base
+
+**Step 7:** Enlargement of the base
+
+Dimensions 93.48 mm × 80.44 mm × 8.49 mm
 
 ---
 
 ![Menu](Step8.png)
-![Menu](Step88.png)
-[Télécharger Step 8](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step8.stl?ref_type=heads)
 
-**Step 8 :** Installation du poste d'observation
+![Menu](Step88.png)
+
+[Download Step 8](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step8.stl?ref_type=heads)
+
+**Step 8:** Installation of the observation post
 
 ---
 
 ![Menu](Step9.png)
-![Menu](Step99.png)
-[Télécharger Step 9](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step9.stl?ref_type=heads)
 
-**Step 9 :** Duplication du poste d'observation
+![Menu](Step99.png)
+
+[Download Step 9](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step9.stl?ref_type=heads)
+
+**Step 9:** Duplication of the observation post
 
 ---
 
-### 4. **Amélioration & Correction**
-> Retouches esthétiques, ajustement des proportions et perçages pour composants.
+### 4. **Improvement & Correction**
+> Aesthetic touch-ups, adjustment of proportions and holes for components.
 
 ![Menu](Step10.png)
-[Télécharger Step 10](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step10.stl?ref_type=heads)
 
-**Step 10 :** Refaire les générateurs d'énergie jugés peu esthétiques
+[Download Step 10](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step10.stl?ref_type=heads)
+
+**Step 10:** Redesign of energy generators deemed unaesthetic
 
 ---
 
 ![Menu](Step100.png)
-**Step 11 :** Agrandissement des générateurs
+
+**Step 11:** Enlargement of generators
 
 ---
 
 ![Menu](Step1000.png)
+
 ![Menu](Step10000.png)
-**Step 12 :** Découpe de l'extrémité et duplication
+
+**Step 12:** Cutting the end and duplication
 
 ---
 
 ![Menu](Step13.png)
-**Step 13 :** Ajout d'une porte
+
+**Step 13:** Adding a door
 
 ---
 
 ![Menu](Step14.png)
-**Step 14 :** Création d'un rectangle pour la tour
+
+**Step 14:** Creating a rectangle for the tower
 
 ---
 
 ![Menu](Step15.png)
-**Step 15 :** Découpe du rectangle pour une forme plus travaillée
+
+**Step 15:** Cutting the rectangle for a more refined shape
 
 ---
 
 ![Menu](Step16.png)
-**Step 16 :** Agrandissement de la tour
+
+**Step 16:** Enlargement of the tower
 
 ---
 
 ![Menu](Step17.png)
-**Step 17 :** Ajout d’un carré sur la tour et réduction de la partie centrale pour un aspect poste d’observation
+
+**Step 17:** Adding a square on the tower and reducing the central part for an observation post look
 
 ---
 
 ![Menu](Step18.png)
-[Télécharger Step 18](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step18.stl?ref_type=heads)
 
-**Step 18 :** Ajout de la tour sur la base
+[Download Step 18](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step18.stl?ref_type=heads)
+
+**Step 18:** Adding the tower to the base
+
+Dimensions: 93.48 mm × 80.44 mm × 27.40 mm
 
 ---
 
 ![Menu](Step19.png)
-[Télécharger Step 19](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step19.stl?ref_type=heads)
 
-**Step 19 :** Agrandissement pour accueillir l’écran LCD et le capteur PIR
+[Download Step 19](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step19.stl?ref_type=heads)
+
+**Step 19:** Enlargement to accommodate the LCD screen and PIR sensor
+
+Dimensions: 200.00 × 172.10 × 84.99 mm
 
 ---
 
 ![Menu](Step20.png)
-**Step 20 :** Tentative de rendre la base creuse
+
+**Step 20:** Attempt to make the base hollow
 
 ---
 
 ![Menu](Step21.png)
-**Step 21 :** Décision de diviser le modèle en deux parties : base et tour
+
+**Step 21:** Decision to divide the model into two parts: base and tower
 
 ---
 
-### **Export final pour fabrication**
+### **Final Export for Manufacturing**
 
-> Modèle final divisé en base + tour, exporté en STL, prêt à être imprimé.
+> Final model split into base + tower, exported in STL, ready to be printed.
 
 ![Menu](Step22.png)
+
 ![Menu](Step222.png)
+
 ![Menu](Step2222.png)
 
-[Télécharger la tour](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step222.stl?ref_type=heads)
+[Download the tower](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step222.stl?ref_type=heads)
 
-[Télécharger la base](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step2222.stl?ref_type=heads)
+[Download the base](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Step2222.stl?ref_type=heads)
 
-**Step 22 :** Finalisation des formes et creuser les volumes via Meshmixer
-
----
-
-### **Intégration des composants**
-
-> Prévision de l'espace pour capteur PIR, écran LCD et fils.
-
-![Menu](Last.png)
-[Télécharger la version finale](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Last.stl?ref_type=heads)
-
-**Step 23 :** Perçage pour les composants et préparation à l'impression 3D
+**Step 22:** Finalizing the shapes and hollowing out the volumes via Meshmixer
 
 ---
 
+### **Component Integration**
+
+> Space planning for PIR sensor, LCD screen and wires.
+
+![Menu](Last.png)  
+
+[Download final version](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/docs/uxd/3D%20Model/Last.stl?ref_type=heads)
+
+**Step 23:** Drilling for components and preparation for 3D printing
+
+Dimensions: 199.99 × 172.09 × 92.00
+
+---

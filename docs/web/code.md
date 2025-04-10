@@ -39,7 +39,7 @@ I followed code practices for every language used :
 - Prepared statements are used to prevent SQL injection
 
 ### HTML / CSS
-- Semantic HTML structure (no inline styles)
+- HTML structure 
 - CSS is modular, separated from HTML
 - Used Tailwind CSS + custom utility classes
 - Animations and transitions are abstracted with clean class names

@@ -76,6 +76,18 @@ Connected to PIN SPK_1 **on DF Player mini**
 
 Connected to PIN SPK_2 **on DF Player mini**
 
+## ESP32 USB-C
+
+Connected to the computer
+
+Used as a power supply
+
+Used to upload code
+
+5V 
+
+1A
+
 ---
 
 ## **Bill of Materials**
@@ -98,6 +110,7 @@ This table lists all the components required to build the ESP32-based Smart Cale
 | DUP-MF-10CM    | Not specified  | Jumper wire M-F 10cm (x10)             | 2 packs | 0.50 €   | 1.00 €   | [Link](https://www.tinytronics.nl/en/cables-and-connectors/cables-and-adapters/prototyping-wires/dupont-compatible-and-jumper/dupont-jumper-wire-male-female-10cm-10-wires) | 11 used, 20 total                                              |
 | DUP-MM-10CM    | Not specified  | Jumper wire M-M 10cm (x10)             | 2 packs | 0.50 €   | 1.00 €   | [Link](https://www.tinytronics.nl/en/cables-and-connectors/cables-and-adapters/prototyping-wires/dupont-compatible-and-jumper/dupont-jumper-wire-male-male-10cm-10-wires)   | 11 used, 20 total                                              |
 | RES-10K-5%     | Not specified  | 10kΩ Resistor (±5%)                    | 2       | 0.05 €   | 0.10 €   | [Link](https://www.tinytronics.nl/en/components/resistors/resistors/10k%CF%89-resistor-(standard-pull-up-or-pull-down-resistor)) | [Datasheet](https://www.seielect.com/Catalog/SEI-CF_CFM.pdf)        |
+| USB-C   | Cuxnoo         | USB-C           | 1       | 12.00 €   | 12.00 €   | [Link](https://www.amazon.nl/C-videokabel-Cuxnoo-C-monitorkabel-ondersteunt-gegevenssynchronisatie/dp/B089ST58C5/)              | USB-C to USB-C, supports fast charging and data sync           |
 
 
-### Total ≈ 56.95 €
+### Total = 66.74 €

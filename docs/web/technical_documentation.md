@@ -7,9 +7,9 @@ Write here your own content!
 
 For this project, I wanted to bring my personal touch to my favorite universe, Warhammer 40k! Although this universe is extremely vast, I decided to focus on the cult of Omnissiah, with one thing in mind: ease of use. My website is composed of two main pages:
 
-An introductory page **index.html** with a terminal for more information.
+An introductory page index.html with a terminal for more information.
 
-A main page **inside_spirit_machine.html** dedicated to adding, modifying and deleting appointments and its 3D model.
+A main page inside_spirit_machine.html dedicated to adding, modifying and deleting appointments and its 3D model.
 
 ### Problems Encountered & Solutions
 

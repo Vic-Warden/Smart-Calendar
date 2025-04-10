@@ -1,7 +1,3 @@
-Voici la traduction fidèle de ton texte, **sans toucher à la structure ni à l’indentation** :
-
----
-
 # Create & Test
 
 Write here your own content!
@@ -122,30 +118,151 @@ When I split them, I reduce the time by **1h41**
 
 But when I flip them I reduce the time by **11 hours and 34 minutes !**
 
-## **(USER)TEST**
+---
 
-Testing the ease of adding an appointment through the smart calendar's web interface, with a focus on accessibility, intuitiveness, and user comfort.
+## Manufacturing
 
-Two groups of 3 users were selected:
+The first step is to fit the servo motor and the pir sensor
 
-3 people who are Warhammer fans
+![Menu](1.jpg)
 
-3 people with no particular knowledge of the universe
+Then we take care of the button
 
-They were invited to use the site to add and modify an appointment.
+![Menu](2.jpg)
 
-Adding appointments was generally judged to be simple and smooth
+We'll take care of the 7 segments
 
-However, several users noted:
+![Menu](3.jpg)
 
-A lack of clarity in the button colors (cancel / modify)
+We'll take care of the LCD screen and the photo resistance
 
-Confusion due to the possibility of deleting an appointment while modifying it
+![Menu](4.jpg)
+
+We take care about the jumper wires we stick together 
+
+![Menu](20250403_131053.jpg)
+
+And we hang the flag
+
+
+![Menu](Snapchat-1768370018.jpg)
+
+
+## **User Test Plan**
+
+### **Objective**
+Evaluate the usability, clarity, and functionality of the Warhammer-themed smart calendar’s web interface, focusing on ease of adding/modifying appointments and immersive user feedback (audio/visual).
+
+## **Test Scenarios**
+
+### **Appointment Creation Flow**
+
+**Objective:** Ensure the user can create and modify an appointment intuitively and quickly.  
+
+**Steps:**
+
+- Access the website homepage.
+- Click on the "Log Your Sacred Duty" button.
+- Add an appointment with title and time.
+- Try modifying it right after.
+
+**Expected Outcome:**  
+
+The task should be completed in under 20 seconds without assistance, and the user should feel guided throughout.
+
+**Result:**
+
+Most users completed the action smoothly, but a few were confused by the color and position of the “Delete” and “Modify” buttons.
 
 ---
 
-The interface buttons will be recolored to improve readability and clarify the purpose of each action.
+### **Immersion**
 
-The “delete” function will be disabled or moved during an edit session to prevent user errors.
+**Objective:** Assess whether Warhammer 40K fans feel immersed by the sounds and visuals. 
+
+**Steps:**
+
+- Trigger the voice line and animation by adding a task.
+- Hover over or interact with thematic icons and elements.
+
+**Expected Outcome:**  
+
+Fans should recognize and appreciate the Warhammer-themed feedback. Non-fans should still find the experience visually and auditorily engaging.
+
+**Result:**  
+
+Fans loved the aesthetic and voice effects. Non-fans found it “unique” but some suggested more guidance to understand the context.
 
 ---
+
+### **Interface Clarity**
+
+**Objective:** Measure how clearly the interface communicates each function.  
+
+**Steps:**
+
+- Try deleting or editing an existing appointment.
+- See if the buttons and color scheme are intuitive.
+- Try using the system without prior explanation.
+
+**Expected Outcome:** 
+
+Users should not accidentally delete an appointment or get confused during the edit process.
+
+**Result:**  
+
+Several users found the “Delete” button too close to the “Edit” one, creating hesitation. Colors weren’t always intuitive (e.g., Cancel and Confirm looked similar).
+
+---
+
+## **Feedback Collection**
+
+**Method:** short interviews 
+
+**Participants:** 6 users (3 Warhammer fans, 3 non-fans)  
+
+**Key Questions:**
+
+- Was the interface intuitive ?
+- Did you enjoy the Warhammer visuals ?
+- Did you face any confusion when editing appointments?
+- Would you use such a calendar in daily life ?
+- Suggestions for improvement ?
+
+---
+
+## **Success Metrics**
+
+- **≥4/5 average rating** on usability and thematic satisfaction  
+- **≤1 user out of 6** experiencing blocking confusion  
+- **Average task time** < 20 seconds to add or edit a task  
+
+---
+
+## **Test Results**
+
+| **Question**                                       | **Average Score (out of 5)** |
+|----------------------------------------------------|------------------------------|
+| Was the interface intuitive to use ?                | 4.2                          |
+| Were the visuals/sounds enjoyable ?    | 4.8                          |
+| Did you understand what each button did ?           | 3.5                          |
+| Would you use such a product regularly ?            | 3.3                          |
+
+**Suggestions for Improvement:**
+
+- Change the color of Cancel/Modify/Delete buttons
+- Remove the “Delete” option during editing
+
+---
+
+## **Optimisations Based on Feedback**
+
+**Changed button colors** to make Cancel/Modify/Delete clearer  
+**Disabled "Delete" during edit mode** to reduce errors  
+
+Example:
+```js
+// Tooltip on edit button
+editButton.setAttribute("title", "Modify your sacred duty");
+```
+
