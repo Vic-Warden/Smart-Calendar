@@ -2,95 +2,55 @@
 
 **Introduction / Context :**
 
-When we need to add a task to our schedule, whether in a calendar or on our phone, we always do the same thing, and this can quickly become monotonous. To make this task more attractive, my aim was to transform the traditional cuckoo clock and reminder into a fully personalized smart calendar. In concrete terms, users will be able to enter their appointments via a website which, of course, is calendar-themed in the Warhammer 40,000 universe. This will enable them to organize their daily activities.
+The daily use of calendars and reminder tools is often repetitive and not very engaging. To respond to this monotony, this research is part of a functional and experiential improvement of a connected calendar inspired by the Warhammer 40,000 universe. This project aims to integrate visual and audio interactive elements to enhance user engagement and offer an immersive experience.
 
-Who is this project aimed at? Of course, we're talking about fans of the Warhammer 40,000 universe, which boasts a community of between 30 and 50 million people. Just to give you an idea, let's say that a video game that has been awaited for 13 years has managed to reach 5 million sales. I'd like to remind you that just for one game among many others, 5 million people installed the game and studied the Warhammer lore. To tell you the Warhammer 40,000 lore comprises 1,097 works, including novels, short stories and collections. I'll stop talking about Warhammer 40,000, but you can see how well-developed and extremely well-constructed this universe is. My main idea was to integrate this universe in an immersive and captivating way! For an everyday experience, for example, instead of the traditional hourly birdsong, the user will hear an emblematic commissar's voice line, taken directly from the Dawn of War game series. To remain faithful to my favorite games, I wanted to take up its principle, so that every interaction, such as adding an appointment or simply modifying one, becomes a unique experience.
-
-A concrete scenario: Imagine a user standing in front of the revisited smart calendar. Upon detecting his presence, the eyes of the Astra Militarum emblem one of the most emblematic factions in Warhammer 40,000 light up red, accompanied by a vocal cue, but this time it's not the commissar's voice you hear, but the machine's spirit speaking directly to you! This immersive setting aims to add a touch of detail, making everyday use of the smart calendar entertaining. 
-
-What's more, when creating my website, I really wanted to make it as easy to use as possible. My main objective was to make it quick and easy to add an appointment. This ensured that my smart calendar would be most attractive to a wide range of users, from Warhammer enthusiasts to casual users and even the curious in search of new experiences. The aesthetic and sound aspects of my project, inspired by the world of Warhammer 40,000. allows me not only to add sentimental value for enthusiasts, but also to arouse the interest of a wider public, intrigued by novelty and originality. 
-
-The last but not least, to enhance the user experience, the improvement I had in mind would be to add to the web interface a personalized choice of voice unit associated with each appointment. In this way, the user would no longer be limited to the curator's choices, but could select voice lines for iconic characters such as the Psyker, the Priest, the Assassin, or even iconic vehicles such as the Baneblade or the Leman Russ. Making every interaction as personalized as possible !
+The main target of this project is fans of the Warhammer 40,000 universe, a global community estimated between 30 and 50 million people. The dense and rich narrative universe of Warhammer allows for aesthetic and functional integration into everyday objects. The project thus proposes an original alternative to the standard reminder: personalized voice interactions, thematic aesthetics, and automatic audio activations triggered by user presence.
 
 ---
 
 **Research question :**
 
-Which tools can most easily help improve the style of a website’s front-end  ?
+What front-end tools are currently available ?
 
 **Sub-questions :**
 
-How can the chosen tool be used to integrate interactive elements ?
+How can the chosen tool be used to integrate interactive elements easly ?
 
 ---
 
 **Research method :**
 
-As for my research, I don't know if this “research technique” has a name because I'm not going to lie to you, sir. Your part is the part I dread the most, I'm not taking too much risk in telling you that we French students this is a first for us, so before doing any kind of research, I took out my phone and started writing down what I really want to do with this upgrade. I only need 2 things to choose the tools
+To answer the research question, a fairly simple method was used: an online literature review to compare the best-known front-end development tools. The goal was to find tools that could improve a website's visual style and allow the addition of interactions such as sound or animation.
 
-- The first was, of course, the possibility of enhancing the visual
+The steps were as follows:
 
-- if the chosen tool could allow me to add audio, animation and even icons. 
+First, list the most commonly used tools such as React, Vue, Angular, Vanilla JS, or Svelte
 
-So I started by searching the Internet for tools that met my two criteria. I noticed that there were often some tools that came up most often, so I looked into them a little more. React, Vue.js, Angular, and of course, Vanilla JS. So I decided to dig a little deeper into each of them.
+Then, check their official documentation to see what features they offer
 
-After a long research session I came across an article [Comparing Angular, React, Vue, and Vanilla-JS](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9) that compared different tools I was planning to use. Although I didn't know which one I should take, I decided to look it up and take only the information that was important to me. 
+Read recent comparative articles written by developers to better understand the pros and cons of each
 
-Thanks to this article, I was able to learn quite a few things:
+Check whether they make it easy to add styles, sounds, animations, or visual effects
 
-- For example, regarding React, the author writes:
+Finally, look at how easy these tools are to use and how well they are explained online
 
-" React has suitable testing tools. Their documentation just got a major upgrade and their community can be best described as 'fierce'. "
+Even if this method is not complex, it gives a clear and honest overview of what exists today to improve a modern and dynamic web interface.
 
-I know that thanks to this there's documentation and I know that at first glance it's not something you look at first, but I'd already encountered a similar problem because when I had to install a mod for my favorite game, Dawn of War, I was quite happy to have access to a panoply of documentation that allowed me to solve all the problems I'd encountered, and without that I know I'd be unable to play it. So for me, having documentation is an important thing.
+---
 
-- Regarding Vanilla, he explains that:
+**Results**
 
-" Vanilla JavaScript is not a good solution for larger endeavors. "
+The research helped to better understand what each tool offers. An article titled [Comparing Angular, React, Vue, and Vanilla-JS](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9)  helped sort out the best-known frameworks.
 
-Even if Vanilla is easy, it quickly becomes difficult to use for larger endeavors, so I don't think I'll be using it.
+React is very complete, well-documented, with lots of tutorials and a large community. It also allows you to easily add animations, sound, or visual effects.
 
-- Regarding Angular, he explains that:
+Vue.js is easier to start with, but the community is slightly smaller, which can sometimes make finding help a bit harder.
 
-" Angular is geared to Test Driven Development and is well suited for Enterprise level development. Their documentation is excellent and the community is responsive. "
+Angular is very powerful but mostly used in large professional projects. It’s a bit more complicated to learn.
 
-I can see that it's a development tool, but I'm not doing a professional project... I'm doing a personal project first and foremost, so I'm not going to choose it either!
+Vanilla JS is useful for small tasks, but not sufficient to handle a visually advanced project.
 
-- For Vue, the author also says:
-
-" The community is small but this can work as an advantage since changes don't come out as frequently as Angular or React; requiring less general updating of the code. "
-
-It's obvious that it's a tool that's easy to use, but the problem is the lack of community and the lack of documentation. I've encountered too many problems to leave that point.
-
-It's not about one tool in particular, but thanks to it, I know that there isn't just one tool that can answer my question, but that there are many that can.
-
-" Many of the popular libraries are now more comparable than ever which allows organizations to truly select which pattern(s) work best for them. "
-
-After reading this article my preferred choice is React because it has good documentation, the ability to do many things including animations, add icons and even sounds.
-
-Then I read an article [Svelte vs React Comparison](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9) that I found interesting, which directly compared Svelte and React. 
-
-" Svelte cuts lots of corners in its compilation. It interprets its application code during build time. "
-
-This shows that Svelte does some of the work at compile time, making it faster and smoother.
-
-He also explains that :
-
-" Reactjs has a larger community and more resources for developers. There are tons upon tons of React blogs treating various features and advanced topics of Reactjs. "
-
-That's a decisive factor for me: having a large community means more tutorials, more answers if you get stuck, and more accessible resources to help you progress.
-
-In the article [Introducing Svelte, and Comparing Svelte with React and Vue](https://joshcollinsworth.com/blog/introducing-svelte-comparing-with-react-vue) I read that he said that 
-
-" From the start, I was consistently and pleasantly surprised how little code I needed to do things in Svelte-and how close it was to the JavaScript, HTML and CSS I already knew. "
-
-And that's exatly how I feel, I'm not a pro developer, I just want to improve my project without learning a super complicated trick, and Svelte makes it possible to do that, it even goes further saying “Svelte is React without all the bullshit.” It's a bit direct, but I understand what he means, simple and fast. 
-
-He also explains that Svelte avoids some common complications, particularly concerning component state, stating that:
-
-" State management is drastically simpler in Svelte compared to React or Vue. "
-
-This confirms the idea that Svelte simplifies things enormously, which is exactly what I'm looking for.
+Another article, [Introducing Svelte, and Comparing Svelte with React and Vue](https://joshcollinsworth.com/blog/introducing-svelte-comparing-with-react-vue), presents Svelte as a simple, efficient, and fast-to-use tool. It requires little code, is close to the HTML/CSS we already know, and simplifies component management. Its community is smaller than React’s, but this does not pose much of a problem for this type of project.
 
 ---
 
@@ -108,16 +68,208 @@ Concerning the 2nd page, I thought that everything was more or less explained, s
 
 ---
 
+**Code**
+
+Display the terminal with Svelte :
+
+```html
+<div id="omnissiah-overlay" class="hidden fixed inset-0 bg-black bg-opacity-90 backdrop-blur-sm z-50 flex items-center justify-center">
+  <div class="terminal_svelte text-green-400 font-mono p-6 rounded-lg max-w-xl w-full mx-4 border border-green-500 shadow-xl animate-popup relative overflow-hidden">
+    ...
+  </div>
+</div>
+```
+
+Display the terminal without Svelte :
+
+```html
+<!-- HTML -->
+<div id="omnissiah-overlay" class="hidden fixed inset-0 bg-black bg-opacity-90 backdrop-blur-sm z-50 flex items-center justify-center">
+  <div class="text-green-400 font-mono p-6 rounded-lg max-w-xl w-full mx-4 border border-green-500 shadow-xl relative overflow-hidden">
+    
+    <!-- Spinning gear icon -->
+    <div class="absolute top-4 right-6 animate-spin text-green-500">⚙️</div>
+
+    <!-- Terminal heading -->
+    <h2 class="text-lg font-bold mb-4">[ Astra Militarum Transmission Terminal ]</h2>
+
+    <!-- Dynamic terminal text output -->
+    <div id="terminal-text" class="whitespace-pre-line text-green-300 text-sm leading-relaxed">
+      Accessing data logs... \n Omnissiah protocol initiated...
+    </div>
+    <span class="inline-block w-2 h-4 bg-green-400 animate-pulse mt-2"></span>
+
+    <!-- Terminal loading bar -->
+    <div id="terminal-loading" class="h-1 bg-green-500 mt-6 rounded-full w-0"></div>
+
+    <!-- Close button -->
+    <div class="text-right mt-6">
+      <button onclick="closeOverlay()" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Button to toggle terminal -->
+<button onclick="openOverlay()" class="fixed bottom-6 right-6 bg-red-900 text-white px-4 py-2 rounded z-50">Who is the Omnissiah ?</button>
+
+<!-- JS -->
+<script>
+  function openOverlay() {
+    document.getElementById("omnissiah-overlay").classList.remove("hidden");
+    document.getElementById("terminal-loading").style.width = "100%";
+  }
+
+  function closeOverlay() {
+    document.getElementById("omnissiah-overlay").classList.add("hidden");
+    document.getElementById("terminal-loading").style.width = "0";
+  }
+</script>
+```
+
+Display the 3D model and the Animation text with Svelte :
+
+```svelte
+<script>
+  import { onMount } from 'svelte';
+  let visible = false;
+
+  let text = 'Tactical interface loaded.\nOmnissiah protocol active.';
+  let display = '';
+  let i = 0;
+
+  function toggleViewer() {
+    visible = !visible;
+    if (visible) {
+      display = '';
+      i = 0;
+      decrypt();
+    }
+  }
+
+  function decrypt() {
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        display += text[i];
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 35);
+  }
+
+  onMount(() => {
+  });
+</script>
+
+<button on:click={toggleViewer}>Inspect Model</button>
+
+{#if visible}
+  <div>
+    <div id="model-viewer" style="width:500px;height:500px;"></div>
+    <pre>{display}</pre>
+    <button on:click={toggleViewer}>Close</button>
+  </div>
+{/if}
+
+```
+
+Display the 3D model and the Animation text without Svelte :
+
+```html
+<!-- BOUTON POUR LANCER LE MODÈLE 3D -->
+<button onclick="openViewer()">Inspect Model</button>
+
+<!-- CONTAINER 3D + TEXTE CRYPTÉ -->
+<div id="viewer" style="display:none;">
+  <div id="model-viewer" style="width:500px;height:500px;"></div>
+
+  <div class="decrypt-text" data-text="Tactical interface loaded.\nOmnissiah protocol active."></div>
+
+  <button onclick="closeViewer()">Close</button>
+</div>
+
+<!-- JS DE BASE -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.141.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.141.0/examples/js/loaders/STLLoader.js"></script>
+
+<script>
+  let scene, camera, renderer, mesh;
+
+  function openViewer() {
+    document.getElementById('viewer').style.display = 'block';
+    initViewer();
+    startDecryptAnimation();
+  }
+
+  function closeViewer() {
+    document.getElementById('viewer').style.display = 'none';
+  }
+
+  function initViewer() {
+    const container = document.getElementById('model-viewer');
+    container.innerHTML = '';
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    camera.position.set(100, 100, 100);
+    camera.lookAt(0, 0, 0);
+
+    renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(500, 500);
+    container.appendChild(renderer.domElement);
+
+    const loader = new THREE.STLLoader();
+    loader.load('/models/your_model.stl', function (geometry) {
+      const material = new THREE.MeshNormalMaterial();
+      mesh = new THREE.Mesh(geometry, material);
+      mesh.rotation.set(-Math.PI / 2, 0, 0);
+      scene.add(mesh);
+    });
+
+    animate();
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (mesh) mesh.rotation.z += 0.005;
+    renderer.render(scene, camera);
+  }
+
+  function startDecryptAnimation() {
+    const el = document.querySelector('.decrypt-text');
+    const original = el.dataset.text;
+    let display = Array.from(original).map(() => ' ');
+    let i = 0;
+    el.style.opacity = 1;
+
+    const interval = setInterval(() => {
+      for (let j = i; j < original.length; j++) {
+        display[j] = Math.random() > 0.5 ? String.fromCharCode(33 + Math.random() * 94) : display[j];
+      }
+      el.innerText = display.join('');
+      display[i] = original[i];
+      i++;
+      if (i >= original.length) {
+        el.innerText = original;
+        clearInterval(interval);
+      }
+    }, 35);
+  }
+</script>
+
+```
+
+---
+
 **Conclusion**
 
-After looking at different tools and comparing their advantages and disadvantages through various articles, I realize that React is clearly the most powerful tool, it has very complete documentation and a community that is clearly active. That's a real plus, but what I'm looking for above all isn't the most powerful tool, it's a tool that lets me get down to basics. So yes, I admit that thanks to my research I've managed to come to the same conclusion as Yanis, who also agrees that React is an excellent tool, but Yanis is a web developer, he's simply excellent, and I'm clearly not on his level, which is why my solution will be different from yours. And as the article says 
+In the end, even though React is very complete and widely used in development, Svelte seems more suitable for a personal or educational project. It is easier to use, quicker to set up, and allows for adding animations or styling without too much code. For this project, Svelte is a good match for the needs.
 
-" From the start, I was consistently and pleasantly surprised how little code I needed to do things in Svelte-and how close it was to the JavaScript, HTML and CSS I already knew. "
+---
 
-I'm not a professional developer, I just want to enhance my project with some visuals and animations. And Svelte simplifies things enormously. 
+**Recommandations**
 
-That's why I decided to use Svelte for my implementation !
-
+Next time, we could try using Svelte with other tools like GSAP, since that might help make the animations cleaner. Also, it would be good to think about making the site more accessible, like adapting better to small screens or using proper ARIA features. And if possible, find a way so even people who don’t code can add effects or content without struggling.
 
 ---
 
