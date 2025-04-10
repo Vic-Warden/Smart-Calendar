@@ -158,6 +158,7 @@ Display the 3D model and the Animation text with Svelte :
   }
 
   onMount(() => {
+    // Three.js init can go here too if needed
   });
 </script>
 
