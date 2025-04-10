@@ -262,7 +262,38 @@ Several users found the “Delete” button too close to the “Edit” one, cre
 
 Example:
 ```js
-// Tooltip on edit button
-editButton.setAttribute("title", "Modify your sacred duty");
+function ism_editAppointment(appointment_id, currentTitle, currentDateTime) {
+  document.querySelectorAll('.ism-edit-form').forEach(form => form.remove());
+
+  document.querySelectorAll('.ism-edit-button, .ism-delete-button').forEach(btn => {
+    btn.style.display = 'inline-block';
+  });
+
+  const appointmentDiv = document.querySelector(`[data-id='${appointment_id}']`);
+  if (!appointmentDiv) {
+    console.error("L'élément avec l'ID donné n'a pas été trouvé");
+    return;
+  }
+
+  appointmentDiv.querySelectorAll('.ism-edit-button, .ism-delete-button').forEach(btn => {
+    btn.style.display = 'none';
+  });
+
+  const editForm = document.createElement("div");
+  editForm.classList.add("ism-edit-form");
+  editForm.style.marginTop = "1rem";
+
+  editForm.innerHTML = `
+    <label>Edit title:</label>
+    <input type="text" id="ism-edit-title" value="${currentTitle}">
+    <label>Change date and time:</label>
+    <input type="datetime-local" id="ism-edit-datetime" value="${currentDateTime}">
+    <button onclick="ism_saveEditedAppointment(${appointment_id})">Save</button>
+    <button onclick="this.closest('.ism-edit-form').remove(); ism_loadAppointments();">Cancel</button>
+  `;
+
+
+  appointmentDiv.appendChild(editForm);
+}
 ```
 
