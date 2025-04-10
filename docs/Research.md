@@ -163,15 +163,6 @@ Display the 3D model and the Animation text with Svelte :
 </script>
 
 <button on:click={toggleViewer}>Inspect Model</button>
-
-{#if visible}
-  <div>
-    <div id="model-viewer" style="width:500px;height:500px;"></div>
-    <pre>{display}</pre>
-    <button on:click={toggleViewer}>Close</button>
-  </div>
-{/if}
-
 ```
 
 Display the 3D model and the Animation text without Svelte :
