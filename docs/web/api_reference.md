@@ -28,8 +28,6 @@ If the connection fails, the script stops and returns an error message.
 
 ---
 
-[All appointment files](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/tree/main/web/Database/Appointment?ref_type=heads)
-
 
 ## Insert a New Appointment
 
@@ -371,6 +369,8 @@ No parameters required
 }
 
 ```
+
+[insert_device.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Device/insert_device.php?ref_type=heads)
 
 ## Delete Device
 

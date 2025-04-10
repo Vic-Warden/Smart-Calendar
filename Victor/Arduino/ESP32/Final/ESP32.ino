@@ -65,6 +65,8 @@
  const unsigned long HOURLY_SERVO_DURATION_MS = 60000; 
  const int SERVO_PULSE_MIN = 500;      
  const int SERVO_PULSE_MAX = 2500;      
+ const int SERVO_DIRECTION_FORWARD = 1;
+ const int SERVO_DIRECTION_BACKWARD = -1;
  
  // Input 
  const int BUTTON_PIN = 14;             
@@ -80,6 +82,8 @@
  const size_t TIME_STRING_BUFFER_SIZE = 25;
  const char* TIME_STRING_FORMAT = "%Y-%m-%d %H:%M:%S"; 
  const int HOURS_PER_DAY = 24; 
+ const int INVALID_HOUR = -1;
+
  
  // API 
  const char* APPOINTMENT_API_URL = "http://100.74.252.69/Database/Appointment/recover_appointment.php";
@@ -92,6 +96,8 @@
  const char* CONTENT_TYPE_JSON = "application/json"; 
  const int HTTP_OK_CODE = 200;           
  const int HTTP_SERVICE_UNAVAILABLE_CODE = 503; 
+
+ const size_t APPOINTMENT_JSON_DOC_SIZE = 2048;
  
  // Serial monitor
  const int SERIAL_BAUD = 115200;        
@@ -122,6 +128,7 @@
  const unsigned long WIFI_TIMEOUT_MS = 30000;     
  const unsigned long WATCHDOG_INTERVAL_MS = 60000; 
  const unsigned long MAX_UPTIME_MS = 86400000;  
+ const int TIMEZONE_OFFSET_HOURS = 1;
  
  // Night Mode
  const int NIGHT_MODE_ENTER_THRESHOLD = 650; 
@@ -135,6 +142,11 @@
    BANEBLADE,                      
    CHARACTER_MODE_COUNT             
  };
+
+ const int CHARACTER_CYCLE_STEP = 1;
+
+ const int APPOINTMENT_CYCLE_STEP = 1;
+
  
  // Servo Test 
  const int INITIAL_PHASE = 0;        
@@ -210,7 +222,7 @@
    "Baneblade"                  
  };
  
- DynamicJsonDocument appointments(2048);    
+ DynamicJsonDocument appointments(APPOINTMENT_JSON_DOC_SIZE);    
  std::vector<String> previousAppointmentIds; 
  
  // Timing Trackers 
@@ -309,7 +321,7 @@
    
    // Update time from NTP server and display it
    timeClient.update();
-   int hour = timeClient.getHours() + 1; // Adjust for timezone
+   int hour = timeClient.getHours() + TIMEZONE_OFFSET_HOURS; // Adjust for timezone
    // Handle 24-hour rollover
    if (hour >= HOURS_PER_DAY) hour -= HOURS_PER_DAY;
    int minute = timeClient.getMinutes();
@@ -370,7 +382,7 @@
    if (httpCode == HTTP_CODE_OK) 
    {
      String payload = http.getString();
-     DynamicJsonDocument newAppointments(2048);
+     DynamicJsonDocument newAppointments(APPOINTMENT_JSON_DOC_SIZE);
      deserializeJson(newAppointments, payload);
      checkForAppointmentChanges(newAppointments);
    } 
@@ -509,7 +521,7 @@
    // Rotate to next appointment at defined interval
    if (currentMillis - lastDisplayChange >= DISPLAY_INTERVAL_MS) 
    {
-     currentAppointmentIndex = (currentAppointmentIndex + 1) % appointments.size();
+     currentAppointmentIndex = (currentAppointmentIndex + APPOINTMENT_CYCLE_STEP) % appointments.size();
      lastDisplayChange = currentMillis;
    }
  
@@ -578,7 +590,7 @@
        sendSensorData(BUTTON_SENSOR_ID, VALUE_TRUE);
        
        // Cycle to next character mode
-       currentCharacter = static_cast<CharacterMode>((currentCharacter + 1) % CHARACTER_MODE_COUNT);
+       currentCharacter = static_cast<CharacterMode>((currentCharacter + CHARACTER_CYCLE_STEP) % CHARACTER_MODE_COUNT);
        String currentCharacterName = currentCharacterNames[currentCharacter];
        
        // Show character switch notification
@@ -705,7 +717,7 @@
    // Character switch endpoint cycles to next character mode
    server.on("/switch_character", HTTP_GET, []() 
    {
-     currentCharacter = static_cast<CharacterMode>((currentCharacter + 1) % CHARACTER_MODE_COUNT);
+     currentCharacter = static_cast<CharacterMode>((currentCharacter + CHARACTER_CYCLE_STEP) % CHARACTER_MODE_COUNT);
      String currentCharacterName = currentCharacterNames[currentCharacter];
  
      // Update display and play sound (if not in night mode)
@@ -753,8 +765,7 @@
      else 
      {
        // Return error if conditions not met
-       server.send(HTTP_SERVICE_UNAVAILABLE_CODE, CONTENT_TYPE_TEXT, 
-                  "Night mode active or DFPlayer unavailable.");
+       server.send(HTTP_SERVICE_UNAVAILABLE_CODE, CONTENT_TYPE_TEXT, "Night mode active or DFPlayer unavailable.");
      }
    });
  
@@ -765,7 +776,7 @@
 // Handles hourly servo movement 
  void handleHourlyServo(unsigned long currentMillis) 
  {
-   static int lastTriggeredHour = -1; // Track last hour servo was activated
+  static int lastTriggeredHour = INVALID_HOUR; // Track last hour servo was activated
    
    // Don't activate if time not initialized
    if (!timeInitialized) return;
@@ -796,7 +807,8 @@
    {
      if (servoCurrentPosition != servoTargetPosition) 
      {
-       int direction = (servoTargetPosition > servoCurrentPosition) ? 1 : -1;
+      int direction = (servoTargetPosition > servoCurrentPosition) ? SERVO_DIRECTION_FORWARD  : SERVO_DIRECTION_BACKWARD;
+
        servoCurrentPosition += direction * SERVO_SPEED;
        servoCurrentPosition = constrain(servoCurrentPosition, SERVO_MIN_POSITION, SERVO_MAX_POSITION);
        
