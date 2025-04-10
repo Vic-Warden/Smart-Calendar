@@ -2,49 +2,49 @@
 
 Write here your own content!
 
-## **DIGITAL MANUFACTURING**
+## DIGITAL MANUFACTURING
 
 The print was carried out using an Ultimaker 2+ Connect, equipped with a 0.4 mm nozzle. The filament used is grey PLA, 1.75 mm in diameter, chosen for its ease of use, stable behavior without a heated enclosure, and perfect compatibility with fast printing settings. PLA has the advantage of limiting warping and allows for higher print speeds than ABS or PETG, while remaining biodegradable under industrial composting conditions.
 
-### PLA Specifications:
+## PLA Specifications:
 
-Density: ~1.24 g/cm³
+Density : ~1.24 g/cm³
 
-Glass transition temperature: ~60°C
+Glass transition temperature : ~60°C
 
-Melting temperature: 180–220°C
+Melting temperature : 180–220°C
 
-Tensile strength: ~37 MPa
+Tensile strength : ~37 MPa
 
-Elongation at break: ~6%
+Elongation at break : ~6%
 
 Printing settings used (Ultimaker Cura)
 
-Layer height: 0.1 mm
+Layer height : 0.1 mm
 
-Wall thickness: 3 wall lines
+Wall thickness : 3 wall lines
 
-Infill: 20% (Gyroid pattern)
+Infill : 20% (Gyroid pattern)
 
-Print speed: 50 mm/s
+Print speed : 50 mm/s
 
-Nozzle temperature: 200°C
+Nozzle temperature : 200°C
 
-Bed temperature: 60°C
+Bed temperature : 60°C
 
-Cooling: fan at 100%
+Cooling : fan at 100%
 
-Supports: enabled, placed everywhere, overhang angle at 50°, horizontal expansion 0.8 mm
+Supports : enabled, placed everywhere, overhang angle at 50°, horizontal expansion 0.8 mm
 
-Optimise your design according to your manual manufacturing experience
+## Optimisations
 
-**Quality**
+## Quality
 
 Layer Height **0.15 mm**
 
 ---
 
-**Walls**
+## Walls
 
 Wall Thickness **0.8 mm**
 
@@ -54,7 +54,7 @@ Horizontal Expansion **-0.015 mm**
 
 ---
 
-**Top / Bottom**
+## Top / Bottom
 
 Top / Bottom Thickness **0.75 mm**
 
@@ -64,7 +64,7 @@ Bottom Layers **5**
 
 ---
 
-**Infill**
+## Infill
 
 Infill Density **20 %**
 
@@ -72,7 +72,7 @@ Infill Pattern **Grid**
 
 ---
 
-**Material** 
+## Material 
 
 Printing Temperature **210.0 °C**
 
@@ -80,13 +80,13 @@ Build Plate Temperature **60 °C**
 
 ---
 
-**Speed**
+## Speed
 
 Print Speed **60.0 mm/s**
 
 ---
 
-**Support**
+## Support
 
 Support Structure **Normal**
 
@@ -148,14 +148,15 @@ And we hang the flag
 ![Menu](Snapchat-1768370018.jpg)
 
 
-## **User Test Plan**
+## User Test
 
-### **Objective**
+**Objective**
+
 Evaluate the usability, clarity, and functionality of the Warhammer-themed smart calendar’s web interface, focusing on ease of adding/modifying appointments and immersive user feedback (audio/visual).
 
-## **Test Scenarios**
+**Test Scenarios**
 
-### **Appointment Creation Flow**
+## Appointment Creation Flow
 
 **Objective:** Ensure the user can create and modify an appointment intuitively and quickly.  
 
@@ -166,36 +167,36 @@ Evaluate the usability, clarity, and functionality of the Warhammer-themed smart
 - Add an appointment with title and time.
 - Try modifying it right after.
 
-**Expected Outcome:**  
+**Expected Outcome :**  
 
 The task should be completed in under 20 seconds without assistance, and the user should feel guided throughout.
 
-**Result:**
+**Result :**
 
 Most users completed the action smoothly, but a few were confused by the color and position of the “Delete” and “Modify” buttons.
 
 ---
 
-### **Immersion**
+## Immersion
 
 **Objective:** Assess whether Warhammer 40K fans feel immersed by the sounds and visuals. 
 
-**Steps:**
+**Stepsc:**
 
 - Trigger the voice line and animation by adding a task.
 - Hover over or interact with thematic icons and elements.
 
-**Expected Outcome:**  
+**Expected Outcomec:**  
 
 Fans should recognize and appreciate the Warhammer-themed feedback. Non-fans should still find the experience visually and auditorily engaging.
 
-**Result:**  
+**Resultc:**  
 
 Fans loved the aesthetic and voice effects. Non-fans found it “unique” but some suggested more guidance to understand the context.
 
 ---
 
-### **Interface Clarity**
+## Interface Clarity
 
 **Objective:** Measure how clearly the interface communicates each function.  
 
@@ -215,7 +216,7 @@ Several users found the “Delete” button too close to the “Edit” one, cre
 
 ---
 
-## **Feedback Collection**
+## Feedback Collection
 
 **Method:** short interviews 
 
@@ -231,7 +232,7 @@ Several users found the “Delete” button too close to the “Edit” one, cre
 
 ---
 
-## **Success Metrics**
+## Success Metrics
 
 - **≥4/5 average rating** on usability and thematic satisfaction  
 - **≤1 user out of 6** experiencing blocking confusion  
@@ -239,7 +240,7 @@ Several users found the “Delete” button too close to the “Edit” one, cre
 
 ---
 
-## **Test Results**
+## Test Results
 
 | **Question**                                       | **Average Score (out of 5)** |
 |----------------------------------------------------|------------------------------|
@@ -248,19 +249,18 @@ Several users found the “Delete” button too close to the “Edit” one, cre
 | Did you understand what each button did ?           | 3.5                          |
 | Would you use such a product regularly ?            | 3.3                          |
 
-**Suggestions for Improvement:**
+**Suggestions for Improvement :**
 
 - Change the color of Cancel/Modify/Delete buttons
 - Remove the “Delete” option during editing
 
 ---
 
-## **Optimisations Based on Feedback**
+## Optimisations Based on Feedback
 
 **Changed button colors** to make Cancel/Modify/Delete clearer  
 **Disabled "Delete" during edit mode** to reduce errors  
 
-Example:
 ```js
 function ism_editAppointment(appointment_id, currentTitle, currentDateTime) {
   document.querySelectorAll('.ism-edit-form').forEach(form => form.remove());

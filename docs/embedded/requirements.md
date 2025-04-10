@@ -14,12 +14,11 @@ Add some images! 😉
 
 
 
-### EMBRQ#01
+## EMBRQ#01
 
 When a sensor (button, PIR or LDR) is triggered, it sends its data via a POST request, thanks to the HTTPClient library.
 The API URL is defined in SENSOR_API_URL, and the sendSensorData function sends to the backend as long as WiFi is connected.
 
-Code:
 ```c++
 
 #include <WiFiManager.h>
@@ -55,7 +54,7 @@ const int DEVICE_ID = 1;
 // The rest of the functions...
 ```
 
-### EMBRQ#02
+## EMBRQ#02
 
 I've defined several endpoints accessible via GET requests:
 
@@ -69,7 +68,6 @@ I've defined several endpoints accessible via GET requests:
 
 The server is started in setupServer, enabling the backend to send instructions and receive data.
 
-Code:
 ```c++
 
 #include <WebServer.h>
@@ -164,7 +162,7 @@ const int HTTP_SERVICE_UNAVAILABLE_CODE = 503;
 // The rest of the functions...
 ```
 
-### EMBRQ#03
+## EMBRQ#03
 
 I use 3 inputs
 
@@ -174,9 +172,8 @@ A PIR sensor (pin 35) to detect movement.
 
 An LDR sensor (pin 34) which measures ambient brightness.
 
-All these sensors are read by the handleSensors function, and each change triggers an action (e.g., sending data, sound). 
+All these sensors are read by the handleSensors function, and each change triggers an action ( sending data, sound ). 
 
-Code:
 ```c++
 
 #include <Wire.h>     
@@ -289,7 +286,7 @@ Code:
  // The rest of the functions...
 ```
 
-### EMBRQ#04
+## EMBRQ#04
 
 I use 4 outputs
 
@@ -301,7 +298,6 @@ DFPlayer audio module: plays sounds in response to events (sensors, changes) via
 
 Servomotor: performs a movement every hour via handleHourlyServo
 
-Code:
 ```c++
 
 #include <LiquidCrystal_I2C.h>   
@@ -470,7 +466,7 @@ Code:
 // The rest of the functions...
 ```
 
-### EMBRQ#05
+## EMBRQ#05
 
 I used the WiFiManager library, which enables the ESP32 to automatically manage the WiFi connection.
 
@@ -480,7 +476,6 @@ If no network is known, the device creates an access point named “SmartCalenda
 
 Once connected, the system continues its configuration.
 
-Code:
 ```c++
 
 #include <WiFiManager.h>

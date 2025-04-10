@@ -39,11 +39,11 @@ PR05: The device must integrate an LCD screen and a PIR sensor.
 
 ## Digital Manufacturing & Materials
 
-- **Software used:** Tinkercad  
+- **Software used :** Tinkercad  
 
 Chosen for its simplicity
 
-- **Material used:** **PLA** 
+- **Material used :** **PLA** 
 
   PLA was chosen for its ease of printing, low warping, and aesthetic finish, ideal for a decorative object like this smart calendar.
 
@@ -83,7 +83,7 @@ Top view
 
 ---
 
-### 2. **3D Prototyping via Tinkercad**
+**3D Prototyping via Tinkercad**
 
 ![Menu](Step1.png)
 
@@ -159,8 +159,7 @@ Dimensions 93.48 mm × 80.44 mm × 8.49 mm
 
 ---
 
-### 4. **Improvement & Correction**
-> Aesthetic touch-ups, adjustment of proportions and holes for components.
+**Improvement & Correction**
 
 ![Menu](Step10.png)
 
@@ -246,9 +245,7 @@ Dimensions: 200.00 × 172.10 × 84.99 mm
 
 ---
 
-### **Final Export for Manufacturing**
-
-> Final model split into base + tower, exported in STL, ready to be printed.
+**Final Export for Manufacturing**
 
 ![Menu](Step22.png)
 
@@ -264,9 +261,7 @@ Dimensions: 200.00 × 172.10 × 84.99 mm
 
 ---
 
-### **Component Integration**
-
-> Space planning for PIR sensor, LCD screen and wires.
+**Component Integration**
 
 ![Menu](Last.png)  
 

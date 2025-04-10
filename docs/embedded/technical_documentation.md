@@ -2,7 +2,7 @@
 
 Your Wiring Diagram, Bill of Materials, ... everything about how you built your embedded device should be documented here.
 
-## **Wiring Diagram**
+## Wiring Diagram
 
 This Fritzing diagram shows the wiring of the ESP32-based Smart Calendar system. It includes the connection of several hardware components: an I2C LCD, a 7-segment display (TM1637), a DFPlayer Mini audio module, a servo motor, a PIR sensor, a brightness sensor (LDR), and a push-button. The aim is to visualize the project's physical architecture in order to facilitate assembly.
 

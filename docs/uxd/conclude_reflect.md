@@ -6,7 +6,7 @@ Voici la **traduction fidèle en anglais**, sans modifier la structure ni l’in
 
 Write here your own content!
 
-### Reflection
+## Reflection
 
 The prototype of my connected calendar successfully meets most of the initial user and technical requirements:
 
@@ -22,13 +22,13 @@ However, some features remain partially implemented or require further adjustmen
 
 ---
 
-### Issues Encountered
+## Issues Encountered
 
 Throughout the process, I faced several challenges that helped me better understand the practical constraints of modeling and digital fabrication. Here are the main problems encountered:
 
 ---
 
-Incorrect sensor hole sizing (Tower)
+## Incorrect sensor hole sizing (Tower)
 
 - **Goal:** Print a tower with openings suited for the sensors  
 - **Issue:** I miscalculated the dimensions and had to fully rebuild the tower.  
@@ -38,7 +38,7 @@ Incorrect sensor hole sizing (Tower)
 
 ---
 
-Poorly printed holes for the photoresistor
+## Poorly printed holes for the photoresistor
 
 - **Goal:** Print functional holes to integrate the photoresistor.  
 - **Issue:** The holes were not properly formed during printing.  
@@ -55,7 +55,7 @@ Poorly printed holes for the photoresistor
 
 ---
 
-Button holes placed too close together
+## Button holes placed too close together
 
 - **Goal:** Provide enough space for the wires and physical button.  
 - **Issue:** The holes were too close to the edge, and the part had already been glued.  
@@ -70,7 +70,7 @@ Button holes placed too close together
 
 ---
 
-Incorrect LCD measurement
+## Incorrect LCD measurement
 
 - **Goal:** Create a perfectly sized opening for the screen.  
 - **Issue:** I measured it upside down, and the screen didn’t fit properly.  
@@ -81,7 +81,7 @@ Incorrect LCD measurement
 
 ---
 
-Not enough space for the photoresistor after wiring
+## Not enough space for the photoresistor after wiring
 
 - **Goal:** Neatly integrate all wires and components into the tower.  
 - **Issue:** Once everything was installed, the photoresistor no longer fit and was sticking out.  

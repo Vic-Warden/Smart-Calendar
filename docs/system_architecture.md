@@ -6,7 +6,7 @@ This document is regularly updated to reflect the current state of the project.
 
 ---
 
-**Introduction**  
+## Introduction  
 
 This document outlines the system architecture of my project, Field Command: Pattern Cuckoo, presenting a structured overview of its components, including software, databases, and network elements. It explains how these components interact with each other.  
 The described architecture includes all elements currently present in the Docker environment.  
@@ -14,7 +14,7 @@ Its primary purpose is to serve as a reference for understanding the system.
 
 ---
 
-**Legend**  
+## Legend  
 
 ![Menu](legend.png)  
 
@@ -59,7 +59,7 @@ Its primary purpose is to serve as a reference for understanding the system.
 - **I2C LCD Display (16x2)**  
 - **7-segment TM1637 display**  
 
-**ESP32 Software (C++)**  
+**ESP32 Software**  
 
 **Libraries Used**  
 
@@ -86,13 +86,15 @@ Its primary purpose is to serve as a reference for understanding the system.
 
 ## SAD#07  
 
-#### Static Frontend (HTML Pages)  
+## Static Frontend (HTML Pages) 
+
 - index.html, inside_spirit_machine.html  
 - CSS: Tailwind  
 - JS: Interactions, decrypt effect  
 - Three.js + STLLoader for 3D models  
 
-#### Dynamic Frontend (Svelte SPA)  
+## Dynamic Frontend (Svelte SPA)  
+
 - App.svelte, main.js (Svelte)  
 - vite.config.js (dev server)  
 - style.css, index.html (entry point)  
@@ -106,29 +108,34 @@ Its primary purpose is to serve as a reference for understanding the system.
 
 - database_connection.php
 
-**/Appointment/**  
+**/Appointment/** 
+
 - insert_appointment.php  
 - update_appointment.php  
 - delete_appointment.php 
 - recover_appointment.php
 
 **/Device/**  
+
 - insert_device.php  
 - delete_device.php  
 - recover_device.php 
 
 **/Sensor/**  
+
 - insert_sensor.php  
 - delete_sensor.php
 - recover_sensor.php  
 
 **/SensorData/**  
+
 - insert_sensor_data.php
 - recover_sensor_data.php  
 
 ---
 
 ## SAD#08  
+
 - Container: iot-mariadb  
 - Databases: iot, mysql, performance_schema  
 - Tables: Appointment, Device, Sensor, SensorData  
@@ -136,12 +143,14 @@ Its primary purpose is to serve as a reference for understanding the system.
 ---
 
 ## SAD#09  
+
 - iot-hoegyv-php, iot-hoegyv-tunnel (custom images)  
 - nginx:latest, mariadb:latest, phpmyadmin/phpmyadmin  
 
 ---
 
 ## SAD#10  
+
 Containers running in the iot_default network:  
 - iot-nginx: Web server (port 80)  
 - iot-php: PHP-FPM backend  
@@ -152,6 +161,7 @@ Containers running in the iot_default network:
 ---
 
 ## SAD#11  
+
 - Personal computer ASUS ROG Strix
 - Operating system Windows 11
 - Installed tools: Docker Engine, Git, IDE, browser  
@@ -159,6 +169,7 @@ Containers running in the iot_default network:
 ---
 
 ## SAD#12  
+
 - Android  
 - Mobile OS + Chrome/Safari browser  
 - Frontend interface access via HTTPS  
@@ -166,12 +177,14 @@ Containers running in the iot_default network:
 ---
 
 ## SAD#13  
+
 - Wi-Fi box or router  
 - Connects all devices to the local network + Internet  
 
 ---
 
 ## SAD#14  
+
 - Remote GitLab  
 - .gitlab-ci.yml, .gitmodules  
 - Uses SSH for push/pull  
@@ -179,6 +192,7 @@ Containers running in the iot_default network:
 ---
 
 ## SAD#15  
+
 - GitLab via HTTPS/SSH (port 22)  
 - Public web access via iot-nginx  
 - Tunnel via iot-tunnel  
@@ -186,6 +200,7 @@ Containers running in the iot_default network:
 ---
 
 ## SAD#16  
+
 - Container: iot-tunnel  
 - Image: iot-hoegyv-tunnel  
 - Public project exposure via HTTP/HTTPS tunnel  

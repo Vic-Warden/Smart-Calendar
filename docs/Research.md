@@ -8,17 +8,17 @@ The main target of this project is fans of the Warhammer 40,000 universe, a glob
 
 ---
 
-**Research question :**
+## Research question :
 
 What front-end tools are currently available ?
 
-**Sub-questions :**
+## Sub-questions :
 
 How can the chosen tool be used to integrate interactive elements easly ?
 
 ---
 
-**Research method :**
+## Research method :
 
 To answer the research question, a fairly simple method was used: an online literature review to compare the best-known front-end development tools. The goal was to find tools that could improve a website's visual style and allow the addition of interactions such as sound or animation.
 
@@ -38,7 +38,7 @@ Even if this method is not complex, it gives a clear and honest overview of what
 
 ---
 
-**Results**
+## Results
 
 The research helped to better understand what each tool offers. An article titled [Comparing Angular, React, Vue, and Vanilla-JS](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9)  helped sort out the best-known frameworks.
 
@@ -54,7 +54,7 @@ Another article, [Introducing Svelte, and Comparing Svelte with React and Vue](h
 
 ---
 
-**Implementation**
+## Implementation
 
 After choosing which tool I was going to use to improve my front-end, I thought long and hard about what I could improve or add. I reread my website and asked myself, if I were a person who knew nothing about Warhammer 40k, what elements would I like to have for a little more explanation ? I first wrote my explanatory text to find out more about Omnissiah and techpriests. Then I was thinking, okay, I've got the text, but how do I add my text to my website? I started thinking, well, in Space Marine 2, in the campaign, there's a computer that explains the purpose of our first mission, and I really liked the animations on it, except that I'm not a professional developer, so I made it look like it's an Astra Militarum terminal, I had to add a few more lines to make it look like someone was trying to connect to it, so I'll let you see what I've implemented in the video.
 
@@ -68,9 +68,9 @@ Concerning the 2nd page, I thought that everything was more or less explained, s
 
 ---
 
-**Code**
+## Code
 
-Display the terminal with Svelte :
+Display the terminal **with** Svelte :
 
 ```html
 <div id="omnissiah-overlay" class="hidden fixed inset-0 bg-black bg-opacity-90 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -80,7 +80,7 @@ Display the terminal with Svelte :
 </div>
 ```
 
-Display the terminal without Svelte :
+Display the terminal **without** Svelte :
 
 ```html
 <!-- HTML -->
@@ -126,7 +126,7 @@ Display the terminal without Svelte :
 </script>
 ```
 
-Display the 3D model and the Animation text with Svelte :
+Display the 3D model and the Animation text **with** Svelte :
 
 ```html
 <script>
@@ -158,20 +158,18 @@ Display the 3D model and the Animation text with Svelte :
   }
 
   onMount(() => {
-    // Three.js init can go here too if needed
   });
 </script>
 
 <button on:click={toggleViewer}>Inspect Model</button>
 ```
 
-Display the 3D model and the Animation text without Svelte :
+Display the 3D model and the Animation text **without** Svelte :
 
 ```html
-<!-- BOUTON POUR LANCER LE MODÈLE 3D -->
 <button onclick="openViewer()">Inspect Model</button>
 
-<!-- CONTAINER 3D + TEXTE CRYPTÉ -->
+<!-- 3D container + encrypted text -->
 <div id="viewer" style="display:none;">
   <div id="model-viewer" style="width:500px;height:500px;"></div>
 
@@ -180,7 +178,7 @@ Display the 3D model and the Animation text without Svelte :
   <button onclick="closeViewer()">Close</button>
 </div>
 
-<!-- JS DE BASE -->
+<!-- BASIC JS -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.141.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.141.0/examples/js/loaders/STLLoader.js"></script>
 
@@ -253,19 +251,19 @@ Display the 3D model and the Animation text without Svelte :
 
 ---
 
-**Conclusion**
+## Conclusion
 
 In the end, even though React is very complete and widely used in development, Svelte seems more suitable for a personal or educational project. It is easier to use, quicker to set up, and allows for adding animations or styling without too much code. For this project, Svelte is a good match for the needs.
 
 ---
 
-**Recommandations**
+## Recommandations
 
 Next time, we could try using Svelte with other tools like GSAP, since that might help make the animations cleaner. Also, it would be good to think about making the site more accessible, like adapting better to small screens or using proper ARIA features. And if possible, find a way so even people who don’t code can add effects or content without struggling.
 
 ---
 
-**Sources and References**
+## Sources and References
 
 [Comparing Angular, React, Vue, and Vanilla-JS](https://dev.to/rfornal/comparing-angular-react-vue-and-vanilla-js-37o9)
 

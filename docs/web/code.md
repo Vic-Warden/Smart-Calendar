@@ -2,7 +2,7 @@
 
 Write here your own content!
 
-### Project Structure
+## Project Structure
 
 The project is structured in a clean and modular way :
 
@@ -26,25 +26,28 @@ The project is structured in a clean and modular way :
 
 I followed code practices for every language used :
 
-### JavaScript
+## JavaScript
 
 - All functions are written in camelCase
 - API calls use fetch() with clear HTTP methods
 - DOM interactions are grouped logically
 - Code is fully commented and structured
 
-### PHP
+## PHP
+
 - Each route is in its own file 
 - Responses are returned in consistent JSON format
 - Prepared statements are used to prevent SQL injection
 
-### HTML / CSS
+## HTML / CSS
+
 - HTML structure 
 - CSS is modular, separated from HTML
 - Used Tailwind CSS + custom utility classes
 - Animations and transitions are abstracted with clean class names
 
-All source files include a comment header with:  
+All source files include a comment header with:
+
 - Description  
 - Author   
 - Date
@@ -53,7 +56,7 @@ And the key functions are explained with inline comments
 
 ---
 
-### JavaScript Adding an Appointment
+## JavaScript Adding an Appointment
 
 This function collects user input and sends a POST request to the backend API.
 
@@ -79,7 +82,7 @@ function ism_addAppointment() {
 
 ---
 
-### PHP
+## PHP
 
 This endpoint receives appointment data and inserts it into the database.
 
@@ -185,7 +188,7 @@ else
 
 ---
 
-### CSS
+## CSS
 
 This example shows how I style a full-width background and a custom button
 

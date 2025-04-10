@@ -6,16 +6,16 @@ This API is used to manage appointments stored in the database. It is used by my
 
 ---
 
-### Database Connection
+## Database Connection
 
-**Endpoint**: http://localhost/Database/Connection/database_connection.php  
+**Endpoint :** http://localhost/Database/Connection/database_connection.php  
 
-**Description**: Establishes a connection to the MariaDB database using mysqli
+**Description :** Establishes a connection to the MariaDB database using mysqli
 
 This file is included in all PHP files that interact with the database.  
 If the connection fails, the script stops and returns an error message.
 
-### Parameters
+## Parameters
 
 | Variable     | Value        | Description                   |
 |--------------|--------------|-------------------------------|
@@ -31,13 +31,13 @@ If the connection fails, the script stops and returns an error message.
 [All appointment files](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/tree/main/web/Database/Appointment?ref_type=heads)
 
 
-### Insert a New Appointment
+## Insert a New Appointment
 
 **Endpoint**: http://localhost/Database/Appointment/insert_appointment.php  
 **Method**: POST  
 **Description**: Create a new appointment for a device
 
-### Request Parameters body: application/x-www-form-urlencoded
+## Request Parameters body: application/x-www-form-urlencoded
 
 | Parameter   | Type     | Required | Description                                                        |
 |-------------|----------|----------|--------------------------------------------------------------------|
@@ -46,7 +46,7 @@ If the connection fails, the script stops and returns an error message.
 | device_id | int    | Yes      | Device ID             |
 
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -84,17 +84,17 @@ If the connection fails, the script stops and returns an error message.
 
 [insert_appointment.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/insert_appointment.php?ref_type=heads)
 
-### Get Last Appointment
+## Get Last Appointment
 
 **Endpoint**: http://localhost/Database/Appointment/get_last_appointment.php  
 **Method**: GET  
 **Description**: Retrieve the last appointment saved in the system
 
-### Request Parameters
+## Request Parameters
 
 No parameters required
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -105,7 +105,7 @@ No parameters required
 }
 ```
 
-### Error Response
+## Error Response
 
 ```json
 {
@@ -115,13 +115,13 @@ No parameters required
 ```
 [get_last_appointment.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/get_last_appointment.php?ref_type=heads)
 
-### Update Appointment
+## Update Appointment
 
 **Endpoint**: http://localhost/Database/Appointment/update_appointment.php  
 **Method**: PUT  
 **Description**: Update an existing appointment by ID
 
-### Request Body Content-Type: application/json
+## Request Body Content-Type: application/json
 
 | Parameter        | Type     | Required | Description                                       |
 |------------------|----------|----------|---------------------------------------------------|
@@ -129,7 +129,7 @@ No parameters required
 | task           | string | Yes      | Updated task description                          |
 | date_hour      | string | Yes      | Updated date and time format: YYYY-MM-DD HH:MM:SS |
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -138,7 +138,7 @@ No parameters required
 }
 ```
 
-### Error Responses
+## Error Responses
 
 ```json
 {
@@ -163,17 +163,17 @@ No parameters required
 
 [update_appointment.php  on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/get_last_appointment.php?ref_type=heads)
 
-### Get Last Updated Appointment
+## Get Last Updated Appointment
 
 **Endpoint**: http://localhost/Database/Appointment/get_last_updated_appointment.php  
 **Method**: GET  
 **Description**: Retrieve the last updated appointment saved in a JSON file.
 
-### Request Parameters
+## Request Parameters
 
 No parameters required
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -184,7 +184,7 @@ No parameters required
 }
 ```
 
-### Error Response
+## Error Response
 
 ```json
 {
@@ -196,19 +196,19 @@ No parameters required
 [get_last_updated_appointment.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/get_last_updated_appointment.php?ref_type=heads)
 
 
-### Delete Appointment
+## Delete Appointment
 
 **Endpoint**: http://localhost/Database/Appointment/delete_appointment.php  
 **Method**: DELETE  
 **Description**: Delete an appointment by ID and return its data
 
-### Request Body Content-Type: application/json
+## Request Body Content-Type: application/json
 
 | Parameter        | Type     | Required | Description                        |
 |------------------|----------|----------|------------------------------------|
 | appointment_id | int    | Yes      | ID of the appointment to delete    |
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -224,7 +224,7 @@ No parameters required
 }
 ```
 
-### Error Responses
+## Error Responses
 
 ```json
 {
@@ -256,17 +256,17 @@ No parameters required
 [delete_appointment.php  on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/delete_appointment.php?ref_type=heads)
 
 
-### Get Last Deleted Appointment
+## Get Last Deleted Appointment
 
 **Endpoint**: http://localhost/Database/Appointment/get_last_deleted_appointment.php  
 **Method**: GET  
 **Description**: Retrieve the last deleted appointment saved in a JSON file.
 
-### Request Parameters
+## Request Parameters
 
 No parameters required
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -282,7 +282,7 @@ No parameters required
 }
 ```
 
-### Error Response
+## Error Response
 
 ```json
 {
@@ -293,17 +293,17 @@ No parameters required
 
 [get_last_deleted_appointment.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Appointment/get_last_deleted_appointment.php?ref_type=heads)
 
-### Get All Appointments
+## Get All Appointments
 
 **Endpoint**: http://localhost/Database/Appointment/recover_appointment.php  
 **Method**: GET  
 **Description**: Retrieve all appointments from the database.
 
-### Request Parameters
+## Request Parameters
 
 No parameters required
 
-### Success Response
+## Success Response
 
 ```json
 [
@@ -328,20 +328,20 @@ No parameters required
 
 ---
 
-### Insert Device
+## Insert Device
 
 **Endpoint**: http://localhost/Database/Device/insert_device.php  
 **Method**: POST  
 **Description**: Adds a new device or updates its IP address if it already exists.
 
-### Request Parameters body: application/x-www-form-urlencoded
+## Request Parameters body: application/x-www-form-urlencoded
 
 | Parameter     | Type     | Required | Description               |
 |---------------|----------|----------|---------------------------|
 | name        | string | Yes      | Name of the device        |
 | ip_address  | string | Yes      | IP address of the device  |
 
-### Success Responses
+## Success Responses
 
 ```json
 {
@@ -355,7 +355,7 @@ No parameters required
 }
 ```
 
-### Error Responses
+## Error Responses
 
 ```json
 {
@@ -372,19 +372,19 @@ No parameters required
 
 ```
 
-### Delete Device
+## Delete Device
 
 **Endpoint**: http://localhost/Database/Device/delete_device.php  
 **Method**: POST  
 **Description**: Delete a device from the database using its ID.
 
-### Request Parameters body: application/x-www-form-urlencoded
+## Request Parameters body: application/x-www-form-urlencoded
 
 | Parameter     | Type     | Required | Description                    |
 |---------------|----------|----------|--------------------------------|
 | device_id   | int    | Yes      | ID of the device to be deleted |
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -393,7 +393,7 @@ No parameters required
 }
 ```
 
-### Error Responses
+## Error Responses
 
 ```json
 {
@@ -425,17 +425,17 @@ No parameters required
 
 [delete_device.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Device/delete_device.php?ref_type=heads)
 
-### Get All Devices
+## Get All Devices
 
 **Endpoint**: http://localhost/Database/Device/recover_device.php  
 **Method**: GET  
 **Description**: Retrieve all devices from the database and save them in a JSON file.
 
-### Request Parameters
+## Request Parameters
 
 No parameters required
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -450,7 +450,7 @@ No parameters required
 }
 ```
 
-### Error Response
+## Error Response
 
 ```json
 {
@@ -463,13 +463,13 @@ No parameters required
 
 ---
 
-### Insert Sensor
+## Insert Sensor
 
 **Endpoint**: http://localhost/Database/Sensor/insert_sensor.php  
 **Method**: POST  
 **Description**: Add a new sensor for a specific device.
 
-### Request Parameters body: application/x-www-form-urlencoded
+## Request Parameters body: application/x-www-form-urlencoded
 
 | Parameter              | Type     | Required | Description                                |
 |------------------------|----------|----------|--------------------------------------------|
@@ -478,7 +478,7 @@ No parameters required
 | activation_threshold | float  | No       | Value at which the sensor activates        |
 | device_id            | int    | Yes      | ID of the device the sensor is linked to   |
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -494,7 +494,7 @@ No parameters required
 }
 ```
 
-### Error Responses
+## Error Responses
 
 ```json
 {
@@ -519,19 +519,19 @@ No parameters required
 
 [insert_sensor.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Sensor/insert_sensor.php?ref_type=heads)
 
-### Delete Sensor
+## Delete Sensor
 
 **Endpoint**: http://localhost/Database/Sensor/delete_sensor.php  
 **Method**: POST  
 **Description**: Delete a sensor from the database using its ID.
 
-### Request Parameters body: application/x-www-form-urlencoded
+## Request Parameters body: application/x-www-form-urlencoded
 
 | Parameter     | Type     | Required | Description                    |
 |---------------|----------|----------|--------------------------------|
 | sensor_id   | int    | Yes      | ID of the sensor to be deleted |
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -540,7 +540,7 @@ No parameters required
 }
 ```
 
-### Error Responses
+## Error Responses
 
 ```json
 {
@@ -572,17 +572,17 @@ No parameters required
 
 [delete_sensor.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/Sensor/delete_sensor.php?ref_type=heads)
 
-### Get All Sensors
+## Get All Sensors
 
 **Endpoint**: http://localhost/Database/Sensor/recover_sensor.php  
 **Method**: GET  
 **Description**: Retrieve all sensors from the database.
 
-### Request Parameters
+## Request Parameters
 
 No parameters required
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -613,7 +613,7 @@ No parameters required
 }
 ```
 
-### Error Responses
+## Error Responses
 
 ```json
 {
@@ -633,13 +633,13 @@ No parameters required
 
 ---
 
-### Insert Sensor Data 3 Sensors
+## Insert Sensor Data 3 Sensors
 
 **Endpoint**: http://localhost/Database/SensorData/insert_sensor_data.php  
 **Method**: POST  
 **Description**: Insert sensor data for 3 sensors and keep only the latest 20 records per sensor.
 
-### Request Parameters body: application/x-www-form-urlencoded
+## Request Parameters body: application/x-www-form-urlencoded
 
 | Parameter        | Type    | Required | Description                            |
 |------------------|---------|----------|----------------------------------------|
@@ -650,7 +650,7 @@ No parameters required
 | sensor_id_3    | int   | Yes      | Third sensor ID                        |
 | value_3        |float | Yes      | Value for third sensor                 |
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -676,7 +676,7 @@ No parameters required
 }
 ```
 
-### Error Responses
+## Error Responses
 
 ```json
 {
@@ -693,17 +693,17 @@ No parameters required
 
 [insert_sensor_data.php on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/blob/main/web/Database/SensorData/insert_sensor_data.php?ref_type=heads)
 
-### Get Latest Sensor Data
+## Get Latest Sensor Data
 
 **Endpoint**: http://localhost/Database/SensorData/recover_sensor_data.php  
 **Method**: GET  
 **Description**: Retrieve the latest 20 sensor data entries, grouped by sensor
 
-### Request Parameters
+## Request Parameters
 
 No parameters required
 
-### Success Response
+## Success Response
 
 ```json
 {
@@ -799,7 +799,7 @@ No parameters required
 }
 ```
 
-### Error Responses
+## Error Responses
 
 ```json
 {
