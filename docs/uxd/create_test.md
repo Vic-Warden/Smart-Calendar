@@ -120,10 +120,6 @@ When I split them, I reduce the time by **1h41**
 
 [Files on GitLab](https://gitlab.fdmci.hva.nl/IoT/2024-2025-semester-2/individual-project/buudiizaaduu29/-/tree/main/docs/uxd/Create?ref_type=heads)
 
----
-
-Tu veux que je l’intègre pour toi dans ton texte ou tu le copies à la main ?
-
 But when I flip them I reduce the time by **11 hours and 34 minutes !**
 
 ## **(USER)TEST**
