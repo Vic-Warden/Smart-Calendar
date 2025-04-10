@@ -1,7 +1,3 @@
-Voici la **traduction fidèle en anglais**, sans modifier la structure ni l’indentation de ton texte :
-
----
-
 # Conclude & Reflect
 
 Write here your own content!
