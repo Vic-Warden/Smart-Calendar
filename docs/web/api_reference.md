@@ -33,9 +33,9 @@ If the connection fails, the script stops and returns an error message.
 
 ## Insert a New Appointment
 
-**Endpoint**: http://localhost/Database/Appointment/insert_appointment.php  
-**Method**: POST  
-**Description**: Create a new appointment for a device
+**Endpoint :** http://localhost/Database/Appointment/insert_appointment.php  
+**Method :** POST  
+**Description :** Create a new appointment for a device
 
 ## Request Parameters body: application/x-www-form-urlencoded
 
@@ -86,9 +86,9 @@ If the connection fails, the script stops and returns an error message.
 
 ## Get Last Appointment
 
-**Endpoint**: http://localhost/Database/Appointment/get_last_appointment.php  
-**Method**: GET  
-**Description**: Retrieve the last appointment saved in the system
+**Endpoint :** http://localhost/Database/Appointment/get_last_appointment.php  
+**Method :** GET  
+**Description :** Retrieve the last appointment saved in the system
 
 ## Request Parameters
 
@@ -117,9 +117,9 @@ No parameters required
 
 ## Update Appointment
 
-**Endpoint**: http://localhost/Database/Appointment/update_appointment.php  
-**Method**: PUT  
-**Description**: Update an existing appointment by ID
+**Endpoint :** http://localhost/Database/Appointment/update_appointment.php  
+**Method :** PUT  
+**Description :** Update an existing appointment by ID
 
 ## Request Body Content-Type: application/json
 
@@ -165,9 +165,9 @@ No parameters required
 
 ## Get Last Updated Appointment
 
-**Endpoint**: http://localhost/Database/Appointment/get_last_updated_appointment.php  
-**Method**: GET  
-**Description**: Retrieve the last updated appointment saved in a JSON file.
+**Endpoint :** http://localhost/Database/Appointment/get_last_updated_appointment.php  
+**Method :** GET  
+**Description :** Retrieve the last updated appointment saved in a JSON file.
 
 ## Request Parameters
 
@@ -198,9 +198,9 @@ No parameters required
 
 ## Delete Appointment
 
-**Endpoint**: http://localhost/Database/Appointment/delete_appointment.php  
-**Method**: DELETE  
-**Description**: Delete an appointment by ID and return its data
+**Endpoint :** http://localhost/Database/Appointment/delete_appointment.php  
+**Method :** DELETE  
+**Description :** Delete an appointment by ID and return its data
 
 ## Request Body Content-Type: application/json
 
@@ -258,9 +258,9 @@ No parameters required
 
 ## Get Last Deleted Appointment
 
-**Endpoint**: http://localhost/Database/Appointment/get_last_deleted_appointment.php  
-**Method**: GET  
-**Description**: Retrieve the last deleted appointment saved in a JSON file.
+**Endpoint :** http://localhost/Database/Appointment/get_last_deleted_appointment.php  
+**Method :** GET  
+**Description :** Retrieve the last deleted appointment saved in a JSON file.
 
 ## Request Parameters
 
@@ -330,9 +330,9 @@ No parameters required
 
 ## Insert Device
 
-**Endpoint**: http://localhost/Database/Device/insert_device.php  
-**Method**: POST  
-**Description**: Adds a new device or updates its IP address if it already exists.
+**Endpoint :** http://localhost/Database/Device/insert_device.php  
+**Method :** POST  
+**Description :** Adds a new device or updates its IP address if it already exists.
 
 ## Request Parameters body: application/x-www-form-urlencoded
 
@@ -374,9 +374,9 @@ No parameters required
 
 ## Delete Device
 
-**Endpoint**: http://localhost/Database/Device/delete_device.php  
-**Method**: POST  
-**Description**: Delete a device from the database using its ID.
+**Endpoint :** http://localhost/Database/Device/delete_device.php  
+**Method :** POST  
+**Description :** Delete a device from the database using its ID.
 
 ## Request Parameters body: application/x-www-form-urlencoded
 
@@ -427,9 +427,9 @@ No parameters required
 
 ## Get All Devices
 
-**Endpoint**: http://localhost/Database/Device/recover_device.php  
-**Method**: GET  
-**Description**: Retrieve all devices from the database and save them in a JSON file.
+**Endpoint :** http://localhost/Database/Device/recover_device.php  
+**Method :** GET  
+**Description :** Retrieve all devices from the database and save them in a JSON file.
 
 ## Request Parameters
 
@@ -465,9 +465,9 @@ No parameters required
 
 ## Insert Sensor
 
-**Endpoint**: http://localhost/Database/Sensor/insert_sensor.php  
-**Method**: POST  
-**Description**: Add a new sensor for a specific device.
+**Endpoint :** http://localhost/Database/Sensor/insert_sensor.php  
+**Method :** POST  
+**Description :** Add a new sensor for a specific device.
 
 ## Request Parameters body: application/x-www-form-urlencoded
 
@@ -521,9 +521,9 @@ No parameters required
 
 ## Delete Sensor
 
-**Endpoint**: http://localhost/Database/Sensor/delete_sensor.php  
-**Method**: POST  
-**Description**: Delete a sensor from the database using its ID.
+**Endpoint :** http://localhost/Database/Sensor/delete_sensor.php  
+**Method :** POST  
+**Description :** Delete a sensor from the database using its ID.
 
 ## Request Parameters body: application/x-www-form-urlencoded
 
@@ -574,9 +574,9 @@ No parameters required
 
 ## Get All Sensors
 
-**Endpoint**: http://localhost/Database/Sensor/recover_sensor.php  
-**Method**: GET  
-**Description**: Retrieve all sensors from the database.
+**Endpoint :** http://localhost/Database/Sensor/recover_sensor.php  
+**Method :** GET  
+**Description :** Retrieve all sensors from the database.
 
 ## Request Parameters
 
@@ -635,9 +635,9 @@ No parameters required
 
 ## Insert Sensor Data 3 Sensors
 
-**Endpoint**: http://localhost/Database/SensorData/insert_sensor_data.php  
-**Method**: POST  
-**Description**: Insert sensor data for 3 sensors and keep only the latest 20 records per sensor.
+**Endpoint :** http://localhost/Database/SensorData/insert_sensor_data.php  
+**Method :** POST  
+**Description :** Insert sensor data for 3 sensors and keep only the latest 20 records per sensor.
 
 ## Request Parameters body: application/x-www-form-urlencoded
 
@@ -695,9 +695,9 @@ No parameters required
 
 ## Get Latest Sensor Data
 
-**Endpoint**: http://localhost/Database/SensorData/recover_sensor_data.php  
-**Method**: GET  
-**Description**: Retrieve the latest 20 sensor data entries, grouped by sensor
+**Endpoint :** http://localhost/Database/SensorData/recover_sensor_data.php  
+**Method :** GET  
+**Description :** Retrieve the latest 20 sensor data entries, grouped by sensor
 
 ## Request Parameters
 
