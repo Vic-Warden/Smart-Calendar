@@ -220,6 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Show the edit form for a specific appointment
  
 function ism_editAppointment(appointment_id, currentTitle, currentDateTime) {
+  document.querySelectorAll('.edit-btn, .delete-btn').forEach(btn => btn.style.display = 'none');
   const editForm = document.createElement("div");
   editForm.classList.add("ism-edit-form");
 

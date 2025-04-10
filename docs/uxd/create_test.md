@@ -1,40 +1,44 @@
+Voici la traduction fidèle de ton texte, **sans toucher à la structure ni à l’indentation** :
+
+---
+
 # Create & Test
 
 Write here your own content!
 
 ## **DIGITAL MANUFACTURING**
 
-The chosen device(s) and material are described
+The print was carried out using an Ultimaker 2+ Connect, equipped with a 0.4 mm nozzle. The filament used is grey PLA, 1.75 mm in diameter, chosen for its ease of use, stable behavior without a heated enclosure, and perfect compatibility with fast printing settings. PLA has the advantage of limiting warping and allows for higher print speeds than ABS or PETG, while remaining biodegradable under industrial composting conditions.
 
----
+### PLA Specifications:
 
-Manufacturing settings that are used are given
+Density: ~1.24 g/cm³
 
----
+Glass transition temperature: ~60°C
 
-Optimisations are described with their impact
+Melting temperature: 180–220°C
 
----
+Tensile strength: ~37 MPa
 
-The manufacturing process is logged with pictures and/or video’s as proof.
+Elongation at break: ~6%
 
----
+Printing settings used (Ultimaker Cura)
 
-Manufacturing files are present
+Layer height: 0.1 mm
 
-## **(USER)TEST**
+Wall thickness: 3 wall lines
 
-Describe what (user) requirements you want to test
+Infill: 20% (Gyroid pattern)
 
----
+Print speed: 50 mm/s
 
-Describe how you are going tot test
+Nozzle temperature: 200°C
 
----
+Bed temperature: 60°C
 
-Describe what works on your design and what you are going to change for you final version
+Cooling: fan at 100%
 
----
+Supports: enabled, placed everywhere, overhang angle at 50°, horizontal expansion 0.8 mm
 
 Optimise your design according to your manual manufacturing experience
 
@@ -115,3 +119,31 @@ When I split them, I reduce the time by **1h41**
 ![Menu](Just_TOUR_Better.png)
 
 But when I flip them I reduce the time by **11 hours and 34 minutes !**
+
+## **(USER)TEST**
+
+Testing the ease of adding an appointment through the smart calendar's web interface, with a focus on accessibility, intuitiveness, and user comfort.
+
+Two groups of 3 users were selected:
+
+3 people who are Warhammer fans
+
+3 people with no particular knowledge of the universe
+
+They were invited to use the site to add and modify an appointment.
+
+Adding appointments was generally judged to be simple and smooth
+
+However, several users noted:
+
+A lack of clarity in the button colors (cancel / modify)
+
+Confusion due to the possibility of deleting an appointment while modifying it
+
+---
+
+The interface buttons will be recolored to improve readability and clarify the purpose of each action.
+
+The “delete” function will be disabled or moved during an edit session to prevent user errors.
+
+---
