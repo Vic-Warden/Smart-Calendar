@@ -1,6 +1,6 @@
 # Research to Market
 
-**##Introduction / Context :**
+## Introduction / Context :
 
 The daily use of calendars and reminder tools is often repetitive and not very engaging. To respond to this monotony, this research is part of a functional and experiential improvement of a connected calendar inspired by the Warhammer 40,000 universe. This project aims to integrate visual and audio interactive elements to enhance user engagement and offer an immersive experience.
 
